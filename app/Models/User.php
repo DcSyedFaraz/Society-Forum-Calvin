@@ -15,7 +15,7 @@ use Bavix\Wallet\Interfaces\Wallet;
 class User extends Authenticatable implements MustVerifyEmail, Wallet
 {
     use HasApiTokens,HasFactory,Notifiable,HasRoles,HasWallet;
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -24,6 +24,7 @@ class User extends Authenticatable implements MustVerifyEmail, Wallet
     protected $fillable = [
         'name',
         'email',
+        'phone',
         'password',
         'is_email_verified'
     ];

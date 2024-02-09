@@ -4,7 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Admin | Dashboard</title>
-
+  <link href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css" rel="stylesheet"/>
+  <link href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.css" rel="stylesheet"/>
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -27,7 +28,7 @@
   <link rel="stylesheet" href="{{asset('/admin/plugins/summernote/summernote-bs4.min.css')}}">
   <!-- Toastr -->
   <link rel="stylesheet" href="{{asset('/admin/plugins/toastr/toastr.min.css')}}">
-  
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -37,7 +38,7 @@
     <img class="animation__shake" src="{{asset('admin/dist/img/AdminLTELogo.png')}}" alt="AdminLTELogo" height="60" width="60">
   </div>
 
-  
+
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -73,8 +74,8 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        
-         
+
+
         <li class="nav-item {{ request()->routeIs('admin.dashboard') ? 'menu-open' : '' }} ">
             <a href="#" class="nav-link nav-dropdown-toggle {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
               <i class="nav-icon fas fa-table"></i>
@@ -84,18 +85,18 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-        
+
               <li class="nav-item">
                 <a href="{{route('admin.dashboard')}}" class="nav-link {{ request()->routeIs('admin.dashboard')? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard</p>
                 </a>
               </li>
-             
-             
+
+
             </ul>
-          </li> 
-          
+          </li>
+
           @can('pages-list')
           <li class="nav-item {{ request()->routeIs('pages.index') ? 'menu-open' : '' }} {{ request()->routeIs('sections.index') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link nav-dropdown-toggle {{ request()->routeIs('pages.index') ? 'active' : '' }} {{ request()->routeIs('sections.index') ? 'active' : '' }}">
@@ -123,7 +124,7 @@
                 </a>
               </li>
             </ul>
-          </li> 
+          </li>
           @endcan
           <li class="nav-item {{ request()->routeIs('roles.index') ? 'menu-open' : '' }} ">
           @can('role-list')
@@ -137,7 +138,7 @@
           @endcan
             <ul class="nav nav-treeview">
             @can('role-list')
-            
+
             <li class="nav-item">
               <a href="{{route('roles.index')}}" class="nav-link {{ request()->routeIs('roles.index')? 'active' : '' }}">
                 <i class="far fa-circle nav-icon"></i>
@@ -145,7 +146,7 @@
               </a>
             </li>
             @endcan
-            
+
             @can('role-create')
             <li class="nav-item">
               <a href="#" class="nav-link">
@@ -155,7 +156,7 @@
             </li>
             @endcan
           </ul>
-        </li> 
+        </li>
           @can('user-list')
           <li class="nav-item {{ request()->routeIs('users.index') ? 'menu-open' : '' }} {{ request()->routeIs('users.create') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link nav-dropdown-toggle {{ request()->routeIs('users.index') ? 'active' : '' }} {{ request()->routeIs('users.create') ? 'active' : '' }}">
@@ -183,7 +184,7 @@
               </li>
               @endcan
             </ul>
-          </li> 
+          </li>
           @endcan
           @can('permission-list')
           <li class="nav-item {{ request()->routeIs('permission.index') ? 'menu-open' : '' }} {{ request()->routeIs('permission.create') ? 'menu-open' : '' }}">
@@ -212,7 +213,7 @@
               </li>
               @endcan
             </ul>
-          </li> 
+          </li>
           @endcan
 
           @can('general_setting')
@@ -232,7 +233,7 @@
                 </a>
               </li>
             </ul>
-          </li> 
+          </li>
           @endcan
           <li class="nav-item {{ request()->routeIs('games.index') ? 'menu-open' : '' }} {{ request()->routeIs('change_password') ? 'menu-open' : '' }} {{ request()->routeIs('change_password') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link nav-dropdown-toggle  {{ request()->routeIs('profile.index') ? 'active' : '' }} {{ request()->routeIs('games.index') ? 'active' : '' }} {{ request()->routeIs('change_password') ? 'menu-open' : '' }}">
@@ -250,7 +251,7 @@
                   <p>Profile</p>
                 </a>
               </li>
-             
+
               <!-- @endcan -->
               <li class="nav-item">
                 <a href="{{route('change_password')}}" class="nav-link {{ request()->routeIs('change_password')? 'active' : '' }}">
@@ -259,7 +260,7 @@
                 </a>
               </li>
             </ul>
-          </li> 
+          </li>
 
 
 
@@ -269,7 +270,7 @@
               <p>Logout</p>
             </a>
           </li>
-      
+
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -364,7 +365,7 @@
 });
 </script>
 
-
+<script src="https://cdn.datatables.net/responsive/2.5.0/js/responsive.bootstrap5.min.js"></script>
 <!-- DataTables  & Plugins -->
 <script src="{{asset('/admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
@@ -415,7 +416,7 @@ $(document).ready(function () {
           country: "PK"
         }
     });
-	
+
     google.maps.event.addListener(autocomplete, 'place_changed', function () {
         var near_place = autocomplete.getPlace();
         // alert(near_place.geometry);

@@ -24,15 +24,19 @@
                 <a href="/">
                     <li class="active">Home</li>
                 </a>
-                <a href="{{ route('about_us') }}">
-                    <li>About us</li>
+                 <a href="{{route('realstate')}}">
+                    <li>Real State</li>
                 </a>
                 <a href="{{ route('gallery') }}">
                     <li>Gallery</li>
                 </a>
-                <a href="{{ route('community_forum') }}">
-                    <li>Community Forum</li>
+                <a href="{{ route('about_us') }}">
+                    <li>About us</li>
                 </a>
+
+                <!--<a href="{{ route('community_forum') }}">-->
+                <!--    <li>Community Forum</li>-->
+                <!--</a>-->
             </ul>
         </div>
         <div class="col-md-3" style="text-align: end;">

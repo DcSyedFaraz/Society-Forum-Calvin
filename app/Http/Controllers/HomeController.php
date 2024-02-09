@@ -20,6 +20,9 @@ class HomeController extends Controller
     public function about_us(){
         return view('about');
     }
+    public function realstate(){
+        return view('realstate');
+    }
     public function gallery(){
         return view('gallery');
     }
@@ -34,12 +37,12 @@ class HomeController extends Controller
         // $this->middleware('auth')->except('logout');
         return view('auth.login');
     }
-    
+
     public function product_detail($id)
     {
         $data['product'] = Product::find($id);
         $data['size'] = VeriantSize::where('product_id',$id)->first();
-        // return json_decode($size->name); 
+        // return json_decode($size->name);
         $data['color'] = VeriantColor::where('product_id',$id)->first();
         return view('admin.product_detail',$data);
     }

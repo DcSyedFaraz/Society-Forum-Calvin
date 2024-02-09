@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\AgentDetails;
+use App\Models\MemberDetails;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -43,13 +46,91 @@ class RegisterController extends Controller
 
     public function register_form()
     {
+        return view('auth.register');
+    }
+    public function registeration(Request $request)
+    {
+        $data = $request->all();
 
-        $data['roles'] = \Spatie\Permission\Models\Role::select(['id','name'])
-        ->where(function($query){
-            $query->where('name','!=', 'Admin');
-            $query->where('name','!=', 'Super-Admin');
-        })->get();
-        return view('auth.register',$data);
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'same:confirm-password'],
+            'permission' => 'required',
+        ]);
+
+        // dd($data['phone']);
+
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'password' => Hash::make($data['password']),
+        ]);
+        $user->assignRole('member');
+
+        $details = new MemberDetails;
+        $details->user_id = $user->id;
+        $details->address = $data['address'];
+        $details->position = $data['position'];
+
+        if ($data['position'] == 'rent') {
+            $details->landlord_address = $data['landlord_address'];
+            $details->landlord_name = $data['landlord_name'];
+            $details->landlord_phone_number = $data['landlord_phone_number'];
+            $details->landlord_email_address = $data['landlord_email_address'];
+        }
+        if ($data['position'] == 'owner') {
+            $details->date_of_purchase = $data['date'];
+        }
+        $details->save();
+        return redirect()->route('login')->with('success', 'Successfully Registered');
+    }
+    public function agent_register_form()
+    {
+        return view('auth.agent_register');
+    }
+    public function agent_registeration(Request $request)
+    {
+        $data = $request->all();
+        // dd($data);
+
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'same:confirm-password'],
+            'license' => 'required|integer',
+            'company_name' => 'required|string',
+            'physical_address' => 'required|string',
+            'company_mailing_address' => 'required|string',
+            'company_phone_number' => 'required|string',
+            'company_email' => 'required|email',
+            'company_website' => 'nullable|url', // Assuming it's optional
+        ]);
+
+
+        // dd($data['phone']);
+
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'password' => Hash::make($data['password']),
+        ]);
+        $user->assignRole('agent');
+
+        $details = new AgentDetails;
+        $details->user_id = $user->id;
+        $details->company_name = $data['company_name'];
+        $details->physical_address = $data['physical_address'];
+        $details->license = $data['license'];
+        $details->company_mailing_address = $data['company_mailing_address'];
+        $details->company_phone_number = $data['company_phone_number'];
+        $details->company_email = $data['company_email'];
+        $details->company_website = $data['company_website'];
+
+        $details->save();
+        return redirect()->route('login')->with('success', 'Successfully Registered');
     }
 
     /**
@@ -65,6 +146,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'same:confirm-password'],
             'roles' => 'required',
+            'permission' => 'required',
         ]);
     }
 
@@ -76,6 +158,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // dd($data);
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -86,5 +169,5 @@ class RegisterController extends Controller
     }
 
 
-    
+
 }

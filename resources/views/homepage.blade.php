@@ -57,7 +57,7 @@
                                                         <input class="form-control" required="" name="page_name" />
                                                     </div>
                                                 </div>
-                                              
+
                                             </div>
 
                                         </div>
@@ -78,12 +78,12 @@
                     <table class="table table-hover">
                         <thead>
                             <tr>
-                                <th>Page Title</th>                               
+                                <th>Page Title</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                       
+
                             @if ($pages)
                             @foreach($pages as $val)
                                 <tr>
@@ -115,7 +115,7 @@
                                                                         <input class="form-control" required=""
                                                                             value="{{ $val->page_name }}" name="page_name" />
                                                                     </div>
-                                                                </div>                                            
+                                                                </div>
                                                             </div>
 
                                                         </div>
@@ -133,7 +133,7 @@
                                         </form> --}}
                                     </td>
                                 </tr>
-                             @endforeach   
+                             @endforeach
                             @else
                                 <tr>
                                     <td class="text-center" colspan="7">No Record Found</td>

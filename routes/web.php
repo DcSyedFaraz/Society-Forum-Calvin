@@ -38,20 +38,24 @@ use App\Http\Controllers\GeneralSettingController;
 |
 */
 Route::get('/signup', [RegisterController::class, 'register_form'])->name('signup');
+Route::post('/registeration', [RegisterController::class, 'registeration'])->name('registeration');
+Route::get('/agentsignup', [RegisterController::class, 'agent_register_form'])->name('agentsignup');
+Route::post('/agentregisteration', [RegisterController::class, 'agent_registeration'])->name('agentregisteration');
 Route::get('logout', [LoginController::class, 'logout']);
-Route::get('account/verify/{token}', [LoginController::class, 'verifyAccount'])->name('user.verify'); 
+Route::get('account/verify/{token}', [LoginController::class, 'verifyAccount'])->name('user.verify');
 
 // Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 // Route::get('/', [HomeController::class,'login']);
-Route::get('/', [HomeController::class,'index']);
+Route::get('/', [HomeController::class,'index'])->name('home');
 Route::get('/about-us', [HomeController::class,'about_us'])->name('about_us');
+Route::get('/realstate', [HomeController::class,'realstate'])->name('realstate');
 Route::get('/gallery', [HomeController::class,'gallery'])->name('gallery');
 Route::get('/community-forum', [HomeController::class,'community_forum'])->name('community_forum');
 Route::get('/contact', [HomeController::class,'contact_us'])->name('contact');
 
-  
+
 Route::group(['prefix' => 'admin','middleware'=> ['auth']], function(){
-  
+
     Route::get('/change_password', [DashboardController::class, 'change_password'])->name('change_password');
     Route::post('/store_change_password', [DashboardController::class, 'store_change_password'])->name('store_change_password');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
@@ -82,16 +86,16 @@ Route::group(['prefix' => 'admin','middleware'=> ['auth']], function(){
 
     Route::get('/transactions/withdrawals', [AdminTransactionsController::class, 'transaction_withdrawals'])->name('transactions.withdrawals');
     Route::put('withdrawals/approved/{id}', [AdminTransactionsController::class, 'withdrawal_approved'])->name('withdraw.approved');
- 
-    
+
+
 });
 Auth::routes();
 Route::group(['prefix' => 'user','middleware'=> ['auth']], function(){
- 
+
     Route::get('/change_password', [UserDashboardController::class, 'change_password'])->name('change_password');
     Route::post('/store_change_password', [UserDashboardController::class, 'store_change_password'])->name('store_change_password');
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
-   
+
     //post
     Route::get('/blogs', [VotingPostController::class, 'index'])->name('user.blogs');
     //user Profile
@@ -99,12 +103,12 @@ Route::group(['prefix' => 'user','middleware'=> ['auth']], function(){
     Route::post('/update/profile', [UserDashboardController::class, 'UserProfileUpdate'])->name('user.profile.update');
     Route::post('/edit/profile', [UserDashboardController::class, 'UserEditProfile'])->name('user.edit.profile');
     Route::post('/bank/detail', [UserDashboardController::class, 'UserBankDetail'])->name('user.bank.detail');
-  
+
 
 });
 
 Route::group(['prefix' => 'member','middleware'=> ['auth']], function(){
- 
+
     Route::get('/change_password', [UserDashboardController::class, 'change_password'])->name('change_password');
     Route::post('/store_change_password', [UserDashboardController::class, 'store_change_password'])->name('store_change_password');
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('member.dashboard');
@@ -116,7 +120,7 @@ Route::group(['prefix' => 'member','middleware'=> ['auth']], function(){
 });
 
 Route::group(['prefix' => 'real_estate','middleware'=> ['auth']], function(){
- 
+
     Route::get('/change_password', [UserDashboardController::class, 'change_password'])->name('change_password');
     Route::post('/store_change_password', [UserDashboardController::class, 'store_change_password'])->name('store_change_password');
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('real_estate.dashboard');
@@ -139,4 +143,4 @@ Route::group(['prefix' => 'excutive','middleware'=> ['auth']], function(){
     Route::post('/bank/detail', [UserDashboardController::class, 'UserBankDetail'])->name('excutive.bank.detail');
 });
 
-  
+
