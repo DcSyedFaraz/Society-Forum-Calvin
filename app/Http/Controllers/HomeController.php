@@ -16,6 +16,22 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    public function executive_login()
+    {
+        return view('executive');
+    }
+    public function executive_signup()
+    {
+        return view('executive_signup');
+    }
+    public function estate_login()
+    {
+        return view('estate');
+    }
+    public function estate_signup()
+    {
+        return view('estate_signup');
+    }
 
     public function about_us(){
         return view('about');

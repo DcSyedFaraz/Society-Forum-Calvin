@@ -5,15 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 // users Dashboard
 use App\Http\Controllers\User\DashboardController as UserDashboardController;
-// users panel modules
-use App\Http\Controllers\users\DepositWalletController;
-use App\Http\Controllers\users\DepositController;
-use App\Http\Controllers\users\RedeemController;
-use App\Http\Controllers\users\GiftCardController;
-use App\Http\Controllers\users\LinkGameController;
-use App\Http\Controllers\users\RequestController;
-use App\Http\Controllers\users\TransactionsController;
-use App\Http\Controllers\users\WithdrawController;
+
 // Admin modules
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
@@ -23,9 +15,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\GamesController;
-use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\voting\PostController as VotingPostController;
-use App\Http\Controllers\nonvoting\PostController as NonVotingPostController;
 use App\Http\Controllers\GeneralSettingController;
 /*
 |--------------------------------------------------------------------------
@@ -37,15 +27,31 @@ use App\Http\Controllers\GeneralSettingController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/done', function () {
+    Artisan::call('migrate:fresh --seed');
+    Artisan::call('optimize:clear');
+
+    return 'done';
+});
+
 Route::get('/signup', [RegisterController::class, 'register_form'])->name('signup');
-Route::post('/registeration', [RegisterController::class, 'registeration'])->name('registeration');
+
 Route::get('/agentsignup', [RegisterController::class, 'agent_register_form'])->name('agentsignup');
 Route::post('/agentregisteration', [RegisterController::class, 'agent_registeration'])->name('agentregisteration');
+Route::post('/executive_registration', [RegisterController::class, 'executive_registration'])->name('executive_registration');
+
 Route::get('logout', [LoginController::class, 'logout']);
 Route::get('account/verify/{token}', [LoginController::class, 'verifyAccount'])->name('user.verify');
 
-// Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
-// Route::get('/', [HomeController::class,'login']);
+Route::post('/registeration', [RegisterController::class, 'registeration'])->name('registeration');
+// Route::post('/estate_registration', [RegisterController::class, 'estate_registration'])->name('estate_registration');
+
+Route::get('/estate_login', [HomeController::class,'estate_login'])->name('estate_login');
+Route::get('/executive_login', [HomeController::class,'executive_login'])->name('executive_login');
+Route::get('/estate-signup', [HomeController::class,'estate_signup'])->name('estate_signup');
+Route::get('/executive-signup', [HomeController::class,'executive_signup'])->name('executive_signup');
+
 Route::get('/', [HomeController::class,'index'])->name('home');
 Route::get('/about-us', [HomeController::class,'about_us'])->name('about_us');
 Route::get('/realstate', [HomeController::class,'realstate'])->name('realstate');

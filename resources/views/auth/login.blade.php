@@ -15,16 +15,27 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+        integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <title>Sign In</title>
 </head>
 
 <body class="sign-up">
     <header>
         <ul class="list-nav">
-            <li><a href="#">News user?</a></li>
-            <li><a href="#">Create an Account</a></li>
-            <li><a href="#"><i class="fa fa-ellipsis-h" aria-hidden="true" style="font-size:20px;color:black;"></i>
+            <a href="{{ route('signup') }}">
+                <li>News user?</li>
+                <li>Create an Account</li>
+            </a>
+            <li><a href="#"><i class="fa fa-ellipsis-h" aria-hidden="true"
+                        style="font-size:20px;color:black;"></i>
                 </a></li>
         </ul>
     </header>
@@ -60,21 +71,21 @@
                                     <div class="inputted">
                                         <div class="email">
                                             <label for="email">Your Email:</label>
-                                            <input type="email" id="email" placeholder="Tonynguyen@example.com"
-                                                name="email" required>
+                                            <input type="email" placeholder="Tonynguyen@example.com" name="email"
+                                                required>
                                         </div>
                                         <div class="password">
                                             <label for="password">Password:</label>
-                                            <input type="password" id="password" name="password" required>
+                                            <input type="password" name="password" required>
                                         </div>
                                         @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
                                         @enderror
                                     </div>
                                     <div class="remember-me">
-                                        <input type="checkbox" id="remember" name="remember">
+                                        <input type="checkbox" name="remember">
                                         <label for="remember">Remember me</label>
                                         <a href="{{ route('password.request') }}" class="forgot-password">Forgot
                                             Password?</a>
@@ -99,9 +110,9 @@
                                         </div>
                                     </div>
                                     @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
                                     @enderror
                                     <div class="remember-me">
                                         <input type="checkbox" id="remember" name="remember">
@@ -146,29 +157,28 @@
     </section>
 
 </body>
-<script src="{{asset('assets/js/scripity.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
-    <script src="{{asset('/admin/plugins/jquery/jquery.min.js')}}"></script>
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+</script>
+<script src="{{ asset('/admin/plugins/jquery/jquery.min.js') }}"></script>
 <!-- Bootstrap 4 -->
 <!-- AdminLTE App -->
-<script src="{{asset('/admin/dist/js/adminlte.min.js')}}"></script>
+<script src="{{ asset('/admin/dist/js/adminlte.min.js') }}"></script>
 
 <!-- Toastr -->
-<script src="{{asset('/admin/plugins/toastr/toastr.min.js')}}"></script>
+<script src="{{ asset('/admin/plugins/toastr/toastr.min.js') }}"></script>
 <script>
-  @if(session('success'))
-    toastr.success("{{session('success')}}");
-  @endif
-  @if(session('error'))
-    toastr.error("{{session('error')}}")
-  @endif
-  @if($errors->any())
-    @foreach ($errors->all() as $error)
-      toastr.error("{{$error}}")
-    @endforeach
-  @endif
+    @if (session('success'))
+        toastr.success("{{ session('success') }}");
+    @endif
+    @if (session('error'))
+        toastr.error("{{ session('error') }}")
+    @endif
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            toastr.error("{{ $error }}")
+        @endforeach
+    @endif
 </script>
 
 </html>

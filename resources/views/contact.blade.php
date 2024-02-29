@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="style.css">
-    <link href="{{asset('frontend/style.css')}}" rel="stylesheet" />
+    <link href="{{ asset('frontend/style.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -15,8 +15,8 @@
 
 <body>
     <header class="header">
-    <div class="col-md-3">
-            <img src="{{asset('frontend/images/logo.png') }}">
+        <div class="col-md-3">
+            <img src="{{ asset('frontend/images/logo.png') }}">
         </div>
         <div class="col-md-6">
             <ul class="ul-menu">
@@ -61,22 +61,22 @@
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label for="name" class="sr-only">Name</label>
-                                        <input type="text" class="form-control input-lg" id="name" name="name"
-                                            placeholder="Name" value="">
+                                        <input type="text" class="form-control input-lg" id="name"
+                                            name="name" placeholder="Name" value="">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label for="email" class="sr-only">Email</label>
-                                        <input type="email" class="form-control input-lg" id="email" name="email"
-                                            placeholder="Email" value="">
+                                        <input type="email" class="form-control input-lg" id="email"
+                                            name="email" placeholder="Email" value="">
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="form-group">
                                         <label for="subject" class="sr-only">Subject</label>
-                                        <input type="text" class="form-control input-lg" id="subject" name="subject"
-                                            placeholder="Subject" value="">
+                                        <input type="text" class="form-control input-lg" id="subject"
+                                            name="subject" placeholder="Subject" value="">
                                     </div>
                                 </div>
                             </div>
@@ -84,8 +84,7 @@
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label for="message" class="sr-only">Message</label>
-                                        <textarea class="form-control input-lg" rows="8" id="message" name="message"
-                                            placeholder="Message"></textarea>
+                                        <textarea class="form-control input-lg" rows="8" id="message" name="message" placeholder="Message"></textarea>
                                     </div>
                                 </div>
                             </div>

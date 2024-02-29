@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="style.css">
-    <link href="{{asset('frontend/style.css')}}" rel="stylesheet" />
-    <link rel="stylesheet" href="{{asset('frontend/min.js')}}">
+    <link href="{{ asset('frontend/style.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('frontend/min.js') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -17,14 +17,14 @@
 <body>
     <header class="header">
         <div class="col-md-3">
-            <img src="{{asset('frontend/images/logo.png') }}">
+            <img src="{{ asset('frontend/images/logo.png') }}">
         </div>
         <div class="col-md-6">
             <ul class="ul-menu">
                 <a href="/">
                     <li class="active">Home</li>
                 </a>
-                 <a href="{{route('realstate')}}">
+                <a href="{{ route('realstate') }}">
                     <li>Real State</li>
                 </a>
                 <a href="{{ route('gallery') }}">
@@ -48,9 +48,9 @@
             <h1 class="title">welcome to park <br>shadows HOA</h1>
             <img src="images/lines.png" class="line">
             <div class="buttons">
-                <a href="#"><button class="btn-b">Member Login</button></a>
-                <a href="#"><button class="btn-b">Real Estate Login</button></a>
-                <a href="#"><button class="btn-b">Real Estate Login</button></a>
+                <a href="{{ route('login') }}"><button class="btn-b">Member Login</button></a>
+                <a href="{{ route('estate_login') }}"><button class="btn-b">Real Estate Login</button></a>
+                <a href="{{ route('executive_login') }}"><button class="btn-b">Executive Login</button></a>
             </div>
         </div>
     </section>
@@ -73,8 +73,9 @@
     </section>
     <section class="main-div1">
         <div class="col-5">
-            <img src="{{asset('frontend/images/dot.png') }}" class="dot">
-            <img src="{{asset('frontend/images/image2.png') }}" style="width: 100%; z-index: 000000; position: relative;">
+            <img src="{{ asset('frontend/images/dot.png') }}" class="dot">
+            <img src="{{ asset('frontend/images/image2.png') }}"
+                style="width: 100%; z-index: 000000; position: relative;">
         </div>
         <div class="col-7">
             <h1 class="heading1">Explore Our Amenities</h1>
@@ -98,12 +99,12 @@
                 dolor et orci volutpat placerat eu ac ex.</p>
         </div>
         <div class="col-5">
-            <img src="{{asset('frontend/images/image3.png') }}" style="width: 100%;">
+            <img src="{{ asset('frontend/images/image3.png') }}" style="width: 100%;">
         </div>
     </section>
     <section class="main-div1">
         <div class="col-5">
-            <img src="{{asset('frontend/images/image4.png') }}" style="width: 100%;">
+            <img src="{{ asset('frontend/images/image4.png') }}" style="width: 100%;">
         </div>
         <div class="col-7">
             <h1 class="heading1">Explore Our Amenities</h1>
@@ -171,7 +172,8 @@
                 <p class="footer-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit ut elit tellus, luctus
                     nec
                     ullamcorper ma</p>
-                <strong style="text-transform: uppercase; color: white; margin-bottom: 15px !important;">* We never spam
+                <strong style="text-transform: uppercase; color: white; margin-bottom: 15px !important;">* We never
+                    spam
                     your email</strong>
                 <form class="form-subscribe" action="#">
                     <div class="input-group">

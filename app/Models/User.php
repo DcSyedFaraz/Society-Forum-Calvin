@@ -23,6 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail, Wallet
      */
     protected $fillable = [
         'name',
+        'image',
         'email',
         'phone',
         'password',
@@ -48,8 +49,16 @@ class User extends Authenticatable implements MustVerifyEmail, Wallet
         'email_verified_at' => 'datetime',
     ];
 
-    public function walletHistory()
+    public function member()
     {
-        return $this->hasMany(WalletHistory::class);
+        return $this->hasOne(MemberDetails::class,'id', 'user_id');
+    }
+    public function agent()
+    {
+        return $this->hasOne(AgentDetails::class,'id', 'user_id');
+    }
+    public function executive()
+    {
+        return $this->hasOne(ExecutiveDetails::class,'id', 'user_id');
     }
 }

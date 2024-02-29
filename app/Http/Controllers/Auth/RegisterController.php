@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\AgentDetails;
+use App\Models\ExecutiveDetails;
 use App\Models\MemberDetails;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use Exception;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -51,22 +53,34 @@ class RegisterController extends Controller
     public function registeration(Request $request)
     {
         $data = $request->all();
+        // dd($data);
 
-        $this->validate($request, [
+        $validatedData = Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'same:confirm-password'],
-            'permission' => 'required',
+            // 'password' => ['required', 'string', 'min:8', 'same:confirm-password'],
+            // 'permission' => 'required',
         ]);
-
+        if ($validatedData->fails()) {
+            return response()->json(['errors' => $validatedData->errors()->all()], 422);
+        }
         // dd($data['phone']);
 
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'phone' => $data['phone'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $user = new User();
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->phone = $data['phone'];
+
+        if ($request->hasFile('image')) {
+            // Store the image in the storage/app/public directory
+            $imagePath = $request->file('image')->store('public/images');
+
+            $imageName = basename($imagePath);
+            $user->image = $imageName;
+        }
+        $user->password = Hash::make('12345678');
+
+        $user->save();
         $user->assignRole('member');
 
         $details = new MemberDetails;
@@ -84,7 +98,61 @@ class RegisterController extends Controller
             $details->date_of_purchase = $data['date'];
         }
         $details->save();
-        return redirect()->route('login')->with('success', 'Successfully Registered');
+        return response()->json(['message' => 'Successfully Registered', 'success' => true], 200);
+
+    }
+    public function executive_registration(Request $request)
+    {
+        $data = $request->all();
+        // dd($data);
+
+
+
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'phoneNumber' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'parkaddress' => 'required|string|max:255',
+            'hoaaddress' => 'nullable|string|max:255',
+            'designation' => 'required|string|max:255',
+        ]);
+        // dd($data);
+        // dd($data['phone']);
+        try {
+            $user = new User();
+            $user->name = $data['name'];
+            $user->email = $data['email'];
+            $user->phone = $data['phoneNumber'];
+
+            if ($request->hasFile('image')) {
+                // Store the image in the storage/app/public directory
+                $imagePath = $request->file('image')->store('public/images');
+
+                $imageName = basename($imagePath);
+                $user->image = $imageName;
+            }
+            $user->password = Hash::make('12345678');
+
+            $user->save();
+            $user->assignRole('executive');
+
+            $details = new ExecutiveDetails;
+            $details->user_id = $user->id;
+            $details->address = $data['address'];
+            $details->parkaddress = $data['parkaddress'];
+            $details->hoaaddress = isset($data['customCheck1']) && $data['customCheck1'] ? $data['parkaddress'] : $data['hoaaddress'];
+
+            $details->designation = $data['designation'];
+
+            $details->save();
+            return redirect()->route('executive_login')->with('success', 'Successfully Registered');
+        } catch (Exception $e) {
+            // return back()->withErrors(['error' => $e->getMessage()]);
+            throw $e;
+        }
+
+
     }
     public function agent_register_form()
     {
@@ -96,41 +164,50 @@ class RegisterController extends Controller
         // dd($data);
 
         $this->validate($request, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'same:confirm-password'],
-            'license' => 'required|integer',
-            'company_name' => 'required|string',
-            'physical_address' => 'required|string',
-            'company_mailing_address' => 'required|string',
-            'company_phone_number' => 'required|string',
-            'company_email' => 'required|email',
-            'company_website' => 'nullable|url', // Assuming it's optional
+            'name' => 'required|string|max:255',
+            'license' => 'required|string|max:255',
+            'phoneNumber' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'companyname' => 'required|string|max:255',
+            'companyphone' => 'required|string|max:255',
+            'companymailadd' => 'required|string|max:255',
+            'companyemail' => 'required|email|max:255',
+            'companyweb' => 'required|url|max:255',
+            'landaddress' => 'required|string|max:255',
         ]);
 
 
         // dd($data['phone']);
 
-        $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'phone' => $data['phone'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $user = new User();
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->phone = $data['phoneNumber'];
+
+        if ($request->hasFile('image')) {
+            // Store the image in the storage/app/public directory
+            $imagePath = $request->file('image')->store('public/images');
+
+            $imageName = basename($imagePath);
+            $user->image = $imageName;
+        }
+        $user->password = Hash::make('12345678');
+
+        $user->save();
         $user->assignRole('agent');
 
         $details = new AgentDetails;
         $details->user_id = $user->id;
-        $details->company_name = $data['company_name'];
-        $details->physical_address = $data['physical_address'];
+        $details->company_name = $data['companyname'];
+        $details->physical_address = $data['landaddress'];
         $details->license = $data['license'];
-        $details->company_mailing_address = $data['company_mailing_address'];
-        $details->company_phone_number = $data['company_phone_number'];
-        $details->company_email = $data['company_email'];
-        $details->company_website = $data['company_website'];
+        $details->company_mailing_address = $data['companymailadd'];
+        $details->company_phone_number = $data['companyphone'];
+        $details->company_email = $data['companyemail'];
+        $details->company_website = $data['companyweb'];
 
         $details->save();
-        return redirect()->route('login')->with('success', 'Successfully Registered');
+        return redirect()->route('estate_login')->with('success', 'Successfully Registered');
     }
 
     /**

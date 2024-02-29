@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="style.css">
-    <link href="{{asset('frontend/style.css')}}" rel="stylesheet" />
+    <link href="{{ asset('frontend/style.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -15,25 +15,29 @@
 
 <body>
     <header class="header">
-            <div class="col-md-3">
-                <img src="{{asset('frontend/images/logo.png') }}">
-            </div>
-            <div class="col-md-6">
-                <ul class="ul-menu">
-                    <a href="/">
-                        <li class="active">Home</li>
-                    </a>
-                    <a href="{{ route('about_us') }}">
-                        <li>About us</li>
-                    </a>
-                    <a href="{{ route('gallery') }}">
-                        <li>Gallery</li>
-                    </a>
-                    <a href="{{ route('community_forum') }}">
-                        <li>Community Forum</li>
-                    </a>
-                </ul>
-            </div>
+        <div class="col-md-3">
+            <img src="{{ asset('frontend/images/logo.png') }}">
+        </div>
+        <div class="col-md-6">
+            <ul class="ul-menu">
+                <a href="/">
+                    <li class="active">Home</li>
+                </a>
+                <a href="{{ route('realstate') }}">
+                    <li>Real State</li>
+                </a>
+                <a href="{{ route('gallery') }}">
+                    <li>Gallery</li>
+                </a>
+                <a href="{{ route('about_us') }}">
+                    <li>About us</li>
+                </a>
+
+                <!--<a href="{{ route('community_forum') }}">-->
+                <!--    <li>Community Forum</li>-->
+                <!--</a>-->
+            </ul>
+        </div>
         <div class="col-md-3" style="text-align: end;">
             <a href="{{ route('contact') }}"><button class="btn-1">Contact Us</button></a>
         </div>
@@ -51,37 +55,37 @@
                 <h1 class="gallery">Our Recent Gallery</h1>
                 <div class="grid-wrapper">
                     <div>
-                        <img src=" {{asset('frontend/images/gallery1.png') }}" alt="" />
+                        <img src=" {{ asset('frontend/images/gallery1.png') }}" alt="" />
                     </div>
                     <div>
-                        <img src=" {{asset('frontend/images/gallery2.png') }}" alt="" />
+                        <img src=" {{ asset('frontend/images/gallery2.png') }}" alt="" />
                     </div>
                     <div class="tall">
-                        <img src=" {{asset('frontend/images/gallery3.png') }}" alt="">
+                        <img src=" {{ asset('frontend/images/gallery3.png') }}" alt="">
                     </div>
                     <div class="wide">
-                        <img src=" {{asset('frontend/images/gallery4.png') }}" alt="" />
+                        <img src=" {{ asset('frontend/images/gallery4.png') }}" alt="" />
                     </div>
                     <div>
-                        <img src=" {{asset('frontend/images/gallery5.png') }}" alt="" />
+                        <img src=" {{ asset('frontend/images/gallery5.png') }}" alt="" />
                     </div>
                     <div class="tall">
-                        <img src=" {{asset('frontend/images/gallery6.png') }}" alt="" />
+                        <img src=" {{ asset('frontend/images/gallery6.png') }}" alt="" />
                     </div>
                     <div class="big">
-                        <img src=" {{asset('frontend/images/gallery7.png') }}" alt="" />
+                        <img src=" {{ asset('frontend/images/gallery7.png') }}" alt="" />
                     </div>
                     <div>
-                        <img src=" {{asset('frontend/images/gallery8.png') }}" alt="" />
+                        <img src=" {{ asset('frontend/images/gallery8.png') }}" alt="" />
                     </div>
                     <div class="tall">
-                        <img src=" {{asset('frontend/images/gallery11.png') }}" alt="" />
+                        <img src=" {{ asset('frontend/images/gallery11.png') }}" alt="" />
                     </div>
                     <div>
-                        <img src=" {{asset('frontend/images/gallery6.png') }}" alt="" />
+                        <img src=" {{ asset('frontend/images/gallery6.png') }}" alt="" />
                     </div>
                     <div>
-                        <img src=" {{asset('frontend/images/gallery6.png') }}" alt="" />
+                        <img src=" {{ asset('frontend/images/gallery6.png') }}" alt="" />
                     </div>
                 </div>
             </div>

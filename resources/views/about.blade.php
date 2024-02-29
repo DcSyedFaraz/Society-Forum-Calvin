@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="style.css">
-    <link href="{{asset('frontend/style.css')}}" rel="stylesheet" />
+    <link href="{{ asset('frontend/style.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -15,23 +15,27 @@
 
 <body>
     <header class="header">
-    <div class="col-md-3">
-            <img src="{{asset('frontend/images/logo.png') }}">
+        <div class="col-md-3">
+            <img src="{{ asset('frontend/images/logo.png') }}">
         </div>
         <div class="col-md-6">
             <ul class="ul-menu">
                 <a href="/">
                     <li class="active">Home</li>
                 </a>
-                <a href="{{ route('about_us') }}">
-                    <li>About us</li>
+                <a href="{{ route('realstate') }}">
+                    <li>Real State</li>
                 </a>
                 <a href="{{ route('gallery') }}">
                     <li>Gallery</li>
                 </a>
-                <a href="{{ route('community_forum') }}">
-                    <li>Community Forum</li>
+                <a href="{{ route('about_us') }}">
+                    <li>About us</li>
                 </a>
+
+                <!--<a href="{{ route('community_forum') }}">-->
+                <!--    <li>Community Forum</li>-->
+                <!--</a>-->
             </ul>
         </div>
         <div class="col-md-3" style="text-align: end;">
@@ -67,7 +71,8 @@
         <section class="main-div1" style="padding-bottom: 70px;">
             <div class="col-5">
                 <img src=" {{ asset('frontend/images/dot.png') }}" class="dot">
-                <img src=" {{ asset('frontend/images/image2.png') }}" style="width: 100%; z-index: 000000; position: relative;">
+                <img src=" {{ asset('frontend/images/image2.png') }}"
+                    style="width: 100%; z-index: 000000; position: relative;">
             </div>
             <div class="col-7">
                 <h1 class="heading1">Explore Our Amenities</h1>
