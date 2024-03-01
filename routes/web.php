@@ -60,11 +60,15 @@ Route::get('/community-forum', [HomeController::class,'community_forum'])->name(
 Route::get('/contact', [HomeController::class,'contact_us'])->name('contact');
 
 
-Route::group(['prefix' => 'admin','middleware'=> ['auth']], function(){
+Route::group(['prefix' => 'admin', 'as' => 'admin.','middleware'=> ['auth','role:admin']], function(){
 
     Route::get('/change_password', [DashboardController::class, 'change_password'])->name('change_password');
     Route::post('/store_change_password', [DashboardController::class, 'store_change_password'])->name('store_change_password');
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/announcements', [DashboardController::class, 'announcements'])->name('announcements');
+    Route::get('/architectural', [DashboardController::class, 'architectural'])->name('architectural');
+
+
     Route::resource('roles', RoleController::class);
     Route::resource('permission', PermissionController::class);
     Route::resource('users', UserController::class);
@@ -74,24 +78,16 @@ Route::group(['prefix' => 'admin','middleware'=> ['auth']], function(){
    Route::get('/signature', [DashboardController::class, 'signature'])->name('signature');
 
     Route::post('profile/update', [DashboardController::class, 'update'])->name('profile.update');
-    Route::resource('general_setting',GeneralSettingController::class);
     Route::post('wallet/create/withdraw', [DashboardController::class, 'createdewithdraw'])->name('admin.wallet.create.withdraw');
     Route::get('wallet/withdraw/{id}', [DashboardController::class, 'walletwithdraw'])->name('admin.wallet.withdraw');
     Route::post('wallet/create/deposite', [DashboardController::class, 'createdeposite'])->name('admin.wallet.store');
     Route::get('wallet/deposite/{id}', [DashboardController::class, 'walletdeposit'])->name('admin.wallet.deposit');
     Route::get('/change_password', [DashboardController::class, 'change_password'])->name('change_password');
     // Games Type
-    Route::resource('games', GamesController::class);
-    Route::get('/transactions/deposit', [AdminTransactionsController::class, 'transaction_deposit'])->name('transactions.deposit');
-    Route::put('/deposit/approved/{id}', [AdminTransactionsController::class, 'deposit_approved'])->name('deposit.approved');
 
 
-    Route::get('/transactions/redeems', [AdminTransactionsController::class, 'transaction_redeems'])->name('transactions.redeems');
-    Route::put('/redeems/approved/{id}', [AdminTransactionsController::class, 'redeems_approved'])->name('redeems.approved');
 
 
-    Route::get('/transactions/withdrawals', [AdminTransactionsController::class, 'transaction_withdrawals'])->name('transactions.withdrawals');
-    Route::put('withdrawals/approved/{id}', [AdminTransactionsController::class, 'withdrawal_approved'])->name('withdraw.approved');
 
 
 });
@@ -103,7 +99,6 @@ Route::group(['prefix' => 'user','middleware'=> ['auth']], function(){
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
 
     //post
-    Route::get('/blogs', [VotingPostController::class, 'index'])->name('user.blogs');
     //user Profile
     Route::get('/profile', [UserDashboardController::class, 'profile'])->name('voting.profile');
     Route::post('/update/profile', [UserDashboardController::class, 'UserProfileUpdate'])->name('user.profile.update');
@@ -118,7 +113,6 @@ Route::group(['prefix' => 'member','middleware'=> ['auth']], function(){
     Route::get('/change_password', [UserDashboardController::class, 'change_password'])->name('change_password');
     Route::post('/store_change_password', [UserDashboardController::class, 'store_change_password'])->name('store_change_password');
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('member.dashboard');
-    Route::get('/blogs', [VotingPostController::class, 'index'])->name('member.blogs');
     Route::get('/profile', [UserDashboardController::class, 'profile'])->name('member.profile');
     Route::post('/update/profile', [UserDashboardController::class, 'UserProfileUpdate'])->name('member.profile.update');
     Route::post('/edit/profile', [UserDashboardController::class, 'UserEditProfile'])->name('member.edit.profile');
@@ -130,7 +124,6 @@ Route::group(['prefix' => 'real_estate','middleware'=> ['auth']], function(){
     Route::get('/change_password', [UserDashboardController::class, 'change_password'])->name('change_password');
     Route::post('/store_change_password', [UserDashboardController::class, 'store_change_password'])->name('store_change_password');
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('real_estate.dashboard');
-    Route::get('/blogs', [VotingPostController::class, 'index'])->name('real_estate.blogs');
     Route::get('/profile', [UserDashboardController::class, 'profile'])->name('real_estate.profile');
     Route::post('/update/profile', [UserDashboardController::class, 'UserProfileUpdate'])->name('real_estate.profile.update');
     Route::post('/edit/profile', [UserDashboardController::class, 'UserEditProfile'])->name('real_estate.edit.profile');
@@ -142,7 +135,6 @@ Route::group(['prefix' => 'excutive','middleware'=> ['auth']], function(){
     Route::get('/change_password', [UserDashboardController::class, 'change_password'])->name('change_password');
     Route::post('/store_change_password', [UserDashboardController::class, 'store_change_password'])->name('store_change_password');
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('excutive.dashboard');
-    Route::get('/blogs', [VotingPostController::class, 'index'])->name('excutive.blogs');
     Route::get('/profile', [UserDashboardController::class, 'profile'])->name('excutive.profile');
     Route::post('/update/profile', [UserDashboardController::class, 'UserProfileUpdate'])->name('excutive.profile.update');
     Route::post('/edit/profile', [UserDashboardController::class, 'UserEditProfile'])->name('excutive.edit.profile');

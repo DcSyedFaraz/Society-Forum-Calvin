@@ -25,7 +25,7 @@ class DashboardController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth','verified']);
+        $this->middleware(['auth', 'verified']);
     }
 
     /**
@@ -35,9 +35,18 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $data['users'] = User::all()->count();
-     
-        return view('admin.dashboard',$data);
+
+        return view('admin.dashboard');
+    }
+    public function announcements()
+    {
+
+        return view('admin.pages.announcements');
+    }
+    public function architectural()
+    {
+
+        return view('admin.pages.architectural');
     }
 
     public function profile()
@@ -58,7 +67,7 @@ class DashboardController extends Controller
         $user = User::find($id);
         $user->update($input);
 
-        session::flash('success','Record Updated Successfully');
+        session::flash('success', 'Record Updated Successfully');
         return redirect()->back();
 
     }
@@ -72,66 +81,70 @@ class DashboardController extends Controller
         $user = Auth::user();
         $userPassword = $user->password;
 
-        $validator =Validator::make($request->all(),[
-          'oldpassword' => 'required',
-          'newpassword' => 'required|same:password_confirmation|min:6',
-          'password_confirmation' => 'required',
+        $validator = Validator::make($request->all(), [
+            'oldpassword' => 'required',
+            'newpassword' => 'required|same:password_confirmation|min:6',
+            'password_confirmation' => 'required',
         ]);
 
-        if(Hash::check($request->oldpassword, $userPassword))
-        {
-            return back()->with(['error'=>'Old password not match']);
+        if (Hash::check($request->oldpassword, $userPassword)) {
+            return back()->with(['error' => 'Old password not match']);
         }
 
         $user->password = Hash::make($request->newpassword);
         $user->save();
 
-        return redirect()->back()->with("success","Password changed successfully !");
+        return redirect()->back()->with("success", "Password changed successfully !");
     }
 
 
     //      Wallet Customer User List:-
-    public function walletUserList(){
-        $users =User::with('wallet')->where('role',3)->get();
-        return view('admin.wallet.wallet_user_list',["users"=>$users]);
-     }
+    public function walletUserList()
+    {
+        $users = User::with('wallet')->where('role', 3)->get();
+        return view('admin.wallet.wallet_user_list', ["users" => $users]);
+    }
 
-     public function walletdeposit($id){
-         $users = User::findOrFail($id);
-         return view('admin.wallet.deposit',["users"=>$users]);
-     }
+    public function walletdeposit($id)
+    {
+        $users = User::findOrFail($id);
+        return view('admin.wallet.deposit', ["users" => $users]);
+    }
 
-     public function createdeposite(Request $request){
+    public function createdeposite(Request $request)
+    {
 
         // dd($request->all());
-         $id =$request->user_id;
-            $deposit_amount=$request->dep_amount;
-            $users =User::where('id',$id)->first();
-            $users->deposit($deposit_amount);
+        $id = $request->user_id;
+        $deposit_amount = $request->dep_amount;
+        $users = User::where('id', $id)->first();
+        $users->deposit($deposit_amount);
 
 
-            Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-            Stripe\Charge::create ([
-                    "amount" => $request->dep_amount,
-                    "currency" => "USD",
-                    "source" => $request->stripeToken,
-                    "description" => "This payment is testing purpose of techsolutionstuff",
-            ]);
+        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+        Stripe\Charge::create([
+            "amount" => $request->dep_amount,
+            "currency" => "USD",
+            "source" => $request->stripeToken,
+            "description" => "This payment is testing purpose of techsolutionstuff",
+        ]);
 
 
-            // dd($users);
-         return redirect()->back()->with('success','Wallet Amount Deposit Has been submitted successfully');
-     }
+        // dd($users);
+        return redirect()->back()->with('success', 'Wallet Amount Deposit Has been submitted successfully');
+    }
 
-     public function walletwithdraw($id){
-         $users = User::findOrFail($id);
-         return view('admin.wallet.withdraw',["users"=>$users]);
-     }
-     public function createdewithdraw(Request $req){
-         $id =$req->user_id;
-         $withdraw_amount=$req->drw_amount;
-         $users =User::where('id',$id)->first();
-         $users->forceWithdraw($withdraw_amount);
-         return redirect()->back()->with('success',' Withdraw Amount wallet Has been detected Successfully');
-     }
+    public function walletwithdraw($id)
+    {
+        $users = User::findOrFail($id);
+        return view('admin.wallet.withdraw', ["users" => $users]);
+    }
+    public function createdewithdraw(Request $req)
+    {
+        $id = $req->user_id;
+        $withdraw_amount = $req->drw_amount;
+        $users = User::where('id', $id)->first();
+        $users->forceWithdraw($withdraw_amount);
+        return redirect()->back()->with('success', ' Withdraw Amount wallet Has been detected Successfully');
+    }
 }
