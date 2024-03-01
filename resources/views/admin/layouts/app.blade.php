@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="{{ asset('backend/images/favicon-32x32.png') }}" type="image/png" />
     <!--plugins-->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link href="{{ asset('backend/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />
     <link href="{{ asset('backend/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
     <link href="{{ asset('backend/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet" />
@@ -30,6 +32,14 @@
     <link href="{{ asset('backend/css/light-theme.css') }}" rel="stylesheet" />
     <link href="{{ asset('backend/css/semi-dark.css') }}" rel="stylesheet" />
     <link href="{{ asset('backend/css/header-colors.css') }}" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+        integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <title>Park Shadow - Admin</title>
 </head>
 
@@ -480,8 +490,8 @@
                         <div class="menu-title">Announcements</div>
                     </a>
                 </li>
-                <li>
-                    <a href="community-forum.html">
+                <li class="{{ request()->routeIs('admin.forum') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.forum') }}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/statement-new.png') }}">
                         </div>
                         <div class="menu-title">Community Forum</div>
@@ -569,7 +579,25 @@
     <!--app-->
     {{-- <script src="{{ asset('backend/js/app.js') }}"></script>
     <script src="{{ asset('backend/js/index.js') }}"></script> --}}
-
+    <script>
+        @if (session('success'))
+            toastr.success("{{ session('success') }}");
+        @endif
+        @if (session('error'))
+            toastr.error("{{ session('error') }}")
+        @endif
+        @if (session('warning'))
+            toastr.warning("{{ session('warning') }}")
+        @endif
+        @if (session('info'))
+            toastr.info("{{ session('info') }}")
+        @endif
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                toastr.error("{{ $error }}")
+            @endforeach
+        @endif
+    </script>
 
 
 </body>

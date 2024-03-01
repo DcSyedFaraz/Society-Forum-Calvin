@@ -67,6 +67,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.','middleware'=> ['auth','role
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/announcements', [DashboardController::class, 'announcements'])->name('announcements');
     Route::get('/architectural', [DashboardController::class, 'architectural'])->name('architectural');
+    Route::post('/architectural', [DashboardController::class, 'architecturalSave'])->name('architectural.save');
+    Route::get('/forum', [DashboardController::class, 'forum'])->name('forum');
 
 
     Route::resource('roles', RoleController::class);

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Architect;
 use Illuminate\Http\Request;
 use Auth;
 use Hash;
@@ -47,6 +48,37 @@ class DashboardController extends Controller
     {
 
         return view('admin.pages.architectural');
+    }
+    public function forum()
+    {
+
+        return view('admin.pages.forum');
+    }
+    public function architecturalSave(Request $request)
+    {
+        // dd($request->all());
+        $validatedData = $this->validate($request, [
+            'name' => 'required|string',
+            'phone' => 'required|string',
+            'email' => 'required|email',
+            'requestedchange' => 'required|string',
+            'image' => 'nullable|image|max:2048',
+        ]);
+        $architect = new Architect();
+        $architect->name = $validatedData['name'];
+        $architect->phone = $validatedData['phone'];
+        $architect->email = $validatedData['email'];
+        $architect->requestedchange = $validatedData['requestedchange'];
+
+        // Handle image upload if necessary
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images'); // Store the image in the 'images' directory
+            $architect->image = $imagePath;
+        }
+        $architect->user_id = Auth::user()->id;
+        $architect->save();
+
+        return redirect()->back()->with('success', 'Request added successfully!');
     }
 
     public function profile()
