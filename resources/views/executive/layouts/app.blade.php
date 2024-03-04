@@ -40,7 +40,7 @@
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <title>Park Shadow - Real-State</title>
+    <title>Park Shadow - Executive</title>
 </head>
 
 <body>
@@ -476,25 +476,53 @@
             </div>
             <!--navigation-->
             <ul class="metismenu" id="menu">
-                <li class="{{ request()->routeIs('agent.dashboard') ? 'mm-active' : '' }}">
-                    <a href="{{ route('agent.dashboard') }}" class="">
+                <li class="{{ request()->routeIs('executive.dashboard') ? 'mm-active' : '' }}">
+                    <a href="{{ route('executive.dashboard') }}" class="">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/dashboard icon.png') }}">
                         </div>
                         <div class="menu-title">Dashboard</div>
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('agent.register') ? 'mm-active' : '' }}">
-                    <a href="{{ route('agent.register') }}">
+                <li class="{{ request()->routeIs('admin.announcements') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.announcements') }}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/Campaigns icon.png') }}">
                         </div>
-                        <div class="menu-title">Register a Property</div>
+                        <div class="menu-title">Announcements</div>
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('agent.list') ? 'mm-active' : '' }}">
-                    <a href="{{ route('agent.list') }}">
-                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/Campaigns icon.png') }}">
+                <li class="{{ request()->routeIs('admin.forum') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.forum') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/statement-new.png') }}">
                         </div>
-                        <div class="menu-title">Listed Property</div>
+                        <div class="menu-title">Community Forum</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/Schedules icon.png') }}">
+                        </div>
+                        <div class="menu-title">Lost & Found</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="community-ccnrs.html">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/project icon.png') }}">
+                        </div>
+                        <div class="menu-title">Community CC&Rs...</div>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('admin.architectural') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.architectural') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/payout iocn.png') }}">
+                        </div>
+                        <div class="menu-title">Architectural Request...</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/inbox icon.png') }}">
+                        </div>
+                        <div class="menu-title">Newsletter</div>
                     </a>
                 </li>
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\real_estate\EstateController;
 use Illuminate\Support\Facades\Route;
 // Admin Dashboard
 use App\Http\Controllers\Admin\DashboardController;
@@ -121,11 +122,15 @@ Route::group(['prefix' => 'member','middleware'=> ['auth']], function(){
     Route::post('/bank/detail', [UserDashboardController::class, 'UserBankDetail'])->name('member.bank.detail');
 });
 
-Route::group(['prefix' => 'real_estate','middleware'=> ['auth']], function(){
+Route::group(['prefix' => 'real_estate', 'as' => 'agent.','middleware'=> ['auth','role:agent']], function(){
+
+    Route::get('/dashboard', [UserDashboardController::class, 'realstate'])->name('dashboard');
+    Route::get('/register', [EstateController::class, 'register'])->name('register');
+    Route::get('/list', [EstateController::class, 'list'])->name('list');
+    Route::post('/list', [EstateController::class, 'listSave'])->name('list.save');
 
     Route::get('/change_password', [UserDashboardController::class, 'change_password'])->name('change_password');
     Route::post('/store_change_password', [UserDashboardController::class, 'store_change_password'])->name('store_change_password');
-    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('real_estate.dashboard');
     Route::get('/profile', [UserDashboardController::class, 'profile'])->name('real_estate.profile');
     Route::post('/update/profile', [UserDashboardController::class, 'UserProfileUpdate'])->name('real_estate.profile.update');
     Route::post('/edit/profile', [UserDashboardController::class, 'UserEditProfile'])->name('real_estate.edit.profile');
@@ -133,14 +138,16 @@ Route::group(['prefix' => 'real_estate','middleware'=> ['auth']], function(){
 
 });
 
-Route::group(['prefix' => 'excutive','middleware'=> ['auth']], function(){
+Route::group(['prefix' => 'executive','middleware'=> ['auth','role:executive']], function(){
+    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('executive.dashboard');
+
     Route::get('/change_password', [UserDashboardController::class, 'change_password'])->name('change_password');
     Route::post('/store_change_password', [UserDashboardController::class, 'store_change_password'])->name('store_change_password');
-    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('excutive.dashboard');
-    Route::get('/profile', [UserDashboardController::class, 'profile'])->name('excutive.profile');
-    Route::post('/update/profile', [UserDashboardController::class, 'UserProfileUpdate'])->name('excutive.profile.update');
-    Route::post('/edit/profile', [UserDashboardController::class, 'UserEditProfile'])->name('excutive.edit.profile');
-    Route::post('/bank/detail', [UserDashboardController::class, 'UserBankDetail'])->name('excutive.bank.detail');
+
+    Route::get('/profile', [UserDashboardController::class, 'profile'])->name('executive.profile');
+    Route::post('/update/profile', [UserDashboardController::class, 'UserProfileUpdate'])->name('executive.profile.update');
+    Route::post('/edit/profile', [UserDashboardController::class, 'UserEditProfile'])->name('executive.edit.profile');
+    Route::post('/bank/detail', [UserDashboardController::class, 'UserBankDetail'])->name('executive.bank.detail');
 });
 
 

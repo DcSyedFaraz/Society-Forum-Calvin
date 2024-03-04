@@ -55,8 +55,8 @@ class LoginController extends Controller
              case 'agent':
                 return 'real_estate/dashboard';
              break;
-             case 'excutive':
-                return 'excutive/dashboard';
+             case 'executive':
+                return 'executive/dashboard';
              break;
             default:
                 return 'login';

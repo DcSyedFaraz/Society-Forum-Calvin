@@ -233,7 +233,7 @@
                                     </div>
                                 </div>
                                 <div class="createheading">
-                                    <h2>Executive Registration</h2>
+                                    <h2>Real Estate Registration</h2>
                                     <h2>Create Your Account</h2>
                                 </div>
 

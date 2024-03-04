@@ -432,9 +432,30 @@ a {
 	padding: 20px 10px;
 	margin: 0 auto;
   }
-.table-reponsive.box {
+  .dataTables_wrapper .dataTables_length {
+    float: left;
+}
+.dataTables_wrapper .dataTables_filter {
+    float: right;
+    text-align: right;
+}
+.dataTables_wrapper th, .dataTables_wrapper td {
+	padding: 10px;
+    border: 1px solid #dee2e6;
+}
+.tablemaster {
+    margin: 0 auto;
     height: 368px;
     overflow: overlay;
+}
+table#example {
+	padding: 20px 10px;
+	margin: 0 auto;
+    height: 368px;
+    overflow: overlay;
+    padding-top: 40px !important;
+    position: relative;
+    top: 30px;
 }
 ul.membersss {
     margin-bottom: 0px;

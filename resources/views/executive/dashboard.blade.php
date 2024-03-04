@@ -1,4 +1,4 @@
-@extends('real_estate.layouts.app')
+@extends('executive.layouts.app')
 
 @section('content')
     <div class="container">
@@ -8,11 +8,11 @@
                 <br><br>
                 <h1
                     style="font: normal normal 800 33px/33px Montserrat;
-            letter-spacing: -0.82px;
-            color: #432D00;
-            text-transform: uppercase;
-            opacity: 1;	">
-                    Welcome Real State Agent</h1>
+                letter-spacing: -0.82px;
+                color: #432D00;
+                text-transform: uppercase;
+                opacity: 1;	">
+                    Welcome Executive</h1>
                 <br>
                 <p style="width: 70%; margin: 0px auto;">Lorem Ipsum is simply dummy text of the printing and
                     typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the
