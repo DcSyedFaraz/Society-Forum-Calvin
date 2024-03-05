@@ -33,9 +33,16 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        // return Auth::user();
-
         return view('executive.dashboard');
+    }
+    public function member()
+    {
+        return view('member.dashboard');
+    }
+    public function financial()
+    {
+        $data['file'] = 'financial';
+        return view('executive.financial',$data);
     }
     public function realstate()
     {

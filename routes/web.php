@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FileCabinetController;
 use App\Http\Controllers\real_estate\EstateController;
 use Illuminate\Support\Facades\Route;
 // Admin Dashboard
@@ -18,6 +19,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\GamesController;
 use App\Http\Controllers\voting\PostController as VotingPostController;
 use App\Http\Controllers\GeneralSettingController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +30,7 @@ use App\Http\Controllers\GeneralSettingController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
 Route::get('/done', function () {
     Artisan::call('migrate:fresh --seed');
@@ -48,37 +51,43 @@ Route::get('account/verify/{token}', [LoginController::class, 'verifyAccount'])-
 Route::post('/registeration', [RegisterController::class, 'registeration'])->name('registeration');
 // Route::post('/estate_registration', [RegisterController::class, 'estate_registration'])->name('estate_registration');
 
-Route::get('/estate_login', [HomeController::class,'estate_login'])->name('estate_login');
-Route::get('/executive_login', [HomeController::class,'executive_login'])->name('executive_login');
-Route::get('/estate-signup', [HomeController::class,'estate_signup'])->name('estate_signup');
-Route::get('/executive-signup', [HomeController::class,'executive_signup'])->name('executive_signup');
+Route::get('/estate_login', [HomeController::class, 'estate_login'])->name('estate_login');
+Route::get('/executive_login', [HomeController::class, 'executive_login'])->name('executive_login');
+Route::get('/estate-signup', [HomeController::class, 'estate_signup'])->name('estate_signup');
+Route::get('/executive-signup', [HomeController::class, 'executive_signup'])->name('executive_signup');
 
-Route::get('/', [HomeController::class,'index'])->name('home');
-Route::get('/about-us', [HomeController::class,'about_us'])->name('about_us');
-Route::get('/realstate', [HomeController::class,'realstate'])->name('realstate');
-Route::get('/gallery', [HomeController::class,'gallery'])->name('gallery');
-Route::get('/community-forum', [HomeController::class,'community_forum'])->name('community_forum');
-Route::get('/contact', [HomeController::class,'contact_us'])->name('contact');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/about-us', [HomeController::class, 'about_us'])->name('about_us');
+Route::get('/realstate', [HomeController::class, 'realstate'])->name('realstate');
+Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
+Route::get('/community-forum', [HomeController::class, 'community_forum'])->name('community_forum');
+Route::get('/contact', [HomeController::class, 'contact_us'])->name('contact');
 
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.','middleware'=> ['auth','role:admin']], function(){
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'role:admin']], function () {
 
     Route::get('/change_password', [DashboardController::class, 'change_password'])->name('change_password');
     Route::post('/store_change_password', [DashboardController::class, 'store_change_password'])->name('store_change_password');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/announcements', [DashboardController::class, 'announcements'])->name('announcements');
-    Route::get('/architectural', [DashboardController::class, 'architectural'])->name('architectural');
-    Route::post('/architectural', [DashboardController::class, 'architecturalSave'])->name('architectural.save');
-    Route::get('/forum', [DashboardController::class, 'forum'])->name('forum');
+    Route::post('/announcements', [DashboardController::class, 'announcementSave'])->name('announcements.save');
+    Route::delete('/announcements/{announcement}/delete', [DashboardController::class, 'announcementDelete'])->name('announcements.delete');
 
+    // File Cabinet
+    Route::get('/contracts', [FileCabinetController::class, 'contracts'])->name('contracts');
+    Route::get('/legal_info', [FileCabinetController::class, 'legal_info'])->name('legal_info');
+    Route::get('/report', [FileCabinetController::class, 'report'])->name('report');
+    Route::get('/minutes', [FileCabinetController::class, 'minutes'])->name('minutes');
+    Route::get('/newsletter', [FileCabinetController::class, 'newsletter'])->name('newsletter');
+    Route::get('/financial', [UserDashboardController::class, 'financial'])->name('financial');
 
     Route::resource('roles', RoleController::class);
     Route::resource('permission', PermissionController::class);
     Route::resource('users', UserController::class);
     Route::get('/profile', [DashboardController::class, 'profile'])->name('profile.index');
-   // Storage
-   Route::get('/document', [DashboardController::class, 'document'])->name('document');
-   Route::get('/signature', [DashboardController::class, 'signature'])->name('signature');
+    // Storage
+    Route::get('/document', [DashboardController::class, 'document'])->name('document');
+    Route::get('/signature', [DashboardController::class, 'signature'])->name('signature');
 
     Route::post('profile/update', [DashboardController::class, 'update'])->name('profile.update');
     Route::post('wallet/create/withdraw', [DashboardController::class, 'createdewithdraw'])->name('admin.wallet.create.withdraw');
@@ -94,8 +103,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.','middleware'=> ['auth','role
 
 
 });
-Auth::routes();
-Route::group(['prefix' => 'user','middleware'=> ['auth']], function(){
+Route::group(['prefix' => 'user', 'middleware' => ['auth']], function () {
 
     Route::get('/change_password', [UserDashboardController::class, 'change_password'])->name('change_password');
     Route::post('/store_change_password', [UserDashboardController::class, 'store_change_password'])->name('store_change_password');
@@ -111,18 +119,28 @@ Route::group(['prefix' => 'user','middleware'=> ['auth']], function(){
 
 });
 
-Route::group(['prefix' => 'member','middleware'=> ['auth']], function(){
+Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth', 'role:member']], function () {
 
+    Route::get('/announcements', [DashboardController::class, 'announcements'])->name('announcements');
+    Route::get('/architectural', [DashboardController::class, 'architectural'])->name('architectural');
+    Route::post('/architectural', [DashboardController::class, 'architecturalSave'])->name('architectural.save');
+    Route::get('/forum', [DashboardController::class, 'forum'])->name('forum');
+
+    // File Cabinet
+    Route::get('/lost-found', [FileCabinetController::class, 'lostfound'])->name('lostfound');
+    Route::get('/ccnrs', [FileCabinetController::class, 'ccnrs'])->name('ccnrs');
+    Route::get('/newsletter', [FileCabinetController::class, 'newsletter'])->name('newsletter');
+
+    Route::get('/dashboard', [UserDashboardController::class, 'member'])->name('dashboard');
     Route::get('/change_password', [UserDashboardController::class, 'change_password'])->name('change_password');
     Route::post('/store_change_password', [UserDashboardController::class, 'store_change_password'])->name('store_change_password');
-    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('member.dashboard');
     Route::get('/profile', [UserDashboardController::class, 'profile'])->name('member.profile');
     Route::post('/update/profile', [UserDashboardController::class, 'UserProfileUpdate'])->name('member.profile.update');
     Route::post('/edit/profile', [UserDashboardController::class, 'UserEditProfile'])->name('member.edit.profile');
     Route::post('/bank/detail', [UserDashboardController::class, 'UserBankDetail'])->name('member.bank.detail');
 });
 
-Route::group(['prefix' => 'real_estate', 'as' => 'agent.','middleware'=> ['auth','role:agent']], function(){
+Route::group(['prefix' => 'real_estate', 'as' => 'agent.', 'middleware' => ['auth', 'role:agent']], function () {
 
     Route::get('/dashboard', [UserDashboardController::class, 'realstate'])->name('dashboard');
     Route::get('/register', [EstateController::class, 'register'])->name('register');
@@ -138,16 +156,26 @@ Route::group(['prefix' => 'real_estate', 'as' => 'agent.','middleware'=> ['auth'
 
 });
 
-Route::group(['prefix' => 'executive','middleware'=> ['auth','role:executive']], function(){
-    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('executive.dashboard');
+Route::group(['prefix' => 'executive', 'as' => 'executive.', 'middleware' => ['auth', 'role:executive']], function () {
+    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
+
+    // File Cabinet
+    Route::get('/contracts', [FileCabinetController::class, 'contracts'])->name('contracts');
+    Route::get('/legal_info', [FileCabinetController::class, 'legal_info'])->name('legal_info');
+    Route::get('/report', [FileCabinetController::class, 'report'])->name('report');
+    Route::get('/minutes', [FileCabinetController::class, 'minutes'])->name('minutes');
+    Route::get('/newsletter', [FileCabinetController::class, 'newsletter'])->name('newsletter');
+    Route::get('/financial', [UserDashboardController::class, 'financial'])->name('financial');
 
     Route::get('/change_password', [UserDashboardController::class, 'change_password'])->name('change_password');
     Route::post('/store_change_password', [UserDashboardController::class, 'store_change_password'])->name('store_change_password');
 
-    Route::get('/profile', [UserDashboardController::class, 'profile'])->name('executive.profile');
-    Route::post('/update/profile', [UserDashboardController::class, 'UserProfileUpdate'])->name('executive.profile.update');
-    Route::post('/edit/profile', [UserDashboardController::class, 'UserEditProfile'])->name('executive.edit.profile');
-    Route::post('/bank/detail', [UserDashboardController::class, 'UserBankDetail'])->name('executive.bank.detail');
+    Route::get('/profile', [UserDashboardController::class, 'profile'])->name('profile');
+    Route::post('/update/profile', [UserDashboardController::class, 'UserProfileUpdate'])->name('profile.update');
+    Route::post('/edit/profile', [UserDashboardController::class, 'UserEditProfile'])->name('edit.profile');
+    Route::post('/bank/detail', [UserDashboardController::class, 'UserBankDetail'])->name('bank.detail');
 });
 
-
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});

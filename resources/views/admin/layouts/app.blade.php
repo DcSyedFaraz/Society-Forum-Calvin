@@ -483,6 +483,47 @@
                         <div class="menu-title">Dashboard</div>
                     </a>
                 </li>
+                <li class="{{ request()->routeIs('admin.financial') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.financial') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/Campaigns icon.png') }}">
+                        </div>
+                        <div class="menu-title">Financial Information</div>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('admin.contracts') ? 'mm-active' : '' }}">
+                    <a href="{{route('admin.contracts')}}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/statement-new.png') }}">
+                        </div>
+                        <div class="menu-title">Contracts</div>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('admin.legal_info') ? 'mm-active' : '' }}">
+                    <a href="{{route('admin.legal_info')}}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/Schedules icon.png') }}">
+                        </div>
+                        <div class="menu-title">Legal Information</div>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('admin.report') ? 'mm-active' : '' }}">
+                    <a href="{{route('admin.report')}}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/project icon.png') }}">
+                        </div>
+                        <div class="menu-title">Unit/Balance Report</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="javaScript:;">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/payout iocn.png') }}">
+                        </div>
+                        <div class="menu-title">Architectural Request...</div>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('admin.minutes') ? 'mm-active' : '' }}">
+                    <a href="{{route('admin.minutes')}}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/inbox icon.png') }}"></div>
+                        <div class="menu-title">Executive Minutes</div>
+                    </a>
+                </li>
                 <li class="{{ request()->routeIs('admin.announcements') ? 'mm-active' : '' }}">
                     <a href="{{ route('admin.announcements') }}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/Campaigns icon.png') }}">
@@ -490,45 +531,10 @@
                         <div class="menu-title">Announcements</div>
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('admin.forum') ? 'mm-active' : '' }}">
-                    <a href="{{ route('admin.forum') }}">
-                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/statement-new.png') }}">
-                        </div>
-                        <div class="menu-title">Community Forum</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:;">
-                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/Schedules icon.png') }}">
-                        </div>
-                        <div class="menu-title">Lost & Found</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="community-ccnrs.html">
-                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/project icon.png') }}">
-                        </div>
-                        <div class="menu-title">Community CC&Rs...</div>
-                    </a>
-                </li>
-                <li class="{{ request()->routeIs('admin.architectural') ? 'mm-active' : '' }}">
-                    <a href="{{ route('admin.architectural') }}">
-                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/payout iocn.png') }}">
-                        </div>
-                        <div class="menu-title">Architectural Request...</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="javascript:;">
-                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/inbox icon.png') }}">
-                        </div>
-                        <div class="menu-title">Newsletter</div>
-                    </a>
-                </li>
 
                 <li class="menu-label" style="margin-top: 90px;">Insights</li>
-                <li>
-                    <a href="javascript:;">
+                <li class="{{ request()->routeIs('admin.newsletter') ? 'mm-active' : '' }}">
+                    <a href="{{route('admin.newsletter')}}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/inbox icon.png') }}">
                         </div>
                         <div class="menu-title">Newsletter</div>
@@ -599,7 +605,7 @@
         @endif
     </script>
 
-
+@yield('script')
 </body>
 
 </html>

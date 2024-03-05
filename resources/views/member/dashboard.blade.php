@@ -1,51 +1,27 @@
-@extends('user.layouts.app')
+@extends('member.layouts.app')
 
 @section('content')
-
-
-
-
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Dashboard</li>
-            </ol>
-          </div><!-- /.col -->
-        </div><!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
+    <div class="container">
         <div class="row">
-          <div class="col-lg-4 col-4">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-                <div class="inner">
-                  <h3>{{$users}}</h3>
-                  <p>User Registrations</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-person-add"></i>
-                </div>
-                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            <div class="col-12 text-center">
+                <img width="20%" src="{{ asset('backend/images/logo-icon') }}.png">
+                <br><br>
+                <h1
+                    style="font: normal normal 800 33px/33px Montserrat;
+                letter-spacing: -0.82px;
+                color: #432D00;
+                text-transform: uppercase;
+                opacity: 1;	">
+                    Welcome Admin</h1>
+                <br>
+                <p style="width: 70%; margin: 0px auto;">Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the
+                    1500s, when an unknown printer took a galley of type and scrambled it to make a type
+                    specimen book. It has survived not only five centuries, but also the leap into electronic
+                    typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
+                    release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
+                    publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
             </div>
-          </div>
         </div>
-      </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
+    </div>
 @endsection

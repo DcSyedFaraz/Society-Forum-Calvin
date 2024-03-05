@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Announcement;
 use App\Models\Architect;
 use Illuminate\Http\Request;
 use Auth;
@@ -41,25 +42,48 @@ class DashboardController extends Controller
     }
     public function announcements()
     {
+        $data['announcements'] = Announcement::orderby('created_at', 'desc')->get();
+        return view('member.pages.announcements', $data);
+    }
+    public function announcementDelete(Announcement $announcement)
+    {
+        // dd($announcement);
+        $announcement->delete();
+        return redirect()->back()->withSuccess("Announcement deleted successfully");
+    }
+    public function announcementSave(Request $request)
+    {
+        // dd($request->all());
+        $validatedData = $this->validate($request, [
+            'title' => 'required|string',
+            'description' => 'required|string',
+        ]);
+        $announcement = new Announcement();
+        $announcement->title = $validatedData['title'];
+        $announcement->description = $validatedData['description'];
+        $announcement->user_id = auth()->user()->id;
+        $announcement->save();
 
-        return view('admin.pages.announcements');
+        return redirect()->back()->withSuccess("Announcement has been added successfully");
+
+
     }
     public function architectural()
     {
 
-        return view('admin.pages.architectural');
+        return view('member.pages.architectural');
     }
     public function forum()
     {
 
-        return view('admin.pages.forum');
+        return view('member.pages.forum');
     }
     public function architecturalSave(Request $request)
     {
         // dd($request->all());
         $validatedData = $this->validate($request, [
             'name' => 'required|string',
-            'phone' => 'required|string',
+            'phone' => 'required|integer',
             'email' => 'required|email',
             'requestedchange' => 'required|string',
             'image' => 'nullable|image|max:2048',

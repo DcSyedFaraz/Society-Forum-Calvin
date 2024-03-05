@@ -42,7 +42,7 @@ class LoginController extends Controller
     public function redirectTo() {
 
         $role = Auth::user()->getRoleNames();
-
+        // dd($role);
         switch ($role[0]) {
 
 
