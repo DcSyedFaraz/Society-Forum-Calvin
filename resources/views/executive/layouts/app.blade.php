@@ -72,147 +72,7 @@
                         </li>
 
 
-                        <li class="nav-item dropdown dropdown-large">
-                            <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javaScript:;"
-                                data-bs-toggle="dropdown">
-                                <div class="messages">
-                                    <span class="notify-badge">5</span>
-                                    <i class="bi bi-chat-right-fill"></i>
-                                </div>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-end p-0">
-                                <div class="p-2 border-bottom m-2">
-                                    <h5 class="h5 mb-0">Messages</h5>
-                                </div>
-                                <div class="header-message-list p-2">
-                                    <a class="dropdown-item" href="javaScript:;">
-                                        <div class="d-flex align-items-center">
-                                            <img src="{{ asset('backend/images/avatars/avatar-1.png') }}"
-                                                alt="" class="rounded-circle" width="50" height="50">
-                                            <div class="ms-3 flex-grow-1">
-                                                <h6 class="mb-0 dropdown-msg-user">Amelio Joly <span
-                                                        class="msg-time float-end text-secondary">1 m</span></h6>
-                                                <small
-                                                    class="mb-0 dropdown-msg-text text-secondary d-flex align-items-center">The
-                                                    standard chunk of lorem...</small>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item" href="javaScript:;">
-                                        <div class="d-flex align-items-center">
-                                            <img src="{{ asset('backend/images/avatars/avatar-2.png') }}"
-                                                alt="" class="rounded-circle" width="50" height="50">
-                                            <div class="ms-3 flex-grow-1">
-                                                <h6 class="mb-0 dropdown-msg-user">Althea Cabardo <span
-                                                        class="msg-time float-end text-secondary">7 m</span></h6>
-                                                <small
-                                                    class="mb-0 dropdown-msg-text text-secondary d-flex align-items-center">Many
-                                                    desktop publishing</small>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item" href="javaScript:;">
-                                        <div class="d-flex align-items-center">
-                                            <img src="{{ asset('backend/images/avatars/avatar-3.png') }}"
-                                                alt="" class="rounded-circle" width="50" height="50">
-                                            <div class="ms-3 flex-grow-1">
-                                                <h6 class="mb-0 dropdown-msg-user">Katherine Pechon <span
-                                                        class="msg-time float-end text-secondary">2 h</span></h6>
-                                                <small
-                                                    class="mb-0 dropdown-msg-text text-secondary d-flex align-items-center">Making
-                                                    this the first true</small>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item" href="javaScript:;">
-                                        <div class="d-flex align-items-center">
-                                            <img src="{{ asset('backend/images/avatars/avatar-4.png') }}"
-                                                alt="" class="rounded-circle" width="50" height="50">
-                                            <div class="ms-3 flex-grow-1">
-                                                <h6 class="mb-0 dropdown-msg-user">Peter Costanzo <span
-                                                        class="msg-time float-end text-secondary">3 h</span></h6>
-                                                <small
-                                                    class="mb-0 dropdown-msg-text text-secondary d-flex align-items-center">It
-                                                    was popularised in the 1960</small>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item" href="javaScript:;">
-                                        <div class="d-flex align-items-center">
-                                            <img src="{{ asset('backend/images/avatars/avatar-5.png') }}"
-                                                alt="" class="rounded-circle" width="50" height="50">
-                                            <div class="ms-3 flex-grow-1">
-                                                <h6 class="mb-0 dropdown-msg-user">Thomas Wheeler <span
-                                                        class="msg-time float-end text-secondary">1 d</span></h6>
-                                                <small
-                                                    class="mb-0 dropdown-msg-text text-secondary d-flex align-items-center">If
-                                                    you are going to use a passage</small>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item" href="javaScript:;">
-                                        <div class="d-flex align-items-center">
-                                            <img src="{{ asset('backend/images/avatars/avatar-6.png') }}"
-                                                alt="" class="rounded-circle" width="50" height="50">
-                                            <div class="ms-3 flex-grow-1">
-                                                <h6 class="mb-0 dropdown-msg-user">Johnny Seitz <span
-                                                        class="msg-time float-end text-secondary">2 w</span></h6>
-                                                <small
-                                                    class="mb-0 dropdown-msg-text text-secondary d-flex align-items-center">All
-                                                    the Lorem Ipsum generators</small>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item" href="javaScript:;">
-                                        <div class="d-flex align-items-center">
-                                            <img src="{{ asset('backend/images/avatars/avatar-1.png') }}"
-                                                alt="" class="rounded-circle" width="50" height="50">
-                                            <div class="ms-3 flex-grow-1">
-                                                <h6 class="mb-0 dropdown-msg-user">Amelio Joly <span
-                                                        class="msg-time float-end text-secondary">1 m</span></h6>
-                                                <small
-                                                    class="mb-0 dropdown-msg-text text-secondary d-flex align-items-center">The
-                                                    standard chunk of lorem...</small>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item" href="javaScript:;">
-                                        <div class="d-flex align-items-center">
-                                            <img src="{{ asset('backend/images/avatars/avatar-2.png') }}"
-                                                alt="" class="rounded-circle" width="50" height="50">
-                                            <div class="ms-3 flex-grow-1">
-                                                <h6 class="mb-0 dropdown-msg-user">Althea Cabardo <span
-                                                        class="msg-time float-end text-secondary">7 m</span></h6>
-                                                <small
-                                                    class="mb-0 dropdown-msg-text text-secondary d-flex align-items-center">Many
-                                                    desktop publishing</small>
-                                            </div>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item" href="javaScript:;">
-                                        <div class="d-flex align-items-center">
-                                            <img src="{{ asset('backend/images/avatars/avatar-3.png') }}"
-                                                alt="" class="rounded-circle" width="50" height="50">
-                                            <div class="ms-3 flex-grow-1">
-                                                <h6 class="mb-0 dropdown-msg-user">Katherine Pechon <span
-                                                        class="msg-time float-end text-secondary">2 h</span></h6>
-                                                <small
-                                                    class="mb-0 dropdown-msg-text text-secondary d-flex align-items-center">Making
-                                                    this the first true</small>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="p-2">
-                                    <div>
-                                        <hr class="dropdown-divider">
-                                    </div>
-                                    <a class="dropdown-item" href="javaScript:;">
-                                        <div class="text-center">View All Messages</div>
-                                    </a>
-                                </div>
-                            </div>
-                        </li>
+
                         <li class="nav-item dropdown dropdown-large">
                             <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javaScript:;"
                                 data-bs-toggle="dropdown">
@@ -522,6 +382,20 @@
                     <a href="{{route('executive.minutes')}}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/inbox icon.png') }}"></div>
                         <div class="menu-title">Executive Minutes</div>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('executive.lostfound') ? 'mm-active' : '' }}">
+                    <a href="{{ route('executive.lostfound') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/Schedules icon.png') }}">
+                        </div>
+                        <div class="menu-title">Lost & Found</div>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('executive.ccnrs') ? 'mm-active' : '' }}">
+                    <a href="{{ route('executive.ccnrs') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/project icon.png') }}">
+                        </div>
+                        <div class="menu-title">Community CC&Rs...</div>
                     </a>
                 </li>
 

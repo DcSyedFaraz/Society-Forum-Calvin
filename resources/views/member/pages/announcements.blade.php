@@ -58,50 +58,54 @@
                         <p><span>{{ $announcement->created_at->diffforhumans() }}</span></p>
                         <h3>{{ $announcement->title }}</h3>
                         <p>{{ $announcement->description }}</p>
-                        <div class="announcement-actions">
-                            <a href="#">
+                        @if (auth()->user()->hasRole('admin'))
+                            <div class="announcement-actions">
+                                <a href="#">
 
-                                <i class="bi bi-trash text-danger fw" data-announcement-id="{{ $announcement->id }}"></i>
-                            </a>
-                        </div>
+                                    <i class="bi bi-trash text-danger fw" data-announcement-id="{{ $announcement->id }}"></i>
+                                </a>
+                            </div>
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        @endif
                     </div>
                 @endforeach
             </div>
         </div>
     </div>
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
 @endsection
 @section('script')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script>
-        $('.announcement-actions .fw').click(function(e) {
-            e.preventDefault();
-            var id = $(this).data('announcement-id');
-            Swal.fire({
-                icon: 'warning',
-                title: 'Are you sure?',
-                text: 'You won\'t be able to revert this!',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
-                reverseButtons: true
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: '/admin/announcements/' + id + '/delete',
-                        type: 'DELETE',
-                        data: {
-                            _token: $('input[name="_token"]').val()
-                        },
-                        success: function(response) {
-                            location.reload();
-                        },
-                        error: function(xhr, textStatus, errorThrown) {
-                            console.log(xhr, textStatus, errorThrown);
-                        }
-                    });
-                }
+    @if (auth()->user()->hasRole('admin'))
+        <script>
+            $('.announcement-actions .fw').click(function(e) {
+                e.preventDefault();
+                var id = $(this).data('announcement-id');
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Are you sure?',
+                    text: 'You won\'t be able to revert this!',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'No, cancel!',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '/admin/announcements/' + id + '/delete',
+                            type: 'DELETE',
+                            data: {
+                                _token: $('input[name="_token"]').val()
+                            },
+                            success: function(response) {
+                                location.reload();
+                            },
+                            error: function(xhr, textStatus, errorThrown) {
+                                console.log(xhr, textStatus, errorThrown);
+                            }
+                        });
+                    }
+                });
             });
-        });
-    </script>
+        </script>
+    @endif
 @endsection

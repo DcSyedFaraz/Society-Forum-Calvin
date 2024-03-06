@@ -80,6 +80,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
     Route::get('/minutes', [FileCabinetController::class, 'minutes'])->name('minutes');
     Route::get('/newsletter', [FileCabinetController::class, 'newsletter'])->name('newsletter');
     Route::get('/financial', [UserDashboardController::class, 'financial'])->name('financial');
+    Route::get('/lost-found', [FileCabinetController::class, 'lostfound'])->name('lostfound');
+    Route::get('/ccnrs', [FileCabinetController::class, 'ccnrs'])->name('ccnrs');
 
     Route::resource('roles', RoleController::class);
     Route::resource('permission', PermissionController::class);
@@ -100,21 +102,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
 
 
 
-
-
-});
-Route::group(['prefix' => 'user', 'middleware' => ['auth']], function () {
-
-    Route::get('/change_password', [UserDashboardController::class, 'change_password'])->name('change_password');
-    Route::post('/store_change_password', [UserDashboardController::class, 'store_change_password'])->name('store_change_password');
-    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
-
-    //post
-    //user Profile
-    Route::get('/profile', [UserDashboardController::class, 'profile'])->name('voting.profile');
-    Route::post('/update/profile', [UserDashboardController::class, 'UserProfileUpdate'])->name('user.profile.update');
-    Route::post('/edit/profile', [UserDashboardController::class, 'UserEditProfile'])->name('user.edit.profile');
-    Route::post('/bank/detail', [UserDashboardController::class, 'UserBankDetail'])->name('user.bank.detail');
 
 
 });
@@ -166,6 +153,8 @@ Route::group(['prefix' => 'executive', 'as' => 'executive.', 'middleware' => ['a
     Route::get('/minutes', [FileCabinetController::class, 'minutes'])->name('minutes');
     Route::get('/newsletter', [FileCabinetController::class, 'newsletter'])->name('newsletter');
     Route::get('/financial', [UserDashboardController::class, 'financial'])->name('financial');
+    Route::get('/lost-found', [FileCabinetController::class, 'lostfound'])->name('lostfound');
+    Route::get('/ccnrs', [FileCabinetController::class, 'ccnrs'])->name('ccnrs');
 
     Route::get('/change_password', [UserDashboardController::class, 'change_password'])->name('change_password');
     Route::post('/store_change_password', [UserDashboardController::class, 'store_change_password'])->name('store_change_password');
@@ -178,4 +167,23 @@ Route::group(['prefix' => 'executive', 'as' => 'executive.', 'middleware' => ['a
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
+});
+
+
+
+
+Route::group(['prefix' => 'user', 'middleware' => ['auth']], function () {
+
+    Route::get('/change_password', [UserDashboardController::class, 'change_password'])->name('change_password');
+    Route::post('/store_change_password', [UserDashboardController::class, 'store_change_password'])->name('store_change_password');
+    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
+
+    //post
+    //user Profile
+    Route::get('/profile', [UserDashboardController::class, 'profile'])->name('voting.profile');
+    Route::post('/update/profile', [UserDashboardController::class, 'UserProfileUpdate'])->name('user.profile.update');
+    Route::post('/edit/profile', [UserDashboardController::class, 'UserEditProfile'])->name('user.edit.profile');
+    Route::post('/bank/detail', [UserDashboardController::class, 'UserBankDetail'])->name('user.bank.detail');
+
+
 });

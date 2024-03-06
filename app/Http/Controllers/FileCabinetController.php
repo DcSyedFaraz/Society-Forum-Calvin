@@ -13,7 +13,7 @@ class FileCabinetController extends Controller
     }
     public function ccnrs()
     {
-        $data['file'] = 'ccnrs';
+        $data['file'] = 'community';
         return view('filecabinet', $data);
     }
     public function newsletter()
