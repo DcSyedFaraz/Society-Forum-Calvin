@@ -40,6 +40,7 @@ Route::get('/done', function () {
 });
 
 Route::get('/signup', [RegisterController::class, 'register_form'])->name('signup');
+Route::post('/mark-as-read/{id}', [DashboardController::class, 'markasread'])->name('markasread');
 
 Route::get('/agentsignup', [RegisterController::class, 'agent_register_form'])->name('agentsignup');
 Route::post('/agentregisteration', [RegisterController::class, 'agent_registeration'])->name('agentregisteration');
@@ -69,9 +70,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
     Route::get('/change_password', [DashboardController::class, 'change_password'])->name('change_password');
     Route::post('/store_change_password', [DashboardController::class, 'store_change_password'])->name('store_change_password');
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    // Announcements
     Route::get('/announcements', [DashboardController::class, 'announcements'])->name('announcements');
     Route::post('/announcements', [DashboardController::class, 'announcementSave'])->name('announcements.save');
-    Route::delete('/announcements/{announcement}/delete', [DashboardController::class, 'announcementDelete'])->name('announcements.delete');
+    Route::delete('/announcement/delete/{announcement}', [DashboardController::class, 'announcementDelete'])->name('announcement.delete');
+
+    // Property Request
+    Route::get('/request', [DashboardController::class, 'request'])->name('request');
+    Route::get('/request/accept/{id}', [DashboardController::class, 'request_approved'])->name('property.approved');
+    Route::post('/request/accept/{id}', [DashboardController::class, 'request_decline'])->name('property.decline');
 
     // File Cabinet
     Route::get('/contracts', [FileCabinetController::class, 'contracts'])->name('contracts');
@@ -145,6 +153,7 @@ Route::group(['prefix' => 'real_estate', 'as' => 'agent.', 'middleware' => ['aut
 
 Route::group(['prefix' => 'executive', 'as' => 'executive.', 'middleware' => ['auth', 'role:executive']], function () {
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/announcements', [DashboardController::class, 'announcements'])->name('announcements');
 
     // File Cabinet
     Route::get('/contracts', [FileCabinetController::class, 'contracts'])->name('contracts');

@@ -12,7 +12,7 @@
             color: #432D00;
             text-transform: uppercase;
             opacity: 1;	">
-                    Welcome Real State Agent</h1>
+                    Welcome {{ Auth::user()->name }}</h1>
                 <br>
                 <p style="width: 70%; margin: 0px auto;">Lorem Ipsum is simply dummy text of the printing and
                     typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the

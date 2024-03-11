@@ -5,9 +5,14 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Announcement;
 use App\Models\Architect;
+use App\Models\Property;
+use App\Notifications\UserNotification;
 use Illuminate\Http\Request;
 use Auth;
 use Hash;
+use Illuminate\Http\Response;
+use Notification;
+use Spatie\Permission\Models\Role;
 use Validator;
 use App\Models\User;
 use App\Models\Order;
@@ -40,6 +45,37 @@ class DashboardController extends Controller
 
         return view('admin.dashboard');
     }
+    public function request()
+    {
+        $data['request'] = Property::whereNull('access')
+            ->orWhere('access', '!=', 'approved')
+            ->orderByDesc('created_at')
+            ->get();
+
+        // dd($data);
+        return view('request.index', $data);
+    }
+    public function request_approved($id)
+    {
+        $user = Property::find($id);
+
+        $user->access = 'approved';
+        $user->save();
+
+
+        return redirect()->back()->with('success', 'Request Accepted Successfully');
+    }
+    public function request_decline($id)
+    {
+        $user = Property::find($id);
+
+
+        $user->access = 'declined';
+        $user->save();
+
+
+        return redirect()->back()->with('warning', 'Request Declined Successfully');
+    }
     public function announcements()
     {
         $data['announcements'] = Announcement::orderby('created_at', 'desc')->get();
@@ -49,7 +85,20 @@ class DashboardController extends Controller
     {
         // dd($announcement);
         $announcement->delete();
-        return redirect()->back()->withSuccess("Announcement deleted successfully");
+        Session::flash('success', 'Announcement deleted successfully');
+
+        // Send 200 HTTP response to the API
+        return response()->json(['message' => 'Announcement deleted successfully'], Response::HTTP_OK);
+    }
+    public function markasread($id)
+    {
+        // dd($id);
+        if ($id) {
+            auth()->user()->notifications->where('id', $id)->markasread();
+            // Send 200 HTTP response to the API
+            return response()->json(['message' => 'Marked as read'], Response::HTTP_OK);
+        }
+
     }
     public function announcementSave(Request $request)
     {
@@ -63,6 +112,21 @@ class DashboardController extends Controller
         $announcement->description = $validatedData['description'];
         $announcement->user_id = auth()->user()->id;
         $announcement->save();
+
+        // Notification
+        $user = auth()->user();
+        $excludedRoleIds = Role::whereIn('name', ['real_estate'])->pluck('id');
+
+        // Get the users except the authenticated user and those with the excluded roles
+        $usersExceptCreatorAndRealEstate = User::where('id', '!=', $user->id)
+            ->whereDoesntHave('roles', function ($query) use ($excludedRoleIds) {
+                $query->whereIn('id', $excludedRoleIds);
+            })
+            ->get();
+
+        // Send the notification to eligible users
+        $message = "📢 Exciting news! Check out the latest announcement.";
+        Notification::send($usersExceptCreatorAndRealEstate, new UserNotification($user, $message, 'Announcement'));
 
         return redirect()->back()->withSuccess("Announcement has been added successfully");
 

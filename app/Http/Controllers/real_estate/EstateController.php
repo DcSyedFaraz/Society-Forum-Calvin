@@ -4,7 +4,10 @@ namespace App\Http\Controllers\real_estate;
 
 use App\Http\Controllers\Controller;
 use App\Models\Property;
+use App\Models\User;
+use App\Notifications\UserNotification;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class EstateController extends Controller
 {
@@ -19,8 +22,8 @@ class EstateController extends Controller
     }
     public function list()
     {
-        $data['property'] = Property::orderby('created_at','desc')->get();
-        return view('real_estate.list',$data);
+        $data['property'] = Property::where('access', 'approved')->where('user_id', auth()->user()->id)->orderby('created_at', 'desc')->get();
+        return view('real_estate.list', $data);
     }
 
     /**
@@ -35,6 +38,8 @@ class EstateController extends Controller
 
         $validatedData = $request->validate([
             'promote_url' => 'required|url',
+            'title' => 'required|string',
+            'phone' => 'required|regex:/^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/',
             'price' => 'required|numeric',
             'email' => 'required|email',
             'company_website' => 'required|url',
@@ -48,6 +53,8 @@ class EstateController extends Controller
         // Create a new property instance and fill it with the validated data
         $property = new Property();
         $property->promote_url = $validatedData['promote_url'];
+        $property->title = $validatedData['title'];
+        $property->phone = $validatedData['phone'];
         $property->price = $validatedData['price'];
         $property->email = $validatedData['email'];
         $property->company_website = $validatedData['company_website'];
@@ -57,7 +64,16 @@ class EstateController extends Controller
 
 
         $property->save();
-        return redirect()->back()->with('success','Property added successfully!');
+
+        $user = auth()->user();
+        $notifyuser = User::role(['executive', 'admin'])
+            ->get();
+
+        // Send the notification to eligible users
+        $message = "📢 Hey there! We have a new request waiting for your attention. Click here to check it out and take action.";
+        \Notification::send($notifyuser, new UserNotification($user, $message, 'Real Estate'));
+
+        return redirect()->back()->with('success', 'Property added successfully!');
     }
 
     /**

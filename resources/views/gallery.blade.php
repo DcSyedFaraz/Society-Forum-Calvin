@@ -24,7 +24,7 @@
                     <li class="active">Home</li>
                 </a>
                 <a href="{{ route('realstate') }}">
-                    <li>Real State</li>
+                    <li>Real Estate</li>
                 </a>
                 <a href="{{ route('gallery') }}">
                     <li>Gallery</li>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\AgentDetails;
 use App\Models\ExecutiveDetails;
 use App\Models\MemberDetails;
+use App\Notifications\UserNotification;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Exception;
@@ -13,6 +14,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Notification;
 
 class RegisterController extends Controller
 {
@@ -98,6 +100,7 @@ class RegisterController extends Controller
             $details->date_of_purchase = $data['date'];
         }
         $details->save();
+        $this->notification($user);
         return response()->json(['message' => 'Successfully Registered', 'success' => true], 200);
 
     }
@@ -146,6 +149,7 @@ class RegisterController extends Controller
             $details->designation = $data['designation'];
 
             $details->save();
+            $this->notification($user);
             return redirect()->route('executive_login')->with('success', 'Successfully Registered');
         } catch (Exception $e) {
             // return back()->withErrors(['error' => $e->getMessage()]);
@@ -207,6 +211,7 @@ class RegisterController extends Controller
         $details->company_website = $data['companyweb'];
 
         $details->save();
+        $this->notification($user);
         return redirect()->route('estate_login')->with('success', 'Successfully Registered');
     }
 
@@ -225,6 +230,13 @@ class RegisterController extends Controller
             'roles' => 'required',
             'permission' => 'required',
         ]);
+    }
+    protected function notification($user)
+    {
+        $admin = User::role('admin')->get();
+        // Send the notification to eligible users
+        $message = "👤 New user registered! Please review and take necessary actions as needed.";
+        Notification::send($admin, new UserNotification($user, $message, 'New User'));
     }
 
     /**

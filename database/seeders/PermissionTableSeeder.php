@@ -73,6 +73,7 @@ class PermissionTableSeeder extends Seeder
 
         $user =[
             'name'=>'Admin',
+            'access'=>'approved',
             'email'=>'admin@gmail.com',
             'password' => Hash::make('12345678'),
             'email_verified_at' => date('Y-m-d h:i:s'),
@@ -80,6 +81,36 @@ class PermissionTableSeeder extends Seeder
 
         $userd = User::create($user);
         $userd->assignRole('admin');
+        $estate =[
+            'name'=>'Estate Agent',
+            'access'=>'approved',
+            'email'=>'realestate@gmail.com',
+            'password' => Hash::make('12345678'),
+            'email_verified_at' => date('Y-m-d h:i:s'),
+        ];
+
+        $estatd = User::create($estate);
+        $estatd->assignRole('agent');
+        $executiv =[
+            'name'=>'Executive',
+            'access'=>'approved',
+            'email'=>'executive@gmail.com',
+            'password' => Hash::make('12345678'),
+            'email_verified_at' => date('Y-m-d h:i:s'),
+        ];
+
+        $executivd = User::create($executiv);
+        $executivd->assignRole('executive');
+        $member =[
+            'name'=>'member',
+            'access'=>'approved',
+            'email'=>'member@gmail.com',
+            'password' => Hash::make('12345678'),
+            'email_verified_at' => date('Y-m-d h:i:s'),
+        ];
+
+        $memberd = User::create($member);
+        $memberd->assignRole('member');
 
 
         // permission assig

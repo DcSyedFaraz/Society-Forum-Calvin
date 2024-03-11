@@ -1,4 +1,10 @@
-@extends(auth()->user()->hasRole('member') ? 'member.layouts.app' : 'admin.layouts.app')
+@extends(
+    (auth()->user()->hasRole('admin') ? 'admin.layouts.app' :
+    (auth()->user()->hasRole('executive') ? 'executive.layouts.app' :
+    'member.layouts.app'))
+)
+
+
 <style>
     .desspri {
         display: flex;
@@ -12,6 +18,8 @@
         <div class="row">
             <div class="col-12">
                 <h1>Announcements</h1>
+                {{-- @dd(auth()->user()->unreadnotifications) --}}
+
                 @if (auth()->user()->hasRole('admin'))
                     <!-- Button trigger modal -->
                     <button type="button btn-sm" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -91,7 +99,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                            url: '/admin/announcements/' + id + '/delete',
+                            url: '{{ route("admin.announcement.delete", ["announcement" => ":id"]) }}'.replace(':id', id),
                             type: 'DELETE',
                             data: {
                                 _token: $('input[name="_token"]').val()

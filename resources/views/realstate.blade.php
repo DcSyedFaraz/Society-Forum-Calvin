@@ -554,7 +554,7 @@
                         <li><a href="#">About Us</a></li>
                         <li><a href="#">Membership Login</a></li>
                         <li><a href="#">Executive Login</a></li>
-                        <li><a href="#">Real State Login</a></li>
+                        <li><a href="#">Real Estate Login</a></li>
                     </ul>
                 </div>
                 <div class="col-4">

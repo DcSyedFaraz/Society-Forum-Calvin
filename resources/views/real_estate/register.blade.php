@@ -108,6 +108,16 @@
                                     <input type="file" class="form-control" name="image" placeholder="Tony Nguyen" />
                                 </div>
                                 <div class="mb-3">
+                                    <label for="number" class="form-label">Title</label>
+                                    <input type="text" class="form-control" name="title"
+                                        placeholder="title..." />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="number" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" name="phone"
+                                        placeholder="+1234567890" />
+                                </div>
+                                <div class="mb-3">
                                     <label for="number" class="form-label">Sale Price Of Property</label>
                                     <input type="number" class="form-control" id="number" name="price"
                                         placeholder="$0000" />
