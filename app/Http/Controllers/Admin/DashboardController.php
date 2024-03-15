@@ -100,6 +100,15 @@ class DashboardController extends Controller
         }
 
     }
+    public function waiting()
+    {
+        // dd(auth()->user()->access);
+        if (!auth()->user()->access == "approved") {
+            return view('waiting');
+        } else {
+            return redirect('/');
+        }
+    }
     public function announcementSave(Request $request)
     {
         // dd($request->all());

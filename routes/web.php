@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\FileCabinetController;
 use App\Http\Controllers\real_estate\EstateController;
 use Illuminate\Support\Facades\Route;
@@ -30,7 +31,6 @@ use App\Http\Controllers\GeneralSettingController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
 
 Route::get('/done', function () {
     Artisan::call('migrate:fresh --seed');
@@ -38,13 +38,22 @@ Route::get('/done', function () {
 
     return 'done';
 });
+Route::middleware(['check.auth',])->group(function () {
+    Auth::routes();
 
-Route::get('/signup', [RegisterController::class, 'register_form'])->name('signup');
+    Route::get('/signup', [RegisterController::class, 'register_form'])->name('signup');
+    Route::get('/agentsignup', [RegisterController::class, 'agent_register_form'])->name('agentsignup');
+    Route::post('/agentregisteration', [RegisterController::class, 'agent_registeration'])->name('agentregisteration');
+    Route::post('/executive_registration', [RegisterController::class, 'executive_registration'])->name('executive_registration');
+    Route::get('/estate_login', [HomeController::class, 'estate_login'])->name('estate_login');
+    Route::get('/executive_login', [HomeController::class, 'executive_login'])->name('executive_login');
+    Route::get('/estate-signup', [HomeController::class, 'estate_signup'])->name('estate_signup');
+    Route::get('/executive-signup', [HomeController::class, 'executive_signup'])->name('executive_signup');
+});
+
 Route::post('/mark-as-read/{id}', [DashboardController::class, 'markasread'])->name('markasread');
+Route::get('/waiting', [DashboardController::class, 'waiting'])->name('waiting');
 
-Route::get('/agentsignup', [RegisterController::class, 'agent_register_form'])->name('agentsignup');
-Route::post('/agentregisteration', [RegisterController::class, 'agent_registeration'])->name('agentregisteration');
-Route::post('/executive_registration', [RegisterController::class, 'executive_registration'])->name('executive_registration');
 
 Route::get('logout', [LoginController::class, 'logout']);
 Route::get('account/verify/{token}', [LoginController::class, 'verifyAccount'])->name('user.verify');
@@ -52,10 +61,6 @@ Route::get('account/verify/{token}', [LoginController::class, 'verifyAccount'])-
 Route::post('/registeration', [RegisterController::class, 'registeration'])->name('registeration');
 // Route::post('/estate_registration', [RegisterController::class, 'estate_registration'])->name('estate_registration');
 
-Route::get('/estate_login', [HomeController::class, 'estate_login'])->name('estate_login');
-Route::get('/executive_login', [HomeController::class, 'executive_login'])->name('executive_login');
-Route::get('/estate-signup', [HomeController::class, 'estate_signup'])->name('estate_signup');
-Route::get('/executive-signup', [HomeController::class, 'executive_signup'])->name('executive_signup');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/about-us', [HomeController::class, 'about_us'])->name('about_us');
@@ -79,8 +84,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
     // Property Request
     Route::get('/request', [DashboardController::class, 'request'])->name('request');
     Route::get('/request/accept/{id}', [DashboardController::class, 'request_approved'])->name('property.approved');
-    Route::post('/request/accept/{id}', [DashboardController::class, 'request_decline'])->name('property.decline');
+    Route::get('/request/decline/{id}', [DashboardController::class, 'request_decline'])->name('property.decline');
 
+    // Community
+    Route::get('/community', [CommunityController::class, 'community'])->name('community');
     // File Cabinet
     Route::get('/contracts', [FileCabinetController::class, 'contracts'])->name('contracts');
     Route::get('/legal_info', [FileCabinetController::class, 'legal_info'])->name('legal_info');
@@ -114,7 +121,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
 
 });
 
-Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth', 'role:member']], function () {
+Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth', 'role:member', 'check.access']], function () {
 
     Route::get('/announcements', [DashboardController::class, 'announcements'])->name('announcements');
     Route::get('/architectural', [DashboardController::class, 'architectural'])->name('architectural');
@@ -135,7 +142,7 @@ Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth', 
     Route::post('/bank/detail', [UserDashboardController::class, 'UserBankDetail'])->name('member.bank.detail');
 });
 
-Route::group(['prefix' => 'real_estate', 'as' => 'agent.', 'middleware' => ['auth', 'role:agent']], function () {
+Route::group(['prefix' => 'real_estate', 'as' => 'agent.', 'middleware' => ['auth', 'role:agent', 'check.access']], function () {
 
     Route::get('/dashboard', [UserDashboardController::class, 'realstate'])->name('dashboard');
     Route::get('/register', [EstateController::class, 'register'])->name('register');
@@ -151,7 +158,7 @@ Route::group(['prefix' => 'real_estate', 'as' => 'agent.', 'middleware' => ['aut
 
 });
 
-Route::group(['prefix' => 'executive', 'as' => 'executive.', 'middleware' => ['auth', 'role:executive']], function () {
+Route::group(['prefix' => 'executive', 'as' => 'executive.', 'middleware' => ['auth', 'role:executive', 'check.access']], function () {
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
     Route::get('/announcements', [DashboardController::class, 'announcements'])->name('announcements');
 

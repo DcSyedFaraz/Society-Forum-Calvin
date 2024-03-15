@@ -103,8 +103,7 @@
                             <label>Search:<input type="search" class="" placeholder=""
                                     aria-controls="example" /></label>
                         </div>
-                        <table id="example" class="display dataTable" cellspacing="0" width="100%" role="grid"
-                            aria-describedby="example_info" style="width: 100%">
+                        <table id="example" class=" table">
                             <thead>
                                 <tr>
                                     <th>Property Price</th>
@@ -114,25 +113,32 @@
                                     <th>Actions</th>
                                 </tr>
                             </thead>
+                           @if ($property->count() > 0)
+                             <tbody>
+                                 @foreach ($property as $properties)
+                                     <tr>
+                                         <td>{{ $properties->price }}</td>
+                                         <td>{{ $properties->address }}</td>
+                                         <td>{{ $properties->email }}</td>
+                                         <td>
+                                             <img class="rounded rounded-2" style="width: 54px;"
+                                                 src="{{ asset('storage/' . $properties->image) }}" alt="img">
+                                         </td>
+                                         <td>...</td>
+                                     </tr>
+                                 @endforeach
 
-                            <!-- <tfoot>
-                                    <tr><th rowspan="1" colspan="1">Position</th><th rowspan="1" colspan="1">Office</th><th rowspan="1" colspan="1">Age</th><th rowspan="1" colspan="1">Start date</th><th rowspan="1" colspan="1">Salary</th></tr>
-                                </tfoot> -->
+                             </tbody>
+                           @else
+                             <tbody>
+                                <tr>
+                                    <td colspan="6" class="text-center text-muted fst-italic">
 
-                            <tbody>
-                                @foreach ($property as $properties)
-                                    <tr role="row" class="odd">
-                                        <td>{{ $properties->price }}</td>
-                                        <td>{{ $properties->address }}</td>
-                                        <td>{{ $properties->email }}</td>
-                                        <td>
-                                           <img class="" style="width: 54px; border-radius: 50%" src="{{asset('storage/'.$properties->image)}}" alt="img">
-                                        </td>
-                                        <td>...</td>
-                                    </tr>
-                                @endforeach
-
-                            </tbody>
+                                        No records Available
+                                    </td>
+                                </tr>
+                             </tbody>
+                           @endif
                         </table>
                     </div>
                 </div>

@@ -269,6 +269,13 @@
                         <div class="menu-title">Contracts</div>
                     </a>
                 </li>
+                <li class="{{ request()->routeIs('admin.community') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.community') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/statement-new.png') }}">
+                        </div>
+                        <div class="menu-title">Community</div>
+                    </a>
+                </li>
                 <li class="{{ request()->routeIs('admin.legal_info') ? 'mm-active' : '' }}">
                     <a href="{{ route('admin.legal_info') }}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/Schedules icon.png') }}">
