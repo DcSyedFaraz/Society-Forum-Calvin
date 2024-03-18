@@ -85,6 +85,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
     Route::get('/request', [DashboardController::class, 'request'])->name('request');
     Route::get('/request/accept/{id}', [DashboardController::class, 'request_approved'])->name('property.approved');
     Route::get('/request/decline/{id}', [DashboardController::class, 'request_decline'])->name('property.decline');
+    // Artchitectural Request
+    Route::get('/artchitectural', [DashboardController::class, 'artchitectural'])->name('artchitectural');
+    Route::get('/artchitectural/accept/{id}', [DashboardController::class, 'artchitectural_approved'])->name('artchitectural.approved');
+    Route::get('/artchitectural/decline/{id}', [DashboardController::class, 'artchitectural_decline'])->name('artchitectural.decline');
+    //User Request
+    Route::get('/User/accept/{id}', [DashboardController::class, 'User_approved'])->name('User.approved');
+    Route::get('/User/decline/{id}', [DashboardController::class, 'User_decline'])->name('User.decline');
 
     // Community
     Route::get('/community', [CommunityController::class, 'community'])->name('community');

@@ -12,7 +12,7 @@ use Bavix\Wallet\Traits\HasWallet;
 use Bavix\Wallet\Interfaces\Wallet;
 
 
-class User extends Authenticatable 
+class User extends Authenticatable
 {
     use HasApiTokens,HasFactory,Notifiable,HasRoles,HasWallet;
 
@@ -51,14 +51,14 @@ class User extends Authenticatable
 
     public function member()
     {
-        return $this->hasOne(MemberDetails::class,'id', 'user_id');
+        return $this->hasOne(MemberDetails::class);
     }
     public function agent()
     {
-        return $this->hasOne(AgentDetails::class,'id', 'user_id');
+        return $this->hasOne(AgentDetails::class);
     }
     public function executive()
     {
-        return $this->hasOne(ExecutiveDetails::class,'id', 'user_id');
+        return $this->hasOne(ExecutiveDetails::class);
     }
 }

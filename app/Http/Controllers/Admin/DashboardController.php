@@ -42,8 +42,11 @@ class DashboardController extends Controller
      */
     public function index()
     {
-
-        return view('admin.dashboard');
+        $data['request'] = User::whereNull('access')
+            ->orWhere('access', '!=', 'approved')->with('member')
+            ->orderByDesc('created_at')
+            ->get();
+        return view('admin.dashboard', $data);
     }
     public function request()
     {
@@ -54,6 +57,58 @@ class DashboardController extends Controller
 
         // dd($data);
         return view('request.index', $data);
+    }
+    public function artchitectural()
+    {
+        $data['request'] = Architect::whereNull('access')
+            ->orWhere('access', '!=', 'approved')
+            ->orderByDesc('created_at')
+            ->get();
+
+        // dd($data);
+        return view('request.arch', $data);
+    }
+    public function artchitectural_approved($id)
+    {
+        $user = Architect::find($id);
+
+        $user->access = 'approved';
+        $user->save();
+
+
+        return redirect()->back()->with('success', 'Request Accepted Successfully');
+    }
+    public function artchitectural_decline($id)
+    {
+        $user = Architect::find($id);
+
+
+        $user->access = 'declined';
+        $user->save();
+
+
+        return redirect()->back()->with('warning', 'Request Declined Successfully');
+    }
+    public function User_approved($id)
+    {
+        $user = User::find($id);
+
+        $user->access = 'approved';
+        $user->save();
+
+
+        return redirect()->back()->with('success', 'Request Accepted Successfully');
+    }
+    public function User_decline($id)
+    {
+        $user = User::find($id);
+
+
+        $user->access = 'declined';
+        $user->save();
+
+
+        return redirect()->back()->with('warning', 'Request Declined Successfully');
     }
     public function request_approved($id)
     {
@@ -156,7 +211,7 @@ class DashboardController extends Controller
         // dd($request->all());
         $validatedData = $this->validate($request, [
             'name' => 'required|string',
-            'phone' => 'required|integer',
+            'phone' => 'required',
             'email' => 'required|email',
             'requestedchange' => 'required|string',
             'image' => 'nullable|image|max:2048',
@@ -169,8 +224,9 @@ class DashboardController extends Controller
 
         // Handle image upload if necessary
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images'); // Store the image in the 'images' directory
-            $architect->image = $imagePath;
+            $imagePath = $request->file('image')->store('public/images');
+            $storagePath = str_replace('public/', '', $imagePath);
+            $architect->image = $storagePath;
         }
         $architect->user_id = Auth::user()->id;
         $architect->save();

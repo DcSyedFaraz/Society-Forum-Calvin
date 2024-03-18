@@ -35,7 +35,7 @@
 
                                 <div class="mb-3">
                                     <label for="hoaaddress" class="form-label">Upload Image/Sketch</label>
-                                    <input class="form-control" type="file" id="image" name="image"
+                                    <input class="form-control" type="file" id="image" name="image" accept="image/*"
                                         placeholder="Choose Images">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>

@@ -134,8 +134,8 @@
             <div class="col-12">
                 <!-- <p>Hello Cuong, welcome back</p> -->
                 <div id="tabler-tables">
-                    <h3>Property Requests</h3>
-                    {{-- <h3>property Requests</h3> --}}
+                    <h3>Artchitectural Requests</h3>
+                    {{-- <h3>Artchitectural Requests</h3> --}}
                     <div class="tablemaster" translate="no" data-new-gr-c-s-check-loaded="14.1157.0" data-gr-ext-installed="">
                         <div id="example_wrapper" class="dataTables_wrapper">
                             <div class="dataTables_length" id="example_length">
@@ -146,9 +146,8 @@
                                 <thead>
                                     <tr>
                                         <th>S.N</th>
-                                        <th>Title:</th>
+                                        <th>Name:</th>
                                         <th>Email:</th>
-                                        <th>Address:</th>
                                         <th>Phone Number:</th>
                                         <th>View:</th>
                                         <th>Actions</th>
@@ -158,14 +157,13 @@
                                 <tbody>
 
                                     @if ($request->count() > 0)
-                                        @foreach ($request as $key => $property)
+                                        @foreach ($request as $key => $Artchitectural)
                                             <tr class="odd">
-                                                {{-- @dd($property) --}}
+                                                {{-- @dd($Artchitectural) --}}
                                                 <td>{{ $key + 1 }}</td>
-                                                <td>{{ $property->title ?? '' }}</td>
-                                                <td>{{ $property->email ?? '' }}</td>
-                                                <td>{{ $property->address ?? 'null' }}</td>
-                                                <td>{{ $property->phone ?? 'null' }}</td>
+                                                <td>{{ $Artchitectural->name ?? '' }}</td>
+                                                <td>{{ $Artchitectural->email ?? '' }}</td>
+                                                <td>{{ $Artchitectural->phone ?? 'null' }}</td>
                                                 <td>
                                                     <!-- Button trigger modal -->
                                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal"
@@ -181,23 +179,17 @@
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title" id="exampleModalLabel">
-                                                                        Title:{{ $property->title }}</h5>
+                                                                        Name:{{ $Artchitectural->name }}</h5>
                                                                     <button type="button" class="btn-close"
                                                                         data-bs-dismiss="modal" aria-label="Close"></button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <img src="{{ asset('storage/' . $property->image) }}"
+                                                                    <img class="rounded" src="{{ asset('storage/' . $Artchitectural->image) }}"
                                                                         alt="Image" width="100%" height="auto">
-                                                                    <p>Address: {{ $property->address }}</p>
-                                                                    <p>Phone: {{ $property->phone }}</p>
-                                                                    <p>Email: {{ $property->email }}</p>
-                                                                    <p>Company Website: <a
-                                                                            href="{{ $property->company_website }}">{{ $property->company_website }}</a>
-                                                                    </p>
-                                                                    <p>Promote Website: <a
-                                                                            href="{{ $property->promote_url }}">{{ $property->promote_url }}</a>
-                                                                    </p>
-                                                                    <p>Price: ${{ $property->price }}</p>
+                                                                    <p class="mt-3">Phone: {{ $Artchitectural->phone }}</p>
+                                                                    <p>Email: {{ $Artchitectural->email }}</p>
+                                                                    <p>Request Change: {{ $Artchitectural->requestedchange }}</p>
+
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary"
@@ -208,12 +200,12 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    @if ($property->access == 'declined')
+                                                    @if ($Artchitectural->access == 'declined')
                                                         <span class="badge bg-danger"> Request Declined</span>
                                                     @else
-                                                        <a href="{{ route('admin.property.approved', $property->id) }}"
+                                                        <a href="{{ route('admin.artchitectural.approved', $Artchitectural->id) }}"
                                                             class="approver">Approved</a>
-                                                        <a href="{{ route('admin.property.decline', $property->id) }}"
+                                                        <a href="{{ route('admin.artchitectural.decline', $Artchitectural->id) }}"
                                                             class="declined">Declined</a>
                                                     @endif
                                                 </td>

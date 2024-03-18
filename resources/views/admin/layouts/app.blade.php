@@ -135,7 +135,7 @@
 
                                                     @case('New User')
                                                         <a data-notification-id="{{ $notifications->id }}"
-                                                            class="dropdown-item notification-link" href="#">
+                                                            class="dropdown-item notification-link" href="{{ route('admin.dashboard') }}">
                                                             <div class="d-flex align-items-center">
                                                                 <div class="notification-box bg-light-purple text-purple"><i
                                                                         class="bi bi-people-fill"></i></div>
@@ -290,8 +290,8 @@
                         <div class="menu-title">Unit/Balance Report</div>
                     </a>
                 </li>
-                <li>
-                    <a href="javaScript:;">
+                <li class="{{ request()->routeIs('admin.artchitectural') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.artchitectural') }}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/payout iocn.png') }}">
                         </div>
                         <div class="menu-title">Architectural Request...</div>
