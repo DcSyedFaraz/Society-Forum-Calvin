@@ -36,7 +36,7 @@
           <div class="col-12">
               <div class="card">
                   <div class="card-header">
-                  <form method="post" action="{{route('users.update', $user->id)}}">
+                  <form method="post" action="{{route('admin.users.update', $user->id)}}">
                     @csrf
                     @method('put')
                     <div class="row">
@@ -81,8 +81,8 @@
                     </div>
                   </form>
                   </div>
-              </div> 
-          </div>   
+              </div>
+          </div>
         </div>
     </div>
 </section>

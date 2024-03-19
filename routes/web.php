@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\CommunityController;
+// use App\Http\Controllers\CommunityController;
+use App\Http\Controllers\Admin\CommunityController;
 use App\Http\Controllers\FileCabinetController;
 use App\Http\Controllers\real_estate\EstateController;
 use Illuminate\Support\Facades\Route;
@@ -94,7 +95,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
     Route::get('/User/decline/{id}', [DashboardController::class, 'User_decline'])->name('User.decline');
 
     // Community
-    Route::get('/community', [CommunityController::class, 'community'])->name('community');
+    // Route::get('/community', [CommunityController::class, 'community'])->name('community');
+    Route::resource('community', CommunityController::class);
     // File Cabinet
     Route::get('/contracts', [FileCabinetController::class, 'contracts'])->name('contracts');
     Route::get('/legal_info', [FileCabinetController::class, 'legal_info'])->name('legal_info');

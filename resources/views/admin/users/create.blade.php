@@ -36,7 +36,7 @@
           <div class="col-12">
               <div class="card">
                   <div class="card-header">
-                  <form method="post" class="" action="{{route('users.store')}}">
+                  <form method="post" class="" action="{{route('admin.users.store')}}">
                     @csrf
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-6">
@@ -66,8 +66,8 @@
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                                 <strong>Role:</strong>
-                                <select name="roles[]" class="form-control" required>
-                                    <option>select role</option>
+                                <select name="roles[]" class="form-select" required>
+                                    <option selected hidden>select role</option>
                                     @foreach($roles as $role)
                                     <option value="{{$role->name}}">{{$role->name}}</option>
                                     @endforeach
@@ -80,8 +80,8 @@
                     </div>
                   </form>
                   </div>
-              </div> 
-          </div>   
+              </div>
+          </div>
         </div>
     </div>
 </section>

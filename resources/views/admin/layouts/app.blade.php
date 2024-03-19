@@ -7,8 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="{{ asset('backend/images/favicon-32x32.png') }}" type="image/png" />
     <!--plugins-->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+
     <link href="{{ asset('backend/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />
     <link href="{{ asset('backend/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
     <link href="{{ asset('backend/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" rel="stylesheet" />
@@ -135,7 +137,8 @@
 
                                                     @case('New User')
                                                         <a data-notification-id="{{ $notifications->id }}"
-                                                            class="dropdown-item notification-link" href="{{ route('admin.dashboard') }}">
+                                                            class="dropdown-item notification-link"
+                                                            href="{{ route('admin.dashboard') }}">
                                                             <div class="d-flex align-items-center">
                                                                 <div class="notification-box bg-light-purple text-purple"><i
                                                                         class="bi bi-people-fill"></i></div>
@@ -269,8 +272,8 @@
                         <div class="menu-title">Contracts</div>
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('admin.community') ? 'mm-active' : '' }}">
-                    <a href="{{ route('admin.community') }}">
+                <li class="{{ request()->routeIs('admin.community.index') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.community.index') }}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/statement-new.png') }}">
                         </div>
                         <div class="menu-title">Community</div>
@@ -324,6 +327,13 @@
                         <div class="menu-title">Lost & Found</div>
                     </a>
                 </li>
+                <li class="{{ request()->routeIs('admin.users.index') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.users.index') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/Schedules icon.png') }}">
+                        </div>
+                        <div class="menu-title">Users Management</div>
+                    </a>
+                </li>
                 <li class="{{ request()->routeIs('admin.ccnrs') ? 'mm-active' : '' }}">
                     <a href="{{ route('admin.ccnrs') }}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/project icon.png') }}">
@@ -371,7 +381,6 @@
     <!-- Bootstrap bundle JS -->
     <script src="{{ asset('backend/js/bootstrap.bundle.min.js') }}"></script>
     <!--plugins-->
-    <script src="{{ asset('backend/js/jquery.min.js') }}"></script>
     <script src="{{ asset('backend/plugins/simplebar/js/simplebar.min.js') }}"></script>
     <script src="{{ asset('backend/plugins/metismenu/js/metisMenu.min.js') }}"></script>
     <script src="{{ asset('backend/plugins/perfect-scrollbar/js/perfect-scrollbar.js') }}"></script>
@@ -403,6 +412,10 @@
                 toastr.error("{{ $error }}")
             @endforeach
         @endif
+
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
