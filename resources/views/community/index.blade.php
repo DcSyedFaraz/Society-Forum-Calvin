@@ -26,6 +26,9 @@
     .commment {
         display: flex;
         align-items: flex-end;
+        justify-content: space-between;
+        border-top: 1px solid #858586;
+        padding-top: 15px;
     }
 
     .community .commment .comt {
@@ -54,6 +57,10 @@
         width: 20%;
         float: right;
         text-align: right;
+    }
+
+    .commment .comt a {
+        color: #000;
     }
 </style>
 @section('content')
@@ -125,16 +132,18 @@
                                     <div class="commment">
                                         <div class="comt">
                                             <img width="3%" src="{{ asset('backend/images/icons/message.svg') }}" />
-                                            <p>Comment<span>785</span></p>
+                                            <a href="{{ route('admin.community.comments', $item->id) }}">
+                                                <p>Comment<span>{{ $item->comments->count() }}</span></p>
+                                            </a>
                                         </div>
                                         <div class="comt-time">
-                                            <p>{{$item->created_at->diffforhumans()}}</p>
+                                            <p>{{ $item->created_at->diffforhumans() }}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         @empty
-                        <p class="lead">There are no posts yet.</p>
+                            <p class="lead">There are no posts yet.</p>
                         @endforelse
                         {{-- <div class="col-4"></div> --}}
                     </div>

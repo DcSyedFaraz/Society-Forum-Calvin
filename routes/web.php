@@ -95,7 +95,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
     Route::get('/User/decline/{id}', [DashboardController::class, 'User_decline'])->name('User.decline');
 
     // Community
-    // Route::get('/community', [CommunityController::class, 'community'])->name('community');
+    Route::get('/comment/{id}', [CommunityController::class, 'comment'])->name('community.comments');
+    Route::post('/comment', [CommunityController::class, 'commentStore'])->name('comments.store');
     Route::resource('community', CommunityController::class);
     // File Cabinet
     Route::get('/contracts', [FileCabinetController::class, 'contracts'])->name('contracts');

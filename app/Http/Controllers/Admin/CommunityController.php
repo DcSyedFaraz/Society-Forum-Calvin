@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use App\Models\Community;
+use App\Models\User;
+use App\Notifications\UserNotification;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Notification;
 
 class CommunityController extends Controller
 {
@@ -73,11 +77,21 @@ class CommunityController extends Controller
 
             $data->save();
             DB::commit();
+            // Notification
+            $user = auth()->user();
+
+            // Get the users except the authenticated user and those with the excluded roles
+            $admin = User::role('admin')->get();
+
+            // Send the notification to eligible users
+            $message = "📢 New Post Added.";
+            Notification::send($admin, new UserNotification($user, $message, 'Post'));
+            
             return redirect()->back()->with('succes', 'Post created successfully.');
         } catch (\Exception $e) {
             // Something went wrong, rollback the transaction
             DB::rollback();
-            return redirect()->back()->with('error', 'Something went wrong.'.$e->getMessage());
+            return redirect()->back()->with('error', 'Something went wrong.' . $e->getMessage());
         }
 
     }
@@ -125,5 +139,41 @@ class CommunityController extends Controller
     public function destroy(Community $community)
     {
         //
+    }
+    public function comment($id)
+    {
+        $community = Community::find($id);
+        $community->load('comments.user');
+        // dd($community);
+        return view('community.comments', compact('community'));
+    }
+    public function commentStore(Request $request)
+    {
+        // dd($request->all());
+        $Community = Community::find($request->community_id);
+        $request->validate([
+            'body' => 'required|string|max:100',
+            'community_id' => 'required|exists:communities,id',
+        ]);
+        // dd($request->all(), $poll);
+
+        // Create a new comment
+        $comment = new Comment([
+            'body' => $request->body,
+            'user_id' => auth()->id(),
+        ]);
+        $Community->comments()->save($comment);
+
+        // Notification
+        $user = auth()->user();
+
+        // Get the users except the authenticated user and those with the excluded roles
+        $admin = User::role('admin')->get();
+
+        // Send the notification to eligible users
+        $message = "📢 New Comment Added.";
+        Notification::send($admin, new UserNotification($user, $message, 'Comment'));
+
+        return redirect()->back()->with('success', 'Comment added successfully!');
     }
 }

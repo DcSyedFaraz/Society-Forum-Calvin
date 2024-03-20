@@ -55,38 +55,38 @@
                 <h1 class="gallery">Our Recent Gallery</h1>
                 <div class="grid-wrapper">
                     <div>
-                        <img src=" {{ asset('frontend/images/gallery1.png') }}" alt="" />
+                        <img src=" {{ asset('frontend/images/new/gallery (2).jpg') }}" alt="" />
                     </div>
                     <div>
-                        <img src=" {{ asset('frontend/images/gallery2.png') }}" alt="" />
+                        <img src=" {{ asset('frontend/images/new/gallery (3).jpg') }}" alt="" />
                     </div>
                     <div class="tall">
-                        <img src=" {{ asset('frontend/images/gallery3.png') }}" alt="">
+                        <img src=" {{ asset('frontend/images/new/gallery (4).jpg') }}" alt="">
                     </div>
                     <div class="wide">
-                        <img src=" {{ asset('frontend/images/gallery4.png') }}" alt="" />
+                        <img src=" {{ asset('frontend/images/new/gallery (5).jpg') }}" alt="" />
                     </div>
                     <div>
-                        <img src=" {{ asset('frontend/images/gallery5.png') }}" alt="" />
+                        <img src=" {{ asset('frontend/images/new/gallery (6).jpg') }}" alt="" />
                     </div>
                     <div class="tall">
-                        <img src=" {{ asset('frontend/images/gallery6.png') }}" alt="" />
+                        <img src=" {{ asset('frontend/images/new/gallery (7).jpg') }}" alt="" />
                     </div>
                     <div class="big">
-                        <img src=" {{ asset('frontend/images/gallery7.png') }}" alt="" />
+                        <img src=" {{ asset('frontend/images/new/gallery.jpg') }}" alt="" />
                     </div>
-                    <div>
-                        <img src=" {{ asset('frontend/images/gallery8.png') }}" alt="" />
+                    {{-- <div>
+                        <img src=" {{ asset('frontend/images/new/gallery8.png') }}" alt="" />
                     </div>
                     <div class="tall">
-                        <img src=" {{ asset('frontend/images/gallery11.png') }}" alt="" />
+                        <img src=" {{ asset('frontend/images/new/gallery11.png') }}" alt="" />
                     </div>
                     <div>
-                        <img src=" {{ asset('frontend/images/gallery6.png') }}" alt="" />
+                        <img src=" {{ asset('frontend/images/new/gallery6.png') }}" alt="" />
                     </div>
                     <div>
-                        <img src=" {{ asset('frontend/images/gallery6.png') }}" alt="" />
-                    </div>
+                        <img src=" {{ asset('frontend/images/new/gallery6.png') }}" alt="" />
+                    </div> --}}
                 </div>
             </div>
         </section>
@@ -102,7 +102,7 @@
         <footer class="footer">
             <div class="footer-inner">
                 <div class="col-md-3">
-                    <img src=" {{asset('frontend/images/footer-logo.png" class="footer-logo" alt="">
+                    <img src=" {{asset('frontend/images/footer-logo.png')}}" class="footer-logo" alt="">
                     <p class="footer-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit ut elit tellus,
                         luctus
                         nec
