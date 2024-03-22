@@ -31,7 +31,7 @@ class CheckAuth
                     return redirect()->route('member.dashboard');
                     break;
                 case 'agent':
-                    return redirect()->route('real_estate.dashboard');
+                    return redirect()->route('agent.dashboard');
                     break;
                 case 'executive':
                     return redirect()->route('executive.dashboard');

@@ -71,10 +71,33 @@ Route::get('/community-forum', [HomeController::class, 'community_forum'])->name
 Route::get('/contact', [HomeController::class, 'contact_us'])->name('contact');
 
 
+Route::middleware(['auth',])->group(function () {
+
+    Route::get('/profile', [DashboardController::class, 'profile'])->name('profile.index');
+    Route::post('profile/update', [DashboardController::class, 'update'])->name('profile.update');
+    Route::get('/change_password', [DashboardController::class, 'change_password'])->name('change_password');
+    Route::post('/store_change_password', [DashboardController::class, 'store_change_password'])->name('store_change_password');
+
+});
+
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:admin|member|executive']], function () {
+    // Community
+    Route::get('/comment/{id}', [CommunityController::class, 'comment'])->name('community.comments');
+    Route::delete('/comment/{id}', [CommunityController::class, 'commentDEL'])->name('comment.destroy');
+    Route::post('/comment', [CommunityController::class, 'commentStore'])->name('comments.store');
+    Route::resource('community', CommunityController::class);
+});
+Route::group(['prefix' => 'dashboard','as' => 'admin.', 'middleware' => ['auth', 'role:admin|executive']], function () {
+
+    // Artchitectural Request
+    Route::get('/artchitectural', [DashboardController::class, 'artchitectural'])->name('artchitectural');
+    Route::get('/artchitectural/accept/{id}', [DashboardController::class, 'artchitectural_approved'])->name('artchitectural.approved');
+    Route::get('/artchitectural/decline/{id}', [DashboardController::class, 'artchitectural_decline'])->name('artchitectural.decline');
+});
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'role:admin']], function () {
 
     Route::get('/change_password', [DashboardController::class, 'change_password'])->name('change_password');
-    Route::post('/store_change_password', [DashboardController::class, 'store_change_password'])->name('store_change_password');
+
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Announcements
@@ -86,18 +109,11 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
     Route::get('/request', [DashboardController::class, 'request'])->name('request');
     Route::get('/request/accept/{id}', [DashboardController::class, 'request_approved'])->name('property.approved');
     Route::get('/request/decline/{id}', [DashboardController::class, 'request_decline'])->name('property.decline');
-    // Artchitectural Request
-    Route::get('/artchitectural', [DashboardController::class, 'artchitectural'])->name('artchitectural');
-    Route::get('/artchitectural/accept/{id}', [DashboardController::class, 'artchitectural_approved'])->name('artchitectural.approved');
-    Route::get('/artchitectural/decline/{id}', [DashboardController::class, 'artchitectural_decline'])->name('artchitectural.decline');
     //User Request
     Route::get('/User/accept/{id}', [DashboardController::class, 'User_approved'])->name('User.approved');
     Route::get('/User/decline/{id}', [DashboardController::class, 'User_decline'])->name('User.decline');
 
-    // Community
-    Route::get('/comment/{id}', [CommunityController::class, 'comment'])->name('community.comments');
-    Route::post('/comment', [CommunityController::class, 'commentStore'])->name('comments.store');
-    Route::resource('community', CommunityController::class);
+
     // File Cabinet
     Route::get('/contracts', [FileCabinetController::class, 'contracts'])->name('contracts');
     Route::get('/legal_info', [FileCabinetController::class, 'legal_info'])->name('legal_info');
@@ -111,17 +127,16 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
     Route::resource('roles', RoleController::class);
     Route::resource('permission', PermissionController::class);
     Route::resource('users', UserController::class);
-    Route::get('/profile', [DashboardController::class, 'profile'])->name('profile.index');
+
     // Storage
     Route::get('/document', [DashboardController::class, 'document'])->name('document');
     Route::get('/signature', [DashboardController::class, 'signature'])->name('signature');
 
-    Route::post('profile/update', [DashboardController::class, 'update'])->name('profile.update');
     Route::post('wallet/create/withdraw', [DashboardController::class, 'createdewithdraw'])->name('admin.wallet.create.withdraw');
     Route::get('wallet/withdraw/{id}', [DashboardController::class, 'walletwithdraw'])->name('admin.wallet.withdraw');
     Route::post('wallet/create/deposite', [DashboardController::class, 'createdeposite'])->name('admin.wallet.store');
     Route::get('wallet/deposite/{id}', [DashboardController::class, 'walletdeposit'])->name('admin.wallet.deposit');
-    Route::get('/change_password', [DashboardController::class, 'change_password'])->name('change_password');
+
     // Games Type
 
 
@@ -145,7 +160,6 @@ Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth', 
 
     Route::get('/dashboard', [UserDashboardController::class, 'member'])->name('dashboard');
     Route::get('/change_password', [UserDashboardController::class, 'change_password'])->name('change_password');
-    Route::post('/store_change_password', [UserDashboardController::class, 'store_change_password'])->name('store_change_password');
     Route::get('/profile', [UserDashboardController::class, 'profile'])->name('member.profile');
     Route::post('/update/profile', [UserDashboardController::class, 'UserProfileUpdate'])->name('member.profile.update');
     Route::post('/edit/profile', [UserDashboardController::class, 'UserEditProfile'])->name('member.edit.profile');
@@ -160,7 +174,6 @@ Route::group(['prefix' => 'real_estate', 'as' => 'agent.', 'middleware' => ['aut
     Route::post('/list', [EstateController::class, 'listSave'])->name('list.save');
 
     Route::get('/change_password', [UserDashboardController::class, 'change_password'])->name('change_password');
-    Route::post('/store_change_password', [UserDashboardController::class, 'store_change_password'])->name('store_change_password');
     Route::get('/profile', [UserDashboardController::class, 'profile'])->name('real_estate.profile');
     Route::post('/update/profile', [UserDashboardController::class, 'UserProfileUpdate'])->name('real_estate.profile.update');
     Route::post('/edit/profile', [UserDashboardController::class, 'UserEditProfile'])->name('real_estate.edit.profile');
@@ -200,8 +213,6 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
 
 Route::group(['prefix' => 'user', 'middleware' => ['auth']], function () {
 
-    Route::get('/change_password', [UserDashboardController::class, 'change_password'])->name('change_password');
-    Route::post('/store_change_password', [UserDashboardController::class, 'store_change_password'])->name('store_change_password');
     Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
 
     //post

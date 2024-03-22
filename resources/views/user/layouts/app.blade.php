@@ -262,6 +262,25 @@
                                         </div>
                                     </a>
                                 </li>
+                                 <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('profile.index') }}">
+                                        <div class="d-flex align-items-center">
+                                            <div class=""><i class="bi bi-person-fill"></i></div>
+                                            <div class="ms-3"><span>Profile</span></div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('change_password') }}">
+                                        <div class="d-flex align-items-center">
+                                            <div class=""><i class="bi bi-gear-fill"></i></div>
+                                            <div class="ms-3"><span>Change Password</span></div>
+                                        </div>
+                                    </a>
+                                </li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -305,6 +324,25 @@
                                         </div>
                                     </a>
                                 </li>
+                                 <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('profile.index') }}">
+                                        <div class="d-flex align-items-center">
+                                            <div class=""><i class="bi bi-person-fill"></i></div>
+                                            <div class="ms-3"><span>Profile</span></div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('change_password') }}">
+                                        <div class="d-flex align-items-center">
+                                            <div class=""><i class="bi bi-gear-fill"></i></div>
+                                            <div class="ms-3"><span>Change Password</span></div>
+                                        </div>
+                                    </a>
+                                </li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -329,7 +367,8 @@
         <aside class="sidebar-wrapper" data-simplebar="true">
             <div class="sidebar-header">
                 <div>
-                    <img src="{{ asset('backend/images/logo-icon.png') }}" alt="logo icon">
+                    <a href="{{ route('home') }}"><img src="{{ asset('backend/images/logo-icon.png') }}"
+                            alt="logo icon"></a>
                 </div>
                 <div class="toggle-icon ms-auto"> <i class="bi bi-list"></i>
                 </div>

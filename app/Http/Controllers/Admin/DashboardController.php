@@ -231,6 +231,13 @@ class DashboardController extends Controller
         $architect->user_id = Auth::user()->id;
         $architect->save();
 
+        // Notification
+        $user = auth()->user();
+        $usersWithRoles = User::role(['admin', 'executive'])->get();
+        $message = "🏗️ We have a new architectural request waiting for your review.";
+
+        Notification::send($usersWithRoles, new UserNotification($user, $message, 'Architectural'));
+
         return redirect()->back()->with('success', 'Request added successfully!');
     }
 
@@ -241,20 +248,33 @@ class DashboardController extends Controller
 
     public function update(Request $request)
     {
-        $id = Auth::user()->id;
-        $this->validate($request, [
+        $id = Auth::id();
+
+        $rules = [
             'name' => 'required',
             'phone' => 'required',
-        ]);
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ];
 
-        $input = $request->all();
+        $this->validate($request, $rules);
 
         $user = User::find($id);
+        $input = $request->except('image');
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('public/images');
+
+            $imageName = basename($imagePath);
+
+            $user->update(['image' => $imageName]);
+        } else {
+            $input['image'] = $user->image;
+        }
+
         $user->update($input);
 
-        session::flash('success', 'Record Updated Successfully');
+        session()->flash('success', 'Profile Updated Successfully');
         return redirect()->back();
-
     }
 
     public function change_password()
@@ -263,6 +283,7 @@ class DashboardController extends Controller
     }
     public function store_change_password(Request $request)
     {
+        // dd($request->oldpassword);
         $user = Auth::user();
         $userPassword = $user->password;
 

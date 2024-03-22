@@ -12,6 +12,7 @@ use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Notification;
+use Storage;
 
 class CommunityController extends Controller
 {
@@ -86,7 +87,7 @@ class CommunityController extends Controller
             // Send the notification to eligible users
             $message = "📢 New Post Added.";
             Notification::send($admin, new UserNotification($user, $message, 'Post'));
-            
+
             return redirect()->back()->with('succes', 'Post created successfully.');
         } catch (\Exception $e) {
             // Something went wrong, rollback the transaction
@@ -127,7 +128,28 @@ class CommunityController extends Controller
      */
     public function update(Request $request, Community $community)
     {
-        //
+        // dd($request->all(), $community);
+        $request->validate([
+            'description' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Assuming maximum file size is 2MB
+        ]);
+
+        $community->description = $request->description;
+
+        if ($request->hasFile('image')) {
+            if ($community->image) {
+                Storage::delete('public/'.$community->image); // Delete image from storage
+            }
+
+            // Store the new image
+            $imagePath = $request->file('image')->store('public/images');
+            $storagePath = str_replace('public/', '', $imagePath);
+            $community->image = $storagePath;
+        }
+
+        $community->save();
+
+        return redirect()->back()->with('success', 'Community post updated successfully.');
     }
 
     /**
@@ -138,14 +160,33 @@ class CommunityController extends Controller
      */
     public function destroy(Community $community)
     {
-        //
+        // dd($community);
+        if (Auth::user()->hasRole('admin') || Auth::id() == $community->user_id) {
+            if ($community->image) {
+                Storage::delete('public/'.$community->image); // Delete image from storage
+            }
+            $community->delete();
+        } else {
+            return redirect()->back()->with('error', 'You do not have permission to delete it.');
+        }
+        return redirect()->back()->with('success', 'Post Deleted Successfully.');
+    }
+    public function commentDEL($id)
+    {
+        // dd($community);
+        $comment = Comment::find($id);
+        if (Auth::user()->hasRole('admin') || Auth::id() == $comment->user_id) {
+            $comment->delete();
+        } else {
+            return redirect()->back()->with('error', 'You do not have permission to delete it.');
+        }
+        return redirect()->back()->with('success', 'Comment Deleted Successfully.');
     }
     public function comment($id)
     {
-        $community = Community::find($id);
-        $community->load('comments.user');
+        $comments = Comment::where('community_id', $id)->with('user')->orderByDesc('created_at')->get();
         // dd($community);
-        return view('community.comments', compact('community'));
+        return view('community.comments', compact('comments', 'id'));
     }
     public function commentStore(Request $request)
     {

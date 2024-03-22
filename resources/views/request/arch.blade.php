@@ -1,4 +1,6 @@
-@extends('admin.layouts.app')
+@extends(Auth::user()->hasRole('admin') ? 'admin.layouts.app' : 'executive.layouts.app')
+
+
 <style>
     #example td,
     #example th {
@@ -184,11 +186,16 @@
                                                                         data-bs-dismiss="modal" aria-label="Close"></button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <img class="rounded" src="{{ asset('storage/' . $Artchitectural->image) }}"
-                                                                        alt="Image" width="100%" height="auto">
-                                                                    <p class="mt-3">Phone: {{ $Artchitectural->phone }}</p>
+                                                                    @if ($Artchitectural->image)
+                                                                        <img class="rounded"
+                                                                            src="{{ asset('storage/' . $Artchitectural->image) }}"
+                                                                            alt="Image" width="100%" height="auto">
+                                                                    @endif
+                                                                    <p class="mt-3">Phone: {{ $Artchitectural->phone }}
+                                                                    </p>
                                                                     <p>Email: {{ $Artchitectural->email }}</p>
-                                                                    <p>Request Change: {{ $Artchitectural->requestedchange }}</p>
+                                                                    <p>Request Change:
+                                                                        {{ $Artchitectural->requestedchange }}</p>
 
                                                                 </div>
                                                                 <div class="modal-footer">

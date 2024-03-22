@@ -118,7 +118,7 @@
                                                     @case('Post')
                                                         <a data-notification-id="{{ $notifications->id }}"
                                                             class="dropdown-item notification-link"
-                                                            href="{{ route('admin.community.index') }}">
+                                                            href="{{ route('community.index') }}">
                                                             <div class="d-flex align-items-center">
                                                                 <div class="notification-box bg-light-orange text-orange">
                                                                     <i class="bi bi-collection-play-fill"></i>
@@ -139,7 +139,7 @@
                                                     @case('Comment')
                                                         <a data-notification-id="{{ $notifications->id }}"
                                                             class="dropdown-item notification-link"
-                                                            href="{{ route('admin.community.index') }}">
+                                                            href="{{ route('community.index') }}">
                                                             <div class="d-flex align-items-center">
                                                                 <div class="notification-box bg-light-info text-info">
                                                                     <i class="bi bi-cursor-fill"></i>
@@ -184,6 +184,26 @@
                                                             <div class="d-flex align-items-center">
                                                                 <div class="notification-box bg-light-purple text-purple"><i
                                                                         class="bi bi-people-fill"></i></div>
+                                                                <div class="ms-3 flex-grow-1">
+                                                                    <h6 class="mb-0 dropdown-msg-user">
+                                                                        {{ $notifications->type }}<span
+                                                                            class="msg-time float-end text-secondary">{{ $notifications->created_at->diffForHumans() }}</span>
+                                                                    </h6>
+                                                                    <small
+                                                                        class="mb-0 dropdown-msg-text text-secondary d-flex align-items-center"
+                                                                        style="overflow-wrap: break-word; white-space: break-spaces !important;">{{ $notifications->data['message'] }}</small>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    @break
+
+                                                    @case('Architectural')
+                                                        <a data-notification-id="{{ $notifications->id }}"
+                                                            class="dropdown-item notification-link"
+                                                            href="{{ route('admin.artchitectural') }}">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="notification-box text-warning"> <i
+                                                                        class="bi bi-megaphone-fill"></i></div>
                                                                 <div class="ms-3 flex-grow-1">
                                                                     <h6 class="mb-0 dropdown-msg-user">
                                                                         {{ $notifications->type }}<span
@@ -261,7 +281,25 @@
                                         </div>
                                     </a>
                                 </li>
-
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('profile.index') }}">
+                                        <div class="d-flex align-items-center">
+                                            <div class=""><i class="bi bi-person-fill"></i></div>
+                                            <div class="ms-3"><span>Profile</span></div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('change_password') }}">
+                                        <div class="d-flex align-items-center">
+                                            <div class=""><i class="bi bi-gear-fill"></i></div>
+                                            <div class="ms-3"><span>Change Password</span></div>
+                                        </div>
+                                    </a>
+                                </li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -286,7 +324,8 @@
         <aside class="sidebar-wrapper" data-simplebar="true">
             <div class="sidebar-header">
                 <div>
-                    <img src="{{ asset('backend/images/logo-icon.png') }}" alt="logo icon">
+                    <a href="{{ route('home') }}"><img src="{{ asset('backend/images/logo-icon.png') }}"
+                            alt="logo icon"></a>
                 </div>
                 <div class="toggle-icon ms-auto"> <i class="bi bi-list"></i>
                 </div>
@@ -314,8 +353,8 @@
                         <div class="menu-title">Contracts</div>
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('admin.community.*') ? 'mm-active' : '' }}">
-                    <a href="{{ route('admin.community.index') }}">
+                <li class="{{ request()->routeIs('community.*') ? 'mm-active' : '' }}">
+                    <a href="{{ route('community.index') }}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/statement-new.png') }}">
                         </div>
                         <div class="menu-title">Community</div>

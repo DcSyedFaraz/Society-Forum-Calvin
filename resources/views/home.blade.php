@@ -1,52 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="style.css">
-    <link href="{{ asset('frontend/style.css') }}" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('frontend/min.js') }}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Calvin Robinson</title>
-</head>
-
-<body>
-    <header class="header">
-        <div class="col-md-3">
-            <img src="{{ asset('frontend/images/logo.png') }}">
-        </div>
-        <div class="col-md-6">
-            <ul class="ul-menu">
-                <a href="/">
-                    <li class="active">Home</li>
-                </a>
-                <a href="{{ route('realstate') }}">
-                    <li>Real Estate</li>
-                </a>
-                <a href="{{ route('gallery') }}">
-                    <li>Gallery</li>
-                </a>
-                <a href="{{ route('about_us') }}">
-                    <li>About us</li>
-                </a>
-
-                <!--<a href="{{ route('community_forum') }}">-->
-                <!--    <li>Community Forum</li>-->
-                <!--</a>-->
-            </ul>
-        </div>
-        <div class="col-md-3" style="text-align: end;">
-            <a href="{{ route('contact') }}"><button class="btn-1">Contact Us</button></a>
-        </div>
-    </header>
+@extends('layout.app')
+@section('content')
     <section class="container-fluid">
         <div class="banner-inner">
             <h1 class="title">welcome to park <br>shadows HOA</h1>
-            <img src="images/lines.png" class="line">
+            <img src="{{ asset('frontend/images/lines.png') }}" class="line">
             <div class="buttons">
                 <a href="{{ route('login') }}"><button class="btn-b">Member Login</button></a>
                 <a href="{{ route('estate_login') }}"><button class="btn-b">Real Estate Login</button></a>
@@ -68,14 +25,13 @@
             <a href="#"><button class="btn-1">Learn More</button></a>
         </div>
         <div class="col-6">
-            <img src="{{ asset('frontend/images/about.png') }}" style="width: 95%;">
+            <img src="{{ asset('frontend/images/new/gallery (2).jpg') }}" class="" style="width: 95%;border-radius: 1.25rem !important;">
         </div>
     </section>
     <section class="main-div1">
         <div class="col-5">
             <img src="{{ asset('frontend/images/dot.png') }}" class="dot">
-            <img src="{{ asset('frontend/images/image2.png') }}"
-                style="width: 100%; z-index: 000000; position: relative;">
+            <img src="{{ asset('frontend/images/image2.png') }}" style="width: 100%; z-index: 000000; position: relative;">
         </div>
         <div class="col-7">
             <h1 class="heading1">Explore Our Amenities</h1>
@@ -99,7 +55,7 @@
                 dolor et orci volutpat placerat eu ac ex.</p>
         </div>
         <div class="col-5">
-            <img src="{{ asset('frontend/images/image3.png') }}" style="width: 100%;">
+            <img src="{{ asset('frontend/images/new/gallery (3).jpg') }}" style="width: 100%; border-radius: 1.25rem !important;">
         </div>
     </section>
     <section class="main-div1">
@@ -120,7 +76,7 @@
         <div class="col-12">
             <h1 class="gallery">Gallery</h1>
             <div class="grid-wrapper">
-                <div>
+                {{-- <div>
                     <img src="{{ asset('frontend/images/gallery1.png') }}" alt="" />
                 </div>
                 <div>
@@ -152,6 +108,27 @@
                 </div>
                 <div>
                     <img src="{{ asset('frontend/images/gallery6.png') }}" alt="" />
+                </div> --}}
+                <div>
+                    <img src=" {{ asset('frontend/images/new/gallery (2).jpg') }}" alt="" />
+                </div>
+                <div>
+                    <img src=" {{ asset('frontend/images/new/gallery (3).jpg') }}" alt="" />
+                </div>
+                <div class="tall">
+                    <img src=" {{ asset('frontend/images/new/gallery (4).jpg') }}" alt="">
+                </div>
+                <div class="wide">
+                    <img src=" {{ asset('frontend/images/new/gallery (5).jpg') }}" alt="" />
+                </div>
+                <div>
+                    <img src=" {{ asset('frontend/images/new/gallery (6).jpg') }}" alt="" />
+                </div>
+                <div class="tall">
+                    <img src=" {{ asset('frontend/images/new/gallery (7).jpg') }}" alt="" />
+                </div>
+                <div class="big">
+                    <img src=" {{ asset('frontend/images/new/gallery.jpg') }}" alt="" />
                 </div>
             </div>
         </div>
@@ -165,77 +142,4 @@
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </section>
-    <footer class="footer">
-        <div class="footer-inner">
-            <div class="col-md-3">
-                <img src="images/footer-logo.png" class="footer-logo" alt="">
-                <p class="footer-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit ut elit tellus, luctus
-                    nec
-                    ullamcorper ma</p>
-                <strong style="text-transform: uppercase; color: white; margin-bottom: 15px !important;">* We never
-                    spam
-                    your email</strong>
-                <form class="form-subscribe" action="#">
-                    <div class="input-group">
-                        <input type="text" class="form-control input-lg" placeholder="Your eamil address">
-                        <span class="input-group-btn">
-                            <button class="btn btn-success btn-lg" type="submit"><i class="fa fa-envelope"
-                                    aria-hidden="true"></i></button>
-                        </span>
-                    </div>
-                </form>
-            </div>
-            <div class="col-md-3">
-                <h2 class="footer-hed">Quick Links</h2>
-                <ul class="footer-ul">
-                    <a href="index.html" class="footer-a">
-                        <li class="footer-li">Home</li>
-                    </a>
-                    <a href="about.html" class="footer-a">
-                        <li class="footer-li">About Us</li>
-                    </a>
-                    <a href="gallery.html" class="footer-a">
-                        <li class="footer-li">Gallery</li>
-                    </a>
-                    <a href="contact.html" class="footer-a">
-                        <li class="footer-li">Contact Us</li>
-                    </a>
-                    <a href="community-forum.html" class="footer-a">
-                        <li class="footer-li">Community Forum</li>
-                    </a>
-                </ul>
-            </div>
-            <div class="col-md-3">
-                <h2 class="footer-hed">Our Services</h2>
-                <ul class="footer-ul">
-                    <a href="index.html" class="footer-a">
-                        <li class="footer-li">Home</li>
-                    </a>
-                    <a href="about.html" class="footer-a">
-                        <li class="footer-li">About Us</li>
-                    </a>
-                    <a href="gallery.html" class="footer-a">
-                        <li class="footer-li">Gallery</li>
-                    </a>
-                    <a href="contact.html" class="footer-a">
-                        <li class="footer-li">Contact Us</li>
-                    </a>
-                    <a href="community-forum.html" class="footer-a">
-                        <li class="footer-li">Community Forum</li>
-                    </a>
-                </ul>
-            </div>
-            <div class="col-md-3">
-                <h2 class="footer-had">Loaction</h2>
-                <p class="footer-text">2325 Mark Avenue, Palmdale, <br>CA 93550</p>
-                <h2 class="footer-had">Office Hours</h2>
-                <p class="footer-text">2325 Mark Avenue, Palmdale, <br>CA 93550</p>
-            </div>
-        </div>
-        <div class="copyright">
-            <p class="copy">ALLRIGHT RESERVED - CALVIN ROBINSON 2023</p>
-        </div>
-    </footer>
-</body>
-
-</html>
+@endsection

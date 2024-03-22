@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Property;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\VeriantSize;
@@ -33,23 +34,30 @@ class HomeController extends Controller
         return view('estate_signup');
     }
 
-    public function about_us(){
+    public function about_us()
+    {
         return view('about');
     }
-    public function realstate(){
-        return view('realstate');
+    public function realstate()
+    {
+        $data['property'] = Property::where('access', 'approved')->orderby('created_at', 'desc')->get();
+        return view('realstate', $data);
     }
-    public function gallery(){
+    public function gallery()
+    {
         return view('gallery');
     }
-    public function community_forum(){
+    public function community_forum()
+    {
         return view('community-forum');
     }
-    public function contact_us(){
+    public function contact_us()
+    {
         return view('contact');
     }
 
-    public function login(){
+    public function login()
+    {
         // $this->middleware('auth')->except('logout');
         return view('auth.login');
     }
@@ -57,9 +65,9 @@ class HomeController extends Controller
     public function product_detail($id)
     {
         $data['product'] = Product::find($id);
-        $data['size'] = VeriantSize::where('product_id',$id)->first();
+        $data['size'] = VeriantSize::where('product_id', $id)->first();
         // return json_decode($size->name);
-        $data['color'] = VeriantColor::where('product_id',$id)->first();
-        return view('admin.product_detail',$data);
+        $data['color'] = VeriantColor::where('product_id', $id)->first();
+        return view('admin.product_detail', $data);
     }
 }
