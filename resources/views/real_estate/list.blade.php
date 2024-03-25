@@ -113,32 +113,48 @@
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                           @if ($property->count() > 0)
-                             <tbody>
-                                 @foreach ($property as $properties)
-                                     <tr>
-                                         <td>{{ $properties->price }}</td>
-                                         <td>{{ $properties->address }}</td>
-                                         <td>{{ $properties->email }}</td>
-                                         <td>
-                                             <img class="rounded rounded-2" style="width: 54px;"
-                                                 src="{{ asset('storage/' . $properties->image) }}" alt="img">
-                                         </td>
-                                         <td>...</td>
-                                     </tr>
-                                 @endforeach
+                            @if ($property->count() > 0)
+                                <tbody>
+                                    @foreach ($property as $properties)
+                                        <tr>
+                                            <td>{{ $properties->price }}</td>
+                                            <td>{{ $properties->address }}</td>
+                                            <td>{{ $properties->email }}</td>
+                                            <td>
+                                                <img class="rounded rounded-2" style="width: 54px;"
+                                                    src="{{ asset('storage/' . $properties->image) }}" alt="img">
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('agent.list.edit', $properties->id) }}"
+                                                    class="btn btn-primary btn-sm" title="Edit">
+                                                    <i class="bi bi-pencil-fill"></i>
+                                                </a>
 
-                             </tbody>
-                           @else
-                             <tbody>
-                                <tr>
-                                    <td colspan="6" class="text-center text-muted fst-italic">
+                                                <form action="{{ route('agent.list.delete', $properties->id) }}" method="POST"
+                                                    class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm" title="Delete"
+                                                        onclick="return confirm('Are you sure you want to delete this item?')">
+                                                        <i class="bi bi-trash-fill"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
 
-                                        No records Available
-                                    </td>
-                                </tr>
-                             </tbody>
-                           @endif
+                                        </tr>
+                                    @endforeach
+
+                                </tbody>
+                            @else
+                                <tbody>
+                                    <tr>
+                                        <td colspan="6" class="text-center text-muted fst-italic">
+
+                                            No records Available
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            @endif
                         </table>
                     </div>
                 </div>

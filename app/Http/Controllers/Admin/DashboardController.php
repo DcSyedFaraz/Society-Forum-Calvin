@@ -179,7 +179,7 @@ class DashboardController extends Controller
 
         // Notification
         $user = auth()->user();
-        $excludedRoleIds = Role::whereIn('name', ['real_estate'])->pluck('id');
+        $excludedRoleIds = Role::whereIn('name', ['agent'])->pluck('id');
 
         // Get the users except the authenticated user and those with the excluded roles
         $usersExceptCreatorAndRealEstate = User::where('id', '!=', $user->id)

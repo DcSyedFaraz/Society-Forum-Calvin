@@ -132,18 +132,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
     Route::get('/document', [DashboardController::class, 'document'])->name('document');
     Route::get('/signature', [DashboardController::class, 'signature'])->name('signature');
 
-    Route::post('wallet/create/withdraw', [DashboardController::class, 'createdewithdraw'])->name('admin.wallet.create.withdraw');
-    Route::get('wallet/withdraw/{id}', [DashboardController::class, 'walletwithdraw'])->name('admin.wallet.withdraw');
-    Route::post('wallet/create/deposite', [DashboardController::class, 'createdeposite'])->name('admin.wallet.store');
-    Route::get('wallet/deposite/{id}', [DashboardController::class, 'walletdeposit'])->name('admin.wallet.deposit');
-
-    // Games Type
-
-
-
-
-
-
 });
 
 Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth', 'role:member', 'check.access']], function () {
@@ -172,6 +160,9 @@ Route::group(['prefix' => 'real_estate', 'as' => 'agent.', 'middleware' => ['aut
     Route::get('/register', [EstateController::class, 'register'])->name('register');
     Route::get('/list', [EstateController::class, 'list'])->name('list');
     Route::post('/list', [EstateController::class, 'listSave'])->name('list.save');
+    Route::get('/list/edit/{id}', [EstateController::class, 'edit'])->name('list.edit');
+    Route::put('/list/update/{id}', [EstateController::class, 'update'])->name('list.update');
+    Route::delete('/list/{id}', [EstateController::class, 'destroy'])->name('list.delete');
 
     Route::get('/change_password', [UserDashboardController::class, 'change_password'])->name('change_password');
     Route::get('/profile', [UserDashboardController::class, 'profile'])->name('real_estate.profile');
@@ -208,19 +199,3 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
-
-
-
-Route::group(['prefix' => 'user', 'middleware' => ['auth']], function () {
-
-    Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('user.dashboard');
-
-    //post
-    //user Profile
-    Route::get('/profile', [UserDashboardController::class, 'profile'])->name('voting.profile');
-    Route::post('/update/profile', [UserDashboardController::class, 'UserProfileUpdate'])->name('user.profile.update');
-    Route::post('/edit/profile', [UserDashboardController::class, 'UserEditProfile'])->name('user.edit.profile');
-    Route::post('/bank/detail', [UserDashboardController::class, 'UserBankDetail'])->name('user.bank.detail');
-
-
-});

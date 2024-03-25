@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-12">
                 <h1>Architectural Request Form</h1>
-                <!-- <p>Hello Cuong, welcome back</p> -->
+                 <p class="text-danger">*Please refer to the Community Rules for Architectural change guideline</p>
                 <br>
                 <div class="formmm">
                     <div class="formss">

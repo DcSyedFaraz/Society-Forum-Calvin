@@ -93,7 +93,7 @@
                                         @foreach (auth()->user()->unreadnotifications as $notifications)
                                             <a data-notification-id="{{ $notifications->id }}"
                                                 class="dropdown-item notification-link"
-                                                href="#">
+                                                href="">
                                                 <div class="d-flex align-items-center">
                                                     <div class="notification-box bg-light-warning text-warning"><i
                                                             class="bi bi-droplet-fill"></i></div>
@@ -219,7 +219,7 @@
                         <div class="menu-title">Register a Property</div>
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('agent.list') ? 'mm-active' : '' }}">
+                <li class="{{ request()->routeIs(['agent.list.*','agent.list']) ? 'mm-active' : '' }}">
                     <a href="{{ route('agent.list') }}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/Campaigns icon.png') }}">
                         </div>
@@ -299,7 +299,35 @@
             @endforeach
         @endif
     </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const notificationLinks = document.querySelectorAll('.notification-link');
+        notificationLinks.forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                const notificationId = this.getAttribute('data-notification-id');
+                markNotificationAsRead(notificationId);
+                window.location.href = this.getAttribute('href');
+            });
+        });
 
+        function markNotificationAsRead(notificationId) {
+            // Make an AJAX request to mark the notification as read
+            // Replace 'your-mark-read-url' with the actual URL to mark the notification as read
+            fetch('/mark-as-read/' + notificationId, {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        'Content-Type': 'application/json'
+                    },
+                })
+                .then(response => response.json())
+                .then(data => console.log(data))
+                .catch(error => console.error('Error:', error));
+        }
+    });
+</script>
+@yield('script')
 
 </body>
 

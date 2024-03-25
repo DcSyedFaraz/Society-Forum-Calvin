@@ -212,9 +212,9 @@
                                                         <span class="badge bg-danger"> Request Declined</span>
                                                     @else
                                                         <a href="{{ route('admin.property.approved', $property->id) }}"
-                                                            class="approver">Approved</a>
+                                                            class="approver">Approve</a>
                                                         <a href="{{ route('admin.property.decline', $property->id) }}"
-                                                            class="declined">Declined</a>
+                                                            class="declined">Decline</a>
                                                     @endif
                                                 </td>
                                             </tr>

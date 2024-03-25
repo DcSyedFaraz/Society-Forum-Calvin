@@ -267,9 +267,9 @@
                                                     <span class="badge bg-danger"> Request Declined</span>
                                                 @else
                                                     <a href="{{ route('admin.User.approved', $user->id) }}"
-                                                        class="approver">Approved</a>
+                                                        class="approver">Approve</a>
                                                     <a href="{{ route('admin.User.decline', $user->id) }}"
-                                                        class="declined">Declined</a>
+                                                        class="declined">Decline</a>
                                                 @endif
                                             </td>
                                         </tr>

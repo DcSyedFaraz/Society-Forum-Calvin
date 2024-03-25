@@ -95,7 +95,10 @@ class EstateController extends Controller
      */
     public function edit($id)
     {
-        //
+        // dd($id);
+        $property = Property::findOrFail($id);
+        return view('real_estate.listEdit', compact('property'));
+
     }
 
     /**
@@ -107,8 +110,53 @@ class EstateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // Validate the request data
+        $validatedData = $request->validate([
+            'promote_url' => 'required|url',
+            'title' => 'required|string',
+            'phone' => 'required|regex:/^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/',
+            'price' => 'required|numeric',
+            'email' => 'required|email',
+            'company_website' => 'required|url',
+            'address' => 'required|string',
+            'image' => 'nullable|image',
+        ]);
+
+        // Find the property to be updated
+        $property = Property::findOrFail($id);
+
+        // Update the property with the validated data
+        $property->promote_url = $validatedData['promote_url'];
+        $property->title = $validatedData['title'];
+        $property->phone = $validatedData['phone'];
+        $property->price = $validatedData['price'];
+        $property->email = $validatedData['email'];
+        $property->company_website = $validatedData['company_website'];
+        $property->address = $validatedData['address'];
+        $property->access = '';
+
+        // Check if a new image is uploaded
+        if ($request->hasFile('image')) {
+            // Store the new image
+            $imagePath = $request->file('image')->store('public/images');
+            $storagePath = str_replace('public/', '', $imagePath);
+            $property->image = $storagePath;
+        }
+
+        // Save the updated property
+        $property->save();
+
+        $user = auth()->user();
+        $notifyuser = User::role(['executive', 'admin'])
+            ->get();
+
+        // Send the notification to eligible users
+        $message = "📢 Hey there! {$user->name} updated the property info.";
+        \Notification::send($notifyuser, new UserNotification($user, $message, 'Real Estate'));
+
+        return redirect()->route('agent.list')->with('success', 'Property updated successfully!');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -118,6 +166,8 @@ class EstateController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Property::findOrFail($id)->delete();
+        return redirect()->back()->with('success', 'Property deleted successfully!');
+
     }
 }
