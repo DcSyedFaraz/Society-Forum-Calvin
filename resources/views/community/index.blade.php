@@ -209,8 +209,7 @@
                                                                                     (Optional)
                                                                                     :</label>
                                                                                 <input type="file" class="form-control"
-                                                                                    name="image" accept="image/*"
-                                                                                    onchange="previewImage(event)">
+                                                                                    name="image" accept="image/*">
                                                                                 @if ($item->image)
                                                                                     <img class="my-3"
                                                                                         src="{{ asset('storage/' . $item->image) }}"

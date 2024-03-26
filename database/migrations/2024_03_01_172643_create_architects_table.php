@@ -19,7 +19,7 @@ return new class extends Migration {
             $table->string('access')->nullable();
             $table->string('phone');
             $table->string('email');
-            $table->string('requestedchange');
+            $table->longText('requestedchange');
             $table->string('image')->nullable();
             $table->timestamps();
         });

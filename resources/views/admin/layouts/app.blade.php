@@ -245,14 +245,14 @@
 
                                     </div>
                                 </div>
-                                <div class="p-2">
+                                {{-- <div class="p-2">
                                     <div>
                                         <hr class="dropdown-divider">
                                     </div>
                                     <a class="dropdown-item" href="javaScript:;">
                                         <div class="text-center">View All Notifications</div>
                                     </a>
-                                </div>
+                                </div> --}}
                             </div>
                         </li>
                         <li class="nav-item dropdown dropdown-user-setting">

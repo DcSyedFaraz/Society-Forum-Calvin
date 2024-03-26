@@ -228,13 +228,7 @@
                 </li>
 
                 <li class="menu-label" style="margin-top: 90px;">Insights</li>
-                <li>
-                    <a href="javascript:;">
-                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/inbox icon.png') }}">
-                        </div>
-                        <div class="menu-title">Newsletter</div>
-                    </a>
-                </li>
+                
                 <li>
                     <a href="javascript:;">
                         <div class="parent-icon"><img
