@@ -1,11 +1,11 @@
 @extends('layout.app')
 <style>
     .user-img {
-    width: 38px;
-    height: 38px;
-    padding: 0px;
-    border-radius: 50%;
-}
+        width: 38px;
+        height: 38px;
+        padding: 0px;
+        border-radius: 50%;
+    }
 </style>
 @section('content')
     <section>
@@ -48,7 +48,8 @@
                                                     {{-- <span class="label label-success label-featured">For Sale</span> --}}
                                                 </span>
                                                 <a class="effect-light" href="#">
-                                                    <img width="100%" height="300" style="    border-radius: 1.25rem !important;"
+                                                    <img width="100%" height="300"
+                                                        style="    border-radius: 1.25rem !important;"
                                                         src="{{ asset('storage/' . $item->image) }}"
                                                         class="img-responsive wp-post-image" alt="" loading="lazy">
                                                 </a>
@@ -116,6 +117,258 @@
                         @endforelse
                     </div>
 
+                </div>
+            </div>
+        </div>
+        <!-- //////////////////////////////// -->
+        <div class="container listing-sec">
+            <div class="row">
+                <div class="listing-wrap  item-grid-view">
+                    <div class="container heading">
+                        <div class="row">
+                            <div class="heading">
+                                <h2>Floor Plan</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="item-wrap infobox_trigger homey-matchHeight" data-id="43205">
+                                <div class="media property-item">
+                                    <div class="media-left">
+                                        <div class="item-media item-media-thumb">
+                                            <a class="effect-light" href="#">
+                                                <img width="100%" height="300"
+                                                    src="{{ asset('backend/images/map-1.png') }}"
+                                                    class="img-responsive wp-post-image" alt="" loading="lazy">
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                    <div class="media-body item-body clearfix ">
+                                        <div class="item-title-head table-block">
+                                            <div class="title-head-left ">
+                                                <h4 class="title"><a href="#">Villa in Coral Gables</a></h4>
+                                                <p class="item-address">Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                    elit. Fusce ut euismod eros, condimentum.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- .item-wrap -->
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="item-wrap infobox_trigger homey-matchHeight" data-id="43205">
+                                <div class="media property-item">
+                                    <div class="media-left">
+                                        <div class="item-media item-media-thumb">
+                                            <a class="effect-light" href="#">
+                                                <img width="100%" height="300"
+                                                    src="{{ asset('backend/images/map-2.png') }}"
+                                                    class="img-responsive wp-post-image" alt="" loading="lazy">
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                    <div class="media-body item-body clearfix ">
+                                        <div class="item-title-head table-block">
+                                            <div class="title-head-left ">
+                                                <h4 class="title"><a href="#">Villa in Coral Gables</a></h4>
+                                                <p class="item-address">Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                    elit. Fusce ut euismod eros, condimentum.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- .item-wrap -->
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="item-wrap infobox_trigger homey-matchHeight" data-id="43205">
+                                <div class="media property-item">
+                                    <div class="media-left">
+                                        <div class="item-media item-media-thumb">
+                                            <a class="effect-light" href="#">
+                                                <img width="100%" height="300"
+                                                    src="{{ asset('backend/images/map-3.png') }}"
+                                                    class="img-responsive wp-post-image" alt="" loading="lazy">
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                    <div class="media-body item-body clearfix ">
+                                        <div class="item-title-head table-block">
+                                            <div class="title-head-left ">
+                                                <h4 class="title"><a href="#">Villa in Coral Gables</a></h4>
+                                                <p class="item-address">Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                    elit. Fusce ut euismod eros, condimentum.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- .item-wrap -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="item-wrap infobox_trigger homey-matchHeight" data-id="43205">
+                                <div class="media property-item">
+                                    <div class="media-left">
+                                        <div class="item-media item-media-thumb">
+                                            <a class="effect-light" href="#">
+                                                <img width="100%" height="300"
+                                                    src="{{ asset('backend/images/map-4.png') }}"
+                                                    class="img-responsive wp-post-image" alt="" loading="lazy">
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                    <div class="media-body item-body clearfix ">
+                                        <div class="item-title-head table-block">
+                                            <div class="title-head-left ">
+                                                <h4 class="title"><a href="#">Villa in Coral Gables</a></h4>
+                                                <p class="item-address">Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                    elit. Fusce ut euismod eros, condimentum.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- .item-wrap -->
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="item-wrap infobox_trigger homey-matchHeight" data-id="43205">
+                                <div class="media property-item">
+                                    <div class="media-left">
+                                        <div class="item-media item-media-thumb">
+                                            <a class="effect-light" href="#">
+                                                <img width="100%" height="300"
+                                                    src="{{ asset('backend/images/map-5.png') }}"
+                                                    class="img-responsive wp-post-image" alt="" loading="lazy">
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                    <div class="media-body item-body clearfix ">
+                                        <div class="item-title-head table-block">
+                                            <div class="title-head-left ">
+                                                <h4 class="title"><a href="#">Villa in Coral Gables</a></h4>
+                                                <p class="item-address">Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                    elit. Fusce ut euismod eros, condimentum.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- .item-wrap -->
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="item-wrap infobox_trigger homey-matchHeight" data-id="43205">
+                                <div class="media property-item">
+                                    <div class="media-left">
+                                        <div class="item-media item-media-thumb">
+                                            <a class="effect-light" href="#">
+                                                <img width="100%" height="300"
+                                                    src="{{ asset('backend/images/map-6.png') }}"
+                                                    class="img-responsive wp-post-image" alt="" loading="lazy">
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                    <div class="media-body item-body clearfix ">
+                                        <div class="item-title-head table-block">
+                                            <div class="title-head-left ">
+                                                <h4 class="title"><a href="#">Villa in Coral Gables</a></h4>
+                                                <p class="item-address">Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                    elit. Fusce ut euismod eros, condimentum.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- .item-wrap -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="item-wrap infobox_trigger homey-matchHeight" data-id="43205">
+                                <div class="media property-item">
+                                    <div class="media-left">
+                                        <div class="item-media item-media-thumb">
+                                            <a class="effect-light" href="#">
+                                                <img width="100%" height="300"
+                                                    src="{{ asset('backend/images/map-7.png') }}"
+                                                    class="img-responsive wp-post-image" alt="" loading="lazy">
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                    <div class="media-body item-body clearfix ">
+                                        <div class="item-title-head table-block">
+                                            <div class="title-head-left ">
+                                                <h4 class="title"><a href="#">Villa in Coral Gables</a></h4>
+                                                <p class="item-address">Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                    elit. Fusce ut euismod eros, condimentum.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- .item-wrap -->
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="item-wrap infobox_trigger homey-matchHeight" data-id="43205">
+                                <div class="media property-item">
+                                    <div class="media-left">
+                                        <div class="item-media item-media-thumb">
+                                            <a class="effect-light" href="#">
+                                                <img width="100%" height="300"
+                                                    src="{{ asset('backend/images/map-8.png') }}"
+                                                    class="img-responsive wp-post-image" alt="" loading="lazy">
+                                            </a>
+
+                                        </div>
+                                    </div>
+                                    <div class="media-body item-body clearfix ">
+                                        <div class="item-title-head table-block">
+                                            <div class="title-head-left ">
+                                                <h4 class="title"><a href="#">Villa in Coral Gables</a></h4>
+                                                <p class="item-address">Lorem ipsum dolor sit amet, consectetur adipiscing
+                                                    elit. Fusce ut euismod eros, condimentum.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- .item-wrap -->
+                        </div>
+                        <!-- <div class="col-sm-4">
+                        <div class="item-wrap infobox_trigger homey-matchHeight" data-id="43205">
+                            <div class="media property-item">
+                                <div class="media-left">
+                                    <div class="item-media item-media-thumb">
+                                        <a class="effect-light" href="#">
+                                            <img width="100%" height="300" src="{{ asset('backend/images/map-6.png') }}" class="img-responsive wp-post-image" alt="" loading="lazy">
+                                        </a>
+
+                                    </div>
+                                    </div>
+                                        <div class="media-body item-body clearfix ">
+                                            <div class="item-title-head table-block">
+                                                <div class="title-head-left ">
+                                                    <h4 class="title"><a href="#">Villa in Coral Gables</a></h4>
+                                                    <p class="item-address">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut euismod eros, condimentum.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                        </div> -->
+                    </div>
                 </div>
             </div>
         </div>
