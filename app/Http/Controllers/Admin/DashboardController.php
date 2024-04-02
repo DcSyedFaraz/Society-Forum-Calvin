@@ -112,22 +112,32 @@ class DashboardController extends Controller
     }
     public function request_approved($id)
     {
-        $user = Property::find($id);
+        $property = Property::find($id);
 
-        $user->access = 'approved';
-        $user->save();
+        $property->access = 'approved';
+        $property->save();
 
+        // Notification
+        $admin = auth()->user();
+        $user = User::findOrFail($property->user_id);
+        $message = "📢 Exciting news! Your Request #{$id} has been approved.";
+        Notification::send($user, new UserNotification($admin, $message, 'Request Approved'));
 
         return redirect()->back()->with('success', 'Request Accepted Successfully');
     }
     public function request_decline($id)
     {
-        $user = Property::find($id);
+        $property = Property::find($id);
 
 
-        $user->access = 'declined';
-        $user->save();
+        $property->access = 'declined';
+        $property->save();
 
+        // Notification
+        $admin = auth()->user();
+        $user = User::findOrFail($property->user_id);
+        $message = "📢 Your Request #{$id} has been declined.";
+        Notification::send($user, new UserNotification($admin, $message, 'Request Declined'));
 
         return redirect()->back()->with('warning', 'Request Declined Successfully');
     }

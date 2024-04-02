@@ -7,6 +7,7 @@ use App\Models\Property;
 use App\Models\User;
 use App\Notifications\UserNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 
 class EstateController extends Controller
@@ -22,8 +23,14 @@ class EstateController extends Controller
     }
     public function list()
     {
-        $data['property'] = Property::where('access', 'approved')->where('user_id', auth()->user()->id)->orderby('created_at', 'desc')->get();
-        return view('real_estate.list', $data);
+        if (Auth::user()->hasRole('agent')) {
+            $data['property'] = Property::where('user_id', auth()->user()->id)->orderby('created_at', 'desc')->get();
+            return view('real_estate.list', $data);
+        } else{
+            $data['property'] = Property::orderby('created_at', 'desc')->get();
+            return view('admin.list', $data);
+
+        }
     }
 
     /**
@@ -39,8 +46,12 @@ class EstateController extends Controller
         $validatedData = $request->validate([
             'promote_url' => 'required|url',
             'title' => 'required|string',
+            'area' => 'required|string',
             'phone' => 'required|regex:/^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/',
             'price' => 'required|numeric',
+            'beds' => 'required|numeric',
+            'baths' => 'required|numeric',
+            'garages' => 'required|numeric',
             'email' => 'required|email',
             'company_website' => 'required|url',
             'address' => 'required|string',
@@ -53,6 +64,10 @@ class EstateController extends Controller
         // Create a new property instance and fill it with the validated data
         $property = new Property();
         $property->promote_url = $validatedData['promote_url'];
+        $property->garages = $validatedData['garages'];
+        $property->baths = $validatedData['baths'];
+        $property->beds = $validatedData['beds'];
+        $property->area = $validatedData['area'];
         $property->title = $validatedData['title'];
         $property->phone = $validatedData['phone'];
         $property->price = $validatedData['price'];

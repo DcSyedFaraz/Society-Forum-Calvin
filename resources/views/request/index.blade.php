@@ -198,6 +198,10 @@
                                                                             href="{{ $property->promote_url }}">{{ $property->promote_url }}</a>
                                                                     </p>
                                                                     <p>Price: ${{ $property->price }}</p>
+                                                                    <p>Area: {{ $property->area }}</p>
+                                                                    <p>Beds: {{ $property->beds }}</p>
+                                                                    <p>Baths: {{ $property->baths }}</p>
+                                                                    <p>Garages: {{ $property->garages }}</p>
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary"

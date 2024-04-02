@@ -24,7 +24,11 @@ return new class extends Migration
             $table->string('company_website');
             $table->string('address');
             $table->string('image');
+            $table->string('area');
             $table->integer('price');
+            $table->integer('garages');
+            $table->integer('baths');
+            $table->integer('beds');
             $table->timestamps();
         });
     }

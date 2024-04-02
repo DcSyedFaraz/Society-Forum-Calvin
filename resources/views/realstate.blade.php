@@ -66,9 +66,15 @@
                                             </div>
                                             <div class="item-title-head table-block">
                                                 <div class="title-head-left">
-                                                    <address class="item-address">{{ $item->address }}</address>
-                                                    <h4 class="title"><a href="#">{{ $item->title }}</a></h3>
+                                                    <p class="item-address">{{ $item->address }}</p>
+                                                    <h4 class="title"><a href="#">{{ $item->title }}</a></h4>
+                                                    <div class="">
+                                                         <p class="item-address">Website Link: <a href="{{ $item->promote_url }}" target="blank">{{ $item->promote_url }}</a></p>
+                                                        <p class="item-address">Company's Website: <a href="{{ $item->company_website }}" target="blank">{{ $item->company_website }}</a></p>
+                                                        <p class="item-address">Contact Information: {{ $item->email }}</p>
+                                                    </div>
                                                 </div>
+
                                             </div>
                                             <div class="item-title-head table-block">
                                                 <div class="title-head-left">
@@ -89,19 +95,19 @@
                                             <div class="item-title-head table-block">
                                                 <div class="title-head-lefty">
                                                     <p class="item-heading"><strong>Area</strong></p>
-                                                    <p class="item-mesures">2100 m2</p>
+                                                    <p class="item-mesures">{{ $item->area }}</p>
                                                 </div>
                                                 <div class="title-head-lefty">
                                                     <p class="item-heading"><strong>Beds</strong></p>
-                                                    <p class="item-mesures">3</p>
+                                                    <p class="item-mesures">{{ $item->baths }}</p>
                                                 </div>
                                                 <div class="title-head-lefty">
                                                     <p class="item-heading"><strong>Baths</strong></p>
-                                                    <p class="item-mesures">2</p>
+                                                    <p class="item-mesures">{{ $item->baths }}</p>
                                                 </div>
                                                 <div class="title-head-lefty">
                                                     <p class="item-heading"><strong>Garages</strong></p>
-                                                    <p class="item-mesures">1</p>
+                                                    <p class="item-mesures">{{ $item->garages }}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -346,28 +352,28 @@
                             <!-- .item-wrap -->
                         </div>
                         <!-- <div class="col-sm-4">
-                        <div class="item-wrap infobox_trigger homey-matchHeight" data-id="43205">
-                            <div class="media property-item">
-                                <div class="media-left">
-                                    <div class="item-media item-media-thumb">
-                                        <a class="effect-light" href="#">
-                                            <img width="100%" height="300" src="{{ asset('backend/images/map-6.png') }}" class="img-responsive wp-post-image" alt="" loading="lazy">
-                                        </a>
+                                    <div class="item-wrap infobox_trigger homey-matchHeight" data-id="43205">
+                                        <div class="media property-item">
+                                            <div class="media-left">
+                                                <div class="item-media item-media-thumb">
+                                                    <a class="effect-light" href="#">
+                                                        <img width="100%" height="300" src="{{ asset('backend/images/map-6.png') }}" class="img-responsive wp-post-image" alt="" loading="lazy">
+                                                    </a>
 
-                                    </div>
-                                    </div>
-                                        <div class="media-body item-body clearfix ">
-                                            <div class="item-title-head table-block">
-                                                <div class="title-head-left ">
-                                                    <h4 class="title"><a href="#">Villa in Coral Gables</a></h4>
-                                                    <p class="item-address">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut euismod eros, condimentum.</p>
+                                                </div>
+                                                </div>
+                                                    <div class="media-body item-body clearfix ">
+                                                        <div class="item-title-head table-block">
+                                                            <div class="title-head-left ">
+                                                                <h4 class="title"><a href="#">Villa in Coral Gables</a></h4>
+                                                                <p class="item-address">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut euismod eros, condimentum.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
 
-                        </div> -->
+                                    </div> -->
                     </div>
                 </div>
             </div>

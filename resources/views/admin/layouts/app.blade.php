@@ -385,7 +385,14 @@
                     <a href="{{ route('admin.request') }}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/payout iocn.png') }}">
                         </div>
-                        <div class="menu-title">Property Request</div>
+                        <div class="menu-title">Real Estate Request</div>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs(['admin.list.*', 'admin.list']) ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.list') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/Campaigns icon.png') }}">
+                        </div>
+                        <div class="menu-title">Listed Property</div>
                     </a>
                 </li>
                 <li class="{{ request()->routeIs('admin.minutes') ? 'mm-active' : '' }}">

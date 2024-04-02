@@ -93,6 +93,8 @@ Route::group(['prefix' => 'dashboard','as' => 'admin.', 'middleware' => ['auth',
     Route::get('/artchitectural', [DashboardController::class, 'artchitectural'])->name('artchitectural');
     Route::get('/artchitectural/accept/{id}', [DashboardController::class, 'artchitectural_approved'])->name('artchitectural.approved');
     Route::get('/artchitectural/decline/{id}', [DashboardController::class, 'artchitectural_decline'])->name('artchitectural.decline');
+    Route::get('/list', [EstateController::class, 'list'])->name('list');
+    Route::delete('/list/{id}', [EstateController::class, 'destroy'])->name('list.delete');
 });
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'role:admin']], function () {
 
@@ -159,10 +161,10 @@ Route::group(['prefix' => 'real_estate', 'as' => 'agent.', 'middleware' => ['aut
     Route::get('/dashboard', [UserDashboardController::class, 'realstate'])->name('dashboard');
     Route::get('/register', [EstateController::class, 'register'])->name('register');
     Route::get('/list', [EstateController::class, 'list'])->name('list');
+    Route::delete('/list/{id}', [EstateController::class, 'destroy'])->name('list.delete');
     Route::post('/list', [EstateController::class, 'listSave'])->name('list.save');
     Route::get('/list/edit/{id}', [EstateController::class, 'edit'])->name('list.edit');
     Route::put('/list/update/{id}', [EstateController::class, 'update'])->name('list.update');
-    Route::delete('/list/{id}', [EstateController::class, 'destroy'])->name('list.delete');
 
     Route::get('/change_password', [UserDashboardController::class, 'change_password'])->name('change_password');
     Route::get('/profile', [UserDashboardController::class, 'profile'])->name('real_estate.profile');

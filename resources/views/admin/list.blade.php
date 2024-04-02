@@ -1,4 +1,4 @@
-@extends('real_estate.layouts.app')
+@extends('admin.layouts.app')
 <style>
     .dataTables_wrapper .dataTables_filter {
         float: left;
@@ -107,6 +107,7 @@
                             <thead>
                                 <tr>
                                     <th>Request #</th>
+                                    <th>Created By</th>
                                     <th>Property Price</th>
                                     <th>Location</th>
                                     <th>Email</th>
@@ -120,6 +121,7 @@
                                     @foreach ($property as $properties)
                                         <tr>
                                             <td>{{ $properties->id }}</td>
+                                            <td>{{ $properties->user->name }}</td>
                                             <td>{{ $properties->price }}</td>
                                             <td>{{ $properties->address }}</td>
                                             <td>{{ $properties->email }}</td>
@@ -138,12 +140,9 @@
                                             </td>
 
                                             <td>
-                                                <a href="{{ route('agent.list.edit', $properties->id) }}"
-                                                    class="btn btn-primary btn-sm" title="Edit">
-                                                    <i class="bi bi-pencil-fill"></i>
-                                                </a>
+                                               
 
-                                                <form action="{{ route('agent.list.delete', $properties->id) }}" method="POST"
+                                                <form action="{{ route('admin.list.delete', $properties->id) }}" method="POST"
                                                     class="d-inline">
                                                     @csrf
                                                     @method('DELETE')

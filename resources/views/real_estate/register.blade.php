@@ -105,22 +105,40 @@
                             <div class="landlorder">
                                 <div class="mb-3">
                                     <label for="landlord" class="form-label">Image Of Property</label>
-                                    <input type="file" class="form-control" name="image" placeholder="Tony Nguyen" />
+                                    <input type="file" class="form-control" name="image" accept="image/*" placeholder="Tony Nguyen" />
                                 </div>
                                 <div class="mb-3">
                                     <label for="number" class="form-label">Title</label>
-                                    <input type="text" class="form-control" name="title"
-                                        placeholder="title..." />
+                                    <input type="text" class="form-control" name="title" placeholder="title..." />
                                 </div>
                                 <div class="mb-3">
                                     <label for="number" class="form-label">Phone Number</label>
-                                    <input type="tel" class="form-control" name="phone"
-                                        placeholder="+1234567890" />
+                                    <input type="tel" class="form-control" name="phone" placeholder="+1234567890" />
                                 </div>
                                 <div class="mb-3">
                                     <label for="number" class="form-label">Sale Price Of Property</label>
                                     <input type="number" class="form-control" id="number" name="price"
                                         placeholder="$0000" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="area" class="form-label">Area</label>
+                                    <input type="text" class="form-control" id="area" name="area"
+                                        placeholder="Area">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="beds" class="form-label">Beds</label>
+                                    <input type="number" class="form-control" id="beds" name="beds"
+                                        placeholder="Number of Beds">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="baths" class="form-label">Baths</label>
+                                    <input type="number" class="form-control" id="baths" name="baths"
+                                        placeholder="Number of Baths">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="garages" class="form-label">Garages</label>
+                                    <input type="number" class="form-control" id="garages" name="garages"
+                                        placeholder="Number of Garages">
                                 </div>
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Real Estate Contact Information</label>

@@ -78,9 +78,9 @@
                                 data-bs-toggle="dropdown">
                                 <div class="notifications">
                                     @if (auth()->user()->unreadnotifications->count() > 0)
-                                    <span
-                                        class="notify-badge">{{ auth()->user()->unreadNotifications()->count() }}</span>
-                                @endif
+                                        <span
+                                            class="notify-badge">{{ auth()->user()->unreadNotifications()->count() }}</span>
+                                    @endif
                                     <i class="bi bi-bell-fill"></i>
                                 </div>
                             </a>
@@ -93,7 +93,7 @@
                                         @foreach (auth()->user()->unreadnotifications as $notifications)
                                             <a data-notification-id="{{ $notifications->id }}"
                                                 class="dropdown-item notification-link"
-                                                href="">
+                                                href="{{ route('agent.list') }}">
                                                 <div class="d-flex align-items-center">
                                                     <div class="notification-box bg-light-warning text-warning"><i
                                                             class="bi bi-droplet-fill"></i></div>
@@ -154,7 +154,7 @@
                                     </a>
                                 </li>
 
-                                 <li>
+                                <li>
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li>
@@ -219,7 +219,7 @@
                         <div class="menu-title">Register a Property</div>
                     </a>
                 </li>
-                <li class="{{ request()->routeIs(['agent.list.*','agent.list']) ? 'mm-active' : '' }}">
+                <li class="{{ request()->routeIs(['agent.list.*', 'agent.list']) ? 'mm-active' : '' }}">
                     <a href="{{ route('agent.list') }}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/Campaigns icon.png') }}">
                         </div>
@@ -228,7 +228,7 @@
                 </li>
 
                 <li class="menu-label" style="margin-top: 90px;">Insights</li>
-                
+
                 <li>
                     <a href="javascript:;">
                         <div class="parent-icon"><img
@@ -293,35 +293,35 @@
             @endforeach
         @endif
     </script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const notificationLinks = document.querySelectorAll('.notification-link');
-        notificationLinks.forEach(link => {
-            link.addEventListener('click', function(event) {
-                event.preventDefault();
-                const notificationId = this.getAttribute('data-notification-id');
-                markNotificationAsRead(notificationId);
-                window.location.href = this.getAttribute('href');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const notificationLinks = document.querySelectorAll('.notification-link');
+            notificationLinks.forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const notificationId = this.getAttribute('data-notification-id');
+                    markNotificationAsRead(notificationId);
+                    window.location.href = this.getAttribute('href');
+                });
             });
-        });
 
-        function markNotificationAsRead(notificationId) {
-            // Make an AJAX request to mark the notification as read
-            // Replace 'your-mark-read-url' with the actual URL to mark the notification as read
-            fetch('/mark-as-read/' + notificationId, {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                        'Content-Type': 'application/json'
-                    },
-                })
-                .then(response => response.json())
-                .then(data => console.log(data))
-                .catch(error => console.error('Error:', error));
-        }
-    });
-</script>
-@yield('script')
+            function markNotificationAsRead(notificationId) {
+                // Make an AJAX request to mark the notification as read
+                // Replace 'your-mark-read-url' with the actual URL to mark the notification as read
+                fetch('/mark-as-read/' + notificationId, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            'Content-Type': 'application/json'
+                        },
+                    })
+                    .then(response => response.json())
+                    .then(data => console.log(data))
+                    .catch(error => console.error('Error:', error));
+            }
+        });
+    </script>
+    @yield('script')
 
 </body>
 

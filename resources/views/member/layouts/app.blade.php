@@ -252,13 +252,6 @@
                         <div class="menu-title">Community</div>
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('member.forum') ? 'mm-active' : '' }}">
-                    <a href="{{ route('member.forum') }}">
-                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/statement-new.png') }}">
-                        </div>
-                        <div class="menu-title">Community Forum</div>
-                    </a>
-                </li>
                 <li class="{{ request()->routeIs('member.lostfound') ? 'mm-active' : '' }}">
                     <a href="{{ route('member.lostfound') }}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/Schedules icon.png') }}">
