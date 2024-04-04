@@ -32,6 +32,7 @@
                                 </div>
                                 <h2>AVAILABLE PROPERTIES</h2>
                                 <p>Nothing is set in you can structure your exactly how you want.</p>
+                                <p>Homeowners, not investors!</p>
                             </div>
                         </div>
                     </div>

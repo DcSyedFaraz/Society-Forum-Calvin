@@ -30,6 +30,9 @@
         <div class="col-6">
             <img src=" {{ asset('frontend/images/new/gallery (3).jpg') }}"
                 style="width: 95%; border-radius: 1.25rem !important;">
+                <span class="d-flex justify-content-center font-weight-bold">
+                    BUY HERE! LIVE HERE!
+                </span>
         </div>
     </section>
     <section class="main-div1" style="padding-bottom: 70px;">

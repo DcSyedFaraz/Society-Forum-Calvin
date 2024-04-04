@@ -60,7 +60,7 @@ class RegisterController extends Controller
         $validatedData = Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            // 'password' => ['required', 'string', 'min:8', 'same:confirm-password'],
+            'password' => ['required', 'string', 'min:8', 'same:confirm_password'],
             // 'permission' => 'required',
         ]);
         if ($validatedData->fails()) {
@@ -80,7 +80,7 @@ class RegisterController extends Controller
             $imageName = basename($imagePath);
             $user->image = $imageName;
         }
-        $user->password = Hash::make('12345678');
+        $user->password = Hash::make($data['password']);
 
         $user->save();
         $user->assignRole('member');
@@ -113,6 +113,7 @@ class RegisterController extends Controller
 
         $this->validate($request, [
             'name' => 'required|string|max:255',
+            'password' => ['required', 'string', 'min:8', 'same:confirm_password'],
             'address' => 'required|string|max:255',
             'phoneNumber' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users',
@@ -135,7 +136,7 @@ class RegisterController extends Controller
                 $imageName = basename($imagePath);
                 $user->image = $imageName;
             }
-            $user->password = Hash::make('12345678');
+            $user->password = Hash::make($data['password']);
 
             $user->save();
             $user->assignRole('executive');
@@ -169,6 +170,7 @@ class RegisterController extends Controller
 
         $this->validate($request, [
             'name' => 'required|string|max:255',
+            'password' => ['required', 'string', 'min:8', 'same:confirm_password'],
             'license' => 'required|string|max:255',
             'phoneNumber' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users',
@@ -195,7 +197,7 @@ class RegisterController extends Controller
             $imageName = basename($imagePath);
             $user->image = $imageName;
         }
-        $user->password = Hash::make('12345678');
+        $user->password = Hash::make($data['password']);
 
         $user->save();
         $user->assignRole('agent');

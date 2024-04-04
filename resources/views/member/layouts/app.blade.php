@@ -113,7 +113,26 @@
                                                         </a>
                                                     @break
 
-
+                                                    @case('Request Approved')
+                                                    @case('Request Declined')
+                                                        <a data-notification-id="{{ $notifications->id }}"
+                                                            class="dropdown-item notification-link"
+                                                            href="{{ route('agent.list') }}">
+                                                            <div class="d-flex align-items-center">
+                                                                <div class="notification-box bg-light-warning text-warning"><i
+                                                                        class="bi bi-droplet-fill"></i></div>
+                                                                <div class="ms-3 flex-grow-1">
+                                                                    <h6 class="mb-0 dropdown-msg-user">
+                                                                        {{ $notifications->type }}<span
+                                                                            class="msg-time float-end text-secondary">{{ $notifications->created_at->diffForHumans() }}</span>
+                                                                    </h6>
+                                                                    <small
+                                                                        class="mb-0 dropdown-msg-text text-secondary d-flex align-items-center"
+                                                                        style="overflow-wrap: break-word; white-space: break-spaces !important;">{{ $notifications->data['message'] }}</small>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    @break
 
                                                     @default
                                                         <a data-notification-id="{{ $notifications->id }}"
@@ -180,7 +199,7 @@
                                     </a>
                                 </li>
 
-                                 <li>
+                                <li>
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li>
@@ -347,7 +366,7 @@
             @endforeach
         @endif
     </script>
-      <script>
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             const notificationLinks = document.querySelectorAll('.notification-link');
             notificationLinks.forEach(link => {

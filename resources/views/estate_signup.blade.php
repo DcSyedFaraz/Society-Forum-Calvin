@@ -260,6 +260,16 @@
                                     <input type="email" class="form-control" name="email"
                                         placeholder="tony@example.com">
                                 </div>
+                                <div class="mb-3">
+                                    <label for="phoneNumber" class="form-label">Password</label>
+                                    <input type="password" class="form-control" name="password"
+                                        placeholder="*****" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phoneNumber" class="form-label">Confirm Password</label>
+                                    <input type="password" class="form-control" name="confirm_password"
+                                        placeholder="*****" />
+                                </div>
                                 <div class="landlordersect">
                                     <h4 style="width: 100%; display: block !important; margin-bottom: 20px;">Real Estate
                                         Agent Company</h4>

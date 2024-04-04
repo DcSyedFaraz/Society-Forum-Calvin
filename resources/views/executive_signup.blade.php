@@ -243,7 +243,17 @@
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email Address</label>
                                     <input type="email" class="form-control" name="email"
-                                        placeholder="tony@example.com" />
+                                    placeholder="tony@example.com" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phoneNumber" class="form-label">Password</label>
+                                    <input type="password" class="form-control" name="password"
+                                        placeholder="*****" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="phoneNumber" class="form-label">Confirm Password</label>
+                                    <input type="password" class="form-control" name="confirm_password"
+                                        placeholder="*****" />
                                 </div>
                                 <div class="mb-3">
                                     <label for="parkaddress" class="form-label">Park Shadows HOA Address</label>

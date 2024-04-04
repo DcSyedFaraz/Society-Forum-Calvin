@@ -2,6 +2,11 @@
 
 
 <style>
+    .modal-content .modal-body p {
+        width: 100% !important;
+        text-wrap: wrap;
+    }
+
     #example td,
     #example th {
         white-space: nowrap;

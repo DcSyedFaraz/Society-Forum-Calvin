@@ -75,6 +75,11 @@ class DashboardController extends Controller
         $user->access = 'approved';
         $user->save();
 
+        // Notification
+        $admin = auth()->user();
+        $user = User::findOrFail($user->user_id);
+        $message = "📢 Exciting news! Your Request #{$id} has been approved.";
+        Notification::send($user, new UserNotification($admin, $message, 'Request Approved'));
 
         return redirect()->back()->with('success', 'Request Accepted Successfully');
     }
@@ -86,6 +91,11 @@ class DashboardController extends Controller
         $user->access = 'declined';
         $user->save();
 
+        // Notification
+        $admin = auth()->user();
+        $user = User::findOrFail($user->user_id);
+        $message = "📢 Your Request #{$id} has been declined.";
+        Notification::send($user, new UserNotification($admin, $message, 'Request Declined'));
 
         return redirect()->back()->with('warning', 'Request Declined Successfully');
     }

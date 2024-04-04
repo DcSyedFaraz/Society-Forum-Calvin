@@ -197,7 +197,7 @@
         <ul class="list-nav">
             <li><a href="#">News user?</a></li>
             <li><a href="#">Create an Account</a></li>
-            <li><a href="{{route('home')}}"><i class="fa fa-ellipsis-h" aria-hidden="true"
+            <li><a href="{{ route('home') }}"><i class="fa fa-ellipsis-h" aria-hidden="true"
                         style="font-size:20px;color:black;"></i>
                 </a></li>
         </ul>
@@ -259,6 +259,16 @@
                                                 placeholder="tony@example.com">
                                         </div>
                                         <div class="mb-3">
+                                            <label for="phoneNumber" class="form-label">Password</label>
+                                            <input type="password" class="form-control" name="password"
+                                                placeholder="*****" />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="phoneNumber" class="form-label">Confirm Password</label>
+                                            <input type="password" class="form-control" name="confirm_password"
+                                                placeholder="*****" />
+                                        </div>
+                                        <div class="mb-3">
                                             <label for="phoneNumber" class="form-label">Phone Number</label>
                                             <input type="tel" class="form-control" name="phone"
                                                 placeholder="+1 3934 3445 33">
@@ -318,6 +328,16 @@
                                             <label for="email" class="form-label">Email Address</label>
                                             <input type="email" class="form-control" id="email" name="email"
                                                 placeholder="tony@example.com">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="phoneNumber" class="form-label">Password</label>
+                                            <input type="password" class="form-control" name="password"
+                                                placeholder="*****" />
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="phoneNumber" class="form-label">Confirm Password</label>
+                                            <input type="password" class="form-control" name="confirm_password"
+                                                placeholder="*****" />
                                         </div>
                                         <div class="mb-3">
                                             <label for="phoneNumber" class="form-label">Phone Number</label>
