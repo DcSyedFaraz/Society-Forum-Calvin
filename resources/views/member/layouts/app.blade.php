@@ -117,7 +117,7 @@
                                                     @case('Request Declined')
                                                         <a data-notification-id="{{ $notifications->id }}"
                                                             class="dropdown-item notification-link"
-                                                            href="{{ route('agent.list') }}">
+                                                            href="">
                                                             <div class="d-flex align-items-center">
                                                                 <div class="notification-box bg-light-warning text-warning"><i
                                                                         class="bi bi-droplet-fill"></i></div>
@@ -268,7 +268,7 @@
                     <a href="{{ route('community.index') }}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/statement-new.png') }}">
                         </div>
-                        <div class="menu-title">Community</div>
+                        <div class="menu-title">Community Forum</div>
                     </a>
                 </li>
                 <li class="{{ request()->routeIs('member.lostfound') ? 'mm-active' : '' }}">

@@ -26,6 +26,9 @@
         </div>
         <div class="col-6">
             <img src="{{ asset('frontend/images/new/gallery (2).jpg') }}" class="" style="width: 95%;border-radius: 1.25rem !important;">
+            <span class="d-flex justify-content-center font-weight-bold">
+                BUY HERE! LIVE HERE!
+            </span>
         </div>
     </section>
     <section class="main-div1">
