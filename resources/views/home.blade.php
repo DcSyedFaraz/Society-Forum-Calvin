@@ -27,8 +27,13 @@
         <div class="col-6">
             <img src="{{ asset('frontend/images/new/gallery (2).jpg') }}" class="" style="width: 95%;border-radius: 1.25rem !important;">
             <span class="d-flex justify-content-center font-weight-bold">
-                BUY HERE! LIVE HERE!
-            </span>
+                    BUY HERE! LIVE HERE!
+                </span>
+        </div>
+    </section>
+    <section class="main-div1">
+        <div class="col-12">
+           <h1 style="text-align:center;" class="heading1">Explore Our Amenities</h1>
         </div>
     </section>
     <section class="main-div1">
@@ -37,25 +42,14 @@
             <img src="{{ asset('frontend/images/image2.png') }}" style="width: 100%; z-index: 000000; position: relative;">
         </div>
         <div class="col-7">
-            <h1 class="heading1">Explore Our Amenities</h1>
-            <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse bibendum, neque at
-                congue ornare, tellus tellus consequat elit, consectetur ultricies lectus mauris sit amet magna. Quisque
-                porta sit amet risus sit amet tempor. Nunc metus enim, porttitor et nisl a, consectetur porta ex.
-                Vestibulum tincidunt vestibulum nisi, id malesuada nisl bibendum non. Proin ut mauris dictum, pulvinar
-                erat nec, tristique lorem. Proin libero mi, pulvinar vitae quam nec, eleifend congue ex. Vestibulum et
-                dolor et orci volutpat placerat eu ac ex.</p>
+            <h1 class="heading1">Community Park</h1>
+            <p class="paragraph">Experience our new park designed for children of all ages! From playground areas to swing sets and workout stations, our well-lit park ensures safety and enjoyment for all. Plus, indulge in basketball games at our popular court. Don't miss out on our exciting community events, including Easter Egg hunts, 4th of July celebrations, movie nights, Halloween adventures, and evenings with Santa. We also host community garage sales twice a year.</p>
         </div>
     </section>
     <section class="main-div1">
         <div class="col-7">
-            <h1 class="heading1" style="text-align: right;">Explore Our <br>Amenities</h1>
-            <p class="paragraph" style="text-align: right;">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Suspendisse bibendum, neque at
-                congue ornare, tellus tellus consequat elit, consectetur ultricies lectus mauris sit amet magna. Quisque
-                porta sit amet risus sit amet tempor. Nunc metus enim, porttitor et nisl a, consectetur porta ex.
-                Vestibulum tincidunt vestibulum nisi, id malesuada nisl bibendum non. Proin ut mauris dictum, pulvinar
-                erat nec, tristique lorem. Proin libero mi, pulvinar vitae quam nec, eleifend congue ex. Vestibulum et
-                dolor et orci volutpat placerat eu ac ex.</p>
+            <h1 class="heading1" style="text-align: right;">Safety</h1>
+            <p class="paragraph" style="text-align: right;">At Park Shadows HOA, safety is our priority. Our community is patrolled by security guards seven nights a week, ensuring a safe environment for families. During pool season, a dedicated guard oversees pool safety. With security gates and monitored entrances equipped with cameras, access is controlled via community-issued remotes and entry codes. Report any concerns through our new website for prompt resolution.</p>
         </div>
         <div class="col-5">
             <img src="{{ asset('frontend/images/new/gallery (3).jpg') }}" style="width: 100%; border-radius: 1.25rem !important;">
@@ -66,13 +60,8 @@
             <img src="{{ asset('frontend/images/image4.png') }}" style="width: 100%;">
         </div>
         <div class="col-7">
-            <h1 class="heading1">Explore Our Amenities</h1>
-            <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse bibendum, neque at
-                congue ornare, tellus tellus consequat elit, consectetur ultricies lectus mauris sit amet magna. Quisque
-                porta sit amet risus sit amet tempor. Nunc metus enim, porttitor et nisl a, consectetur porta ex.
-                Vestibulum tincidunt vestibulum nisi, id malesuada nisl bibendum non. Proin ut mauris dictum, pulvinar
-                erat nec, tristique lorem. Proin libero mi, pulvinar vitae quam nec, eleifend congue ex. Vestibulum et
-                dolor et orci volutpat placerat eu ac ex.</p>
+            <h1 class="heading1">Swimming Pool</h1>
+            <p class="paragraph">Discover the joy of our community swimming pool area, featuring a pool accommodating up to 32 guests, along with a wading pool perfect for small children. Enjoy gatherings and relaxation with our available barbecue grill and spacious covered patio.</p>
         </div>
     </section>
     <section class="main-div2">
@@ -139,10 +128,7 @@
     <section class="main-div3">
         <div class="col-12">
             <h1 class="map">Google Map</h1>
-            <iframe class="map1"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d158858.182370726!2d-0.10159865000000001!3d51.52864165!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47d8a00baf21de75%3A0x52963a5addd52a99!2sLondon%2C%20UK!5e0!3m2!1sen!2s!4v1699460228988!5m2!1sen!2s"
-                width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe class="map1" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3285.4808189429596!2d-118.09030472415338!3d34.5666984903909!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c257e806603255%3A0x2fd1e1713c6dddfc!2s2325%20Mark%20Ave%2C%20Palmdale%2C%20CA%2093550%2C%20USA!5e0!3m2!1sen!2s!4v1712351912480!5m2!1sen!2s" width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </section>
 @endsection

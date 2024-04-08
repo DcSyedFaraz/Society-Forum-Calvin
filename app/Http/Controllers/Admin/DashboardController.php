@@ -15,13 +15,7 @@ use Notification;
 use Spatie\Permission\Models\Role;
 use Validator;
 use App\Models\User;
-use App\Models\Order;
-use App\Models\Product;
-use App\Models\GameDeposit;
-use App\Models\GameWithdraw;
-use App\Models\Redeem;
 use Session;
-use Stripe;
 
 class DashboardController extends Controller
 {
@@ -50,9 +44,7 @@ class DashboardController extends Controller
     }
     public function request()
     {
-        $data['request'] = Property::whereNull('access')
-            ->orWhere('access', '!=', 'approved')
-            ->orderByDesc('created_at')
+        $data['request'] = Property::orderBy('access')
             ->get();
 
         // dd($data);
@@ -60,9 +52,7 @@ class DashboardController extends Controller
     }
     public function artchitectural()
     {
-        $data['request'] = Architect::whereNull('access')
-            ->orWhere('access', '!=', 'approved')
-            ->orderByDesc('created_at')
+        $data['request'] = Architect::orderBy('access')
             ->get();
 
         // dd($data);
@@ -323,54 +313,4 @@ class DashboardController extends Controller
         return redirect()->back()->with("success", "Password changed successfully !");
     }
 
-
-    //      Wallet Customer User List:-
-    public function walletUserList()
-    {
-        $users = User::with('wallet')->where('role', 3)->get();
-        return view('admin.wallet.wallet_user_list', ["users" => $users]);
-    }
-
-    public function walletdeposit($id)
-    {
-        $users = User::findOrFail($id);
-        return view('admin.wallet.deposit', ["users" => $users]);
-    }
-
-    public function createdeposite(Request $request)
-    {
-
-        // dd($request->all());
-        $id = $request->user_id;
-        $deposit_amount = $request->dep_amount;
-        $users = User::where('id', $id)->first();
-        $users->deposit($deposit_amount);
-
-
-        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-        Stripe\Charge::create([
-            "amount" => $request->dep_amount,
-            "currency" => "USD",
-            "source" => $request->stripeToken,
-            "description" => "This payment is testing purpose of techsolutionstuff",
-        ]);
-
-
-        // dd($users);
-        return redirect()->back()->with('success', 'Wallet Amount Deposit Has been submitted successfully');
-    }
-
-    public function walletwithdraw($id)
-    {
-        $users = User::findOrFail($id);
-        return view('admin.wallet.withdraw', ["users" => $users]);
-    }
-    public function createdewithdraw(Request $req)
-    {
-        $id = $req->user_id;
-        $withdraw_amount = $req->drw_amount;
-        $users = User::where('id', $id)->first();
-        $users->forceWithdraw($withdraw_amount);
-        return redirect()->back()->with('success', ' Withdraw Amount wallet Has been detected Successfully');
-    }
 }

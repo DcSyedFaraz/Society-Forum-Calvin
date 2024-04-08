@@ -196,10 +196,12 @@
                                                                             src="{{ asset('storage/' . $Artchitectural->image) }}"
                                                                             alt="Image" width="100%" height="auto">
                                                                     @endif
-                                                                    <p class="mt-3">Phone: {{ $Artchitectural->phone }}
+                                                                    <p class="mt-3 text-wrap">Phone:
+                                                                        {{ $Artchitectural->phone }}
                                                                     </p>
-                                                                    <p>Email: {{ $Artchitectural->email }}</p>
-                                                                    <p>Request Change:
+                                                                    <p class=" text-wrap">Email:
+                                                                        {{ $Artchitectural->email }}</p>
+                                                                    <p class="text-wrap">Request Change:
                                                                         {{ $Artchitectural->requestedchange }}</p>
 
                                                                 </div>
@@ -214,6 +216,8 @@
                                                 <td>
                                                     @if ($Artchitectural->access == 'declined')
                                                         <span class="badge bg-danger"> Request Declined</span>
+                                                    @elseif ($Artchitectural->access == 'approved')
+                                                        <span class="badge bg-success"> Request Approved</span>
                                                     @else
                                                         <a href="{{ route('admin.artchitectural.approved', $Artchitectural->id) }}"
                                                             class="approver">Approve</a>

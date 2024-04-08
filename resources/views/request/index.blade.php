@@ -132,7 +132,6 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <!-- <p>Hello Cuong, welcome back</p> -->
                 <div id="tabler-tables">
                     <h3>Property Requests</h3>
                     {{-- <h3>property Requests</h3> --}}
@@ -168,7 +167,7 @@
                                                 <td>{{ $property->phone ?? 'null' }}</td>
                                                 <td>
                                                     <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
                                                         data-bs-target="#exampleModal{{ $key }}">
                                                         View
                                                     </button>
@@ -188,20 +187,41 @@
                                                                 <div class="modal-body">
                                                                     <img src="{{ asset('storage/' . $property->image) }}"
                                                                         alt="Image" width="100%" height="auto">
-                                                                    <p>Address: {{ $property->address }}</p>
-                                                                    <p>Phone: {{ $property->phone }}</p>
-                                                                    <p>Email: {{ $property->email }}</p>
-                                                                    <p>Company Website: <a
+                                                                    <p class="text-wrap"> <strong
+                                                                            class="me-2">Address:</strong>
+                                                                        {{ $property->address }}</p>
+                                                                    <p class="text-wrap"><strong
+                                                                            class="me-2">Phone:</strong>
+                                                                        {{ $property->phone }}</p>
+                                                                    <p class="text-wrap"> <strong class="me-2">Email:
+                                                                        </strong>
+                                                                        {{ $property->email }} </p>
+                                                                    <p class="text-wrap">
+                                                                        <strong class="me-2"> Company
+                                                                            Website:
+                                                                        </strong> <a
                                                                             href="{{ $property->company_website }}">{{ $property->company_website }}</a>
                                                                     </p>
-                                                                    <p>Promote Website: <a
+                                                                    <p class="text-wrap"><strong class="me-2">Promote
+                                                                            Website:
+                                                                        </strong> <a
                                                                             href="{{ $property->promote_url }}">{{ $property->promote_url }}</a>
                                                                     </p>
-                                                                    <p>Price: ${{ $property->price }}</p>
-                                                                    <p>Area: {{ $property->area }}</p>
-                                                                    <p>Beds: {{ $property->beds }}</p>
-                                                                    <p>Baths: {{ $property->baths }}</p>
-                                                                    <p>Garages: {{ $property->garages }}</p>
+                                                                    <p class="text-wrap"><strong
+                                                                            class="me-2">Price:</strong>
+                                                                        ${{ $property->price }}</p>
+                                                                    <p class="text-wrap"><strong
+                                                                            class="me-2">Area:</strong>
+                                                                        {{ $property->area }}</p>
+                                                                    <p class="text-wrap"><strong
+                                                                            class="me-2">Beds:</strong>
+                                                                        {{ $property->beds }}</p>
+                                                                    <p class="text-wrap"><strong
+                                                                            class="me-2">Baths:</strong>
+                                                                        {{ $property->baths }}</p>
+                                                                    <p class="text-wrap"><strong
+                                                                            class="me-2">Garages:</strong>
+                                                                        {{ $property->garages }}</p>
                                                                 </div>
                                                                 <div class="modal-footer">
                                                                     <button type="button" class="btn btn-secondary"
@@ -214,11 +234,13 @@
                                                 <td>
                                                     @if ($property->access == 'declined')
                                                         <span class="badge bg-danger"> Request Declined</span>
+                                                        @elseif ($property->access == 'approved')
+                                                        <span class="badge bg-success"> Request Approved</span>
                                                     @else
                                                         <a href="{{ route('admin.property.approved', $property->id) }}"
-                                                            class="approver">Approve</a>
+                                                            class="approver btn-sm">Approve</a>
                                                         <a href="{{ route('admin.property.decline', $property->id) }}"
-                                                            class="declined">Decline</a>
+                                                            class="declined btn-sm">Decline</a>
                                                     @endif
                                                 </td>
                                             </tr>

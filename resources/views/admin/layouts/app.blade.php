@@ -357,7 +357,7 @@
                     <a href="{{ route('community.index') }}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/statement-new.png') }}">
                         </div>
-                        <div class="menu-title">Community</div>
+                        <div class="menu-title">Community Forum</div>
                     </a>
                 </li>
                 <li class="{{ request()->routeIs('admin.legal_info') ? 'mm-active' : '' }}">
