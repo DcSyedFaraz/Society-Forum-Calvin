@@ -350,7 +350,7 @@
                     <a href="{{ route('executive.ccnrs') }}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/project icon.png') }}">
                         </div>
-                        <div class="menu-title">Community CC&Rs...</div>
+                        <div class="menu-title">Community Rules</div>
                     </a>
                 </li>
 

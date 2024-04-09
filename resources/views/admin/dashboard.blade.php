@@ -145,7 +145,7 @@
 
                                 <thead>
                                     <tr>
-                                        <th>S.N</th>
+                                        <th>S.N.</th>
                                         <th>Name:</th>
                                         <th>Email:</th>
                                         <th>Phone Number:</th>

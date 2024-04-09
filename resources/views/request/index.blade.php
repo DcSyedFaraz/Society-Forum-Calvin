@@ -129,6 +129,54 @@
     }
 </style>
 @section('content')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.0/css/swiper.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.2.0/js/swiper.min.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
+    <script>
+        $(function() {
+
+            var swiper = new Swiper('.carousel-gallery .swiper-container', {
+                effect: 'slide',
+                speed: 900,
+                slidesPerView: 1,
+                spaceBetween: 20,
+                simulateTouch: true,
+                autoplay: {
+                    delay: 5000,
+                    stopOnLastSlide: false,
+                    disableOnInteraction: false
+                },
+                pagination: {
+                    el: '.carousel-gallery .swiper-pagination',
+                    clickable: true
+                },
+                breakpoints: {
+                    // when window width is <= 320px
+                    320: {
+                        slidesPerView: 1,
+                        spaceBetween: 5
+                    },
+                    // when window width is <= 480px
+                    425: {
+                        slidesPerView: 1,
+                        spaceBetween: 10
+                    },
+                    // when window width is <= 640px
+                    768: {
+                        slidesPerView: 1,
+                        spaceBetween: 20
+                    }
+                }
+            }); /*http://idangero.us/swiper/api/*/
+
+
+
+        });
+    </script>
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -144,7 +192,7 @@
 
                                 <thead>
                                     <tr>
-                                        <th>S.N</th>
+                                        <th>S.N.</th>
                                         <th>Title:</th>
                                         <th>Email:</th>
                                         <th>Address:</th>
@@ -167,7 +215,8 @@
                                                 <td>{{ $property->phone ?? 'null' }}</td>
                                                 <td>
                                                     <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                                                    <button type="button" class="btn btn-sm btn-primary"
+                                                        data-bs-toggle="modal"
                                                         data-bs-target="#exampleModal{{ $key }}">
                                                         View
                                                     </button>
@@ -185,8 +234,35 @@
                                                                         data-bs-dismiss="modal" aria-label="Close"></button>
                                                                 </div>
                                                                 <div class="modal-body">
-                                                                    <img src="{{ asset('storage/' . $property->image) }}"
-                                                                        alt="Image" width="100%" height="auto">
+                                                                    <!--Carousel Gallery-->
+                                                                    <div class="carousel-gallery">
+                                                                        <div class="swiper-container">
+                                                                            <div class="swiper-wrapper">
+                                                                                @foreach ($property->images as $image)
+                                                                                    <div class="swiper-slide">
+                                                                                        <a class="effect-light"
+                                                                                            href="{{ asset('storage/' . $image->image) }}"
+                                                                                            data-fancybox="gallery">
+                                                                                            <div class="image">
+                                                                                                <img width="100%"
+                                                                                                    height="300"
+                                                                                                    style="border-radius: 1.25rem !important;"
+                                                                                                    src="{{ asset('storage/' . $image->image) }}"
+                                                                                                    class="img-responsive wp-post-image"
+                                                                                                    alt=""
+                                                                                                    loading="lazy">
+                                                                                                <div class="overlay">
+                                                                                                    <em
+                                                                                                        class="mdi mdi-magnify-plus"></em>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </a>
+                                                                                    </div>
+                                                                                @endforeach
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--#Carousel Gallery-->
                                                                     <p class="text-wrap"> <strong
                                                                             class="me-2">Address:</strong>
                                                                         {{ $property->address }}</p>
@@ -234,7 +310,7 @@
                                                 <td>
                                                     @if ($property->access == 'declined')
                                                         <span class="badge bg-danger"> Request Declined</span>
-                                                        @elseif ($property->access == 'approved')
+                                                    @elseif ($property->access == 'approved')
                                                         <span class="badge bg-success"> Request Approved</span>
                                                     @else
                                                         <a href="{{ route('admin.property.approved', $property->id) }}"

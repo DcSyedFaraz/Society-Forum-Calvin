@@ -13,4 +13,8 @@ class Property extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function images()
+    {
+        return $this->hasMany(PropertyImages::class, 'property_id');
+    }
 }

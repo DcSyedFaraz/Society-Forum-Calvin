@@ -4,11 +4,14 @@ namespace App\Http\Controllers\real_estate;
 
 use App\Http\Controllers\Controller;
 use App\Models\Property;
+use App\Models\PropertyImages;
 use App\Models\User;
 use App\Notifications\UserNotification;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
+use Storage;
 
 class EstateController extends Controller
 {
@@ -26,7 +29,7 @@ class EstateController extends Controller
         if (Auth::user()->hasRole('agent')) {
             $data['property'] = Property::where('user_id', auth()->user()->id)->orderby('created_at', 'desc')->get();
             return view('real_estate.list', $data);
-        } else{
+        } else {
             $data['property'] = Property::orderby('created_at', 'desc')->get();
             return view('admin.list', $data);
 
@@ -55,40 +58,60 @@ class EstateController extends Controller
             'email' => 'required|email',
             'company_website' => 'required|url',
             'address' => 'required|string',
-            'image' => 'required|image',
+            'images' => 'required|array',
+            'images.*' => 'image',
         ]);
 
-        $imagePath = $request->file('image')->store('public/images');
-        $storagePath = str_replace('public/', '', $imagePath);
+        // dd($request->images);
+        try {
+            DB::beginTransaction();
+            // Create a new property instance and fill it with the validated data
+            $property = new Property();
+            $property->promote_url = $validatedData['promote_url'];
+            $property->garages = $validatedData['garages'];
+            $property->baths = $validatedData['baths'];
+            $property->beds = $validatedData['beds'];
+            $property->area = $validatedData['area'];
+            $property->title = $validatedData['title'];
+            $property->phone = $validatedData['phone'];
+            $property->price = $validatedData['price'];
+            $property->email = $validatedData['email'];
+            $property->company_website = $validatedData['company_website'];
+            $property->address = $validatedData['address'];
+            $property->user_id = auth()->user()->id;
+            $property->save();
 
-        // Create a new property instance and fill it with the validated data
-        $property = new Property();
-        $property->promote_url = $validatedData['promote_url'];
-        $property->garages = $validatedData['garages'];
-        $property->baths = $validatedData['baths'];
-        $property->beds = $validatedData['beds'];
-        $property->area = $validatedData['area'];
-        $property->title = $validatedData['title'];
-        $property->phone = $validatedData['phone'];
-        $property->price = $validatedData['price'];
-        $property->email = $validatedData['email'];
-        $property->company_website = $validatedData['company_website'];
-        $property->address = $validatedData['address'];
-        $property->image = $storagePath;
-        $property->user_id = auth()->user()->id;
+            if ($request->has('images') && !empty($request->images)) {
+                foreach ($request->images as $key => $item) {
+                    $imagePath = $item->store('public/images');
+                    $storagePath = str_replace('public/', '', $imagePath);
+
+                    // Assuming 'images' is the name of the hasMany relationship method
+                    $property->images()->create(['image' => $storagePath]);
+                }
+            }
 
 
-        $property->save();
 
-        $user = auth()->user();
-        $notifyuser = User::role(['executive', 'admin'])
-            ->get();
 
-        // Send the notification to eligible users
-        $message = "📢 Hey there! We have a new request waiting for your attention. Click here to check it out and take action.";
-        \Notification::send($notifyuser, new UserNotification($user, $message, 'Real Estate'));
+            // $user = auth()->user();
+            // $notifyuser = User::role(['executive', 'admin'])
+            //     ->get();
 
-        return redirect()->back()->with('success', 'Property added successfully!');
+            // // Send the notification to eligible users
+            // $message = "📢 Hey there! We have a new request waiting for your attention. Click here to check it out and take action.";
+            // \Notification::send($notifyuser, new UserNotification($user, $message, 'Real Estate'));
+
+            DB::commit();
+
+            return redirect()->back()->with('success', 'Property added successfully!');
+
+        } catch (\Exception $e) {
+            // Something went wrong, rollback the transaction
+            DB::rollback();
+            throw $e;
+            return redirect()->back()->with('error', 'Something went wrong.');
+        }
     }
 
     /**
@@ -149,17 +172,20 @@ class EstateController extends Controller
         $property->company_website = $validatedData['company_website'];
         $property->address = $validatedData['address'];
         $property->access = '';
-
-        // Check if a new image is uploaded
-        if ($request->hasFile('image')) {
-            // Store the new image
-            $imagePath = $request->file('image')->store('public/images');
-            $storagePath = str_replace('public/', '', $imagePath);
-            $property->image = $storagePath;
-        }
-
         // Save the updated property
         $property->save();
+
+        // Check if a new image is uploaded
+        if ($request->has('images') && !empty($request->images)) {
+            foreach ($request->images as $key => $item) {
+                $imagePath = $item->store('public/images');
+                $storagePath = str_replace('public/', '', $imagePath);
+
+                // Assuming 'images' is the name of the hasMany relationship method
+                $property->images()->create(['image' => $storagePath]);
+            }
+        }
+
 
         $user = auth()->user();
         $notifyuser = User::role(['executive', 'admin'])
@@ -183,6 +209,18 @@ class EstateController extends Controller
     {
         Property::findOrFail($id)->delete();
         return redirect()->back()->with('success', 'Property deleted successfully!');
+
+    }
+    public function image($id)
+    {
+        $propertyImage = PropertyImages::findOrFail($id);
+
+        // Delete the associated image file from storage
+        Storage::delete('public/' . $propertyImage->image);
+
+        // Delete the PropertyImages record
+        $propertyImage->delete();
+        return redirect()->back()->with('success', 'Property Image deleted successfully!');
 
     }
 }

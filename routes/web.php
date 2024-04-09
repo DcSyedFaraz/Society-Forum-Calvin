@@ -96,6 +96,8 @@ Route::group(['prefix' => 'dashboard','as' => 'admin.', 'middleware' => ['auth',
     Route::get('/list', [EstateController::class, 'list'])->name('list');
     Route::delete('/list/{id}', [EstateController::class, 'destroy'])->name('list.delete');
 });
+
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'role:admin']], function () {
 
     Route::get('/change_password', [DashboardController::class, 'change_password'])->name('change_password');
@@ -164,6 +166,7 @@ Route::group(['prefix' => 'real_estate', 'as' => 'agent.', 'middleware' => ['aut
     Route::delete('/list/{id}', [EstateController::class, 'destroy'])->name('list.delete');
     Route::post('/list', [EstateController::class, 'listSave'])->name('list.save');
     Route::get('/list/edit/{id}', [EstateController::class, 'edit'])->name('list.edit');
+    Route::get('/list/image/{id}', [EstateController::class, 'image'])->name('list.image');
     Route::put('/list/update/{id}', [EstateController::class, 'update'])->name('list.update');
 
     Route::get('/change_password', [UserDashboardController::class, 'change_password'])->name('change_password');

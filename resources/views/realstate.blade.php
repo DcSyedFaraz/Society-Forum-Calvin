@@ -1,10 +1,150 @@
 @extends('layout.app')
 <style>
+    .fancybox-toolbar {
+        display: none;
+    }
+
+    .fancybox-show-nav .fancybox-navigation {
+        display: none !important;
+    }
+
+    span.label-wrap.top-left {
+        z-index: 2;
+    }
+
     .user-img {
         width: 38px;
         height: 38px;
         padding: 0px;
         border-radius: 50%;
+
+        * {
+            margin: 0;
+            padding: 0;
+            text-decoration: none;
+        }
+
+        .title {
+            margin-top: 50px;
+        }
+
+        .title h1 {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            font-family: Arial;
+            text-transform: uppercase;
+            color: #d63031;
+        }
+
+        .title h1 span {
+            display: block;
+            color: #300a0a;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        /*Carousel Gallery*/
+        .carousel-gallery {
+            margin: 50px 0;
+            padding: 0 30px;
+        }
+
+        .carousel-gallery .swiper-slide a {
+            display: block;
+            width: 100%;
+            height: 200px;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            -webkit-box-shadow: 3px 2px 20px 0px rgba(0, 0, 0, .2);
+            -moz-box-shadow: 3px 2px 20px 0px rgba(0, 0, 0, .2);
+            box-shadow: 3px 2px 20px 0px rgba(0, 0, 0, .2);
+        }
+
+        .carousel-gallery .swiper-slide a:hover .image .overlay {
+            opacity: 1;
+        }
+
+        .carousel-gallery .swiper-slide a .image {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center center;
+        }
+
+        .carousel-gallery .swiper-slide a .image .overlay {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(20, 20, 20, .8);
+            text-align: center;
+            opacity: 0;
+            -webkit-transition: all 0.2s linear;
+            -o-transition: all 0.2s linear;
+            transition: all 0.2s linear;
+        }
+
+        .carousel-gallery .swiper-slide a .image .overlay em {
+            color: #fff;
+            font-size: 26px;
+            position: relative;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+            transform: translateY(-50%);
+            display: inline-block;
+        }
+
+        .carousel-gallery .swiper-pagination {
+            position: relative;
+            bottom: auto;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .carousel-gallery .swiper-pagination .swiper-pagination-bullet {
+            -webkit-transition: all 0.2s linear;
+            -o-transition: all 0.2s linear;
+            transition: all 0.2s linear;
+        }
+
+        .carousel-gallery .swiper-pagination .swiper-pagination-bullet:hover {
+            opacity: 0.7;
+        }
+
+        .carousel-gallery .swiper-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active {
+            background-color: #d63031;
+            transform: scale(1.1, 1.1);
+        }
+
+        /*# Carousel Gallery*/
+        .plugins {
+            text-align: center;
+        }
+
+        .plugins h3 {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            font-family: Arial;
+            text-transform: uppercase;
+            color: #111;
+        }
+
+        .plugins a {
+            display: inline-block;
+            font-family: Arial;
+            color: #777;
+            font-size: 14px;
+            margin: 10px;
+            transition: all 0.2s linear;
+        }
+
+        .plugins a:hover {
+            color: #d63031;
+        }
+
     }
 </style>
 @section('content')
@@ -48,12 +188,35 @@
                                                     <span class="label label-success label-featured">For Sale</span>
                                                     {{-- <span class="label label-success label-featured">For Sale</span> --}}
                                                 </span>
-                                                <a class="effect-light" href="#">
-                                                    <img width="100%" height="300"
-                                                        style="    border-radius: 1.25rem !important;"
-                                                        src="{{ asset('storage/' . $item->image) }}"
-                                                        class="img-responsive wp-post-image" alt="" loading="lazy">
-                                                </a>
+
+                                                <!--Carousel Gallery-->
+                                                <div class="carousel-gallery">
+                                                    <div class="swiper-container">
+                                                        <div class="swiper-wrapper">
+                                                           @foreach ($item->images as $image)
+                                                             <div class="swiper-slide">
+                                                                 <a class="effect-light"
+                                                                     href="{{ asset('storage/' . $image->image) }}"
+                                                                     data-fancybox="gallery">
+                                                                     <div class="image">
+                                                                         <img width="100%" height="300"
+                                                                             style="border-radius: 1.25rem !important;"
+                                                                             src="{{ asset('storage/' . $image->image) }}"
+                                                                             class="img-responsive wp-post-image"
+                                                                             alt="" loading="lazy">
+                                                                         <div class="overlay">
+                                                                             <em class="mdi mdi-magnify-plus"></em>
+                                                                         </div>
+                                                                     </div>
+                                                                 </a>
+                                                             </div>
+                                                           @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--#Carousel Gallery-->
+
+
 
                                             </div>
                                         </div>
@@ -70,9 +233,14 @@
                                                     <p class="item-address">{{ $item->address }}</p>
                                                     <h4 class="title"><a href="#">{{ $item->title }}</a></h4>
                                                     <div class="">
-                                                         <p class="item-address">Website Link: <a href="{{ $item->promote_url }}" target="blank">{{ $item->promote_url }}</a></p>
-                                                        <p class="item-address">Company's Website: <a href="{{ $item->company_website }}" target="blank">{{ $item->company_website }}</a></p>
-                                                        <p class="item-address">Contact Information: {{ $item->email }}</p>
+                                                        <p class="item-address">Website Link: <a
+                                                                href="{{ $item->promote_url }}"
+                                                                target="blank">{{ $item->promote_url }}</a></p>
+                                                        <p class="item-address">Company's Website: <a
+                                                                href="{{ $item->company_website }}"
+                                                                target="blank">{{ $item->company_website }}</a></p>
+                                                        <p class="item-address">Contact Information: {{ $item->email }}
+                                                        </p>
                                                     </div>
                                                 </div>
 
@@ -352,29 +520,6 @@
                             </div>
                             <!-- .item-wrap -->
                         </div>
-                        <!-- <div class="col-sm-4">
-                                    <div class="item-wrap infobox_trigger homey-matchHeight" data-id="43205">
-                                        <div class="media property-item">
-                                            <div class="media-left">
-                                                <div class="item-media item-media-thumb">
-                                                    <a class="effect-light" href="#">
-                                                        <img width="100%" height="300" src="{{ asset('backend/images/map-6.png') }}" class="img-responsive wp-post-image" alt="" loading="lazy">
-                                                    </a>
-
-                                                </div>
-                                                </div>
-                                                    <div class="media-body item-body clearfix ">
-                                                        <div class="item-title-head table-block">
-                                                            <div class="title-head-left ">
-                                                                <h4 class="title"><a href="#">Villa in Coral Gables</a></h4>
-                                                                <p class="item-address">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ut euismod eros, condimentum.</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                    </div> -->
                     </div>
                 </div>
             </div>
@@ -391,12 +536,10 @@
                     </div>
                 </div>
                 <div class="container map-emmeded">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19547.357562814876!2d-104.97259257549148!3d39.72497635697503!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x876c7eec6e767e35%3A0x5670cccca5147bd1!2sDenver%20Country%20Club!5e0!3m2!1sen!2s!4v1707167336753!5m2!1sen!2s"
-                        width="90%" height="550"
-                        style="border:0; border-radius:30px; text-align: center;
-                margin: 0px auto; display: table;"
-                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe class="map"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3285.4808189429596!2d-118.09030472415338!3d34.5666984903909!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c257e806603255%3A0x2fd1e1713c6dddfc!2s2325%20Mark%20Ave%2C%20Palmdale%2C%20CA%2093550%2C%20USA!5e0!3m2!1sen!2s!4v1712351912480!5m2!1sen!2s"
+                        width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>

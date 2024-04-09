@@ -35,7 +35,7 @@
                 </span>
         </div>
     </section>
-    <section class="main-div1" style="padding-bottom: 70px;">
+    {{-- <section class="main-div1" style="padding-bottom: 70px;">
         <div class="col-5">
             <img src=" {{ asset('frontend/images/dot.png') }}" class="dot">
             <img src=" {{ asset('frontend/images/image2.png') }}" style="width: 100%; z-index: 000000; position: relative;">
@@ -53,7 +53,7 @@
                 et
                 dolor et orci volutpat placerat eu ac ex.</p>
         </div>
-    </section>
+    </section> --}}
     <section class="container-fluid-banner">
         <div class="col-12">
             <div class="cta">

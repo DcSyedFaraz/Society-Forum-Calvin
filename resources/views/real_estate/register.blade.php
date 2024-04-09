@@ -104,7 +104,7 @@
                             <div class="landlorder">
                                 <div class="mb-3">
                                     <label for="landlord" class="form-label">Image Of Property</label>
-                                    <input type="file" class="form-control" name="image" accept="image/*" />
+                                    <input type="file" class="form-control" name="images[]" multiple accept="image/*" />
                                 </div>
 
 

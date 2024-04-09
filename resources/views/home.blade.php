@@ -21,7 +21,7 @@
                 Our main entrances are through the intersections of East Avenue R-4 and Cardiff Street and East Avenue
                 R-8 and Laderman Lane. The Laderman Lane entrance is considered our main entrance. We promote a
                 welcoming community and home ownership. We welcome you to buy here and live here. Our goal is to
-                increase home values for the benefit of all our neighbors</p>
+                increase home values for the benefit of all our neighbors.</p>
             <a href="#"><button class="btn-1">Learn More</button></a>
         </div>
         <div class="col-6">

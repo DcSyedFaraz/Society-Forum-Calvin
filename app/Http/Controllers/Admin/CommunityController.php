@@ -138,7 +138,7 @@ class CommunityController extends Controller
 
         if ($request->hasFile('image')) {
             if ($community->image) {
-                Storage::delete('public/'.$community->image); // Delete image from storage
+                Storage::delete('public/' . $community->image); // Delete image from storage
             }
 
             // Store the new image
@@ -163,7 +163,7 @@ class CommunityController extends Controller
         // dd($community);
         if (Auth::user()->hasRole('admin') || Auth::id() == $community->user_id) {
             if ($community->image) {
-                Storage::delete('public/'.$community->image); // Delete image from storage
+                Storage::delete('public/' . $community->image); // Delete image from storage
             }
             $community->delete();
         } else {

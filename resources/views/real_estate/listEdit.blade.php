@@ -9,7 +9,8 @@
                 <h1>Edit Real Estate Property</h1>
                 <!-- You can add any additional information or messages here -->
                 <div class="card-body">
-                    <form action="{{ route('agent.list.update', $property->id) }}" enctype="multipart/form-data" method="post">
+                    <form action="{{ route('agent.list.update', $property->id) }}" enctype="multipart/form-data"
+                        method="post">
                         @csrf
                         @method('PUT') <!-- Use PUT method for updating -->
                         <h4>
@@ -32,9 +33,33 @@
                             <div class="landlorder">
                                 <div class="mb-3">
                                     <label for="image" class="form-label">Image Of Property</label>
-                                    <input type="file" class="form-control" id="image" name="image" accept="image/*">
-                                    @if($property->image)
-                                        <img class="img-thumbnail" src="{{ asset('storage/' . $property->image) }}" alt="Property Image" style="max-width: 100px; max-height: 100px; margin-top: 10px;">
+                                    <input type="file" class="form-control" id="image" multiple name="images[]"
+                                        accept="image/*">
+                                    @if ($property->images)
+                                        @foreach ($property->images as $item)
+                                            <div class="row">
+
+                                                <div class="position-relative">
+                                                    <!-- Your image -->
+                                                    <img class="img-thumbnail" src="{{ asset('storage/' . $item->image) }}"
+                                                        alt="Property Image"
+                                                        style="max-width: 100px; max-height: 100px; margin-top: 10px;">
+
+                                                    <!-- Overlay with X icon -->
+                                                    <div class="position-absolute top-0 start-0 translate-middle p-2">
+                                                        <!-- Bootstrap X icon -->
+                                                        <a href="{{ route('agent.list.image', $item->id) }}">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                height="16" fill="currentColor"
+                                                                class="bi bi-x-lg text-danger" viewBox="0 0 16 16">
+                                                                <path
+                                                                    d="M4.354 4.354a.5.5 0 0 1 .708 0L8 7.293l3.938-3.939a.5.5 0 0 1 .707.708L8.707 8l3.938 3.938a.5.5 0 0 1-.708.708L8 8.707l-3.938 3.938a.5.5 0 0 1-.707-.708L7.293 8 3.354 4.062a.5.5 0 0 1 0-.708z" />
+                                                            </svg>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
                                     @endif
                                 </div>
                                 <div class="mb-3">
@@ -58,7 +83,8 @@
                                         value="{{ $property->email }}" />
                                 </div>
                                 <div class="mb-3">
-                                    <label for="company_website" class="form-label">A Link To The Real Estate Agent's Or Real
+                                    <label for="company_website" class="form-label">A Link To The Real Estate Agent's Or
+                                        Real
                                         Estate
                                         Company's Website</label>
                                     <input type="url" class="form-control" id="company_website" name="company_website"
