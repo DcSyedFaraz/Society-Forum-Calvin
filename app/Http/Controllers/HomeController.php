@@ -56,18 +56,22 @@ class HomeController extends Controller
         return view('contact');
     }
 
+    public function cookie()
+        {
+            return view('cookie');
+        }
+    public function guidelines()
+        {
+            return view('guidelines');
+        }
+    public function lienceseagreement()
+        {
+            return view('lienceseagreement');
+        }
     public function login()
     {
         // $this->middleware('auth')->except('logout');
         return view('auth.login');
     }
 
-    public function product_detail($id)
-    {
-        $data['product'] = Product::find($id);
-        $data['size'] = VeriantSize::where('product_id', $id)->first();
-        // return json_decode($size->name);
-        $data['color'] = VeriantColor::where('product_id', $id)->first();
-        return view('admin.product_detail', $data);
-    }
 }

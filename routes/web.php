@@ -69,6 +69,11 @@ Route::get('/realstate', [HomeController::class, 'realstate'])->name('realstate'
 Route::get('/gallery', [HomeController::class, 'gallery'])->name('gallery');
 Route::get('/community-forum', [HomeController::class, 'community_forum'])->name('community_forum');
 Route::get('/contact', [HomeController::class, 'contact_us'])->name('contact');
+Route::get('/cookie-policy', [HomeController::class, 'cookie'])->name('cookie_policy');
+Route::get('/park-shadows-HOA-community-forum-guidelines', [HomeController::class, 'guidelines'])->name('guidelines');
+Route::get('/end-user-license-agreement', [HomeController::class, 'lienceseagreement'])->name('agreement');
+
+
 
 
 Route::middleware(['auth',])->group(function () {
@@ -198,6 +203,9 @@ Route::group(['prefix' => 'executive', 'as' => 'executive.', 'middleware' => ['a
     Route::post('/update/profile', [UserDashboardController::class, 'UserProfileUpdate'])->name('profile.update');
     Route::post('/edit/profile', [UserDashboardController::class, 'UserEditProfile'])->name('edit.profile');
     Route::post('/bank/detail', [UserDashboardController::class, 'UserBankDetail'])->name('bank.detail');
+
+
+
 });
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {

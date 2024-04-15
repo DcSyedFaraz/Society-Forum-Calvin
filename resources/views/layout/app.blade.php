@@ -145,6 +145,15 @@
                         <a class="footer-a" href="{{ route('about_us') }}">
                             <li class="footer-li">About us</li>
                         </a>
+                        <a class="footer-a" href="{{ route('cookie_policy') }}">
+                            <li class="footer-li">Cookie policy</li>
+                        </a>
+                        <a class="footer-a" href="{{ route('guidelines') }}">
+                            <li class="footer-li">Guidelines</li>
+                        </a>
+                        <a class="footer-a" href="{{ route('agreement') }}">
+                            <li class="footer-li">Agreement</li>
+                        </a>
                     </ul>
                 </div>
                 <div class="col-md-3">
