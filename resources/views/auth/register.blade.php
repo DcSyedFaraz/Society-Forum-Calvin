@@ -254,6 +254,11 @@
                                                 placeholder="Tony Nguyen">
                                         </div>
                                         <div class="mb-3">
+                                            <label for="fullName" class="form-label">User Name</label>
+                                            <input type="text" class="form-control" name="username"
+                                                placeholder="TonyNguyen01" />
+                                        </div>
+                                        <div class="mb-3">
                                             <label for="email" class="form-label">Email Address</label>
                                             <input type="email" class="form-control" name="email" id="email"
                                                 placeholder="tony@example.com">
@@ -323,6 +328,11 @@
                                             <label for="fullName" class="form-label">Full Name</label>
                                             <input type="text" name="name" class="form-control" id="name"
                                                 placeholder="Tony Nguyen">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="fullName" class="form-label">User Name</label>
+                                            <input type="text" class="form-control" name="username"
+                                                placeholder="TonyNguyen01" />
                                         </div>
                                         <div class="mb-3">
                                             <label for="email" class="form-label">Email Address</label>

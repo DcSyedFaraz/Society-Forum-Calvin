@@ -73,6 +73,7 @@ class PermissionTableSeeder extends Seeder
 
         $user =[
             'name'=>'Admin',
+            'username'=>'Admin',
             'access'=>'approved',
             'email'=>'admin@gmail.com',
             'password' => Hash::make('12345678'),
@@ -83,6 +84,7 @@ class PermissionTableSeeder extends Seeder
         $userd->assignRole('admin');
         $estate =[
             'name'=>'Estate Agent',
+            'username'=>'Estate Agent',
             'access'=>'approved',
             'email'=>'realestate@gmail.com',
             'password' => Hash::make('12345678'),
@@ -93,6 +95,7 @@ class PermissionTableSeeder extends Seeder
         $estatd->assignRole('agent');
         $executiv =[
             'name'=>'Executive',
+            'username'=>'Executive',
             'access'=>'approved',
             'email'=>'executive@gmail.com',
             'password' => Hash::make('12345678'),
@@ -103,6 +106,7 @@ class PermissionTableSeeder extends Seeder
         $executivd->assignRole('executive');
         $member =[
             'name'=>'member',
+            'username'=>'member',
             'access'=>'approved',
             'email'=>'member@gmail.com',
             'password' => Hash::make('12345678'),

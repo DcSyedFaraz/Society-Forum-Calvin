@@ -184,9 +184,28 @@ class CommunityController extends Controller
     }
     public function comment($id)
     {
+        Community::findOrFail($id);
         $comments = Comment::where('community_id', $id)->with('user')->orderByDesc('created_at')->get();
-        // dd($community);
-        return view('community.comments', compact('comments', 'id'));
+        $users = User::pluck('username')->toArray();
+        // dd($users);
+        return view('community.comments', compact('comments', 'id', 'users'));
+    }
+    public function storeReply(Request $request, $commentId)
+    {
+        $request->validate([
+            'reply' => 'required|string|max:100',
+            'community_id' => 'required|exists:communities,id',
+        ]);
+
+        $comment = Comment::findOrFail($commentId);
+
+        $reply = new Comment();
+        $reply->body = $request->input('reply');
+        $reply->parent_id = $comment->id;
+        $reply->user_id = auth()->id();
+        $reply->save();
+
+        return redirect()->back()->with('success', 'Reply added successfully.');
     }
     public function commentStore(Request $request)
     {

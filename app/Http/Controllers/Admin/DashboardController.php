@@ -263,13 +263,14 @@ class DashboardController extends Controller
         $rules = [
             'name' => 'required',
             'phone' => 'required',
+            'username' => ['required','string', 'max:10', 'unique:users,username,'.$id],
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
 
         $this->validate($request, $rules);
 
         $user = User::find($id);
-        $input = $request->except('image');
+        $input = $request->except('image', 'username');
 
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('public/images');
@@ -279,6 +280,12 @@ class DashboardController extends Controller
             $user->update(['image' => $imageName]);
         } else {
             $input['image'] = $user->image;
+        }
+        if ($request->username) {
+
+            $user->update(['username' => $request->username]);
+        } else {
+            $input['username'] = $user->username;
         }
 
         $user->update($input);

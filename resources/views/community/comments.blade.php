@@ -1,7 +1,11 @@
 @extends(auth()->user()->hasRole('admin') ? 'admin.layouts.app' : (auth()->user()->hasRole('executive') ? 'executive.layouts.app' : 'member.layouts.app'))
+<!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+
+
 @section('content')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <div class="container mt-5">
         <div class="row">
@@ -14,15 +18,38 @@
                         <div class="card mb-3">
                             <div class="card-body">
                                 <strong>{{ $comment->user->name }}: </strong>
-                                <p>{{ $comment->body }}</p>
+                                <p>{!! $comment->body !!}</p>
                                 <p class="text-muted">{{ $comment->created_at->diffForHumans() }}
                                     @if (\Auth::user()->hasRole('admin') || $comment->user_id == \Auth::id())
-                                        <span><button
-                                                class="btn btn-sm btn-link p-0 delete-btn" data-comment-id="{{ $comment->id }}" id="delete-comment-btn-{{ $comment->id }}">
+                                        <span><button class="btn btn-sm btn-link p-0 delete-btn"
+                                                data-comment-id="{{ $comment->id }}"
+                                                id="delete-comment-btn-{{ $comment->id }}">
                                                 <i class="fas fa-trash-alt text-danger"></i>
                                             </button></span>
                                     @endif
-                                    </p>
+                                </p>
+                                @foreach ($comment->replies as $reply)
+                                    <div class="reply ms-3">
+                                        <strong>{{ $reply->user->name }}: </strong>
+                                        <p>{!! $reply->body !!}</p>
+                                        <p class="text-muted">{{ $reply->created_at->diffForHumans() }}
+                                            @if (\Auth::user()->hasRole('admin') || $reply->user_id == \Auth::id())
+                                                <span><button class="btn btn-sm btn-link p-0 delete-btn"
+                                                        data-comment-id="{{ $reply->id }}"
+                                                        id="delete-reply-btn-{{ $reply->id }}">
+                                                        <i class="fas fa-trash-alt text-danger"></i>
+                                                    </button></span>
+                                            @endif
+                                        </p>
+                                    </div>
+                                @endforeach
+                                <form class="reply ms-3" action="{{ route('comments.reply', $comment->id) }}" method="POST">
+                                    @csrf
+                                    <textarea name="reply" class="form-control summernote"></textarea>
+                                    <input type="hidden" value="{{ $id }}" name="community_id" />
+                                    <button type="submit">Reply</button>
+                                </form>
+
 
                             </div>
                         </div>
@@ -36,7 +63,7 @@
                     @csrf
                     <input type="hidden" value="{{ $id }}" name="community_id" />
                     <div class="form-floating mb-3">
-                        <textarea name="body" class="form-control" id="floatingTextarea" maxlength="100" style="height: 100px" required></textarea>
+                        <textarea name="body" class="form-control summernote" id="body" maxlength="100" style="height: 100px" required></textarea>
                         <label for="floatingTextarea">Comment</label>
                     </div>
                     <button type="submit" class="btn btn-primary">Add Comment</button>
@@ -45,13 +72,45 @@
         </div>
     </div>
 @endsection
-@section ('script')
+@section('script')
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.summernote').summernote({
+                height: 200,
+                callbacks: {
+                    onChange: function(e) {
+                        // Ensure that the element with ID 'body' exists before setting its value
+                        $('#body').val(e);
+                    },
+                },
+                hint: {
+                    mentions: @json($users),
+                    match: /\B@(\w*)$/,
+                    search: function(keyword, callback) {
+                        callback($.grep(this.mentions, function(item) {
+                            console.log(this.mentions);
+                            return item.indexOf(keyword) == 0;
+                        }));
+                    },
+                    content: function(item) {
+                        if (typeof item === 'string') {
+                            return '@' + item + '';
+                        } else {
+                            // Handle other cases, such as returning an empty string or throwing an error
+                            return ''; // or throw new Error('item is not a string');
+                        }
+                    }
+                },
+            });
+        });
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const deleteBtns = document.querySelectorAll('.delete-btn');
-
             deleteBtns.forEach(btn => {
                 btn.addEventListener('click', function() {
+                    console.log('deleteBtns');
                     const commentId = this.dataset.commentId;
 
                     Swal.fire({
@@ -66,7 +125,7 @@
                         if (result.isConfirmed) {
                             const form = document.createElement('form');
                             form.method =
-                            'POST';
+                                'POST';
                             form.action =
                                 `{{ route('comment.destroy', '') }}/${commentId}`;
                             form.style.display = 'none';

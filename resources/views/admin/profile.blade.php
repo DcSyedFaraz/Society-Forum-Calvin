@@ -51,6 +51,13 @@
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
+                                            <strong>User Name:</strong>
+                                            <input class="form-control" value="{{ Auth::user()->username }}" name="username"
+                                                required>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
                                             <strong>Email:</strong>
                                             <input class="form-control" readonly value="{{ Auth::user()->email }}"
                                                 type="email" name="email" required>

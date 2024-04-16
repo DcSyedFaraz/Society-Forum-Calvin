@@ -90,6 +90,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:admin|memb
     Route::get('/comment/{id}', [CommunityController::class, 'comment'])->name('community.comments');
     Route::delete('/comment/{id}', [CommunityController::class, 'commentDEL'])->name('comment.destroy');
     Route::post('/comment', [CommunityController::class, 'commentStore'])->name('comments.store');
+    Route::post('/comments/{comment}/reply', [CommunityController::class, 'storeReply'])->name('comments.reply');
     Route::resource('community', CommunityController::class);
 });
 Route::group(['prefix' => 'dashboard','as' => 'admin.', 'middleware' => ['auth', 'role:admin|executive']], function () {

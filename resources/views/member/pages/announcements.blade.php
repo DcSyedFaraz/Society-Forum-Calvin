@@ -1,10 +1,15 @@
-@extends(
-    (auth()->user()->hasRole('admin') ? 'admin.layouts.app' :
-    (auth()->user()->hasRole('executive') ? 'executive.layouts.app' :
-    'member.layouts.app'))
-)
+@extends(auth()->user()->hasRole('admin') ? 'admin.layouts.app' : (auth()->user()->hasRole('executive') ? 'executive.layouts.app' : 'member.layouts.app'))
 
-
+<!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+@section('script')
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.summernote').summernote();
+        });
+    </script>
+@endsection
 <style>
     .desspri {
         display: flex;
@@ -47,7 +52,7 @@
                                             <br>
                                             <div class="col-12 desspri">
                                                 <label for="start_date" class="form-label">Description:</label>
-                                                <textarea name="description" id="start_date" cols="30" rows="10"></textarea>
+                                                <textarea name="description" class="summernote" id="start_date" cols="30" rows="10"></textarea>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -65,12 +70,13 @@
                     <div class="announce">
                         <p><span>{{ $announcement->created_at->diffforhumans() }}</span></p>
                         <h3>{{ $announcement->title }}</h3>
-                        <p>{{ $announcement->description }}</p>
+                        <p>{!! $announcement->description !!}</p>
                         @if (auth()->user()->hasRole('admin'))
                             <div class="announcement-actions">
                                 <a href="#">
 
-                                    <i class="bi bi-trash text-danger fw" data-announcement-id="{{ $announcement->id }}"></i>
+                                    <i class="bi bi-trash text-danger fw"
+                                        data-announcement-id="{{ $announcement->id }}"></i>
                                 </a>
                             </div>
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -99,7 +105,8 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({
-                            url: '{{ route("admin.announcement.delete", ["announcement" => ":id"]) }}'.replace(':id', id),
+                            url: '{{ route('admin.announcement.delete', ['announcement' => ':id']) }}'
+                                .replace(':id', id),
                             type: 'DELETE',
                             data: {
                                 _token: $('input[name="_token"]').val()

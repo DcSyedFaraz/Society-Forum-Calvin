@@ -232,6 +232,11 @@
                                         placeholder="Tony Nguyen" />
                                 </div>
                                 <div class="mb-3">
+                                    <label for="fullName" class="form-label">User Name</label>
+                                    <input type="text" class="form-control" name="username"
+                                        placeholder="TonyNguyen01" />
+                                </div>
+                                <div class="mb-3">
                                     <label for="address" class="form-label">Full Current Address</label>
                                     <input type="text" class="form-control" name="address" placeholder="Address" />
                                 </div>

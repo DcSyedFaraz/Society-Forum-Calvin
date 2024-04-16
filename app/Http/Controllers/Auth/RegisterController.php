@@ -60,6 +60,7 @@ class RegisterController extends Controller
         $validatedData = Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'username' => ['required', 'string', 'max:10', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'same:confirm_password'],
             // 'permission' => 'required',
         ]);
@@ -72,6 +73,7 @@ class RegisterController extends Controller
         $user->name = $data['name'];
         $user->email = $data['email'];
         $user->phone = $data['phone'];
+        $user->username = $data['username'];
 
         if ($request->hasFile('image')) {
             // Store the image in the storage/app/public directory
@@ -113,6 +115,7 @@ class RegisterController extends Controller
 
         $this->validate($request, [
             'name' => 'required|string|max:255',
+            'username' => ['required', 'string', 'max:10', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'same:confirm_password'],
             'address' => 'required|string|max:255',
             'phoneNumber' => 'required|string|max:255',
@@ -127,6 +130,7 @@ class RegisterController extends Controller
             $user = new User();
             $user->name = $data['name'];
             $user->email = $data['email'];
+            $user->username = $data['username'];
             $user->phone = $data['phoneNumber'];
 
             if ($request->hasFile('image')) {
@@ -170,6 +174,7 @@ class RegisterController extends Controller
 
         $this->validate($request, [
             'name' => 'required|string|max:255',
+            'username' => ['required', 'string', 'max:10', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'same:confirm_password'],
             'license' => 'required|string|max:255',
             'phoneNumber' => 'required|string|max:255',
@@ -188,6 +193,7 @@ class RegisterController extends Controller
         $user = new User();
         $user->name = $data['name'];
         $user->email = $data['email'];
+        $user->username = $data['username'];
         $user->phone = $data['phoneNumber'];
 
         if ($request->hasFile('image')) {
@@ -227,6 +233,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'username' => ['required', 'string', 'max:10', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'same:confirm-password'],
             'roles' => 'required',
@@ -253,6 +260,7 @@ class RegisterController extends Controller
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'username' => $data['username'],
             'password' => Hash::make($data['password']),
         ]);
         $user->assignRole($data['roles']);
