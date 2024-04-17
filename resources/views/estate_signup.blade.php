@@ -240,12 +240,13 @@
                             </div>
                         </div>
                         <div class="formss">
-                            <div class="mb-3">
-                                <label for="fullName" class="form-label">User Name</label>
-                                <input type="text" class="form-control" name="username"
-                                    placeholder="TonyNguyen01" />
-                            </div>
                             <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="fullName" class="form-label">User Name</label>
+                                    <input type="text" class="form-control" name="username"
+                                        placeholder="TonyNguyen01" />
+                                </div>
+                                <small class="text-danger">*User Name must not contain spaces and must not exceed 10 characters.</small>
                                 <div class="mb-3">
                                     <label for="fullName" class="form-label">Real Estate Full Legal Name</label>
                                     <input type="text" class="form-control" name="name" placeholder="Tony Nguyen">

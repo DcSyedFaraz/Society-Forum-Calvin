@@ -258,6 +258,7 @@
                                             <input type="text" class="form-control" name="username"
                                                 placeholder="TonyNguyen01" />
                                         </div>
+                                        <small class="text-danger">*User Name must not contain spaces and must not exceed 10 characters.</small>
                                         <div class="mb-3">
                                             <label for="email" class="form-label">Email Address</label>
                                             <input type="email" class="form-control" name="email" id="email"
@@ -334,6 +335,7 @@
                                             <input type="text" class="form-control" name="username"
                                                 placeholder="TonyNguyen01" />
                                         </div>
+                                        <small class="text-danger">*User Name must not contain spaces and must not exceed 10 characters.</small>
                                         <div class="mb-3">
                                             <label for="email" class="form-label">Email Address</label>
                                             <input type="email" class="form-control" id="email" name="email"

@@ -236,6 +236,7 @@
                                     <input type="text" class="form-control" name="username"
                                         placeholder="TonyNguyen01" />
                                 </div>
+                                <small class="text-danger">*User Name must not contain spaces and must not exceed 10 characters.</small>
                                 <div class="mb-3">
                                     <label for="address" class="form-label">Full Current Address</label>
                                     <input type="text" class="form-control" name="address" placeholder="Address" />

@@ -263,7 +263,7 @@ class DashboardController extends Controller
         $rules = [
             'name' => 'required',
             'phone' => 'required',
-            'username' => ['required','string', 'max:10', 'unique:users,username,'.$id],
+            'username' => ['regex:/^[^\s]+$/','required','string', 'max:10', 'unique:users,username,'.$id],
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
 
