@@ -3,6 +3,7 @@
 // use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\Admin\CommunityController;
 use App\Http\Controllers\FileCabinetController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\real_estate\EstateController;
 use Illuminate\Support\Facades\Route;
 // Admin Dashboard
@@ -101,6 +102,16 @@ Route::group(['prefix' => 'dashboard','as' => 'admin.', 'middleware' => ['auth',
     Route::get('/artchitectural/decline/{id}', [DashboardController::class, 'artchitectural_decline'])->name('artchitectural.decline');
     Route::get('/list', [EstateController::class, 'list'])->name('list');
     Route::delete('/list/{id}', [EstateController::class, 'destroy'])->name('list.delete');
+
+    // Gallery
+    Route::resource('gallery', GalleryController::class);
+
+    // Floor Plan
+    Route::get('/floor-plans', [GalleryController::class, 'floor_plans'])->name('floor_plans');
+    Route::post('/floor-plans', [GalleryController::class, 'floor_plans_store'])->name('floor_plans.store');
+    Route::delete('/floor-plans/{plan}', [GalleryController::class, 'floor_plans_destroy'])->name('floor_plans.destroy');
+
+
 });
 
 

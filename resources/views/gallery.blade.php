@@ -1,17 +1,26 @@
 @extends('layout.app')
 
 @section('content')
-<section class="container-fluid-banner">
-    <div class="col-12">
-        <h1 class="h1-about">Gallery</h1>
-        <hr class="devider">
-    </div>
-</section>
-<section class="main-div2">
-    <div class="col-12">
-        <h1 class="gallery">Our Recent Gallery</h1>
-        <div class="grid-wrapper">
-            <div>
+    <section class="container-fluid-banner">
+        <div class="col-12">
+            <h1 class="h1-about">Gallery</h1>
+            <hr class="devider">
+        </div>
+    </section>
+    <section class="main-div2">
+        <div class="col-12">
+            <h1 class="gallery">Our Recent Gallery</h1>
+            <div class="grid-wrapper">
+            @forelse ($gallery as $image)
+                    <div class="">
+                        <img src=" {{ asset('storage/' . $image->path) }}" alt="" />
+                    </div>
+            @empty
+                <div class="alert alert-primary text-center" role="alert">
+                    <strong>Oops!</strong> No images found.
+                </div>
+            @endforelse
+            {{-- <div>
                 <img src=" {{ asset('frontend/images/new/gallery (2).jpg') }}" alt="" />
             </div>
             <div>
@@ -31,7 +40,7 @@
             </div>
             <div class="big">
                 <img src=" {{ asset('frontend/images/new/gallery.jpg') }}" alt="" />
-            </div>
+            </div> --}}
             {{-- <div>
                 <img src=" {{ asset('frontend/images/new/gallery8.png') }}" alt="" />
             </div>
@@ -44,16 +53,16 @@
             <div>
                 <img src=" {{ asset('frontend/images/new/gallery6.png') }}" alt="" />
             </div> --}}
+            </div>
         </div>
-    </div>
-</section>
-<section class="container-fluid-banner">
-    <div class="col-12">
-        <div class="cta">
-            <h1 class="h1-about">Get In Touch With Us</h1>
-            <hr class="devider">
-            <a href="contact.html"><button class="btn-2">Contact Us</button></a>
+    </section>
+    <section class="container-fluid-banner">
+        <div class="col-12">
+            <div class="cta">
+                <h1 class="h1-about">Get In Touch With Us</h1>
+                <hr class="devider">
+                <a href="contact.html"><button class="btn-2">Contact Us</button></a>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 @endsection

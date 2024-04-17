@@ -35,6 +35,12 @@ body {
     overflow-x: hidden;
 }
 
+.top-header .navbar .dropdown-menu {
+    -webkit-animation: .6s cubic-bezier(.25, .8, .25, 1) 0s normal forwards 1 animdropdown;
+    animation: .6s cubic-bezier(.25, .8, .25, 1) 0s normal forwards 1 animdropdown;
+    overflow: overlay;
+}
+
 .wrapper{
     width: auto;
 	position: relative
@@ -371,11 +377,6 @@ a {
     border-radius: 30px;
 }
 
-.top-header .navbar .dropdown-menu {
-    -webkit-animation: .6s cubic-bezier(.25, .8, .25, 1) 0s normal forwards 1 animdropdown;
-    animation: .6s cubic-bezier(.25, .8, .25, 1) 0s normal forwards 1 animdropdown;
-    overflow: overlay;
-}
 
 .top-header .navbar .nav-link .notify-badge {
 
@@ -477,6 +478,24 @@ button, input, optgroup, select, textarea {
     padding: 14px 40px !important;
     font-family: 'Montserrat';
     font-size: 14px;
+}
+.btn-group button.note-btn.btn.btn-default.btn-sm.dropdown-toggle {
+   background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: none;
+    border-radius: 0px !important;
+    opacity: 1;
+    padding: 10px !important;
+    font-family: 'Montserrat';
+    font-size: 14px;
+}
+.panel-heading.note-toolbar .note-btn-group.btn-group .btn {
+    padding: 8px !important;
+}
+.btn:hover {
+    color: unset !important;
+    background-color: unset !important;
+    border-color: unset !important;
+    border: unset !important;
 }
 .btn-primary {
     color: #fff;

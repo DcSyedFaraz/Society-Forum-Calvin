@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FloorPlan;
+use App\Models\Gallery;
 use App\Models\Property;
 use Illuminate\Http\Request;
 use App\Models\Product;
@@ -41,11 +43,13 @@ class HomeController extends Controller
     public function realstate()
     {
         $data['property'] = Property::where('access', 'approved')->orderby('created_at', 'desc')->get();
+        $data['plans'] = FloorPlan::orderby('created_at', 'desc')->get();
         return view('realstate', $data);
     }
     public function gallery()
     {
-        return view('gallery');
+        $data['gallery'] = Gallery::orderby('created_at', 'desc')->get();
+        return view('gallery',$data);
     }
     public function community_forum()
     {

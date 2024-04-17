@@ -88,7 +88,7 @@ class CommunityController extends Controller
             $message = "📢 New Post Added.";
             Notification::send($admin, new UserNotification($user, $message, 'Post'));
 
-            return redirect()->back()->with('succes', 'Post created successfully.');
+            return redirect()->back()->with('success', 'Post created successfully.');
         } catch (\Exception $e) {
             // Something went wrong, rollback the transaction
             DB::rollback();

@@ -422,6 +422,20 @@
                         <div class="menu-title">Users Management</div>
                     </a>
                 </li>
+                <li class="{{ request()->routeIs('admin.gallery.index') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.gallery.index') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/Schedules icon.png') }}">
+                        </div>
+                        <div class="menu-title">Gallery Management</div>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('admin.floor_plans') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.floor_plans') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/Schedules icon.png') }}">
+                        </div>
+                        <div class="menu-title">Floor Plan Management</div>
+                    </a>
+                </li>
                 <li class="{{ request()->routeIs('admin.ccnrs') ? 'mm-active' : '' }}">
                     <a href="{{ route('admin.ccnrs') }}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/project icon.png') }}">

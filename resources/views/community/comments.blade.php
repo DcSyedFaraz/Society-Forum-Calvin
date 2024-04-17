@@ -64,7 +64,7 @@
                     <input type="hidden" value="{{ $id }}" name="community_id" />
                     <div class="form-floating mb-3">
                         <textarea name="body" class="form-control summernote" id="body" maxlength="100" style="height: 100px" required></textarea>
-                        <label for="floatingTextarea">Comment</label>
+                        
                     </div>
                     <button type="submit" class="btn btn-primary">Add Comment</button>
                 </form>
