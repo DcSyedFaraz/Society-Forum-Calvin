@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Comment;
 use App\Models\Community;
 use App\Models\User;
+use App\Notifications\CommentNotification;
 use App\Notifications\UserNotification;
 use Auth;
 use DB;
@@ -13,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Notification;
 use Storage;
+use Str;
 
 class CommunityController extends Controller
 {
@@ -196,6 +198,16 @@ class CommunityController extends Controller
             'reply' => 'required|string|max:100',
             'community_id' => 'required|exists:communities,id',
         ]);
+        $taggedUsernames = json_decode($request->input('taggedUsernames'));
+        // dd($taggedUsernames);
+        foreach ($taggedUsernames as $key => $value) {
+            $notifyuser = User::where('username', $value)->first();
+            $user = auth()->user()->name;
+            $url = route('community.comments', $request->input('community_id'));
+            // Send the notification to eligible users
+            $message = "📢 Hey there! {$user} mentioned you in the comment.";
+            \Notification::send($notifyuser, new CommentNotification($url, $message, 'Mention'));
+        }
 
         $comment = Comment::findOrFail($commentId);
 
@@ -216,6 +228,17 @@ class CommunityController extends Controller
             'community_id' => 'required|exists:communities,id',
         ]);
         // dd($request->all(), $poll);
+
+        $taggedUsernames = json_decode($request->input('taggedUsernames'));
+        // dd($taggedUsernames);
+        foreach ($taggedUsernames as $key => $value) {
+            $notifyuser = User::where('username', $value)->first();
+            $user = auth()->user()->name;
+            $url = route('community.comments', $request->input('community_id'));
+            // Send the notification to eligible users
+            $message = "📢 Hey there! {$user} mentioned you in the comment.";
+            \Notification::send($notifyuser, new CommentNotification($url, $message, 'Mention'));
+        }
 
         // Create a new comment
         $comment = new Comment([

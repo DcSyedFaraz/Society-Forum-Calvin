@@ -58,13 +58,13 @@ class GalleryController extends Controller
         // dd($request->all());
 
         $rules = [
-            'files.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'files.*' => 'image|mimes:jpeg,png,jpg,gif|max:4096',
         ];
 
         $messages = [
             'files.*.image' => 'Each file must be an image.',
             'files.*.mimes' => 'Each file must be a JPEG, PNG, JPG, or GIF image.',
-            'files.*.max' => 'Each image may not be greater than :max kilobytes.',
+            'files.*.max' => 'Each image may not be greater than 4mb.',
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);

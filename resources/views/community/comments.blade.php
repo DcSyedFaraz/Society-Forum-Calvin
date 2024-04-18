@@ -43,8 +43,11 @@
                                         </p>
                                     </div>
                                 @endforeach
-                                <form class="reply ms-3" action="{{ route('comments.reply', $comment->id) }}" method="POST">
+                                <form class="reply ms-3" action="{{ route('comments.reply', $comment->id) }}"
+                                    method="POST">
                                     @csrf
+                                    <input type="hidden" name="taggedUsernames" class="taggedUsernames">
+
                                     <textarea name="reply" class="form-control summernote"></textarea>
                                     <input type="hidden" value="{{ $id }}" name="community_id" />
                                     <button type="submit">Reply</button>
@@ -61,10 +64,12 @@
                 <h4 class="mb-3">Add a comment:</h4>
                 <form method="post" action="{{ route('comments.store') }}">
                     @csrf
+                    <input type="hidden" name="taggedUsernames" class="taggedUsernames">
+
                     <input type="hidden" value="{{ $id }}" name="community_id" />
                     <div class="form-floating mb-3">
                         <textarea name="body" class="form-control summernote" id="body" maxlength="100" style="height: 100px" required></textarea>
-                        
+
                     </div>
                     <button type="submit" class="btn btn-primary">Add Comment</button>
                 </form>
@@ -73,35 +78,50 @@
     </div>
 @endsection
 @section('script')
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('.summernote').summernote({
-                height: 200,
-                callbacks: {
-                    onChange: function(e) {
-                        // Ensure that the element with ID 'body' exists before setting its value
-                        $('#body').val(e);
-                    },
-                },
-                hint: {
-                    mentions: @json($users),
-                    match: /\B@(\w*)$/,
-                    search: function(keyword, callback) {
-                        callback($.grep(this.mentions, function(item) {
-                            console.log(this.mentions);
-                            return item.indexOf(keyword) == 0;
-                        }));
-                    },
-                    content: function(item) {
-                        if (typeof item === 'string') {
-                            return '@' + item + '';
-                        } else {
-                            // Handle other cases, such as returning an empty string or throwing an error
-                            return ''; // or throw new Error('item is not a string');
-                        }
-                    }
-                },
+            // Loop through each form
+            $('form').each(function(index) {
+                let taggedUsernames = []; // Initialize array to store tagged usernames for this form
+
+                $(this).submit(function() {
+                    // Update the value of the hidden input field for this form with the tagged usernames
+                    $(this).find('.taggedUsernames').val(JSON.stringify(taggedUsernames));
+                });
+
+                // Initialize Summernote for the current form
+                const $summernote = $(this).find('.summernote');
+                const $taggedUsernamesInput = $(this).find('.taggedUsernames');
+
+                if ($summernote.length && $taggedUsernamesInput.length) {
+                    $summernote.summernote({
+                        height: 200,
+                        callbacks: {
+                            onChange: function(contents, editable) {
+                                // Clear the array on every change
+                                // taggedUsernames = [];
+                            }
+                        },
+                        hint: {
+                            mentions: typeof @json($users) !== 'undefined' ?
+                                @json($users) : [],
+                            match: /\B@(\w*)$/,
+                            search: function(keyword, callback) {
+                                const filteredMentions = $.grep(this.mentions, function(item) {
+                                    return item.indexOf(keyword) === 0;
+                                });
+                                callback(filteredMentions);
+                            },
+                            content: function(item) {
+                                // Push the tagged username into the array
+                                taggedUsernames.push(item);
+                                // Return the formatted content for display in the editor
+                                return `<b>@${item}</b>`;
+                            }
+                        },
+                    });
+                }
             });
         });
     </script>
