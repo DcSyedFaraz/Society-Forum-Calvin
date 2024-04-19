@@ -50,7 +50,7 @@
 
                                     <textarea name="reply" class="form-control summernote"></textarea>
                                     <input type="hidden" value="{{ $id }}" name="community_id" />
-                                    <button type="submit">Reply</button>
+                                    <button type="submit" class="btn btn-primary my-2">Reply</button>
                                 </form>
 
 
@@ -117,7 +117,7 @@
                                 // Push the tagged username into the array
                                 taggedUsernames.push(item);
                                 // Return the formatted content for display in the editor
-                                return `<b>@${item}</b>`;
+                                return `@${item}`;
                             }
                         },
                     });

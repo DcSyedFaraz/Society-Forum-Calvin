@@ -101,8 +101,8 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1>Community</h1>
-                <p>{{ auth()->user()->name }}, welcome back</p>
+                <h1>Community Forum</h1>
+                <p class="text-danger">* All comments and posts are public. Pleaser refer to the community guidelines.</p>
                 <button type="button btn-sm" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Post
                 </button>

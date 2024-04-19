@@ -73,7 +73,7 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <strong>Phone:</strong>
-                                            <input class="form-control" value="{{ Auth::user()->phone }}" type="number"
+                                            <input class="form-control" value="{{ Auth::user()->phone }}" type="text"
                                                 name="phone" required>
                                         </div>
                                     </div>

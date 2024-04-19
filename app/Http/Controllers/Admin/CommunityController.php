@@ -201,7 +201,9 @@ class CommunityController extends Controller
         $taggedUsernames = json_decode($request->input('taggedUsernames'));
         // dd($taggedUsernames);
         foreach ($taggedUsernames as $key => $value) {
+            
             $notifyuser = User::where('username', $value)->first();
+
             $user = auth()->user()->name;
             $url = route('community.comments', $request->input('community_id'));
             // Send the notification to eligible users
