@@ -40,8 +40,13 @@ Route::get('/done', function () {
 
     return 'done';
 });
+Route::post('otp-verify', [LoginController::class, 'verifyOTP'])->name('otp.verify');
+
 Route::middleware(['check.auth',])->group(function () {
-    Auth::routes();
+    Auth::routes(['except' => ['login']]);
+
+    // Add the following route to handle the login form submission
+    Route::post('login', [LoginController::class, 'loginOTP'])->name('login');
 
     Route::get('/signup', [RegisterController::class, 'register_form'])->name('signup');
     Route::get('/agentsignup', [RegisterController::class, 'agent_register_form'])->name('agentsignup');
@@ -94,7 +99,7 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:admin|memb
     Route::post('/comments/{comment}/reply', [CommunityController::class, 'storeReply'])->name('comments.reply');
     Route::resource('community', CommunityController::class);
 });
-Route::group(['prefix' => 'dashboard','as' => 'admin.', 'middleware' => ['auth', 'role:admin|executive']], function () {
+Route::group(['prefix' => 'dashboard', 'as' => 'admin.', 'middleware' => ['auth', 'role:admin|executive']], function () {
 
     // Artchitectural Request
     Route::get('/artchitectural', [DashboardController::class, 'artchitectural'])->name('artchitectural');

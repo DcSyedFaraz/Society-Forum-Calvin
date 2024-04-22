@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('username');
             $table->string('email')->unique();
             $table->string('phone')->nullable();
+            $table->string('otp')->nullable();
             $table->string('image')->nullable();
             $table->string('access')->nullable();
             $table->timestamp('email_verified_at')->nullable();
