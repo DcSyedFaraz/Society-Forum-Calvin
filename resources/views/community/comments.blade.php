@@ -14,24 +14,46 @@
                 <!-- Display community options -->
                 <h4 class="mb-3">Comments:</h4>
                 @foreach ($comments as $comment)
-                    @if (!auth()->user()->hasRole('member') || $comment->user_id === auth()->user()->id)
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <strong>{{ $comment->user->name }}: </strong>
-                                <p>{!! $comment->body !!}</p>
-                                <p class="text-muted">{{ $comment->created_at->diffForHumans() }}
-                                    @if (\Auth::user()->hasRole('admin') || $comment->user_id == \Auth::id())
-                                        <span><button class="btn btn-sm btn-link p-0 delete-btn"
-                                                data-comment-id="{{ $comment->id }}"
-                                                id="delete-comment-btn-{{ $comment->id }}">
-                                                <i class="fas fa-trash-alt text-danger"></i>
-                                            </button></span>
-                                    @endif
-                                </p>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <strong>{{ $comment->user->name }}: </strong>
+                            @php
+                                $body = $comment->body;
+
+                                // Regular expression to match usernames preceded by '@'
+                                $pattern = '/@(\w+)/';
+
+                                // Replace matched usernames with bold formatting
+                                $bodyWithBoldUsernames = preg_replace($pattern, '<strong>@$1</strong>', $body);
+                            @endphp
+                            <p>{!! $bodyWithBoldUsernames !!}</p>
+                            <p class="text-muted">{{ $comment->created_at->diffForHumans() }}
+                                @if (\Auth::user()->hasRole('admin') || $comment->user_id == \Auth::id())
+                                    <span><button class="btn btn-sm btn-link p-0 delete-btn"
+                                            data-comment-id="{{ $comment->id }}"
+                                            id="delete-comment-btn-{{ $comment->id }}">
+                                            <i class="fas fa-trash-alt text-danger"></i>
+                                        </button></span>
+                                @endif
+                            </p>
+                            <div class="border-start border-3" style="border-color: #8e7b56 !important; ">
                                 @foreach ($comment->replies as $reply)
                                     <div class="reply ms-3">
                                         <strong>{{ $reply->user->name }}: </strong>
-                                        <p>{!! $reply->body !!}</p>
+                                        @php
+                                            $body = $reply->body;
+
+                                            // Regular expression to match usernames preceded by '@'
+                                            $pattern = '/@(\w+)/';
+
+                                            // Replace matched usernames with bold formatting
+                                            $bodyWithBoldUsernames = preg_replace(
+                                                $pattern,
+                                                '<strong>@$1</strong>',
+                                                $body,
+                                            );
+                                        @endphp
+                                        <p>{!! $bodyWithBoldUsernames !!}</p>
                                         <p class="text-muted">{{ $reply->created_at->diffForHumans() }}
                                             @if (\Auth::user()->hasRole('admin') || $reply->user_id == \Auth::id())
                                                 <span><button class="btn btn-sm btn-link p-0 delete-btn"
@@ -43,20 +65,19 @@
                                         </p>
                                     </div>
                                 @endforeach
-                                <form class="reply ms-3" action="{{ route('comments.reply', $comment->id) }}"
-                                    method="POST">
-                                    @csrf
-                                    <input type="hidden" name="taggedUsernames" class="taggedUsernames">
-
-                                    <textarea name="reply" class="form-control summernote"></textarea>
-                                    <input type="hidden" value="{{ $id }}" name="community_id" />
-                                    <button type="submit" class="btn btn-primary my-2">Reply</button>
-                                </form>
-
-
                             </div>
+                            <form class="reply ms-3" action="{{ route('comments.reply', $comment->id) }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="taggedUsernames" class="taggedUsernames">
+
+                                <textarea name="reply" class="form-control summernote"></textarea>
+                                <input type="hidden" value="{{ $id }}" name="community_id" />
+                                <button type="submit" class="btn btn-primary my-2">Reply</button>
+                            </form>
+
+
                         </div>
-                    @endif
+                    </div>
                 @endforeach
 
 

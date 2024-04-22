@@ -218,6 +218,7 @@
                                                     @break
 
                                                     @case('Mention')
+                                                    @case('Reply')
                                                         <a data-notification-id="{{ $notifications->id }}"
                                                             class="dropdown-item notification-link"
                                                             href="{{ $notifications->data['url'] }}">

@@ -200,15 +200,16 @@ class CommunityController extends Controller
         ]);
         $taggedUsernames = json_decode($request->input('taggedUsernames'));
         // dd($taggedUsernames);
+        $user = auth()->user()->name;
+        $url = route('community.comments', $request->input('community_id'));
+
         foreach ($taggedUsernames as $key => $value) {
-            
+
             $notifyuser = User::where('username', $value)->first();
 
-            $user = auth()->user()->name;
-            $url = route('community.comments', $request->input('community_id'));
             // Send the notification to eligible users
             $message = "📢 Hey there! {$user} mentioned you in the comment.";
-            \Notification::send($notifyuser, new CommentNotification($url, $message, 'Mention'));
+            \Notification::send($notifyuser, new CommentNotification($url, $message, 'Reply'));
         }
 
         $comment = Comment::findOrFail($commentId);
@@ -218,6 +219,10 @@ class CommunityController extends Controller
         $reply->parent_id = $comment->id;
         $reply->user_id = auth()->id();
         $reply->save();
+
+        $notify = User::find($comment->user_id);
+        $messages = "📢 Hey there! {$user} replied to your comment.";
+        \Notification::send($notify, new CommentNotification($url, $messages, 'Mention'));
 
         return redirect()->back()->with('success', 'Reply added successfully.');
     }
