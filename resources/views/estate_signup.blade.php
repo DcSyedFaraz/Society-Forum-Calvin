@@ -214,7 +214,7 @@
                             Real Estate
                             Agents
                         </h1>
-                        <p class="copyright">© Copyright 2024</p>
+                        <p class="copyright">© Copyright {{ \Carbon\Carbon::now()->year }}</p>
                     </div>
 
                 </div>

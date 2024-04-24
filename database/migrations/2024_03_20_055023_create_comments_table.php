@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('community_id')->constrained()->onDelete('cascade')->nullable();
+            $table->foreignId('community_id')->nullable()->constrained()->onDelete('cascade');
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->text('body');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');

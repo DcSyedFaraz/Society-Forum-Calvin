@@ -84,7 +84,7 @@ class CommunityController extends Controller
             $user = auth()->user();
 
             // Get the users except the authenticated user and those with the excluded roles
-            $admin = User::role('admin')->get();
+            $admin = User::role(['admin','executive'])->get();
 
             // Send the notification to eligible users
             $message = "📢 New Post Added.";
@@ -163,7 +163,7 @@ class CommunityController extends Controller
     public function destroy(Community $community)
     {
         // dd($community);
-        if (Auth::user()->hasRole('admin') || Auth::id() == $community->user_id) {
+        if (!Auth::user()->hasRole('member') || Auth::id() == $community->user_id) {
             if ($community->image) {
                 Storage::delete('public/' . $community->image); // Delete image from storage
             }
@@ -177,7 +177,7 @@ class CommunityController extends Controller
     {
         // dd($community);
         $comment = Comment::find($id);
-        if (Auth::user()->hasRole('admin') || Auth::id() == $comment->user_id) {
+        if (!Auth::user()->hasRole('member') || Auth::id() == $comment->user_id) {
             $comment->delete();
         } else {
             return redirect()->back()->with('error', 'You do not have permission to delete it.');
@@ -258,7 +258,7 @@ class CommunityController extends Controller
         $user = auth()->user();
 
         // Get the users except the authenticated user and those with the excluded roles
-        $admin = User::role('admin')->get();
+        $admin = User::role(['admin','executive'])->get();
 
         // Send the notification to eligible users
         $message = "📢 New Comment Added.";

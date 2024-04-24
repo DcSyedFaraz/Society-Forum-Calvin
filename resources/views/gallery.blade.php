@@ -61,7 +61,7 @@
             <div class="cta">
                 <h1 class="h1-about">Get In Touch With Us</h1>
                 <hr class="devider">
-                <a href="contact.html"><button class="btn-2">Contact Us</button></a>
+                <a href="{{ route('contact') }}"><button class="btn-2">Contact Us</button></a>
             </div>
         </div>
     </section>

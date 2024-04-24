@@ -233,7 +233,7 @@
                                                     </div>
                                                 </div>
                                             @endif
-                                            @if (\Auth::user()->hasRole('admin') || \Auth::id() == $item->user_id)
+                                            @if (!\Auth::user()->hasRole('member') || \Auth::id() == $item->user_id)
                                                 <button class="btn-a delete-btn"
                                                     data-community-id="{{ $item->id }}">Delete</button>
                                             @endif

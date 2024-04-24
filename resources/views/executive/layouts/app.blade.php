@@ -107,8 +107,52 @@
                                     @if (auth()->user()->unreadnotifications->count() > 0)
                                         @foreach (auth()->user()->unreadnotifications as $notifications)
                                             @switch($notifications->type)
+                                                @case('Post')
+                                                    <a data-notification-id="{{ $notifications->id }}"
+                                                        class="dropdown-item notification-link"
+                                                        href="{{ route('community.index') }}">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="notification-box bg-light-orange text-orange">
+                                                                <i class="bi bi-collection-play-fill"></i>
+                                                            </div>
+                                                            <div class="ms-3 flex-grow-1">
+                                                                <h6 class="mb-0 dropdown-msg-user">
+                                                                    {{ $notifications->type }}<span
+                                                                        class="msg-time float-end text-secondary">{{ $notifications->created_at->diffForHumans() }}</span>
+                                                                </h6>
+                                                                <small
+                                                                    class="mb-0 dropdown-msg-text text-secondary d-flex align-items-center"
+                                                                    style="overflow-wrap: break-word; white-space: break-spaces !important;">{{ $notifications->data['message'] }}</small>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                @break
+
+                                                @case('Comment')
+                                                    <a data-notification-id="{{ $notifications->id }}"
+                                                        class="dropdown-item notification-link"
+                                                        href="{{ route('community.index') }}">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="notification-box bg-light-info text-info">
+                                                                <i class="bi bi-cursor-fill"></i>
+                                                            </div>
+                                                            <div class="ms-3 flex-grow-1">
+                                                                <h6 class="mb-0 dropdown-msg-user">
+                                                                    {{ $notifications->type }}<span
+                                                                        class="msg-time float-end text-secondary">{{ $notifications->created_at->diffForHumans() }}</span>
+                                                                </h6>
+                                                                <small
+                                                                    class="mb-0 dropdown-msg-text text-secondary d-flex align-items-center"
+                                                                    style="overflow-wrap: break-word; white-space: break-spaces !important;">{{ $notifications->data['message'] }}</small>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                @break
+
                                                 @case('Announcement')
-                                                    <a data-notification-id="{{ $notifications->id }}" class="dropdown-item notification-link" href="{{ route('executive.announcements') }}">
+                                                    <a data-notification-id="{{ $notifications->id }}"
+                                                        class="dropdown-item notification-link"
+                                                        href="{{ route('executive.announcements') }}">
                                                         <div class="d-flex align-items-center">
                                                             <div class="notification-box bg-light-warning text-warning"><i
                                                                     class="bi bi-droplet-fill"></i></div>
@@ -126,27 +170,28 @@
                                                 @break
 
                                                 @case('Architectural')
-                                                        <a data-notification-id="{{ $notifications->id }}"
-                                                            class="dropdown-item notification-link"
-                                                            href="{{ route('admin.artchitectural') }}">
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="notification-box text-warning"> <i
-                                                                        class="bi bi-megaphone-fill"></i></div>
-                                                                <div class="ms-3 flex-grow-1">
-                                                                    <h6 class="mb-0 dropdown-msg-user">
-                                                                        {{ $notifications->type }}<span
-                                                                            class="msg-time float-end text-secondary">{{ $notifications->created_at->diffForHumans() }}</span>
-                                                                    </h6>
-                                                                    <small
-                                                                        class="mb-0 dropdown-msg-text text-secondary d-flex align-items-center"
-                                                                        style="overflow-wrap: break-word; white-space: break-spaces !important;">{{ $notifications->data['message'] }}</small>
-                                                                </div>
+                                                    <a data-notification-id="{{ $notifications->id }}"
+                                                        class="dropdown-item notification-link"
+                                                        href="{{ route('admin.artchitectural') }}">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="notification-box text-warning"> <i
+                                                                    class="bi bi-megaphone-fill"></i></div>
+                                                            <div class="ms-3 flex-grow-1">
+                                                                <h6 class="mb-0 dropdown-msg-user">
+                                                                    {{ $notifications->type }}<span
+                                                                        class="msg-time float-end text-secondary">{{ $notifications->created_at->diffForHumans() }}</span>
+                                                                </h6>
+                                                                <small
+                                                                    class="mb-0 dropdown-msg-text text-secondary d-flex align-items-center"
+                                                                    style="overflow-wrap: break-word; white-space: break-spaces !important;">{{ $notifications->data['message'] }}</small>
                                                             </div>
-                                                        </a>
-                                                    @break
+                                                        </div>
+                                                    </a>
+                                                @break
 
                                                 @case('Real Estate')
-                                                    <a data-notification-id="{{ $notifications->id }}" class="dropdown-item notification-link" href="#">
+                                                    <a data-notification-id="{{ $notifications->id }}"
+                                                        class="dropdown-item notification-link" href="#">
                                                         <div class="d-flex align-items-center">
                                                             <div class="notification-box bg-light-primary text-primary"><i
                                                                     class="bi bi-basket2-fill"></i></div>
@@ -164,28 +209,29 @@
                                                 @break
 
                                                 @case('Mention')
-                                                    @case('Reply')
-                                                        <a data-notification-id="{{ $notifications->id }}"
-                                                            class="dropdown-item notification-link"
-                                                            href="{{ $notifications->data['url'] }}">
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="notification-box bg-light-success text-success"><i
+                                                @case('Reply')
+                                                    <a data-notification-id="{{ $notifications->id }}"
+                                                        class="dropdown-item notification-link"
+                                                        href="{{ $notifications->data['url'] }}">
+                                                        <div class="d-flex align-items-center">
+                                                            <div class="notification-box bg-light-success text-success"><i
                                                                     class="bi bi-at"></i></div>
-                                                                <div class="ms-3 flex-grow-1">
-                                                                    <h6 class="mb-0 dropdown-msg-user">
-                                                                        {{ $notifications->type }}<span
-                                                                            class="msg-time float-end text-secondary">{{ $notifications->created_at->diffForHumans() }}</span>
-                                                                    </h6>
-                                                                    <small
-                                                                        class="mb-0 dropdown-msg-text text-secondary d-flex align-items-center"
-                                                                        style="overflow-wrap: break-word; white-space: break-spaces !important;">{{ $notifications->data['message'] }}</small>
-                                                                </div>
+                                                            <div class="ms-3 flex-grow-1">
+                                                                <h6 class="mb-0 dropdown-msg-user">
+                                                                    {{ $notifications->type }}<span
+                                                                        class="msg-time float-end text-secondary">{{ $notifications->created_at->diffForHumans() }}</span>
+                                                                </h6>
+                                                                <small
+                                                                    class="mb-0 dropdown-msg-text text-secondary d-flex align-items-center"
+                                                                    style="overflow-wrap: break-word; white-space: break-spaces !important;">{{ $notifications->data['message'] }}</small>
                                                             </div>
-                                                        </a>
-                                                    @break
+                                                        </div>
+                                                    </a>
+                                                @break
 
                                                 @default
-                                                    <a data-notification-id="{{ $notifications->id }}" class="dropdown-item notification-link" href="javaScript:;">
+                                                    <a data-notification-id="{{ $notifications->id }}"
+                                                        class="dropdown-item notification-link" href="javaScript:;">
                                                         <div class="d-flex align-items-center">
                                                             <div class="notification-box bg-light-success text-success"><i
                                                                     class="bi bi-file-earmark-bar-graph-fill"></i></div>
@@ -210,7 +256,7 @@
 
 
                                 </div>
-                               
+
                             </div>
                         </li>
                         <li class="nav-item dropdown dropdown-user-setting">
@@ -240,7 +286,7 @@
                                     </a>
                                 </li>
 
-                                 <li>
+                                <li>
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li>
@@ -309,7 +355,7 @@
                     <a href="{{ route('community.index') }}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/statement-new.png') }}">
                         </div>
-                        <div class="menu-title">Community</div>
+                        <div class="menu-title">Community Forum</div>
                     </a>
                 </li>
                 <li class="{{ request()->routeIs('executive.financial') ? 'mm-active' : '' }}">

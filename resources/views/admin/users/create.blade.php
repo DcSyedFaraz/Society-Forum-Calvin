@@ -42,13 +42,19 @@
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                                 <strong>Name:</strong>
-                                <input class="form-control" name="name" required>
+                                <input class="form-control" value="{{ old('name') }}" name="name" required>
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">
                             <div class="form-group">
                                 <strong>Email:</strong>
-                                <input class="form-control" type="email" name="email" required>
+                                <input class="form-control" value="{{ old('email') }}" type="email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <strong>User Name:</strong>
+                                <input class="form-control" value="{{ old('username') }}" type="text" name="username" required>
                             </div>
                         </div>
                         <div class="col-xs-6 col-sm-6 col-md-6">

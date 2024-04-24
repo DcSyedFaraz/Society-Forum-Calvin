@@ -179,7 +179,8 @@
                 </div>
             </div>
             <div class="copyright">
-                <p class="copy text-uppercase">ALL RIGHTS RESERVED - park shadowshoa {{ \Carbon\Carbon::now()->year }}
+                <p class="copy text-uppercase">ALLRIGHTS RESERVED - park shadowshoa {{ \Carbon\Carbon::now()->year }} Designed and Developed By <a href="https://digitalneststudio.com/">Digital Nest Studio.</a>
+                </p>
                 </p>
             </div>
         </footer>

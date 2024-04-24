@@ -52,6 +52,12 @@
                                 <input class="form-control" value="{{$user->email}}" type="email" name="email" required>
                             </div>
                         </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6">
+                            <div class="form-group">
+                                <strong>User Name:</strong>
+                                <input class="form-control" value="{{$user->username}}" type="text" name="username" required>
+                            </div>
+                        </div>
                         <div class="col-xs-12 col-sm-12 col-md-12">
                             <div class="form-group">
                                 <strong>Password:</strong>

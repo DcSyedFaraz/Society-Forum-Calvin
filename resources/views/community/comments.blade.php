@@ -28,7 +28,7 @@
                             @endphp
                             <p>{!! $bodyWithBoldUsernames !!}</p>
                             <p class="text-muted">{{ $comment->created_at->diffForHumans() }}
-                                @if (\Auth::user()->hasRole('admin') || $comment->user_id == \Auth::id())
+                                @if (!\Auth::user()->hasRole('member') || $comment->user_id == \Auth::id())
                                     <span><button class="btn btn-sm btn-link p-0 delete-btn"
                                             data-comment-id="{{ $comment->id }}"
                                             id="delete-comment-btn-{{ $comment->id }}">
@@ -117,7 +117,15 @@
 
                 if ($summernote.length && $taggedUsernamesInput.length) {
                     $summernote.summernote({
-                        height: 200,
+                        height: 100,
+                        toolbar: [
+                            ['style', ['bold', 'italic', 'underline', 'clear']],
+                            ['font', ['strikethrough', 'superscript', 'subscript']],
+                            ['fontsize', ['fontsize']],
+                            ['color', ['color']],
+                            ['para', ['ul', 'ol', 'paragraph']],
+                            ['height', ['height']],
+                        ],
                         callbacks: {
                             onChange: function(contents, editable) {
                                 // Clear the array on every change

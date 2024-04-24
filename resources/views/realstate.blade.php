@@ -154,7 +154,7 @@
                 <div class="hero-image" style="height:100vh; ">
                     <div class="hero-text">
                         <h2>WELCOME HOME TO PARK SHADOWS</h2>
-                        <button> Learn More </button>
+                        {{-- <button> Learn More </button> --}}
                     </div>
 
                 </div>

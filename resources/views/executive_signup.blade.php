@@ -201,7 +201,7 @@
                 <div class="col col-6 welcome">
                     <div class="contently">
                         <h1>Welcome Executive Members</h1>
-                        <p class="copyright">© Copyright 2024</p>
+                        <p class="copyright">© Copyright {{ \Carbon\Carbon::now()->year }}</p>
                     </div>
                 </div>
                 <div class="col col-6">

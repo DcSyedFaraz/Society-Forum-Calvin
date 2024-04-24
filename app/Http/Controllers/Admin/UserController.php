@@ -31,6 +31,7 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
+            'username' => ['regex:/^[^\s]+$/', 'required', 'string', 'max:10', 'unique:users'],
             'password' => 'required|same:confirm-password',
             'roles' => 'required'
         ]);
@@ -61,13 +62,21 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
+            'username' => [
+                'required',
+                'string',
+                'max:10',
+                'regex:/^[^\s]+$/',
+                'unique:users,username,' . $id
+            ],
             'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'same:confirm-password',
             'roles' => 'required'
         ]);
 
+
         $input = $request->all();
-        if (!empty ($input['password'])) {
+        if (!empty($input['password'])) {
             $input['password'] = Hash::make($input['password']);
         } else {
             $input = Arr::except($input, array('password'));

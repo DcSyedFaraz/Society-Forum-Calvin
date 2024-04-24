@@ -34,7 +34,7 @@
                 <li>News user?</li>
                 <li>Create an Account</li>
             </a>
-            <li><a href="#"><i class="fa fa-ellipsis-h" aria-hidden="true"
+            <li><a href="{{route('home')}}"><i class="fa fa-home" aria-hidden="true"
                         style="font-size:20px;color:black;"></i>
                 </a></li>
         </ul>
@@ -48,7 +48,7 @@
                             Home To
                             Parks Shadows
                         </h1>
-                        <p class="copyright">©Copyright 2023</p>
+                        <p class="copyright">©Copyright {{ \Carbon\Carbon::now()->year }}</p>
                     </div>
 
                 </div>
