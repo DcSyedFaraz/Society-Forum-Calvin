@@ -56,19 +56,13 @@
                 <div class="mobile-toggle-icon fs-3">
                     <i class="bi bi-list"></i>
                 </div>
-                <form class="searchbar">
-                    <div class="position-absolute top-50 translate-middle-y search-icon ms-3"><i
-                            class="bi bi-search"></i></div>
-                    <input class="form-control" type="text" placeholder="Type here to search">
-                    <div class="position-absolute top-50 translate-middle-y search-close-icon"><i
-                            class="bi bi-x-lg"></i></div>
-                </form>
+
                 <div class="top-navbar-right ms-auto">
                     <ul class="navbar-nav align-items-center">
-                        <li class="nav-item search-toggle-icon">
-                            <a class="nav-link" href="javaScript:;">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{ route('home') }}">
                                 <div class="">
-                                    <i class="bi bi-search"></i>
+                                    <i class="bi bi-house-fill btn1 btn-outline-success"></i>
                                 </div>
                             </a>
                         </li>
@@ -224,7 +218,7 @@
                                                             href="{{ $notifications->data['url'] }}">
                                                             <div class="d-flex align-items-center">
                                                                 <div class="notification-box bg-light-success text-success"><i
-                                                                    class="bi bi-at"></i></div>
+                                                                        class="bi bi-at"></i></div>
                                                                 <div class="ms-3 flex-grow-1">
                                                                     <h6 class="mb-0 dropdown-msg-user">
                                                                         {{ $notifications->type }}<span
@@ -473,13 +467,7 @@
                         <div class="menu-title">Newsletter</div>
                     </a>
                 </li>
-                <li>
-                    <a href="javascript:;">
-                        <div class="parent-icon"><img
-                                src="{{ asset('backend/images/icons/Notifications icon.png') }}"></div>
-                        <div class="menu-title">Notifications</div>
-                    </a>
-                </li>
+
             </ul>
             <!--end navigation-->
         </aside>

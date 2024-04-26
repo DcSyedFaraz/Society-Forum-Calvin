@@ -63,7 +63,7 @@
                 <div class="login-main-container">
                     <div class="thankyou-wrapper">
                         <h1>Thank You For Your Patience</h1>
-                        <p>Your request is currently under review and will be informed by next business day </p>
+                        <p>Your request for access to the dashboard is under review. You will be contacted soon.</p>
                         <div class="clr"></div>
                     </div>
                     <div class="clr"></div>

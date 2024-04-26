@@ -167,19 +167,19 @@
                             <li class="footer-li">Guidelines</li>
                         </a> --}}
                         <a class="footer-a" href="{{ route('agreement') }}">
-                            <li class="footer-li">Agreement</li>
+                            <li class="footer-li">E.U.L Agreement</li>
                         </a>
                     </ul>
                 </div>
                 <div class="col-md-3">
                     <h2 class="footer-had">Location</h2>
                     <p class="footer-text">2325 Mark Avenue, Palmdale, <br>CA 93550</p>
-                    <h2 class="footer-had">Office Hours</h2>
-                    <p class="footer-text">9:00 am to 6:00 pm </p>
+                    {{-- <h2 class="footer-had">Office Hours</h2>
+                    <p class="footer-text">9:00 am to 6:00 pm </p> --}}
                 </div>
             </div>
             <div class="copyright">
-                <p class="copy text-uppercase">ALLRIGHTS RESERVED - park shadowshoa {{ \Carbon\Carbon::now()->year }} Designed and Developed By <a href="https://digitalneststudio.com/">Digital Nest Studio.</a>
+                <p class="copy text-uppercase">All rights reserved  - park shadowshoa {{ \Carbon\Carbon::now()->year }} Designed and Developed By <a href="https://digitalneststudio.com/">Digital Nest Studio.</a>
                 </p>
                 </p>
             </div>
