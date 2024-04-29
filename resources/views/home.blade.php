@@ -12,7 +12,8 @@
         </div>
     </section>
     <section class="main-div">
-        <div class="col-6">
+        <div class="row">
+        <div class="col-lg-6 col-sm-12 px-5 py-5">
             <h1 class="heading1">About Us</h1>
             <img src="{{ asset('frontend/images/circle.png') }}" class="circle">
             <p class="paragraph">The Park Shadows Homeowners Association is a non-profit mutual benefit corporation
@@ -24,11 +25,12 @@
                 increase home values for the benefit of all our neighbors.</p>
             <a href="#"><button class="btn-1">Learn More</button></a>
         </div>
-        <div class="col-6">
+        <div class="col-lg-6 col-sm-12 px-5">
             <img src="{{ asset('frontend/images/new/gallery (2).jpg') }}" class="" style="width: 95%;border-radius: 1.25rem !important;">
             <span class="d-flex justify-content-center font-weight-bold">
                     BUY HERE! LIVE HERE!
                 </span>
+        </div>
         </div>
     </section>
     <section class="main-div1">
@@ -37,35 +39,42 @@
         </div>
     </section>
     <section class="main-div1">
-        <div class="col-5">
+        <div class="row">
+        <div class="col-lg-5 col-sm-12 px-5">
             <img src="{{ asset('frontend/images/dot.png') }}" class="dot">
             <img src="{{ asset('frontend/images/image2.png') }}" style="width: 100%; z-index: 000000; position: relative;">
         </div>
-        <div class="col-7">
+        <div class="col-lg-7 col-sm-12 px-5 py-3">
             <h1 class="heading1">Community Park</h1>
             <p class="paragraph">Experience our new park designed for children of all ages! From playground areas to swing sets and workout stations, our well-lit park ensures safety and enjoyment for all. Plus, indulge in basketball games at our popular court. Don't miss out on our exciting community events, including Easter Egg hunts, 4th of July celebrations, movie nights, Halloween adventures, and evenings with Santa. We also host community garage sales twice a year.</p>
         </div>
+        </div>
     </section>
-    <section class="main-div1">
-        <div class="col-7">
+    <section class="main-div1 safety">
+        <div class="row">
+        <div class="col-lg-7 col-sm-12 px-5 py-3">
             <h1 class="heading1" style="text-align: right;">Safety</h1>
             <p class="paragraph" style="text-align: right;">At Park Shadows HOA, safety is our priority. Our community is patrolled by security guards seven nights a week, ensuring a safe environment for families. During pool season, a dedicated guard oversees pool safety. With security gates and monitored entrances equipped with cameras, access is controlled via community-issued remotes and entry codes. Report any concerns through our new website for prompt resolution.</p>
         </div>
-        <div class="col-5">
+        <div class="col-lg-5 col-sm-12 px-5">
             <img src="{{ asset('frontend/images/new/gallery (3).jpg') }}" style="width: 100%; border-radius: 1.25rem !important;">
         </div>
+        </div>
     </section>
-    <section class="main-div1">
-        <div class="col-5">
+    <section class="main-div1 ">
+        <div class="row">
+        <div class="col-lg-5 col-sm-12 px-5">
             <img src="{{ asset('frontend/images/image4.png') }}" style="width: 100%;">
         </div>
-        <div class="col-7">
+        <div class="col-lg-7 col-sm-12 px-5 py-3">
             <h1 class="heading1">Swimming Pool</h1>
             <p class="paragraph">Discover the joy of our community swimming pool area, featuring a pool accommodating up to 32 guests, along with a wading pool perfect for small children. Enjoy gatherings and relaxation with our available barbecue grill and spacious covered patio.</p>
+        </div>
         </div>
     </section>
     <section class="main-div2">
         <div class="col-12">
+            <div class="row">
             <h1 class="gallery">Gallery</h1>
             <div class="grid-wrapper">
                 {{-- <div>
@@ -122,6 +131,7 @@
                 <div class="big">
                     <img src=" {{ asset('frontend/images/new/gallery.jpg') }}" alt="" />
                 </div>
+            </div>
             </div>
         </div>
     </section>

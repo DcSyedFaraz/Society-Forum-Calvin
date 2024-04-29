@@ -380,13 +380,13 @@
                         <div class="menu-title">Unit/Balance Report</div>
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('admin.artchitectural') ? 'mm-active' : '' }}">
+                {{-- <li class="{{ request()->routeIs('admin.artchitectural') ? 'mm-active' : '' }}">
                     <a href="{{ route('admin.artchitectural') }}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/payout iocn.png') }}">
                         </div>
                         <div class="menu-title">Architectural Request...</div>
                     </a>
-                </li>
+                </li> --}}
                 <li class="{{ request()->routeIs('executive.minutes') ? 'mm-active' : '' }}">
                     <a href="{{ route('executive.minutes') }}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/inbox icon.png') }}"></div>

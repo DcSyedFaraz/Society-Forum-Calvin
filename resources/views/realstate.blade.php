@@ -1,5 +1,12 @@
 @extends('layout.app')
 <style>
+.mobile {
+        display: block;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
     .fancybox-toolbar {
         display: none;
     }

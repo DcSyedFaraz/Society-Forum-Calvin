@@ -29,6 +29,10 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @endif
     <link href="{{ asset('frontend/style.css') }}" rel="stylesheet" />
+    <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.js"></script>
@@ -80,73 +84,118 @@
 
 
 <body>
-    <header class="header">
-        <div class="col-md-3">
-            <a href="/" class=""><img src="{{ asset('frontend/images/logo.png') }}"></a>
-        </div>
-        <div class="col-md-6">
-            <ul class="ul-menu">
-                <a href="/">
-                    <li class="{{ request()->routeIs('home') ? 'active' : '' }}">Home</li>
-                </a>
-                <a href="{{ route('realstate') }}">
-                    <li class="{{ request()->routeIs('realstate') ? 'active' : '' }}">Real Estate</li>
-                </a>
-                <a href="{{ route('gallery') }}">
-                    <li class="{{ request()->routeIs('gallery') ? 'active' : '' }}">Gallery</li>
-                </a>
-                <a href="{{ route('about_us') }}">
-                    <li class="{{ request()->routeIs('about_us') ? 'active' : '' }}">About us</li>
-                </a>
+    <div class="desktop">
+        <header class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <a href="/" class=""><img src="{{ asset('frontend/images/logo.png') }}"></a>
+                    </div>
 
-                <!--<a href="{{ route('community_forum') }}">-->
-                <!--    <li>Community Forum</li>-->
-                <!--</a>-->
-            </ul>
+                    <div class="col-md-6">
+                        <ul class="ul-menu">
+                            <a href="/">
+                                <li class="{{ request()->routeIs('home') ? 'active' : '' }}">Home</li>
+                            </a>
+                            <a href="{{ route('realstate') }}">
+                                <li class="{{ request()->routeIs('realstate') ? 'active' : '' }}">Real Estate</li>
+                            </a>
+                            <a href="{{ route('gallery') }}">
+                                <li class="{{ request()->routeIs('gallery') ? 'active' : '' }}">Gallery</li>
+                            </a>
+                            <a href="{{ route('about_us') }}">
+                                <li class="{{ request()->routeIs('about_us') ? 'active' : '' }}">About us</li>
+                            </a>
+                        </ul>
+                    </div>
+                    <div class="col-md-3" style="text-align: end;">
+                        <a href="{{ route('contact') }}"><button class="btn-1">Contact Us</button></a>
+                    </div>
+                </div>
+            </div>
+        </header>
+    </div>
+    <!--////////////////////////////-->
+    <div class="mobile">
+        <div class="container">
+            <div class="row px-3">
+                <div class="col-4">
+                    <a href="/" class=""><img src="{{ asset('frontend/images/logo.png') }}"></a>
+                </div>
+
+
+                <div class="col-8">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="container">
+                            <button class="navbar-toggler" style="margin-right:5px !important;" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse top_nav" id="navbarSupportedContent">
+                                <ul class="navbar-nav mx-auto ">
+                                    <a href="/">
+                                        <li class="{{ request()->routeIs('home') ? 'active' : '' }}">Home</li>
+                                    </a>
+                                    <a href="{{ route('realstate') }}">
+                                        <li class="{{ request()->routeIs('realstate') ? 'active' : '' }}">Real Estate
+                                        </li>
+                                    </a>
+                                    <a href="{{ route('gallery') }}">
+                                        <li class="{{ request()->routeIs('gallery') ? 'active' : '' }}">Gallery</li>
+                                    </a>
+                                    <a href="{{ route('about_us') }}">
+                                        <li class="{{ request()->routeIs('about_us') ? 'active' : '' }}">About us</li>
+                                    </a>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
         </div>
-        <div class="col-md-3" style="text-align: end;">
-            <a href="{{ route('contact') }}"><button class="btn-1">Contact Us</button></a>
-        </div>
-    </header>
+    </div>
+
 
     <body>
 
         @yield('content')
         <footer class="footer">
             <div class="footer-inner">
-                <div class="col-md-3">
-                    <img src=" {{ asset('frontend/images/footer-logo.png') }}" class="footer-logo" alt="alt">
-                    <p class="footer-text">We promote home ownership and community engagement. Become part of our
-                        thriving community today!</p>
-                    <strong style="text-transform: uppercase; color: white; margin-bottom: 15px !important;">* We never
-                        spam
-                        your email</strong>
-                    <form class="form-subscribe" action="#">
-                        <div class="input-group">
-                            <input type="text" class="form-control input-lg" placeholder="Your email address">
-                            <span class="input-group-btn">
-                                <button class="btn btn-success btn-lg" type="submit"><i class="fa fa-envelope"
-                                        aria-hidden="true"></i></button>
-                            </span>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-3">
-                    <h2 class="footer-hed">Quick Links</h2>
-                    <ul class="footer-ul">
-                        <a class="footer-a" href="/">
-                            <li class="footer-li">Home</li>
-                        </a>
-                        <a class="footer-a" href="{{ route('realstate') }}">
-                            <li class="footer-li">Real Estate</li>
-                        </a>
-                        <a class="footer-a" href="{{ route('gallery') }}">
-                            <li class="footer-li">Gallery</li>
-                        </a>
-                        <a class="footer-a" href="{{ route('about_us') }}">
-                            <li class="footer-li">About us</li>
-                        </a>
-                        {{-- <a class="footer-a" href="{{ route('cookie_policy') }}">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img src=" {{ asset('frontend/images/footer-logo.png') }}" class="footer-logo" alt="alt">
+                        <p class="footer-text">We promote home ownership and community engagement. Become part of our
+                            thriving community today!</p>
+                        <strong style="text-transform: uppercase; color: white; margin-bottom: 15px !important;">* We
+                            never
+                            spam
+                            your email</strong>
+                        <form class="form-subscribe" action="#">
+                            <div class="input-group">
+                                <input type="text" class="form-control input-lg" placeholder="Your email address">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-success btn-lg" type="submit"><i class="fa fa-envelope"
+                                            aria-hidden="true"></i></button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-3">
+                        <h2 class="footer-hed">Quick Links</h2>
+                        <ul class="footer-ul">
+                            <a class="footer-a" href="/">
+                                <li class="footer-li">Home</li>
+                            </a>
+                            <a class="footer-a" href="{{ route('realstate') }}">
+                                <li class="footer-li">Real Estate</li>
+                            </a>
+                            <a class="footer-a" href="{{ route('gallery') }}">
+                                <li class="footer-li">Gallery</li>
+                            </a>
+                            <a class="footer-a" href="{{ route('about_us') }}">
+                                <li class="footer-li">About us</li>
+                            </a>
+                            {{-- <a class="footer-a" href="{{ route('cookie_policy') }}">
                             <li class="footer-li">Cookie policy</li>
                         </a>
                         <a class="footer-a" href="{{ route('guidelines') }}">
@@ -155,31 +204,33 @@
                         <a class="footer-a" href="{{ route('agreement') }}">
                             <li class="footer-li">Agreement</li>
                         </a> --}}
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h2 class="footer-hed">Our Policies</h2>
-                    <ul class="footer-ul">
-                        <a class="footer-a" href="{{ route('cookie_policy') }}">
-                            <li class="footer-li">Cookie policy</li>
-                        </a>
-                        {{-- <a class="footer-a" href="{{ route('guidelines') }}">
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h2 class="footer-hed">Our Policies</h2>
+                        <ul class="footer-ul">
+                            <a class="footer-a" href="{{ route('cookie_policy') }}">
+                                <li class="footer-li">Cookie policy</li>
+                            </a>
+                            {{-- <a class="footer-a" href="{{ route('guidelines') }}">
                             <li class="footer-li">Guidelines</li>
                         </a> --}}
-                        <a class="footer-a" href="{{ route('agreement') }}">
-                            <li class="footer-li">E.U.L Agreement</li>
-                        </a>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <h2 class="footer-had">Location</h2>
-                    <p class="footer-text">2325 Mark Avenue, Palmdale, <br>CA 93550</p>
-                    {{-- <h2 class="footer-had">Office Hours</h2>
+                            <a class="footer-a" href="{{ route('agreement') }}">
+                                <li class="footer-li">E.U.L Agreement</li>
+                            </a>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h2 class="footer-had">Location</h2>
+                        <p class="footer-text">2325 Mark Avenue, Palmdale, <br>CA 93550</p>
+                        {{-- <h2 class="footer-had">Office Hours</h2>
                     <p class="footer-text">9:00 am to 6:00 pm </p> --}}
+                    </div>
                 </div>
             </div>
             <div class="copyright">
-                <p class="copy text-uppercase">All rights reserved  - park shadowshoa {{ \Carbon\Carbon::now()->year }} Designed and Developed By <a href="https://digitalneststudio.com/">Digital Nest Studio.</a>
+                <p class="copy text-uppercase">All rights reserved - park shadowshoa {{ \Carbon\Carbon::now()->year }}
+                    Designed and Developed By <a href="https://digitalneststudio.com/">Digital Nest Studio.</a>
                 </p>
                 </p>
             </div>

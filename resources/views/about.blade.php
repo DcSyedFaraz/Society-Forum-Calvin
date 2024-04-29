@@ -7,7 +7,8 @@
         </div>
     </section>
     <section class="main-div">
-        <div class="col-6">
+        <div class="row">
+        <div class="col-lg-6 col-sm-12 px-5">
             <h1 class="heading1">About Us</h1>
             <img src=" {{ asset('frontend/images/circle.png') }}" class="circle">
             <p class="paragraph">
@@ -27,12 +28,13 @@
                 dream home here and become part of our thriving community today!
             </p>
         </div>
-        <div class="col-6">
+        <div class="col-lg-6 col-sm-12 px-5">
             <img src=" {{ asset('frontend/images/new/gallery (3).jpg') }}"
                 style="width: 95%; border-radius: 1.25rem !important;">
                 <span class="d-flex justify-content-center font-weight-bold">
                     BUY HERE! LIVE HERE!
                 </span>
+        </div>
         </div>
     </section>
     {{-- <section class="main-div1" style="padding-bottom: 70px;">
