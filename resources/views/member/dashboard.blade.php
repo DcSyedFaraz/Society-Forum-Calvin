@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
-                <img width="20%" src="{{ asset('backend/images/logo-icon') }}.png">
+                <img width="40%" src="{{ asset('backend/images/logo-main.png') }}">
                 <br><br>
                 <h1
                     style="font: normal normal 800 33px/33px Montserrat;

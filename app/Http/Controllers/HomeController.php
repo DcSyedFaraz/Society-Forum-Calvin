@@ -17,7 +17,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('home');
+        $data['gallery'] = Gallery::orderby('created_at', 'desc')->get();
+        return view('home', $data);
     }
     public function executive_login()
     {
@@ -49,7 +50,7 @@ class HomeController extends Controller
     public function gallery()
     {
         $data['gallery'] = Gallery::orderby('created_at', 'desc')->get();
-        return view('gallery',$data);
+        return view('gallery', $data);
     }
     public function community_forum()
     {
@@ -61,17 +62,17 @@ class HomeController extends Controller
     }
 
     public function cookie()
-        {
-            return view('cookie');
-        }
+    {
+        return view('cookie');
+    }
     public function guidelines()
-        {
-            return view('guidelines');
-        }
+    {
+        return view('guidelines');
+    }
     public function lienceseagreement()
-        {
-            return view('lienceseagreement');
-        }
+    {
+        return view('lienceseagreement');
+    }
     public function login()
     {
         // $this->middleware('auth')->except('logout');

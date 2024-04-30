@@ -216,21 +216,26 @@
                             <li class="footer-li">Guidelines</li>
                         </a> --}}
                             <a class="footer-a" href="{{ route('agreement') }}">
-                                <li class="footer-li">E.U.L Agreement</li>
+                                <li class="footer-li">E.U.L.A</li>
                             </a>
                         </ul>
                     </div>
                     <div class="col-md-3">
                         <h2 class="footer-had">Location</h2>
                         <p class="footer-text">2325 Mark Avenue, Palmdale, <br>CA 93550</p>
+                        <br>
+                        <p class="footer-text">(661) 257-1570</p>
+                        <p class="footer-text">Valencia, CA 91355<br>25031 W. Avenue Stanford</p>
+                        <p class="footer-text">Bartlein Management Company </p>
                         {{-- <h2 class="footer-had">Office Hours</h2>
                     <p class="footer-text">9:00 am to 6:00 pm </p> --}}
                     </div>
                 </div>
             </div>
             <div class="copyright">
-                <p class="copy text-uppercase">All rights reserved - park shadowshoa {{ \Carbon\Carbon::now()->year }}
-                    Designed and Developed By <a href="https://digitalneststudio.com/">Digital Nest Studio.</a>
+                <p class="copy text-uppercase">All rights reserved - park shadows hoa
+                    {{ \Carbon\Carbon::now()->year }} Designed and Developed By <a
+                        href="https://digitalneststudio.com/">Digital Nest Studio.</a>
                 </p>
                 </p>
             </div>
