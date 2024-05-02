@@ -22,6 +22,7 @@
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+        <link rel="stylesheet" href="{{ asset('backend/css/responsive.css') }}">
     @else
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
             integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -119,12 +120,12 @@
     <div class="mobile">
         <div class="container">
             <div class="row px-3">
-                <div class="col-4">
+                <div class="col-6">
                     <a href="/" class=""><img src="{{ asset('frontend/images/logo.png') }}"></a>
                 </div>
 
 
-                <div class="col-8">
+                <div class="col-6">
                     <nav class="navbar navbar-expand-lg navbar-light">
                         <div class="container">
                             <button class="navbar-toggler" style="margin-right:5px !important;" type="button"
@@ -224,9 +225,9 @@
                         <h2 class="footer-had">Location</h2>
                         <p class="footer-text">2325 Mark Avenue, Palmdale, <br>CA 93550</p>
                         <br>
-                        <p class="footer-text">(661) 257-1570</p>
-                        <p class="footer-text">Valencia, CA 91355<br>25031 W. Avenue Stanford</p>
                         <p class="footer-text">Bartlein Management Company </p>
+                        <p class="footer-text">Valencia, CA 91355<br>25031 W. Avenue Stanford</p>
+                        <p class="footer-text">(661) 257-1570</p>
                         {{-- <h2 class="footer-had">Office Hours</h2>
                     <p class="footer-text">9:00 am to 6:00 pm </p> --}}
                     </div>

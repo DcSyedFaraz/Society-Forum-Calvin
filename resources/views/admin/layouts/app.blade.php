@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="{{ asset('backend/images/favicon-32x32.png') }}" type="image/png" />
     <!--plugins-->
+    
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
@@ -41,7 +42,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+    <link rel="stylesheet" href="{{ asset('backend/css/responsive.css') }}">
     <title>Park Shadow - Admin</title>
 </head>
 
@@ -52,9 +53,143 @@
     <div class="wrapper">
         <!--start top header-->
         <header class="top-header">
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i class="bi bi-list"></i></button>
+
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Menu</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="metismenu" id="menu">
+                <li class="{{ request()->routeIs('admin.dashboard') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.dashboard') }}" class="">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/dashboard icon.png') }}">
+                        </div>
+                        <div class="menu-title">Dashboard</div>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('admin.financial') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.financial') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/Campaigns icon.png') }}">
+                        </div>
+                        <div class="menu-title">Financial Information</div>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('admin.contracts') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.contracts') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/statement-new.png') }}">
+                        </div>
+                        <div class="menu-title">Contracts</div>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('community.*') ? 'mm-active' : '' }}">
+                    <a href="{{ route('community.index') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/statement-new.png') }}">
+                        </div>
+                        <div class="menu-title">Community Forum</div>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('admin.legal_info') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.legal_info') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/Schedules icon.png') }}">
+                        </div>
+                        <div class="menu-title">Legal Information</div>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('admin.report') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.report') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/project icon.png') }}">
+                        </div>
+                        <div class="menu-title">Unit/Balance Report</div>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('admin.artchitectural') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.artchitectural') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/payout iocn.png') }}">
+                        </div>
+                        <div class="menu-title">Architectural Request...</div>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('admin.request') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.request') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/payout iocn.png') }}">
+                        </div>
+                        <div class="menu-title">Real Estate Request</div>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs(['admin.list.*', 'admin.list']) ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.list') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/Campaigns icon.png') }}">
+                        </div>
+                        <div class="menu-title">Listed Property</div>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('admin.minutes') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.minutes') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/inbox icon.png') }}"></div>
+                        <div class="menu-title">Executive Minutes</div>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('admin.announcements') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.announcements') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/Campaigns icon.png') }}">
+                        </div>
+                        <div class="menu-title">Announcements</div>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('admin.lostfound') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.lostfound') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/Schedules icon.png') }}">
+                        </div>
+                        <div class="menu-title">Lost & Found</div>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('admin.users.index') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.users.index') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/Schedules icon.png') }}">
+                        </div>
+                        <div class="menu-title">Users Management</div>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('admin.gallery.index') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.gallery.index') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/Schedules icon.png') }}">
+                        </div>
+                        <div class="menu-title">Gallery Management</div>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('admin.floor_plans') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.floor_plans') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/Schedules icon.png') }}">
+                        </div>
+                        <div class="menu-title">Floor Plan Management</div>
+                    </a>
+                </li>
+                <li class="{{ request()->routeIs('admin.ccnrs') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.ccnrs') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/project icon.png') }}">
+                        </div>
+                        <div class="menu-title">Community Rules</div>
+                    </a>
+                </li>
+
+                <li class="menu-label" style="margin-top: 90px;">Insights</li>
+                <li class="{{ request()->routeIs('admin.newsletter') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.newsletter') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/inbox icon.png') }}">
+                        </div>
+                        <div class="menu-title">Newsletter</div>
+                    </a>
+                </li>
+
+            </ul>
+          </div>
+        </div>
             <nav class="navbar navbar-expand gap-3 align-items-center">
+                
                 <div class="mobile-toggle-icon fs-3">
-                    <i class="bi bi-list"></i>
+                    <!--<i class="bi bi-list"></i>-->
                 </div>
 
                 <div class="top-navbar-right ms-auto">
@@ -66,8 +201,6 @@
                                 </div>
                             </a>
                         </li>
-
-
 
                         <li class="nav-item dropdown dropdown-large">
                             <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="javaScript:;"
@@ -334,7 +467,9 @@
         </header>
 
         <!--end top header-->
-
+        
+  
+        
         <!--start sidebar -->
         <aside class="sidebar-wrapper" data-simplebar="true">
             <div class="sidebar-header">
@@ -344,6 +479,7 @@
                 </div>
                 <div class="toggle-icon ms-auto"> <i class="bi bi-list"></i>
                 </div>
+                
             </div>
             <!--navigation-->
             <ul class="metismenu" id="menu">

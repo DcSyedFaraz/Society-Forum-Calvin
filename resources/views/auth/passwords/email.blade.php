@@ -32,8 +32,7 @@
                 <li>News user?</li>
                 <li>Create an Account</li>
             </a>
-            <li><a href="{{ route('home') }}"><i class="fa fa-home" aria-hidden="true"
-                        style="font-size:20px;color:black;"></i>
+            <li><a href="#"><i class="fa fa-home" aria-hidden="true" style="font-size:20px;color:black;"></i>
                 </a></li>
         </ul>
     </header>

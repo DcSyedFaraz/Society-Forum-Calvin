@@ -16,7 +16,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('backend/css/responsive.css') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -42,7 +42,7 @@
     <section>
         <div class="container-fluid sgin-bg">
             <div class="row">
-                <div class="col col-6 welcome">
+                <div class="col col-lg-6 col-sm-12 welcome">
                     <div style="width:80%;" class="contently">
                         <h1>Welcome
                             Real Estate
@@ -52,7 +52,7 @@
                     </div>
 
                 </div>
-                <div class="col col-6">
+                <div class="col col-lg-6 col-sm-12">
                     <h2>Real Estate</h2>
                     <h5>Sign In</h5>
                     <div class="divider"></div>

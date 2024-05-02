@@ -1,10 +1,9 @@
 @extends('layout.app')
-<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
 @section('content')
     <section class="container-fluid">
         <div class="banner-inner">
             <h1 class="title">welcome to park <br>shadows HOA</h1>
-            <img src="{{ asset('frontend/images/lines.png') }}" class="line">
+            <!--<img src="{{ asset('frontend/images/lines.png') }}" class="line">-->
             <div class="buttons">
                 <a href="{{ route('login') }}"><button class="btn-b">Member Login</button></a>
                 <a href="{{ route('estate_login') }}"><button class="btn-b">Real Estate Login</button></a>
@@ -114,15 +113,4 @@
                 referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
     </section>
-    <script>
-        // Initialize Lozad.js
-        const observer = lozad('.gallery', {
-            loaded: function(el) {
-                el.src = el.getAttribute('data-src');
-            }
-        });
-
-        // Observe the gallery container
-        observer.observe();
-    </script>
 @endsection

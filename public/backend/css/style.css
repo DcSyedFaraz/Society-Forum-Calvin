@@ -1976,7 +1976,7 @@ ul.file-mains li a {
     font-weight: 900;
     text-transform: uppercase;
     line-height: 55px;
-    margin-left: 15px;
+    margin-left: 0px;
 }
 }
 @media only screen and (max-width: 510px) and (min-width: 280px)  {
@@ -1987,7 +1987,7 @@ ul.file-mains li a {
     font-weight: 900;
     text-transform: uppercase;
     line-height: 55px;
-    margin-left: 15px;
+    margin-left: 0px;
 }
 .footer-inner h2.footer-hed{
     padding: 0;

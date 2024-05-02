@@ -18,6 +18,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="{{ asset('backend/css/responsive.css') }}">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
         integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -197,7 +198,7 @@
         <ul class="list-nav">
             <li><a href="#">News user?</a></li>
             <li><a href="#">Create an Account</a></li>
-            <li><a href="{{ route('home') }}"><i class="fa fa-ellipsis-h" aria-hidden="true"
+            <li><a href="{{ route('home') }}"><i class="fa fa-home" aria-hidden="true"
                         style="font-size:20px;color:black;"></i>
                 </a></li>
         </ul>
@@ -205,7 +206,7 @@
     <section>
         <div class="container-fluid sgin-bg">
             <div class="row">
-                <div class="col col-6 welcome">
+                <div class="col col-lg-6 col-sm-12 welcome">
                     <div class="contently">
                         <h1>Welcome
                             Home To
@@ -215,7 +216,7 @@
                     </div>
 
                 </div>
-                <div class="col col-6">
+                <div class="col col-lg-6 col-sm-12">
                     <div class="row">
                         <div class="profile-info">
                             <div class="circle">

@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
         integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+  <link rel="stylesheet" href="{{ asset('backend/css/responsive.css') }}">
     <title>Real Estate Registration</title>
     <style>
         .profile-info {
@@ -208,7 +208,7 @@
     <section>
         <div class="container-fluid sgin-bg">
             <div class="row">
-                <div class="col col-6 welcome">
+                <div class="col col-lg-6 col-sm-12 welcome">
                     <div class="contently">
                         <h1>Welcome
                             Real Estate
@@ -218,7 +218,7 @@
                     </div>
 
                 </div>
-                <div class="col col-6">
+                <div class="col col-lg-6 col-sm-12">
                     <form action="{{ route('agentregisteration') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
