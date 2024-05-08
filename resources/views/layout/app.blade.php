@@ -225,7 +225,7 @@
                         <h2 class="footer-had">Location</h2>
                         <p class="footer-text">2325 Mark Avenue, Palmdale, <br>CA 93550</p>
                         <br>
-                        <p class="footer-text">Bartlein Management Company </p>
+                        <p class="footer-text">Bartlein and Company, Inc. </p>
                         <p class="footer-text">Valencia, CA 91355<br>25031 W. Avenue Stanford</p>
                         <p class="footer-text">(661) 257-1570</p>
                         {{-- <h2 class="footer-had">Office Hours</h2>
