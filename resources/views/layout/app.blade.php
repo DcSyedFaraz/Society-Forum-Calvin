@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     @if (request()->routeIs('realstate'))
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -29,6 +32,7 @@
         <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @endif
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}">
     <link href="{{ asset('frontend/style.css') }}" rel="stylesheet" />
     <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -80,7 +84,7 @@
 
         });
     </script>
-    <title>Calvin Robinson</title>
+    <title>Park Shadows HOA</title>
 </head>
 
 
@@ -164,7 +168,8 @@
             <div class="footer-inner">
                 <div class="row">
                     <div class="col-md-3">
-                        <img src=" {{ asset('frontend/images/footer-logo.png') }}" class="footer-logo" alt="alt">
+                        <img src=" {{ asset('frontend/images/footer-logo.png') }}" class="footer-logo"
+                            alt="alt">
                         <p class="footer-text">We promote home ownership and community engagement. Become part of our
                             thriving community today!</p>
                         <strong style="text-transform: uppercase; color: white; margin-bottom: 15px !important;">* We
@@ -180,6 +185,7 @@
                                 </span>
                             </div>
                         </form>
+
                     </div>
                     <div class="col-md-3">
                         <h2 class="footer-hed">Quick Links</h2>
@@ -230,6 +236,10 @@
                         <p class="footer-text">(661) 257-1570</p>
                         {{-- <h2 class="footer-had">Office Hours</h2>
                     <p class="footer-text">9:00 am to 6:00 pm </p> --}}
+                        <a class="footer-a " target="_blank"
+                            href="https://www.facebook.com/profile.php?id=61559086599861">
+                            <i class="fab fa-facebook h2 mt-3"></i>
+                        </a>
                     </div>
                 </div>
             </div>
