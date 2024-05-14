@@ -31,7 +31,7 @@
     <header>
         <ul class="list-nav">
             <li><a href="{{ route('executive_signup') }}">
-            <li>News user?</li>
+            <li>New User?</li>
             <li>Create an Account</li>
             </a></li>
             <li><a href="{{ route('home') }}"><i class="fa fa-home" aria-hidden="true"

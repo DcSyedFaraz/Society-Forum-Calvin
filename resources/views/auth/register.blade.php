@@ -196,7 +196,7 @@
 <body class="sign-up">
     <header>
         <ul class="list-nav">
-            <li><a href="#">News user?</a></li>
+            <li><a href="#">New User?</a></li>
             <li><a href="#">Create an Account</a></li>
             <li><a href="{{ route('home') }}"><i class="fa fa-home" aria-hidden="true"
                         style="font-size:20px;color:black;"></i>

@@ -29,7 +29,7 @@
     <header>
         <ul class="list-nav">
             <a href="{{ route('signup') }}">
-                <li>News user?</li>
+                <li>New User?</li>
                 <li>Create an Account</li>
             </a>
             <li><a href="#"><i class="fa fa-home" aria-hidden="true" style="font-size:20px;color:black;"></i>
