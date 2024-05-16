@@ -51,7 +51,7 @@
     <div class="wrapper">
         <!--start top header-->
         <header class="top-header">
-            
+
             <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i class="bi bi-list"></i></button>
 
         <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
@@ -90,7 +90,7 @@
           </div>
         </div>
             <nav class="navbar navbar-expand gap-3 align-items-center">
-                
+
                 <!--<div class="mobile-toggle-icon fs-3">-->
                 <!--    <i class="bi bi-list"></i>-->
                 <!--</div>-->
@@ -261,7 +261,7 @@
                     </a>
                 </li>
 
-                <li class="menu-label" style="margin-top: 90px;">Insights</li>
+                {{-- <li class="menu-label" style="margin-top: 90px;">Insights</li> --}}
 
 
             </ul>

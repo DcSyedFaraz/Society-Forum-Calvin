@@ -29,7 +29,7 @@
     <header>
         <ul class="list-nav">
             <a href="{{ route('signup') }}">
-                <li>New User?</li>
+                <li>New user?</li>
                 <li>Create an Account</li>
             </a>
             <li><a href="#"><i class="fa fa-home" aria-hidden="true" style="font-size:20px;color:black;"></i>
@@ -39,7 +39,7 @@
     <section>
         <div class="container-fluid sgin-bg">
             <div class="row">
-                <div class="col col-6 welcome">
+                <div class="col col-12 col-md-12 welcome">
                     <div class="contently">
                         <h1>Welcome
                             Home To
@@ -49,7 +49,7 @@
                     </div>
 
                 </div>
-                <div class="col col-6">
+                <div class="col col-12 col-md-12">
                     <h5>Forget Password ?</h5>
                     <div class="formss">
                         <div class="tab-content flex-grow-1" id="v-pills-tabContent">

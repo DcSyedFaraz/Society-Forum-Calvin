@@ -2,7 +2,7 @@
 @section('content')
     <section class="container-fluid">
         <div class="banner-inner">
-            <h1 class="title">welcome to park <br>shadows HOA</h1>
+            <h1 class="title">welcome to park shadows HOA</h1>
             <!--<img src="{{ asset('frontend/images/lines.png') }}" class="line">-->
             <div class="buttons">
                 <a href="{{ route('login') }}"><button class="btn-b">Member Login</button></a>
@@ -23,7 +23,7 @@
                     R-8 and Laderman Lane. The Laderman Lane entrance is considered our main entrance. We promote a
                     welcoming community and home ownership. We welcome you to buy here and live here. Our goal is to
                     increase home values for the benefit of all our neighbors.</p>
-                <a href="#"><button class="btn-1">Learn More</button></a>
+                <a href="{{ route('about_us') }}"><button class="btn-1">Learn More</button></a>
             </div>
             <div class="col-lg-6 col-sm-12 px-5">
                 <img src="{{ asset('frontend/images/new/gallery (2).jpg') }}" class=""

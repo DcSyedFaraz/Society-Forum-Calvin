@@ -41,6 +41,7 @@ Route::get('/done', function () {
     return 'done';
 });
 Route::post('otp-verify', [LoginController::class, 'verifyOTP'])->name('otp.verify');
+Route::post('contact_us', [LoginController::class, 'contact_us'])->name('contact_us');
 
 Route::middleware(['check.auth',])->group(function () {
     Auth::routes(['except' => ['login']]);

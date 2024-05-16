@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ContactFormMail;
 use App\Mail\otpmail;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -108,6 +109,24 @@ class LoginController extends Controller
             return back()->withErrors(['email' => 'Invalid credentials']);
         }
     }
+    public function contact_us(Request $request)
+    {
+        // Validate the form data
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
+        ]);
+
+        // Send email
+        try {
+            \Mail::to('parkshadowshomeowners@gmail.com')->send(new ContactFormMail($validatedData));
+            return redirect()->back()->with('success', 'Contact Form Submitted successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Failed to submit the form');
+        }
+    }
     public function verifyOTP(Request $request)
     {
         // Validate the OTP
@@ -141,7 +160,7 @@ class LoginController extends Controller
                                 return redirect()->route('member.dashboard');
                                 break;
                             case 'agent':
-                                return redirect()->route('real_estate.dashboard');
+                                return redirect()->route('agent.dashboard');
                                 break;
                             case 'executive':
                                 return redirect()->route('executive.dashboard');
