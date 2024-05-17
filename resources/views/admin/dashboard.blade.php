@@ -132,7 +132,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <!-- <p class="text-wrap">Hello Cuong, welcome back</p> -->
+                <!-- <p class="text-wrap">Welcome {{ auth()->user()->name }}</p> -->
                 <div id="tabler-tables">
                     <h3>User Requests</h3>
                     {{-- <h3>User Requests</h3> --}}

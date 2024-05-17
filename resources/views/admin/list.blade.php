@@ -89,7 +89,7 @@
         <div class="row">
             <div class="col-12">
                 <h1>Listed Property</h1>
-                <p>Hello Cuong, welcome back</p>
+                <p>Welcome {{ auth()->user()->name }}</p>
 
                 <h3>
                     Properties List
@@ -134,16 +134,16 @@
                                                     <span class="badge bg-success">Approved</span>
                                                 @elseif ($properties->access === 'declined')
                                                     <span class="badge bg-danger">Declined</span>
-                                                    @elseif ($properties->status === null)
+                                                @elseif ($properties->status === null)
                                                     <span class="badge bg-warning text-dark">Pending</span>
                                                 @endif
                                             </td>
 
                                             <td>
-                                               
 
-                                                <form action="{{ route('admin.list.delete', $properties->id) }}" method="POST"
-                                                    class="d-inline">
+
+                                                <form action="{{ route('admin.list.delete', $properties->id) }}"
+                                                    method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger btn-sm" title="Delete"

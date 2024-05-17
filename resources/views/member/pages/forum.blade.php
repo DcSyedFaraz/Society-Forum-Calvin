@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-12">
                 <h1>Community</h1>
-                <p>Hello Cuong, welcome back</p>
+                <p>Welcome {{ auth()->user()->name }}</p>
                 <div class="card">
                     <div class="card-body">
                         <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">

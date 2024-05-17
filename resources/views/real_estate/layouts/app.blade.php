@@ -83,7 +83,7 @@
                     </a>
                 </li>
 
-                <li class="menu-label" style="margin-top: 90px;">Insights</li>
+                {{-- <li class="menu-label" style="margin-top: 90px;">Insights</li> --}}
 
 
             </ul>

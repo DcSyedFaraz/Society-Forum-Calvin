@@ -81,7 +81,7 @@
         <div class="row">
             <div class="col-12">
                 <h1>Real Estate</h1>
-                <p>Hello Cuong, welcome back</p>
+                <p>Welcome {{ auth()->user()->name }}</p>
                 <div class="card-body">
                     <form action="{{ route('agent.list.save') }}" enctype="multipart/form-data" method="post">
                         @csrf

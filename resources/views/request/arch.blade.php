@@ -139,7 +139,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <!-- <p>Hello Cuong, welcome back</p> -->
+                <!-- <p>Welcome {{ auth()->user()->name }}</p> -->
                 <div id="tabler-tables">
                     <h3>Artchitectural Requests</h3>
                     {{-- <h3>Artchitectural Requests</h3> --}}

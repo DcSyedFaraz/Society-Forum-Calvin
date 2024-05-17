@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-12">
                 <h1>Architectural Request Form</h1>
-                <!-- <p>Hello Cuong, welcome back</p> -->
+                <!-- <p>Welcome {{ auth()->user()->name }}</p> -->
                 <br>
                 <div class="formmm">
                     <div class="formss">
