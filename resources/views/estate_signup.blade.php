@@ -27,6 +27,13 @@
   <link rel="stylesheet" href="{{ asset('backend/css/responsive.css') }}">
     <title>Real Estate Registration</title>
     <style>
+         .is-valid {
+            width: 441px;
+        }
+
+        .is-invalid {
+            width: 27.6em;
+        }
         .profile-info {
             display: flex;
             flex-direction: row;
@@ -219,7 +226,7 @@
 
                 </div>
                 <div class="col col-lg-6 col-sm-12">
-                    <form action="{{ route('agentregisteration') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('agentregisteration') }}" method="post" enctype="multipart/form-data" id="form">
                         @csrf
                         <div class="row">
                             <div class="profile-info">
@@ -243,10 +250,13 @@
                             <div class="card-body">
                                 <div class="mb-3">
                                     <label for="fullName" class="form-label">User Name</label>
-                                    <input type="text" class="form-control" name="username"
-                                        placeholder="TonyNguyen01" />
+                                    <div>
+                                        <input type="text" class="form-control" name="username" maxlength="10"
+                                            placeholder="TonyNguyen01" required pattern="[a-zA-Z0-9]{1,10}">
+                                        <div class="valid-feedback">Looks good!</div>
+                                        <div class="invalid-feedback">Please enter a valid username.</div>
+                                    </div>
                                 </div>
-                                <small class="text-danger">*User Name must not contain spaces and must not exceed 10 characters.</small>
                                 <div class="mb-3">
                                     <label for="fullName" class="form-label">Real Estate Full Legal Name</label>
                                     <input type="text" class="form-control" name="name" placeholder="Tony Nguyen">
@@ -329,6 +339,8 @@
     </section>
 
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
 </script>
@@ -369,5 +381,20 @@
         @endforeach
     @endif
 </script>
+<script>
+    $(document).ready(function() {
+        // Add event listener to input element with name "username"
+        $('input[name="username"]').on('keyup', function() {
+            // Validate the "username" field
+            $('#form').bootstrapValidator('validateField', 'username');
 
+            // Add or remove classes based on validation result
+            if ($(this).val().length > 0 && $(this).val().match(/^[a-zA-Z0-9]{1,10}$/)) {
+                $(this).removeClass('is-invalid').addClass('is-valid');
+            } else {
+                $(this).removeClass('is-valid').addClass('is-invalid');
+            }
+        });
+    });
+</script>
 </html>

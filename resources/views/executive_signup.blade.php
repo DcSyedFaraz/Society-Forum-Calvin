@@ -24,9 +24,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
         integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="{{ asset('backend/css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/css/responsive.css') }}">
     <title>Executive Registration</title>
     <style>
+        .is-valid {
+            width: 441px;
+        }
+
+        .is-invalid {
+            width: 27.6em;
+        }
+
         .profile-info {
             display: flex;
             flex-direction: row;
@@ -222,7 +230,7 @@
                     </div>
                     <div class="formss">
                         <div class="card-body">
-                            <form action="{{ route('executive_registration') }}" method="POST"
+                            <form action="{{ route('executive_registration') }}" method="POST" id="form"
                                 enctype="multipart/form-data">
                                 @csrf
                                 <input class="file-upload" name="image" type="file" accept="image/*" />
@@ -233,10 +241,16 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="fullName" class="form-label">User Name</label>
-                                    <input type="text" class="form-control" name="username"
-                                        placeholder="TonyNguyen01" />
+                                    <div class="nedwssd">
+
+                                        <input type="text" class="form-control" name="username" maxlength="10"
+                                            placeholder="TonyNguyen01" required pattern="[a-zA-Z0-9]{1,10}">
+                                        <div class="valid-feedback">Looks good!</div>
+                                        <div class="invalid-feedback">User Name must not contain spaces and must not
+                                            exceed 10 characters.</div>
+                                    </div>
                                 </div>
-                                <small class="text-danger">*User Name must not contain spaces and must not exceed 10 characters.</small>
+
                                 <div class="mb-3">
                                     <label for="address" class="form-label">Full Current Address</label>
                                     <input type="text" class="form-control" name="address" placeholder="Address" />
@@ -249,7 +263,7 @@
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email Address</label>
                                     <input type="email" class="form-control" name="email"
-                                    placeholder="tony@example.com" />
+                                        placeholder="tony@example.com" />
                                 </div>
                                 <div class="mb-3">
                                     <label for="phoneNumber" class="form-label">Password</label>
@@ -263,7 +277,8 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="parkaddress" class="form-label">Park Shadows HOA Address</label>
-                                    <input type="text" class="form-control" name="parkaddress" placeholder="---" />
+                                    <input type="text" class="form-control" name="parkaddress"
+                                        placeholder="---" />
                                 </div>
                                 <div class="mb-3 checkkboxes">
                                     <input type="checkbox" class="custom-control-input" name="customCheck1" />
@@ -293,8 +308,25 @@
     </section>
 </body>
 <script src="assets/js/scripity.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+</script>
+<script>
+    $(document).ready(function() {
+        // Add event listener to input element with name "username"
+        $('input[name="username"]').on('keyup', function() {
+            // Validate the "username" field
+            $('#form').bootstrapValidator('validateField', 'username');
+
+            // Add or remove classes based on validation result
+            if ($(this).val().length > 0 && $(this).val().match(/^[a-zA-Z0-9]{1,10}$/)) {
+                $(this).removeClass('is-invalid').addClass('is-valid');
+            } else {
+                $(this).removeClass('is-valid').addClass('is-invalid');
+            }
+        });
+    });
 </script>
 <script>
     $(document).ready(function() {

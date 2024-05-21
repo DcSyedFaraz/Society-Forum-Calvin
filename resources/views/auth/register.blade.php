@@ -11,7 +11,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;700;800;900&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -27,6 +26,13 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Create Account</title>
     <style>
+         .is-valid {
+            width: 441px;
+        }
+
+        .is-invalid {
+            width: 27.6em;
+        }
         .profile-info {
             display: flex;
             flex-direction: row;
@@ -256,13 +262,17 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="fullName" class="form-label">User Name</label>
-                                            <input type="text" class="form-control" name="username"
-                                                placeholder="TonyNguyen01" />
+                                            <div>
+                                                <input type="text" class="form-control" name="username" maxlength="10"
+                                                    placeholder="TonyNguyen01" required pattern="[a-zA-Z0-9]{1,10}">
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter a valid username.</div>
+                                            </div>
                                         </div>
-                                        <small class="text-danger">*User Name must not contain spaces and must not exceed 10 characters.</small>
+
                                         <div class="mb-3">
                                             <label for="email" class="form-label">Email Address</label>
-                                            <input type="email" class="form-control" name="email" id="email"
+                                            <input type="email" class="form-control" name="email"
                                                 placeholder="tony@example.com">
                                         </div>
                                         <div class="mb-3">
@@ -314,7 +324,7 @@
                                             <label for="currentaddress" class="form-label">Address of Current
                                                 Property</label>
                                             <input type="text" class="form-control" name="address"
-                                                id="currentaddress" placeholder="Address">
+                                                placeholder="Address">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Create an account</button>
                                     </form>
@@ -333,13 +343,17 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="fullName" class="form-label">User Name</label>
-                                            <input type="text" class="form-control" name="username"
-                                                placeholder="TonyNguyen01" />
+                                            <div>
+                                                <input type="text" class="form-control" name="username" maxlength="10"
+                                                    placeholder="TonyNguyen01" required pattern="[a-zA-Z0-9]{1,10}">
+                                                <div class="valid-feedback">Looks good!</div>
+                                                <div class="invalid-feedback">Please enter a valid username.</div>
+                                            </div>
                                         </div>
-                                        <small class="text-danger">*User Name must not contain spaces and must not exceed 10 characters.</small>
+
                                         <div class="mb-3">
                                             <label for="email" class="form-label">Email Address</label>
-                                            <input type="email" class="form-control" id="email" name="email"
+                                            <input type="email" class="form-control" name="email"
                                                 placeholder="tony@example.com">
                                         </div>
                                         <div class="mb-3">
@@ -366,7 +380,7 @@
                                             <label for="currentaddress" class="form-label">Address of Current
                                                 Property</label>
                                             <input type="text" class="form-control" name="address"
-                                                id="currentaddress" placeholder="Address">
+                                                placeholder="Address">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Create an account</button>
                                     </form>
@@ -407,7 +421,10 @@
     </section>
 
 </body>
-<script src="{{ asset('/admin/plugins/jquery/jquery.min.js') }}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.1/css/bootstrapValidator.min.css"/>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.1/js/bootstrapValidator.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
     integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -484,6 +501,66 @@
     });
 </script>
 
+<script>
+    $(document).ready(function() {
+        // Add event listener to input element with name "username"
+        $('input[name="username"]').on('keyup', function() {
+            // Validate the "username" field
+            $('#owner-form, #rental-form').bootstrapValidator('validateField', 'username');
+
+            // Add or remove classes based on validation result
+            if ($(this).val().length > 0 && $(this).val().match(/^[a-zA-Z0-9]{1,10}$/)) {
+                $(this).removeClass('is-invalid').addClass('is-valid');
+            } else {
+                $(this).removeClass('is-valid').addClass('is-invalid');
+            }
+        });
+    });
+</script>
+{{-- <script>
+    $(document).ready(function() {
+        $('#owner-form, #rental-form').bootstrapValidator({
+                fields: {
+                    username: {
+                        validators: {
+                            notEmpty: {
+                                message: 'Please enter a username.'
+                            },
+                            stringLength: {
+                                min: 1,
+                                max: 10,
+                                message: 'Username must be between 1 and 10 characters long.'
+                            },
+                            regexp: {
+                                regexp: /^[a-zA-Z0-9]+$/,
+                                message: 'Username can only contain alphanumeric characters.'
+                            }
+                        }
+                    }
+                },
+                feedbackIcons: {
+                    valid: 'fa fa-check',
+                    invalid: 'fa fa-times',
+                    validating: 'fa fa-refresh'
+                },
+                live: 'enabled',
+                message: 'This value is not valid',
+                submitButtons: 'button[type="submit"]'
+            })
+            .on('success.field.bv', function(e, data) {
+                $(e.target).find('input[name="username"]').addClass('is-valid');
+            })
+            .on('error.field.bv', function(e, data) {
+                $(e.target).find('input[name="username"]').addClass('is-invalid');
+            });
+
+        // Add event listener to input element with name "username"
+        $('input[name="username"]').on('keyup', function() {
+            // Validate the "username" field
+            $('#owner-form, #rental-form').bootstrapValidator('validateField', 'username');
+        });
+    });
+</script> --}}
 <script>
     @if (session('success'))
         toastr.success("{{ session('success') }}");
