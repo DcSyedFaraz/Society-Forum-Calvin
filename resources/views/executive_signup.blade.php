@@ -31,7 +31,7 @@
             width: 441px;
         }
 
-        .is-invalid {
+        .valid input.form-control {
             width: 27.6em;
         }
 
@@ -235,13 +235,15 @@
                                 @csrf
                                 <input class="file-upload" name="image" type="file" accept="image/*" />
                                 <div class="mb-3">
-                                    <label for="fullName" class="form-label">Full Legal Name</label>
+                                    <label for="fullName" class="form-label">Full Legal Name <span
+                                            class="text-danger">*</span> </label>
                                     <input type="text" class="form-control" name="name"
                                         placeholder="Tony Nguyen" />
                                 </div>
                                 <div class="mb-3">
-                                    <label for="fullName" class="form-label">User Name</label>
-                                    <div class="nedwssd">
+                                    <label for="fullName" class="form-label">User Name <span
+                                            class="text-danger">*</span> </label>
+                                    <div class="valid">
 
                                         <input type="text" class="form-control" name="username" maxlength="10"
                                             placeholder="TonyNguyen01" required pattern="[a-zA-Z0-9]{1,10}">
@@ -252,46 +254,54 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="address" class="form-label">Full Current Address</label>
+                                    <label for="address" class="form-label">Full Current Address <span
+                                            class="text-danger">*</span> </label>
                                     <input type="text" class="form-control" name="address" placeholder="Address" />
                                 </div>
                                 <div class="mb-3">
-                                    <label for="phoneNumber" class="form-label">Phone Number</label>
+                                    <label for="phoneNumber" class="form-label">Phone Number <span
+                                            class="text-danger">*</span> </label>
                                     <input type="tel" class="form-control" name="phoneNumber"
                                         placeholder="+1 3934 3445 33" />
                                 </div>
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">Email Address</label>
+                                    <label for="email" class="form-label">Email Address <span
+                                            class="text-danger">*</span> </label>
                                     <input type="email" class="form-control" name="email"
                                         placeholder="tony@example.com" />
                                 </div>
                                 <div class="mb-3">
-                                    <label for="phoneNumber" class="form-label">Password</label>
+                                    <label for="phoneNumber" class="form-label">Password <span
+                                            class="text-danger">*</span> </label>
                                     <input type="password" class="form-control" name="password"
                                         placeholder="*****" />
                                 </div>
                                 <div class="mb-3">
-                                    <label for="phoneNumber" class="form-label">Confirm Password</label>
+                                    <label for="phoneNumber" class="form-label">Confirm Password <span
+                                            class="text-danger">*</span> </label>
                                     <input type="password" class="form-control" name="confirm_password"
                                         placeholder="*****" />
                                 </div>
                                 <div class="mb-3">
-                                    <label for="parkaddress" class="form-label">Park Shadows HOA Address</label>
+                                    <label for="parkaddress" class="form-label">Park Shadows HOA Address <span
+                                            class="text-danger">*</span> </label>
                                     <input type="text" class="form-control" name="parkaddress"
                                         placeholder="---" />
                                 </div>
                                 <div class="mb-3 checkkboxes">
                                     <input type="checkbox" class="custom-control-input" name="customCheck1" />
-                                    <label class="custom-control-label" for="customCheck1">Check if it is same</label>
+                                    <label class="custom-control-label" for="customCheck1">Check if it is same <span
+                                            class="text-danger">*</span> </label>
                                 </div>
                                 <div class="mb-3">
                                     <label for="hoaaddress" class="form-label">Address if Not Same as HOA
-                                        Address</label>
+                                        Address <span class="text-danger">*</span> </label>
                                     <input type="text" class="form-control" name="hoaaddress"
                                         placeholder="---" />
                                 </div>
                                 <div class="mb-3">
-                                    <label for="designation" class="form-label">Designation</label>
+                                    <label for="designation" class="form-label">Designation <span
+                                            class="text-danger">*</span> </label>
                                     <input type="text" class="form-control" name="designation"
                                         placeholder="---" />
                                 </div>

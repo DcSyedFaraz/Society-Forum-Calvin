@@ -15,10 +15,9 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $data = User::orderBy('id', 'DESC')->paginate(10);
+        $data = User::orderBy('id', 'desc')->where('access','approved')->get();
 
-        return view('admin.users.index', compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+        return view('admin.users.index', compact('data'));
     }
     public function create()
     {

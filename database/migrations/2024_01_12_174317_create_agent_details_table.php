@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('company_name');
             $table->string('physical_address');
             $table->string('company_mailing_address');
-            $table->string('company_phone_number');
+            $table->string('company_phone_number')->nullable();
             $table->string('company_email');
             $table->string('company_website')->nullable();
             $table->timestamps();

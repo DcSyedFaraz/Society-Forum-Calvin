@@ -24,16 +24,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
         integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="{{ asset('backend/css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/css/responsive.css') }}">
     <title>Real Estate Registration</title>
     <style>
-         .is-valid {
+        .is-valid {
             width: 441px;
         }
 
-        .is-invalid {
+        .valid input.form-control {
             width: 27.6em;
         }
+
         .profile-info {
             display: flex;
             flex-direction: row;
@@ -207,7 +208,7 @@
         <ul class="list-nav">
             <li><a href="#">New User?</a></li>
             <li><a href="#">Create an Account</a></li>
-            <li><a href="{{route('home')}}"><i class="fa fa-home" aria-hidden="true"
+            <li><a href="{{ route('home') }}"><i class="fa fa-home" aria-hidden="true"
                         style="font-size:20px;color:black;"></i>
                 </a></li>
         </ul>
@@ -226,7 +227,8 @@
 
                 </div>
                 <div class="col col-lg-6 col-sm-12">
-                    <form action="{{ route('agentregisteration') }}" method="post" enctype="multipart/form-data" id="form">
+                    <form action="{{ route('agentregisteration') }}" method="post" enctype="multipart/form-data"
+                        id="form">
                         @csrf
                         <div class="row">
                             <div class="profile-info">
@@ -249,78 +251,89 @@
                         <div class="formss">
                             <div class="card-body">
                                 <div class="mb-3">
-                                    <label for="fullName" class="form-label">User Name</label>
-                                    <div>
+                                    <label for="fullName" class="form-label">User Name <span
+                                            class="text-danger">*</span> </label>
+                                    <div class="valid">
                                         <input type="text" class="form-control" name="username" maxlength="10"
                                             placeholder="TonyNguyen01" required pattern="[a-zA-Z0-9]{1,10}">
                                         <div class="valid-feedback">Looks good!</div>
-                                        <div class="invalid-feedback">Please enter a valid username.</div>
+                                        <div class="invalid-feedback">User Name must not contain spaces and must not
+                                            exceed 10 characters.</div>
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="fullName" class="form-label">Real Estate Full Legal Name</label>
+                                    <label for="fullName" class="form-label">Real Estate Full Legal Name <span
+                                            class="text-danger">*</span> </label>
                                     <input type="text" class="form-control" name="name" placeholder="Tony Nguyen">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="licence" class="form-label">Real Estate Offical Licence Number</label>
+                                    <label for="licence" class="form-label">Real Estate Offical Licence Number <span
+                                            class="text-danger">*</span> </label>
                                     <input type="number" class="form-control" name="license"
                                         placeholder="000 1000 000">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="phoneNumber" class="form-label">Real Estate Phone Number</label>
+                                    <label for="phoneNumber" class="form-label">Real Estate Phone Number <span
+                                            class="text-danger">*</span> </label>
                                     <input type="tel" class="form-control" name="phoneNumber"
                                         placeholder="+1 3934 3445 33">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">Real Estate Email Address</label>
+                                    <label for="email" class="form-label">Real Estate Email Address <span
+                                            class="text-danger">*</span> </label>
                                     <input type="email" class="form-control" name="email"
                                         placeholder="tony@example.com">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="phoneNumber" class="form-label">Password</label>
+                                    <label for="phoneNumber" class="form-label">Password <span
+                                            class="text-danger">*</span> </label>
                                     <input type="password" class="form-control" name="password"
                                         placeholder="*****" />
                                 </div>
                                 <div class="mb-3">
-                                    <label for="phoneNumber" class="form-label">Confirm Password</label>
+                                    <label for="phoneNumber" class="form-label">Confirm Password <span
+                                            class="text-danger">*</span> </label>
                                     <input type="password" class="form-control" name="confirm_password"
                                         placeholder="*****" />
                                 </div>
                                 <div class="landlordersect">
-                                    <h4 style="width: 100%; display: block !important; margin-bottom: 20px;">Real Estate
+                                    <h4 style="width: 100%; display: block !important; margin-bottom: 20px;">Real
+                                        Estate
                                         Agent Company</h4>
                                     <div class="landlorder">
                                         <div class="mb-3">
-                                            <label for="companyname" class="form-label">Real Estate Company Name</label>
+                                            <label for="companyname" class="form-label">Real Estate Company
+                                                Name <span class="text-danger">*</span> </label>
                                             <input type="text" class="form-control" name="companyname"
                                                 placeholder="Tony Nguyen">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="companyphone" class="form-label">Phone<br> Number</label>
+                                            <label for="companyphone" class="form-label">Phone<br> Number (Optional)
+                                                 </label>
                                             <input type="tel" class="form-control" name="companyphone"
                                                 placeholder="+13333 2222 55">
                                         </div>
                                         <div class="mb-3">
                                             <label for="companymailing" class="form-label">Real Estate Company Mailing
-                                                Address</label>
+                                                Address <span class="text-danger">*</span> </label>
                                             <input type="text" class="form-control" name="companymailadd"
-                                                placeholder="Tonynguyen@example.com">
+                                                placeholder="address">
                                         </div>
                                         <div class="mb-3">
                                             <label for="companyemail" class="form-label">Real Estate Company Email
-                                                Address</label>
+                                                Address <span class="text-danger">*</span> </label>
                                             <input type="text" class="form-control" name="companyemail"
                                                 placeholder="Tonynguyen@example.com">
                                         </div>
                                         <div class="mb-3">
                                             <label for="companyweb" class="form-label">Real Estate Company
-                                                Website</label>
-                                            <input type="url" class="form-control" name="companyweb"
+                                                Website (Optional)  </label>
+                                            <input type="text" class="form-control" name="companyweb"
                                                 placeholder="www.example.com">
                                         </div>
                                         <div class="mb-3">
                                             <label for="companyaddress" class="form-label">Real Estate Company
-                                                Physical Address</label>
+                                                Physical Address <span class="text-danger">*</span> </label>
                                             <input type="text" class="form-control" name="landaddress"
                                                 placeholder="Company Address">
                                         </div>
@@ -397,4 +410,5 @@
         });
     });
 </script>
+
 </html>

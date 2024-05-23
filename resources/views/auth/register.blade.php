@@ -26,13 +26,12 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Create Account</title>
     <style>
-         .is-valid {
-            width: 441px;
+
+
+        .valid input.form-control {
+            width: 27.6em !important;
         }
 
-        .is-invalid {
-            width: 27.6em;
-        }
         .profile-info {
             display: flex;
             flex-direction: row;
@@ -256,37 +255,46 @@
                                         @csrf
                                         <input type="hidden" value="rent" name="position">
                                         <div class="mb-3">
-                                            <label for="fullName" class="form-label">Full Name</label>
+                                            <label for="fullName" class="form-label">Full Name <span
+                                                    class="text-danger">*</span> </label>
                                             <input type="text" class="form-control" name="name"
                                                 placeholder="Tony Nguyen">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="fullName" class="form-label">User Name</label>
-                                            <div>
-                                                <input type="text" class="form-control" name="username" maxlength="10"
-                                                    placeholder="TonyNguyen01" required pattern="[a-zA-Z0-9]{1,10}">
+                                            <label for="fullName" class="form-label">User Name <span
+                                                    class="text-danger">*</span> </label>
+                                            <div class="valid">
+                                                <input type="text" class="form-control" name="username"
+                                                    maxlength="10" placeholder="TonyNguyen01" required
+                                                    pattern="[a-zA-Z0-9]{1,10}">
                                                 <div class="valid-feedback">Looks good!</div>
-                                                <div class="invalid-feedback">Please enter a valid username.</div>
+                                                <div class="invalid-feedback">User Name must not contain spaces and
+                                                    must not
+                                                    exceed 10 characters.</div>
                                             </div>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="email" class="form-label">Email Address</label>
+                                            <label for="email" class="form-label">Email Address <span
+                                                    class="text-danger">*</span> </label>
                                             <input type="email" class="form-control" name="email"
                                                 placeholder="tony@example.com">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="phoneNumber" class="form-label">Password</label>
+                                            <label for="phoneNumber" class="form-label">Password <span
+                                                    class="text-danger">*</span> </label>
                                             <input type="password" class="form-control" name="password"
                                                 placeholder="*****" />
                                         </div>
                                         <div class="mb-3">
-                                            <label for="phoneNumber" class="form-label">Confirm Password</label>
+                                            <label for="phoneNumber" class="form-label">Confirm Password <span
+                                                    class="text-danger">*</span> </label>
                                             <input type="password" class="form-control" name="confirm_password"
                                                 placeholder="*****" />
                                         </div>
                                         <div class="mb-3">
-                                            <label for="phoneNumber" class="form-label">Phone Number</label>
+                                            <label for="phoneNumber" class="form-label">Phone Number <span
+                                                    class="text-danger">*</span> </label>
                                             <input type="tel" class="form-control" name="phone"
                                                 placeholder="+1 3934 3445 33">
                                         </div>
@@ -295,25 +303,29 @@
                                                 Landlord Complete Information</h4>
                                             <div class="landlorder">
                                                 <div class="mb-3">
-                                                    <label for="landlord" class="form-label">Name</label>
+                                                    <label for="landlord" class="form-label">Name <span
+                                                            class="text-muted fst-italic">(Optional)</span> </label>
                                                     <input type="text" name="landlord_name" name="name"
                                                         class="form-control" id="landname"
                                                         placeholder="Tony Nguyen">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="addPhone" class="form-label">Phone Number</label>
+                                                    <label for="addPhone" class="form-label">Phone Number <span
+                                                            class="text-muted fst-italic">(Optional)</span> </label>
                                                     <input type="tel" name="landlord_phone_number"
                                                         class="form-control" id="landPhone"
                                                         placeholder="+13333 2222 55">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="mobile" class="form-label">Your email</label>
+                                                    <label for="mobile" class="form-label">Your email <span
+                                                            class="text-muted fst-italic">(Optional)</span> </label>
                                                     <input type="email" name="landlord_email_address"
                                                         class="form-control" id="landemail"
                                                         placeholder="Tonynguyen@example.com">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="address" class="form-label">Physical Address</label>
+                                                    <label for="address" class="form-label">Physical Address <span
+                                                            class="text-muted fst-italic">(Optional)</span> </label>
                                                     <input type="text" name="landlord_address"
                                                         class="form-control" id="landaddress"
                                                         placeholder="Address of Current Property">
@@ -322,7 +334,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="currentaddress" class="form-label">Address of Current
-                                                Property</label>
+                                                Property <span class="text-danger">*</span> </label>
                                             <input type="text" class="form-control" name="address"
                                                 placeholder="Address">
                                         </div>
@@ -337,48 +349,58 @@
                                         @csrf
                                         <input type="hidden" value="owner" name="position">
                                         <div class="mb-3">
-                                            <label for="fullName" class="form-label">Full Name</label>
+                                            <label for="fullName" class="form-label">Full Name <span
+                                                    class="text-danger">*</span> </label>
                                             <input type="text" name="name" class="form-control" id="name"
                                                 placeholder="Tony Nguyen">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="fullName" class="form-label">User Name</label>
-                                            <div>
-                                                <input type="text" class="form-control" name="username" maxlength="10"
-                                                    placeholder="TonyNguyen01" required pattern="[a-zA-Z0-9]{1,10}">
+                                            <label for="fullName" class="form-label">User Name <span
+                                                    class="text-danger">*</span> </label>
+                                            <div class="valid">
+                                                <input type="text" class="form-control" name="username"
+                                                    maxlength="10" placeholder="TonyNguyen01" required
+                                                    pattern="[a-zA-Z0-9]{1,10}">
                                                 <div class="valid-feedback">Looks good!</div>
-                                                <div class="invalid-feedback">Please enter a valid username.</div>
+                                                <div class="invalid-feedback">User Name must not contain spaces and
+                                                    must not
+                                                    exceed 10 characters.</div>
                                             </div>
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="email" class="form-label">Email Address</label>
+                                            <label for="email" class="form-label">Email Address <span
+                                                    class="text-danger">*</span> </label>
                                             <input type="email" class="form-control" name="email"
                                                 placeholder="tony@example.com">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="phoneNumber" class="form-label">Password</label>
+                                            <label for="phoneNumber" class="form-label">Password <span
+                                                    class="text-danger">*</span> </label>
                                             <input type="password" class="form-control" name="password"
                                                 placeholder="*****" />
                                         </div>
                                         <div class="mb-3">
-                                            <label for="phoneNumber" class="form-label">Confirm Password</label>
+                                            <label for="phoneNumber" class="form-label">Confirm Password <span
+                                                    class="text-danger">*</span> </label>
                                             <input type="password" class="form-control" name="confirm_password"
                                                 placeholder="*****" />
                                         </div>
                                         <div class="mb-3">
-                                            <label for="phoneNumber" class="form-label">Phone Number</label>
+                                            <label for="phoneNumber" class="form-label">Phone Number <span
+                                                    class="text-danger">*</span> </label>
                                             <input type="tel" class="form-control" name="phone"
                                                 id="phoneNumber" placeholder="+1 3934 3445 33">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="startDate">Date of Purchase of Property</label>
+                                            <label for="startDate">Date of Purchase of Property <span
+                                                    class="text-danger">*</span> </label>
                                             <input id="startDate" name="date" class="form-control"
                                                 type="date" />
                                         </div>
                                         <div class="mb-3">
                                             <label for="currentaddress" class="form-label">Address of Current
-                                                Property</label>
+                                                Property <span class="text-danger">*</span> </label>
                                             <input type="text" class="form-control" name="address"
                                                 placeholder="Address">
                                         </div>
@@ -402,7 +424,7 @@
                               <form id="posodobi_uporabnika">
                               <div class="form-floating mb-3">
                                 <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                                <label for="floatingInput">Email address</label>
+                                <label for="floatingInput">Email address <span class="text-danger">*</span> </label>
                               </div>
                             </form>
                             </div>
@@ -422,8 +444,10 @@
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.1/css/bootstrapValidator.min.css"/>
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.1/js/bootstrapValidator.min.js"></script>
+<link rel="stylesheet"
+    href="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.1/css/bootstrapValidator.min.css" />
+<script type="text/javascript"
+    src="//cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.1/js/bootstrapValidator.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
     integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="

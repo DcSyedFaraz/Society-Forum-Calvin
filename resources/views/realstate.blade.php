@@ -1,12 +1,13 @@
 @extends('layout.app')
 <style>
-.mobile {
+    .mobile {
         display: block;
         width: 100%;
         display: flex;
         justify-content: flex-end;
         align-items: center;
     }
+
     .fancybox-toolbar {
         display: none;
     }
@@ -173,11 +174,11 @@
                 <div class="listing-wrap  item-grid-view">
                     <div class="container heading">
                         <div class="row">
-                            <div class="heading">
+                            <div class="heading"  id="estate">
                                 <div class="iconic">
                                     <i class="fa fa-building-o" aria-hidden="true"></i>
                                 </div>
-                                <h2>AVAILABLE PROPERTIES</h2>
+                                <h2 >AVAILABLE PROPERTIES</h2>
                                 <p>Nothing is set in you can structure your exactly how you want.</p>
                                 <p>Homeowners, not investors!</p>
                             </div>
@@ -303,6 +304,20 @@
             </div>
         </div>
         <!-- //////////////////////////////// -->
+		<div class="container listing-sec">
+            <div class="row">
+                <div class="listing-wrap  item-grid-view">
+                    <div class="container heading">
+                        <div class="row">
+                            <div class="heading">
+                                <h5>If you would like the HOA to open the R8 gate for an Open House, please email <a href="mailto:parkshadowshomeowners@gmail.com">parkshadowshomeowners@gmail.com</a></h5>
+                            </div>
+                        </div>
+                    </div>
+				</div>
+			</div>
+		</div>
+		<!-- //////////////////////////////// -->
         <div class="container listing-sec">
             <div class="row">
                 <div class="listing-wrap  item-grid-view">
@@ -345,10 +360,10 @@
                                 <!-- .item-wrap -->
                             </div>
                         @empty
-                        <div class="alert alert-info text-center" role="alert">
-                            It seems that there are currently no plan available. Please check back later for new
-                            floor plans!
-                        </div>
+                            <div class="alert alert-info text-center" role="alert">
+                                It seems that there are currently no plan available. Please check back later for new
+                                floor plans!
+                            </div>
                         @endforelse
                     </div>
                 </div>

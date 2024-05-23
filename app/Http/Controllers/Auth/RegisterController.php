@@ -180,10 +180,10 @@ class RegisterController extends Controller
             'phoneNumber' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users',
             'companyname' => 'required|string|max:255',
-            'companyphone' => 'required|string|max:255',
+            'companyphone' => 'nullable|string|max:255',
             'companymailadd' => 'required|string|max:255',
             'companyemail' => 'required|email|max:255',
-            'companyweb' => 'required|url|max:255',
+            'companyweb' => 'nullable|max:255',
             'landaddress' => 'required|string|max:255',
         ]);
 
@@ -214,9 +214,9 @@ class RegisterController extends Controller
         $details->physical_address = $data['landaddress'];
         $details->license = $data['license'];
         $details->company_mailing_address = $data['companymailadd'];
-        $details->company_phone_number = $data['companyphone'];
+        $details->company_phone_number = $data['companyphone'] ?? null;
         $details->company_email = $data['companyemail'];
-        $details->company_website = $data['companyweb'];
+        $details->company_website = $data['companyweb'] ?? null;
 
         $details->save();
         $this->notification($user);

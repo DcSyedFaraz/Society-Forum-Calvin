@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="{{ asset('backend/images/favicon-32x32.png') }}" type="image/png" />
     <!--plugins-->
-    
+
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
@@ -145,11 +145,11 @@
                         <div class="menu-title">Lost & Found</div>
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('admin.users.index') ? 'mm-active' : '' }}">
+                <li class="{{ request()->routeIs('admin.users.*') ? 'mm-active' : '' }}">
                     <a href="{{ route('admin.users.index') }}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/Schedules icon.png') }}">
                         </div>
-                        <div class="menu-title">Users Management</div>
+                        <div class="menu-title">User Management</div>
                     </a>
                 </li>
                 <li class="{{ request()->routeIs('admin.gallery.index') ? 'mm-active' : '' }}">
@@ -187,7 +187,7 @@
           </div>
         </div>
             <nav class="navbar navbar-expand gap-3 align-items-center">
-                
+
                 <div class="mobile-toggle-icon fs-3">
                     <!--<i class="bi bi-list"></i>-->
                 </div>
@@ -467,9 +467,9 @@
         </header>
 
         <!--end top header-->
-        
-  
-        
+
+
+
         <!--start sidebar -->
         <aside class="sidebar-wrapper" data-simplebar="true">
             <div class="sidebar-header">
@@ -479,7 +479,7 @@
                 </div>
                 <div class="toggle-icon ms-auto"> <i class="bi bi-list"></i>
                 </div>
-                
+
             </div>
             <!--navigation-->
             <ul class="metismenu" id="menu">
@@ -566,11 +566,11 @@
                         <div class="menu-title">Lost & Found</div>
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('admin.users.index') ? 'mm-active' : '' }}">
+                <li class="{{ request()->routeIs('admin.users.*') ? 'mm-active' : '' }}">
                     <a href="{{ route('admin.users.index') }}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/Schedules icon.png') }}">
                         </div>
-                        <div class="menu-title">Users Management</div>
+                        <div class="menu-title">User Management</div>
                     </a>
                 </li>
                 <li class="{{ request()->routeIs('admin.gallery.index') ? 'mm-active' : '' }}">

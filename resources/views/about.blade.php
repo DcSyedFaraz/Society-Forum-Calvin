@@ -8,11 +8,11 @@
     </section>
     <section class="main-div">
         <div class="row">
-        <div class="col-lg-6 col-sm-12 px-5">
-            <h1 class="heading1">About Us</h1>
-            <img src=" {{ asset('frontend/images/circle.png') }}" class="circle">
-            <p class="paragraph">
-                {{-- The Park Shadows Homeowners Association is a non-profit mutual benefit corporation
+            <div class="col-lg-6 col-sm-12 px-5">
+                <h1 class="heading1">About Us</h1>
+                {{-- <img src=" {{ asset('frontend/images/circle.png') }}" class="circle"> --}}
+                <p class="paragraph">
+                    {{-- The Park Shadows Homeowners Association is a non-profit mutual benefit corporation
                 under IRC Section 501(c)(4) Homeowners’ Associations and applicable California regulations. We are
                 located between East Avenue R-4 to the north and East Avenue R-8 to the South in Palmdale,
                 California.
@@ -21,20 +21,25 @@
                 R-8 and Laderman Lane. The Laderman Lane entrance is considered our main entrance. We promote a
                 welcoming community and home ownership. We welcome you to buy here and live here. Our goal is to
                 increase home values for the benefit of all our neighbors --}}
-                Welcome to Park Shadows Homeowners Association, a vibrant community of 182 families nestled in the heart of
-                Los Angeles County. Our safe, clean, and welcoming neighborhood is perfect for homebuyers seeking a peaceful
-                environment to call home. As a nonprofit mutual benefit corporation, we promote home ownership and community
-                engagement. Explore our well-maintained properties and join us in our exciting community events. Buy your
-                dream home here and become part of our thriving community today!
-            </p>
-        </div>
-        <div class="col-lg-6 col-sm-12 px-5">
-            <img src=" {{ asset('frontend/images/new/gallery (3).jpg') }}"
-                style="width: 95%; border-radius: 1.25rem !important;">
+                    Welcome to Park Shadows Homeowners Association, a vibrant community of 182 families nestled in the heart
+                    of
+                    Los Angeles County. Our safe, clean, and welcoming neighborhood is perfect for homebuyers seeking a
+                    peaceful
+                    environment to call home. As a nonprofit mutual benefit corporation, we promote home ownership and
+                    community
+                    engagement. Explore our well-maintained properties and join us in our exciting community events. Buy
+                    your
+                    dream home here and become part of our thriving community today!
+                    <a href="{{ asset('backend/files/HOA_Ad.pdf') }}" target="_blank">More Information.</a>
+                </p>
+            </div>
+            <div class="col-lg-6 col-sm-12 px-5">
+                <img src=" {{ asset('frontend/images/new/gallery (3).jpg') }}"
+                    style="width: 95%; border-radius: 1.25rem !important;">
                 <span class="d-flex justify-content-center font-weight-bold">
                     BUY HERE! LIVE HERE!
                 </span>
-        </div>
+            </div>
         </div>
     </section>
     {{-- <section class="main-div1" style="padding-bottom: 70px;">

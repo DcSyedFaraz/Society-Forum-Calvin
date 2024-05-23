@@ -9,6 +9,9 @@
                 <a href="{{ route('estate_login') }}"><button class="btn-b">Real Estate Login</button></a>
                 <a href="{{ route('executive_login') }}"><button class="btn-b">Executive Login</button></a>
             </div>
+            <div class="buttons">
+                <a href="/realstate#estate" style="width: 59%"><button class="btn-b btn-lg w-75">Available Properties</button></a>
+            </div>
         </div>
     </section>
     <section class="main-div">

@@ -8,7 +8,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Users</h1>
+          <h1>User</h1>
         </div>
 
       </div>
@@ -67,7 +67,6 @@
                   @endif
                 </tbody>
               </table>
-              {!! $data->render() !!}
             </div>
             <!-- /.card-body -->
           </div>
