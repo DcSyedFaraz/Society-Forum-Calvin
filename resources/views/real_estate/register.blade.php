@@ -90,7 +90,7 @@
                             Property
                         </h4>
                         <div class="mb-3">
-                            <input type="url" class="form-control" id="url" name="promote_url" placeholder="www.example.com" value="{{ old('promote_url') }}">
+                            <input type="text" class="form-control" id="url" name="promote_url" placeholder="www.example.com" value="{{ old('promote_url') }}">
                         </div>
                         <div class="landlordersect">
                             <h4
@@ -105,6 +105,7 @@
                                 <div class="mb-3">
                                     <label for="landlord" class="form-label">Image Of Property</label>
                                     <input type="file" class="form-control" name="images[]" multiple accept="image/*" />
+                                    <small class="fw-bold">*File Size 4mb or less</small>
                                 </div>
 
 
@@ -150,7 +151,7 @@
 
                                 <div class="mb-3">
                                     <label for="addressurl" class="form-label">A Link To The Real Estate Agent's Or Real Estate Company's Website</label>
-                                    <input type="url" class="form-control" id="addressurl" name="company_website" placeholder="www.example.com" value="{{ old('company_website') }}">
+                                    <input type="text" class="form-control" id="addressurl" name="company_website" placeholder="www.example.com" value="{{ old('company_website') }}">
                                 </div>
 
                                 <div class="mb-3">

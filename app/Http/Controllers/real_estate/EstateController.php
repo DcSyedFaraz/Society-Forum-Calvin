@@ -47,7 +47,7 @@ class EstateController extends Controller
         // dd($request->all());
 
         $validatedData = $request->validate([
-            'promote_url' => 'required|url',
+            'promote_url' => 'required',
             'title' => 'required|string',
             'area' => 'required|string',
             'phone' => 'required|regex:/^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/',
@@ -56,7 +56,7 @@ class EstateController extends Controller
             'baths' => 'required|numeric',
             'garages' => 'required|numeric',
             'email' => 'required|email',
-            'company_website' => 'required|url',
+            'company_website' => 'required',
             'address' => 'required|string',
             'images' => 'required|array',
             'images.*' => 'image',
@@ -150,12 +150,12 @@ class EstateController extends Controller
     {
         // Validate the request data
         $validatedData = $request->validate([
-            'promote_url' => 'required|url',
+            'promote_url' => 'required',
             'title' => 'required|string',
             'phone' => 'required|regex:/^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/',
             'price' => 'required|numeric',
             'email' => 'required|email',
-            'company_website' => 'required|url',
+            'company_website' => 'required',
             'address' => 'required|string',
             'image' => 'nullable|image',
         ]);

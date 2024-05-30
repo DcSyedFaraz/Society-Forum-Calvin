@@ -225,7 +225,7 @@
                                                     @case('Announcement')
                                                         <a data-notification-id="{{ $notifications->id }}"
                                                             class="dropdown-item notification-link"
-                                                            href="{{ route('executive.announcements') }}">
+                                                            href="{{ route('admin.announcements') }}">
                                                             <div class="d-flex align-items-center">
                                                                 <div class="notification-box bg-light-warning text-warning"><i
                                                                         class="bi bi-droplet-fill"></i></div>

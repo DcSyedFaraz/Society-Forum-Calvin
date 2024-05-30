@@ -99,7 +99,7 @@
 
                             <div class="mb-3">
                                 <label for="agents-company" class="form-label">Company's Website:</label>
-                                <input type="url" class="form-control" id="agents-company" name="company_website">
+                                <input type="text" class="form-control" id="agents-company" name="company_website">
                             </div>
 
 

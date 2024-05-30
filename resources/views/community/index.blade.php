@@ -131,6 +131,7 @@
                                                 <label for="start_date" class="form-label">Image (Optional):</label>
                                                 <input type="file" class="form-control" name="image" accept="image/*"
                                                     id="inputGroupFile01">
+                                                    <small class="fw-bold">*File Size 4mb or less</small>
                                             </div>
                                         </div>
                                     </div>
@@ -211,6 +212,7 @@
                                                                                     :</label>
                                                                                 <input type="file" class="form-control"
                                                                                     name="image" accept="image/*">
+                                                                                    <small class="fw-bold">*File Size 4mb or less</small>
                                                                                 @if ($item->image)
                                                                                     <img class="my-3"
                                                                                         src="{{ asset('storage/' . $item->image) }}"

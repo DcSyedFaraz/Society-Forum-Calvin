@@ -56,6 +56,7 @@
                                                                 <label for="start_date" class="form-label">Image:</label>
                                                                 <input type="file" class="form-control" name="image"
                                                                     accept="image/*" id="inputGroupFile01">
+                                                                    <small class="fw-bold">*File Size 4mb or less</small>
                                                             </div>
                                                         </div>
                                                         <div class="col-12 desspri mt-4">

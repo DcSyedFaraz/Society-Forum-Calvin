@@ -38,6 +38,7 @@
                                     <label for="hoaaddress" class="form-label">Upload Image/Sketch</label>
                                     <input class="form-control" type="file" id="image" name="image"
                                         accept="image/*" placeholder="Choose Images">
+                                        <small class="fw-bold">*File Size 4mb or less</small>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>

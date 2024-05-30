@@ -18,7 +18,7 @@
                             Property
                         </h4>
                         <div class="mb-3">
-                            <input type="url" class="form-control" id="url" name="promote_url"
+                            <input type="text" class="form-control" id="url" name="promote_url"
                                 value="{{ $property->promote_url }}" placeholder="www.example.com" />
                         </div>
                         <div class="landlordersect">
@@ -35,6 +35,7 @@
                                     <label for="image" class="form-label">Image Of Property</label>
                                     <input type="file" class="form-control" id="image" multiple name="images[]"
                                         accept="image/*">
+                                        <small class="fw-bold">*File Size 4mb or less</small>
                                     @if ($property->images)
                                         @foreach ($property->images as $item)
                                             <div class="row">
@@ -87,7 +88,7 @@
                                         Real
                                         Estate
                                         Company's Website</label>
-                                    <input type="url" class="form-control" id="company_website" name="company_website"
+                                    <input type="text" class="form-control" id="company_website" name="company_website"
                                         value="{{ $property->company_website }}" />
                                 </div>
                                 <div class="mb-3">

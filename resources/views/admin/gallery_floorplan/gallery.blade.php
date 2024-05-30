@@ -38,6 +38,7 @@
                                                         {{-- <label for="inputGroupFile01" class="form-label">Upload</label> --}}
                                                         <input type="file" name="files[]" class="form-control" multiple
                                                             id="inputGroupFile01" accept=".jpeg,.png,.jpg,.gif">
+                                                            <small class="fw-bold">*File Size 4mb or less</small>
                                                     </div>
                                                     <button type="submit" class="btn btn-primary">Submit</button>
                                                 </form>
