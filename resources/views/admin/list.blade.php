@@ -126,8 +126,12 @@
                                             <td>{{ $properties->address }}</td>
                                             <td>{{ $properties->email }}</td>
                                             <td>
-                                                <img class="rounded rounded-2" style="width: 54px;"
-                                                    src="{{ asset('storage/' . $properties->image) }}" alt="img">
+                                                @if ($properties->image)
+                                                    <img class="rounded rounded-2" style="width: 54px;"
+                                                        src="{{ asset('storage/' . $properties->image) }}" alt="img">
+                                                @else
+                                                <span class="text-muted fst-italic">No image available</span>
+                                                @endif
                                             </td>
                                             <td>
                                                 @if ($properties->access === 'approved')

@@ -126,7 +126,7 @@
 
                                 <div class="mb-3">
                                     <label for="area" class="form-label">Area</label>
-                                    <input type="text" class="form-control" id="area" name="area" placeholder="Area" value="{{ old('area') }}">
+                                    <input type="number" class="form-control" id="area" name="area" placeholder="Area" value="{{ old('area') }}">
                                 </div>
 
                                 <div class="mb-3">

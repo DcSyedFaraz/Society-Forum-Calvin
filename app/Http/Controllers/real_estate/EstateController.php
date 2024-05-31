@@ -94,13 +94,13 @@ class EstateController extends Controller
 
 
 
-            // $user = auth()->user();
-            // $notifyuser = User::role(['executive', 'admin'])
-            //     ->get();
+            $user = auth()->user();
+            $notifyuser = User::role(['executive', 'admin'])
+                ->get();
 
-            // // Send the notification to eligible users
-            // $message = "📢 Hey there! We have a new request waiting for your attention. Click here to check it out and take action.";
-            // \Notification::send($notifyuser, new UserNotification($user, $message, 'Real Estate'));
+            // Send the notification to eligible users
+            $message = "📢 Hey there! We have a new request waiting for your attention. Click here to check it out and take action.";
+            \Notification::send($notifyuser, new UserNotification($user, $message, 'Real Estate'));
 
             DB::commit();
 
@@ -154,6 +154,10 @@ class EstateController extends Controller
             'title' => 'required|string',
             'phone' => 'required|regex:/^(\+\d{1,2}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/',
             'price' => 'required|numeric',
+            'beds' => 'required|numeric',
+            'baths' => 'required|numeric',
+            'area' => 'required|numeric',
+            'garages' => 'required|numeric',
             'email' => 'required|email',
             'company_website' => 'required',
             'address' => 'required|string',
@@ -168,6 +172,10 @@ class EstateController extends Controller
         $property->title = $validatedData['title'];
         $property->phone = $validatedData['phone'];
         $property->price = $validatedData['price'];
+        $property->beds = $validatedData['beds'];
+        $property->baths = $validatedData['baths'];
+        $property->garages = $validatedData['garages'];
+        $property->area = $validatedData['area'];
         $property->email = $validatedData['email'];
         $property->company_website = $validatedData['company_website'];
         $property->address = $validatedData['address'];

@@ -35,7 +35,7 @@
                                     <label for="image" class="form-label">Image Of Property</label>
                                     <input type="file" class="form-control" id="image" multiple name="images[]"
                                         accept="image/*">
-                                        <small class="fw-bold">*File Size 4mb or less</small>
+                                    <small class="fw-bold">*File Size 4mb or less</small>
                                     @if ($property->images)
                                         @foreach ($property->images as $item)
                                             <div class="row">
@@ -73,6 +73,31 @@
                                     <input type="tel" class="form-control" id="phone" name="phone"
                                         value="{{ $property->phone }}" />
                                 </div>
+
+                                <div class="mb-3">
+                                    <label for="area" class="form-label">Area</label>
+                                    <input type="number" class="form-control" id="area" name="area"
+                                        placeholder="Area" value="{{ $property->area }}">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="beds" class="form-label">Beds</label>
+                                    <input type="number" class="form-control" id="beds" name="beds"
+                                        placeholder="Number of Beds" value="{{ $property->beds }}">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="baths" class="form-label">Baths</label>
+                                    <input type="number" class="form-control" id="baths" name="baths"
+                                        placeholder="Number of Baths" value="{{ $property->baths }}">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="garages" class="form-label">Garages</label>
+                                    <input type="number" class="form-control" id="garages" name="garages"
+                                        placeholder="Number of Garages" value="{{ $property->garages }}">
+                                </div>
+
                                 <div class="mb-3">
                                     <label for="price" class="form-label">Sale Price Of Property</label>
                                     <input type="number" class="form-control" id="price" name="price"
@@ -88,8 +113,8 @@
                                         Real
                                         Estate
                                         Company's Website</label>
-                                    <input type="text" class="form-control" id="company_website" name="company_website"
-                                        value="{{ $property->company_website }}" />
+                                    <input type="text" class="form-control" id="company_website"
+                                        name="company_website" value="{{ $property->company_website }}" />
                                 </div>
                                 <div class="mb-3">
                                     <label for="address" class="form-label">Address of Current Property</label>
