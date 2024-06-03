@@ -132,11 +132,20 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <!-- <p class="text-wrap">Welcome {{ auth()->user()->name }}</p> -->
+                <form action="{{ route('admin.about_document.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label for="document">Choose Document for about us page</label>
+                        <input type="file" class="form-control" name="document" required>
+                    </div>
+                    <small class="fw-bold">*File Size 4mb or less</small>
+                    <button type="submit" class="btn btn-primary mt-3">Upload</button>
+                </form>
                 <div id="tabler-tables">
                     <h3>User Requests</h3>
                     {{-- <h3>User Requests</h3> --}}
-                    <div class="tablemaster" translate="no" data-new-gr-c-s-check-loaded="14.1157.0" data-gr-ext-installed="">
+                    <div class="tablemaster" translate="no" data-new-gr-c-s-check-loaded="14.1157.0"
+                        data-gr-ext-installed="">
                         <div id="example_wrapper" class="dataTables_wrapper">
                             <div class="dataTables_length" id="example_length">
                             </div>
@@ -187,65 +196,85 @@
                                                                         alt="Image" width="100%" height="auto">
                                                                 @endif
                                                                 @if ($user->roles->isNotEmpty())
-                                                                    <p class="mt-3"><strong class="me-2">Role:</strong> <span
+                                                                    <p class="mt-3"><strong class="me-2">Role:</strong>
+                                                                        <span
                                                                             class="badge bg-primary text-uppercase">{{ $user->roles->first()->name }}</span>
                                                                     </p>
                                                                 @else
-                                                                    <p class="mt-3"><strong class="me-2">Role:</strong> <span
-                                                                            class="badge bg-secondary text-uppercase">No
+                                                                    <p class="mt-3"><strong class="me-2">Role:</strong>
+                                                                        <span class="badge bg-secondary text-uppercase">No
                                                                             Role
-                                                                            Assigned</span></p>
+                                                                            Assigned</span>
+                                                                    </p>
                                                                 @endif
                                                                 @if ($user->member)
-                                                                    <p class="text-wrap"><strong class="me-2">Position:</strong>
+                                                                    <p class="text-wrap"><strong
+                                                                            class="me-2">Position:</strong>
                                                                         <span
                                                                             class="badge text-uppercase bg-success">{{ $user->member->position }}</span>
                                                                     </p>
-                                                                    <p class="text-wrap"><strong class="me-2">Address:</strong>
+                                                                    <p class="text-wrap"><strong
+                                                                            class="me-2">Address:</strong>
                                                                         {{ $user->member->address }}
                                                                     </p>
-                                                                    <p class="text-wrap"><strong class="me-2">Date of Purchase:</strong>
+                                                                    <p class="text-wrap"><strong class="me-2">Date of
+                                                                            Purchase:</strong>
                                                                         {{ $user->member->date_of_purchase ?? 'N/A' }}
                                                                     </p>
-                                                                    <p class="text-wrap"><strong class="me-2">Landlord Address:</strong>
+                                                                    <p class="text-wrap"><strong class="me-2">Landlord
+                                                                            Address:</strong>
                                                                         {{ $user->member->landlord_address ?? 'N/A' }}
                                                                     </p>
-                                                                    <p class="text-wrap"><strong class="me-2">Landlord Name:</strong>
+                                                                    <p class="text-wrap"><strong class="me-2">Landlord
+                                                                            Name:</strong>
                                                                         {{ $user->member->landlord_name ?? 'N/A' }}</p>
-                                                                    <p class="text-wrap"><strong class="me-2">Landlord Phone Number:</strong>
+                                                                    <p class="text-wrap"><strong class="me-2">Landlord
+                                                                            Phone Number:</strong>
                                                                         {{ $user->member->landlord_phone_number ?? 'N/A' }}
                                                                     </p>
-                                                                    <p class="text-wrap"><strong class="me-2">Landlord Email Address:</strong>
+                                                                    <p class="text-wrap"><strong class="me-2">Landlord
+                                                                            Email Address:</strong>
                                                                         {{ $user->member->landlord_email_address ?? 'N/A' }}
                                                                     </p>
                                                                 @elseif ($user->executive)
-                                                                    <p class="text-wrap"><strong class="me-2">Address:</strong>
+                                                                    <p class="text-wrap"><strong
+                                                                            class="me-2">Address:</strong>
                                                                         {{ $user->executive->address ?? 'N/A' }}
                                                                     </p>
-                                                                    <p class="text-wrap"><strong class="me-2">Park Address:</strong>
+                                                                    <p class="text-wrap"><strong class="me-2">Park
+                                                                            Address:</strong>
                                                                         {{ $user->executive->parkaddress ?? 'N/A' }}
                                                                     </p>
-                                                                    <p class="text-wrap"><strong class="me-2">H.O.A Address:</strong>
+                                                                    <p class="text-wrap"><strong class="me-2">H.O.A
+                                                                            Address:</strong>
                                                                         {{ $user->executive->hoaaddress ?? 'N/A' }}
                                                                     </p>
-                                                                    <p class="text-wrap"><strong class="me-2">Designation:</strong>
+                                                                    <p class="text-wrap"><strong
+                                                                            class="me-2">Designation:</strong>
                                                                         {{ $user->executive->designation ?? 'N/A' }}
                                                                     </p>
                                                                 @elseif ($user->agent)
-                                                                    <p class="text-wrap"><strong class="me-2">License:</strong>
+                                                                    <p class="text-wrap"><strong
+                                                                            class="me-2">License:</strong>
                                                                         {{ $user->agent->license }}</p>
-                                                                    <p class="text-wrap"><strong class="me-2">Company Name:</strong>
+                                                                    <p class="text-wrap"><strong class="me-2">Company
+                                                                            Name:</strong>
                                                                         {{ $user->agent->company_name }}</p>
-                                                                    <p class="text-wrap"><strong class="me-2">Physical Address:</strong>
+                                                                    <p class="text-wrap"><strong class="me-2">Physical
+                                                                            Address:</strong>
                                                                         {{ $user->agent->physical_address }}</p>
-                                                                    <p class="text-wrap"><strong class="me-2">Company Mailing Address:</strong>
+                                                                    <p class="text-wrap"><strong class="me-2">Company
+                                                                            Mailing Address:</strong>
                                                                         {{ $user->agent->company_mailing_address }}</p>
-                                                                    <p class="text-wrap"><strong class="me-2">Company Phone Number:</strong>
+                                                                    <p class="text-wrap"><strong class="me-2">Company
+                                                                            Phone Number:</strong>
                                                                         {{ $user->agent->company_phone_number }}</p>
-                                                                    <p class="text-wrap"><strong class="me-2">Company Email:</strong>
+                                                                    <p class="text-wrap"><strong class="me-2">Company
+                                                                            Email:</strong>
                                                                         {{ $user->agent->company_email }}</p>
                                                                     @if ($user->agent->company_website)
-                                                                        <p class="text-wrap"><strong class="me-2">Company Website:</strong> <a
+                                                                        <p class="text-wrap"><strong class="me-2">Company
+                                                                                Website:</strong> <a
                                                                                 href="{{ $user->agent->company_website }}">{{ $user->agent->company_website }}</a>
                                                                         </p>
                                                                     @endif

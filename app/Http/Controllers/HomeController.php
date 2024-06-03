@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AboutDocument;
 use App\Models\FloorPlan;
 use App\Models\Gallery;
 use App\Models\Property;
@@ -39,7 +40,8 @@ class HomeController extends Controller
 
     public function about_us()
     {
-        return view('about');
+        $document = AboutDocument::latest()->first();
+        return view('about', compact('document'));
     }
     public function realstate()
     {

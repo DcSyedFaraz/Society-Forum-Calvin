@@ -30,7 +30,12 @@
                     engagement. Explore our well-maintained properties and join us in our exciting community events. Buy
                     your
                     dream home here and become part of our thriving community today!
-                    <a href="{{ asset('backend/files/HOA_Ad.pdf') }}" target="_blank">More Information.</a>
+                    @if ($document)
+                        <p>Read more about us: <a href="{{ asset('storage/' . $document->file_path) }}"
+                                target="_blank">{{ $document->file_name }}</a></p>
+                    @else
+                        <p>No document available.</p>
+                    @endif
                 </p>
             </div>
             <div class="col-lg-6 col-sm-12 px-5">

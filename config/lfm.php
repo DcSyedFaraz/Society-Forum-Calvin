@@ -126,6 +126,56 @@ return [
             ],
 
         ],
+        'operationss'  => [
+            'folder_name'  => 'operationss',
+            'startup_view' => 'grid',
+            'max_size'     => 50000, // size in KB
+            'thumb' => true,
+            'thumb_width' => 80,
+            'thumb_height' => 80,
+            'create_folder' => true,
+            'valid_mime' => [
+                // Images
+                'image/jpeg',
+                'image/pjpeg',
+                'image/png',
+                'image/gif',
+                'image/bmp',
+                'image/tiff',
+                'image/webp',
+
+                // Documents
+                'application/pdf',
+                'application/msword',
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document', // .docx
+                'application/vnd.ms-excel',
+                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', // .xlsx
+                'application/vnd.ms-powerpoint',
+                'application/vnd.openxmlformats-officedocument.presentationml.presentation', // .pptx
+
+                // Text
+                'text/plain',
+
+                // Audio
+                'audio/mpeg',
+                'audio/ogg',
+                'audio/wav',
+
+                // Video
+                'video/mp4',
+                'video/ogg',
+                'video/webm',
+
+                // Archives
+                'application/zip',
+                'application/x-rar-compressed',
+                'application/x-tar',
+                'application/gzip',
+                'application/x-7z-compressed',
+
+            ],
+
+        ],
         'lostfound'  => [
             'folder_name'  => 'lostfound',
             'startup_view' => 'grid',

@@ -518,6 +518,13 @@
                         <div class="menu-title">Legal Information</div>
                     </a>
                 </li>
+                <li class="{{ request()->routeIs('admin.operations') ? 'mm-active' : '' }}">
+                    <a href="{{ route('admin.operations') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/Schedules icon.png') }}">
+                        </div>
+                        <div class="menu-title">Operations</div>
+                    </a>
+                </li>
                 <li class="{{ request()->routeIs('admin.report') ? 'mm-active' : '' }}">
                     <a href="{{ route('admin.report') }}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/project icon.png') }}">

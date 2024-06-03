@@ -277,7 +277,7 @@
 
                                             <div class="item-title-head table-block">
                                                 <div class="title-head-lefty">
-                                                    <p class="item-heading"><strong>Area</strong></p>
+                                                    <p class="item-heading"><strong>Area (sq ft)</strong></p>
                                                     <p class="item-mesures">{{ $item->area }}</p>
                                                 </div>
                                                 <div class="title-head-lefty">
@@ -289,7 +289,7 @@
                                                     <p class="item-mesures">{{ $item->baths }}</p>
                                                 </div>
                                                 <div class="title-head-lefty">
-                                                    <p class="item-heading"><strong>Garages</strong></p>
+                                                    <p class="item-heading"><strong>Garage (no. of cars)</strong></p>
                                                     <p class="item-mesures">{{ $item->garages }}</p>
                                                 </div>
                                             </div>

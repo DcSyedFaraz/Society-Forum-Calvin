@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <!-- Chrome, Firefox OS and Opera -->
-  <meta name="theme-color" content="#333844">
-  <!-- Windows Phone -->
-  <meta name="msapplication-navbutton-color" content="#333844">
-  <!-- iOS Safari -->
-  <meta name="apple-mobile-web-app-status-bar-style" content="#333844">
+    <!-- Chrome, Firefox OS and Opera -->
+    <meta name="theme-color" content="#333844">
+    <!-- Windows Phone -->
+    <meta name="msapplication-navbutton-color" content="#333844">
+    <!-- iOS Safari -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="#333844">
 
-  <title>{{ trans('laravel-filemanager::lfm.title-page') }}</title>
-  <link rel="shortcut icon" type="image/png" href="{{ asset('vendor/laravel-filemanager/img/72px color.png') }}">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.0/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.5.0/css/all.min.css">
+    <title>{{ trans('laravel-filemanager::lfm.title-page') }}</title>
+    <link rel="shortcut icon" type="image/png" href="{{ asset('vendor/laravel-filemanager/img/72px color.png') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.5.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-ui-dist@1.12.1/jquery-ui.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -107,10 +108,12 @@
         </div>
       </a>
     </div>
+{{-- {{request()->query('type')}} --}}
+    @if (auth()->user()->hasRole('admin') ||
+            (auth()->user()->hasRole('executive') && request()->query('type') != 'operationss'))
+    <div id="fab"></div>
+@endif
 
-    @if (!auth()->user()->hasRole('member'))
-        <div id="fab"></div>
-    @endif
   </div>
 
   <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -130,8 +133,8 @@
               </div>
             </div>
             <input type='hidden' name='working_dir' id='working_dir'>
-            <input type='hidden' name='type' id='type' value='{{ request("type") }}'>
-            <input type='hidden' name='_token' value='{{csrf_token()}}'>
+            <input type='hidden' name='type' id='type' value='{{ request('type') }}'>
+            <input type='hidden' name='_token' value='{{ csrf_token() }}'>
           </form>
         </div>
         <div class="modal-footer">
@@ -262,8 +265,7 @@
            icon: 'trash',
            label: lang['menu-delete'],
            multiple: true
-         },
-     @endif
+         }, @endif
     ];
 
     var sortings = [
@@ -279,33 +281,35 @@
       }
     ];
   </script>
-  <script>{!! \File::get(base_path('vendor/unisharp/laravel-filemanager/public/js/script.js')) !!}</script>
+  <script>
+      {!! \File::get(base_path('vendor/unisharp/laravel-filemanager/public/js/script.js')) !!}
+  </script>
   {{-- Use the line below instead of the above if you need to cache the script. --}}
   {{-- <script src="{{ asset('vendor/laravel-filemanager/js/script.js') }}"></script> --}}
   <script>
-    Dropzone.options.uploadForm = {
-      paramName: "upload[]", // The name that will be used to transfer the file
-      uploadMultiple: false,
-      parallelUploads: 5,
-      timeout:0,
-      clickable: '#upload-button',
-      dictDefaultMessage: lang['message-drop'],
-      init: function() {
-        var _this = this; // For the closure
-        this.on('success', function(file, response) {
-          if (response == 'OK') {
-            loadFolders();
-          } else {
-            this.defaultOptions.error(file, response.join('\n'));
-          }
-        });
-      },
-      headers: {
-        'Authorization': 'Bearer ' + getUrlParam('token')
-      },
-      acceptedFiles: "{{ implode(',', $helper->availableMimeTypes()) }}",
-      maxFilesize: ({{ $helper->maxUploadSize() }} / 1000)
-    }
+      Dropzone.options.uploadForm = {
+          paramName: "upload[]", // The name that will be used to transfer the file
+          uploadMultiple: false,
+          parallelUploads: 5,
+          timeout: 0,
+          clickable: '#upload-button',
+          dictDefaultMessage: lang['message-drop'],
+          init: function() {
+              var _this = this; // For the closure
+              this.on('success', function(file, response) {
+                  if (response == 'OK') {
+                      loadFolders();
+                  } else {
+                      this.defaultOptions.error(file, response.join('\n'));
+                  }
+              });
+          },
+          headers: {
+              'Authorization': 'Bearer ' + getUrlParam('token')
+          },
+          acceptedFiles: "{{ implode(',', $helper->availableMimeTypes()) }}",
+          maxFilesize: ({{ $helper->maxUploadSize() }} / 1000)
+      }
   </script>
 </body>
 </html>

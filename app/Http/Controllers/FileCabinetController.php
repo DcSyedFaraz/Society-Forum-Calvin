@@ -11,6 +11,11 @@ class FileCabinetController extends Controller
         $data['file'] = 'lostfound';
         return view('filecabinet', $data);
     }
+    public function operations()
+    {
+        $data['file'] = 'operationss';
+        return view('filecabinet', $data);
+    }
     public function ccnrs()
     {
         $data['file'] = 'community';

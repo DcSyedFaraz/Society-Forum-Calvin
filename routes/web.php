@@ -2,6 +2,7 @@
 
 // use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\Admin\CommunityController;
+use App\Http\Controllers\admin\PageController;
 use App\Http\Controllers\FileCabinetController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\real_estate\EstateController;
@@ -93,6 +94,7 @@ Route::middleware(['auth',])->group(function () {
 });
 
 Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:admin|member|executive']], function () {
+
     // Community
     Route::get('/comment/{id}', [CommunityController::class, 'comment'])->name('community.comments');
     Route::delete('/comment/{id}', [CommunityController::class, 'commentDEL'])->name('comment.destroy');
@@ -101,6 +103,10 @@ Route::group(['prefix' => 'dashboard', 'middleware' => ['auth', 'role:admin|memb
     Route::resource('community', CommunityController::class);
 });
 Route::group(['prefix' => 'dashboard', 'as' => 'admin.', 'middleware' => ['auth', 'role:admin|executive']], function () {
+
+    // File Cabinet
+    Route::get('/operations', [FileCabinetController::class, 'operations'])->name('operations');
+
 
     // Artchitectural Request
     Route::get('/artchitectural', [DashboardController::class, 'artchitectural'])->name('artchitectural');
@@ -126,6 +132,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
     Route::get('/change_password', [DashboardController::class, 'change_password'])->name('change_password');
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::post('/about_document', [PageController::class, 'about_document'])->name('about_document.store');
 
     // Announcements
     Route::get('/announcements', [DashboardController::class, 'announcements'])->name('announcements');

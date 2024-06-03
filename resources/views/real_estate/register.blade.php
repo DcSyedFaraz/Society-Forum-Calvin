@@ -125,7 +125,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="area" class="form-label">Area</label>
+                                    <label for="area" class="form-label">Area (square feet)</label>
                                     <input type="number" class="form-control" id="area" name="area" placeholder="Area" value="{{ old('area') }}">
                                 </div>
 
@@ -140,7 +140,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="garages" class="form-label">Garages</label>
+                                    <label for="garages" class="form-label">Garage (number of cars)</label>
                                     <input type="number" class="form-control" id="garages" name="garages" placeholder="Number of Garages" value="{{ old('garages') }}">
                                 </div>
 
