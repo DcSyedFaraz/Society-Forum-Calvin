@@ -1,5 +1,18 @@
 @extends('layout.app')
 <style>
+    a,
+    li,
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: 'Montserrat' !important;
+        overflow-wrap: break-word;
+    }
+
     .mobile {
         display: block;
         width: 100%;
@@ -179,7 +192,7 @@
                                     <i class="fa fa-building-o" aria-hidden="true"></i>
                                 </div>
                                 <h2>AVAILABLE PROPERTIES</h2>
-                                <p>Nothing is set in you can structure your exactly how you want.</p>
+                                <!--<p>Nothing is set in you can structure your exactly how you want.</p>-->
                                 <p>Homeowners, not investors!</p>
                             </div>
                         </div>
@@ -238,8 +251,9 @@
                                             </div>
                                             <div class="item-title-head table-block">
                                                 <div class="title-head-left">
-                                                    <p class="item-address">{{ $item->address }}</p>
                                                     <h4 class="title"><a href="#">{{ $item->title }}</a></h4>
+                                                    <p class="item-address">{{ $item->address }}</p>
+
                                                     <div class="">
                                                         <p class="item-address">Website Link: <a
                                                                 href="{{ strpos($item->promote_url, 'http://') === 0 || strpos($item->promote_url, 'https://') === 0 ? $item->promote_url : 'http://' . $item->promote_url }}"
@@ -252,9 +266,9 @@
                                                                 target="_blank">
                                                                 {{ strpos($item->company_website, 'http://') === 0 || strpos($item->company_website, 'https://') === 0 ? $item->company_website : 'http://' . $item->company_website }}
                                                             </a></p>
-                                                        <p class="item-address">Contact Information: {{ $item->email }}</p>
+                                                        <p class="item-address">Contact Information: {{ $item->email }}
+                                                        </p>
                                                         <p class="item-address">Price: ${{ $item->price }}</p>
-
                                                     </div>
                                                 </div>
 

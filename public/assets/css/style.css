@@ -23,7 +23,18 @@ h4,
 h5,
 h6 {
     font-family: 'Montserrat' !important;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
 
+}
+
+.container.heading .heading a {
+    overflow-wrap: break-word;
+}
+
+.sidebar-header img {
+    width: 100%;
+    padding: 30px;
 }
 
 .navbar {
@@ -371,9 +382,9 @@ h3.title a {
 
 .title-head-left {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .title-head-lefty p {
@@ -412,9 +423,20 @@ address.item-address {
     color: #4a4a4a;
 }
 
+.title-head-left {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+}
+
 .title-head-left a {
     font-size: 14px;
-    padding-left: 8px;
+    padding-left: 0px;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
 }
 
 .title-head-left i.fa.fa-phone {
@@ -464,6 +486,10 @@ i.fa.fa-building-o {
 
 footer {
     background-image: url("../imges/footer.png");
+}
+
+footer.footer .copyright p.copy.text-uppercase a {
+    color: #978661 !important;
 }
 
 .container.upper-footer {
