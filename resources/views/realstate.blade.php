@@ -1,5 +1,15 @@
 @extends('layout.app')
 <style>
+    @media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+        .container.heading .heading a {
+            font-size: 13px;
+        }
+    }
+
+    p.item-heading {
+        height: 60px;
+    }
+
     a,
     li,
     p,
@@ -291,7 +301,7 @@
 
                                             <div class="item-title-head table-block">
                                                 <div class="title-head-lefty">
-                                                    <p class="item-heading"><strong>Area (sq ft)</strong></p>
+                                                    <p class="item-heading"><strong>Area <br>(sq ft)</strong></p>
                                                     <p class="item-mesures">{{ $item->area }}</p>
                                                 </div>
                                                 <div class="title-head-lefty">
@@ -303,7 +313,7 @@
                                                     <p class="item-mesures">{{ $item->baths }}</p>
                                                 </div>
                                                 <div class="title-head-lefty">
-                                                    <p class="item-heading"><strong>Garage (no. of cars)</strong></p>
+                                                    <p class="item-heading"><strong>Garage <br>(no. of cars)</strong></p>
                                                     <p class="item-mesures">{{ $item->garages }}</p>
                                                 </div>
                                             </div>
