@@ -26,7 +26,7 @@ class DashboardController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(['auth', 'verified']);
+        $this->middleware(['auth']);
     }
 
     /**
@@ -34,6 +34,13 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function markAllAsRead()
+    {
+        $user = Auth::user();
+        $user->unreadNotifications->markAsRead();
+
+        return redirect()->back()->with('success', 'All notifications marked as read.');
+    }
     public function index()
     {
         $data['request'] = User::whereNull('access')
@@ -263,7 +270,7 @@ class DashboardController extends Controller
         $rules = [
             'name' => 'required',
             'phone' => 'required',
-            'username' => ['regex:/^[^\s]+$/','required','string', 'max:10', 'unique:users,username,'.$id],
+            'username' => ['regex:/^[^\s]+$/', 'required', 'string', 'max:10', 'unique:users,username,' . $id],
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
 

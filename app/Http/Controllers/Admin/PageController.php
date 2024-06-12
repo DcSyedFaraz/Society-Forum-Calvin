@@ -47,12 +47,13 @@ class PageController extends Controller
 
                 DB::commit();
 
-                return redirect()->route('about_document.index')->with('success', 'Document uploaded successfully.');
+                return redirect()->back()->with('success', 'Document uploaded successfully.');
             } else {
                 return back()->with('error', 'Please upload a valid document.');
             }
         } catch (\Exception $e) {
             DB::rollBack();
+            throw $e;
             return back()->with('error', 'An error occurred while uploading the document.');
         }
     }

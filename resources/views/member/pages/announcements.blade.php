@@ -1,12 +1,15 @@
 @extends(auth()->user()->hasRole('admin') ? 'admin.layouts.app' : (auth()->user()->hasRole('executive') ? 'executive.layouts.app' : 'member.layouts.app'))
 
 <!-- include summernote css/js -->
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 
 <style>
     .desspri {
         display: flex;
         flex-direction: column;
+    }
+    button.note-btn {
+        padding: 9px !important;
     }
 </style>
 @section('content')
@@ -81,10 +84,24 @@
     </div>
 @endsection
 @section('script')
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-    <script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
+ <script>
         $(document).ready(function() {
-            $('.summernote').summernote();
+            $('.summernote').summernote({
+                // placeholder: 'Write ',
+                height: 100,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    // ['para', ['ul', 'ol', 'paragraph']],
+                    // ['table', ['table']],
+                    ['insert', ['link', 'picture', 'video']],
+                    // ['view', [  'help']],
+                ],
+            });
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

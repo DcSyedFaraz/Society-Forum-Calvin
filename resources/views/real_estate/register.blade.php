@@ -83,6 +83,8 @@
                 <h1>Real Estate</h1>
                 <p>Welcome {{ auth()->user()->name }}</p>
                 <div class="card-body">
+                    <p class="text-danger"><b>If you encounter any issues while completing the form, please email <a
+                                href="mailto:parkshadowshomeowners@gmail.com">parkshadowshomeowners@gmail.com</a> </b></p>
                     <form action="{{ route('agent.list.save') }}" enctype="multipart/form-data" method="post">
                         @csrf
                         <h4>
@@ -90,7 +92,8 @@
                             Property
                         </h4>
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="url" name="promote_url" placeholder="www.example.com" value="{{ old('promote_url') }}">
+                            <input type="text" class="form-control" id="url" name="promote_url"
+                                placeholder="www.example.com" value="{{ old('promote_url') }}">
                         </div>
                         <div class="landlordersect">
                             <h4
@@ -111,52 +114,63 @@
 
                                 <div class="mb-3">
                                     <label for="number" class="form-label">Title</label>
-                                    <input type="text" class="form-control" name="title" placeholder="title..." value="{{ old('title') }}">
+                                    <input type="text" class="form-control" name="title" placeholder="title..."
+                                        value="{{ old('title') }}">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="number" class="form-label">Phone Number</label>
-                                    <input type="tel" class="form-control" name="phone" placeholder="+1234567890" value="{{ old('phone') }}">
+                                    <input type="tel" class="form-control" name="phone" placeholder="+1234567890"
+                                        value="{{ old('phone') }}">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="number" class="form-label">Sale Price Of Property</label>
-                                    <input type="number" class="form-control" id="number" name="price" placeholder="$0000" value="{{ old('price') }}">
+                                    <input type="number" class="form-control" id="number" name="price"
+                                        placeholder="$0000" value="{{ old('price') }}">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="area" class="form-label">Area (square feet)</label>
-                                    <input type="number" class="form-control" id="area" name="area" placeholder="Area" value="{{ old('area') }}">
+                                    <input type="number" class="form-control" id="area" name="area"
+                                        placeholder="Area" value="{{ old('area') }}">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="beds" class="form-label">Beds</label>
-                                    <input type="number" class="form-control" id="beds" name="beds" placeholder="Number of Beds" value="{{ old('beds') }}">
+                                    <input type="number" class="form-control" id="beds" name="beds"
+                                        placeholder="Number of Beds" value="{{ old('beds') }}">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="baths" class="form-label">Baths</label>
-                                    <input type="number" class="form-control" id="baths" name="baths" placeholder="Number of Baths" value="{{ old('baths') }}">
+                                    <input type="number" class="form-control" id="baths" name="baths"
+                                        placeholder="Number of Baths" value="{{ old('baths') }}">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="garages" class="form-label">Garage (number of cars)</label>
-                                    <input type="number" class="form-control" id="garages" name="garages" placeholder="Number of Garages" value="{{ old('garages') }}">
+                                    <input type="number" class="form-control" id="garages" name="garages"
+                                        placeholder="Number of Garages" value="{{ old('garages') }}">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Real Estate Contact Information</label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="Tonynguyen@example.com" value="{{ old('email') }}">
+                                    <input type="email" class="form-control" name="email" id="email"
+                                        placeholder="Tonynguyen@example.com" value="{{ old('email') }}">
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="addressurl" class="form-label">A Link To The Real Estate Agent's Or Real Estate Company's Website</label>
-                                    <input type="text" class="form-control" id="addressurl" name="company_website" placeholder="www.example.com" value="{{ old('company_website') }}">
+                                    <label for="addressurl" class="form-label">A Link To The Real Estate Agent's Or Real
+                                        Estate Company's Website</label>
+                                    <input type="text" class="form-control" id="addressurl" name="company_website"
+                                        placeholder="www.example.com" value="{{ old('company_website') }}">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="currentaddress" class="form-label">Address of Current Property</label>
-                                    <input type="text" class="form-control" name="address" placeholder="Address" value="{{ old('address') }}">
+                                    <input type="text" class="form-control" name="address" placeholder="Address"
+                                        value="{{ old('address') }}">
                                 </div>
                             </div>
                         </div>

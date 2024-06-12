@@ -2,7 +2,7 @@
 
 // use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\Admin\CommunityController;
-use App\Http\Controllers\admin\PageController;
+use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\FileCabinetController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\real_estate\EstateController;
@@ -85,6 +85,9 @@ Route::get('/end-user-license-agreement', [HomeController::class, 'lienceseagree
 
 
 Route::middleware(['auth',])->group(function () {
+
+    // routes/web.php
+    Route::get('/notifications/mark-as-read', [DashboardController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
 
     Route::get('/profile', [DashboardController::class, 'profile'])->name('profile.index');
     Route::post('profile/update', [DashboardController::class, 'update'])->name('profile.update');

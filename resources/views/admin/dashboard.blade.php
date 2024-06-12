@@ -135,7 +135,7 @@
                 <form action="{{ route('admin.about_document.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="document">Choose Document for about us page</label>
+                        <label for="document">Choose document for About Us Page</label>
                         <input type="file" class="form-control" name="document" required>
                     </div>
                     <small class="fw-bold">*File Size 4mb or less</small>

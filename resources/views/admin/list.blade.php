@@ -111,7 +111,7 @@
                                     <th>Property Price</th>
                                     <th>Location</th>
                                     <th>Email</th>
-                                    <th>Images</th>
+                                    {{-- <th>Images</th> --}}
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
@@ -125,14 +125,14 @@
                                             <td>{{ $properties->price }}</td>
                                             <td>{{ $properties->address }}</td>
                                             <td>{{ $properties->email }}</td>
-                                            <td>
+                                            {{-- <td>
                                                 @if ($properties->image)
                                                     <img class="rounded rounded-2" style="width: 54px;"
                                                         src="{{ asset('storage/' . $properties->image) }}" alt="img">
                                                 @else
                                                 <span class="text-muted fst-italic">No image available</span>
                                                 @endif
-                                            </td>
+                                            </td> --}}
                                             <td>
                                                 @if ($properties->access === 'approved')
                                                     <span class="badge bg-success">Approved</span>
