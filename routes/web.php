@@ -116,7 +116,11 @@ Route::group(['prefix' => 'dashboard', 'as' => 'admin.', 'middleware' => ['auth'
     Route::get('/artchitectural/accept/{id}', [DashboardController::class, 'artchitectural_approved'])->name('artchitectural.approved');
     Route::get('/artchitectural/decline/{id}', [DashboardController::class, 'artchitectural_decline'])->name('artchitectural.decline');
     Route::get('/list', [EstateController::class, 'list'])->name('list');
+    Route::get('/list/{id}', [EstateController::class, 'listEdit'])->name('list.edit');
+    Route::put('/list/{id}', [EstateController::class, 'listupdate'])->name('list.update');
     Route::delete('/list/{id}', [EstateController::class, 'destroy'])->name('list.delete');
+    Route::delete('/list/image/{imageId}', [EstateController::class, 'deleteImage'])->name('list.image.delete');
+
 
     // Gallery
     Route::resource('gallery', GalleryController::class);
@@ -124,6 +128,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'admin.', 'middleware' => ['auth'
     // Floor Plan
     Route::get('/floor-plans', [GalleryController::class, 'floor_plans'])->name('floor_plans');
     Route::post('/floor-plans', [GalleryController::class, 'floor_plans_store'])->name('floor_plans.store');
+    Route::put('/updateCaption', [GalleryController::class, 'updateCaption'])->name('floor_plans.updateCaption');
     Route::delete('/floor-plans/{plan}', [GalleryController::class, 'floor_plans_destroy'])->name('floor_plans.destroy');
 
 

@@ -24,6 +24,59 @@ class EstateController extends Controller
     {
         return view('real_estate.register');
     }
+    public function listupdate(Request $request, $id)
+    {
+        // Validate the request data
+        $request->validate([
+            'promote_url' => 'required',
+            'title' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
+            'price' => 'required|numeric',
+            'area' => 'required|numeric',
+            'beds' => 'required|integer',
+            'baths' => 'required|integer',
+            'garages' => 'required|integer',
+            'email' => 'required|email',
+            'company_website' => 'required',
+            'address' => 'required|string|max:255',
+            'images.*' => 'nullable|image|max:4096'
+        ]);
+
+        // Find the property by ID
+        $property = Property::findOrFail($id);
+
+        // Update the property with new data
+        $property->promote_url = $request->input('promote_url');
+        $property->title = $request->input('title');
+        $property->phone = $request->input('phone');
+        $property->price = $request->input('price');
+        $property->area = $request->input('area');
+        $property->beds = $request->input('beds');
+        $property->baths = $request->input('baths');
+        $property->garages = $request->input('garages');
+        $property->email = $request->input('email');
+        $property->company_website = $request->input('company_website');
+        $property->address = $request->input('address');
+
+        // Handle image upload
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('property_images', 'public');
+                $property->images()->create(['image' => $path]);
+            }
+        }
+
+        // Save the updated property
+        $property->save();
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Property updated successfully.');
+    }
+    public function listEdit($id)
+    {
+        $property = Property::findOrFail($id);
+        return view('admin.property.propertyEdit', compact('property'));
+    }
     public function list()
     {
         if (Auth::user()->hasRole('agent')) {
@@ -219,6 +272,23 @@ class EstateController extends Controller
         return redirect()->back()->with('success', 'Property deleted successfully!');
 
     }
+    public function deleteImage($id)
+    {
+        $image = PropertyImages::find($id);
+
+        if ($image) {
+            // Delete the image file from storage
+            Storage::delete('public/' . $image->path);
+
+            // Delete the image record from the database
+            $image->delete();
+
+            return response()->json(['success' => true]);
+        }
+
+        return response()->json(['success' => false]);
+    }
+
     public function image($id)
     {
         $propertyImage = PropertyImages::findOrFail($id);

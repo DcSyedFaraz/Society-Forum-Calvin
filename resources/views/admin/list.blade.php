@@ -113,7 +113,7 @@
                                     <th>Email</th>
                                     {{-- <th>Images</th> --}}
                                     <th>Status</th>
-                                    <th>Actions</th>
+                                    <th style="width: 9rem;">Actions</th>
                                 </tr>
                             </thead>
                             @if ($property->count() > 0)
@@ -144,13 +144,13 @@
                                             </td>
 
                                             <td>
-
+                                                <a href="{{ route('admin.list.edit', $properties->id) }}" class="btn btn-warning">Edit</a>
 
                                                 <form action="{{ route('admin.list.delete', $properties->id) }}"
                                                     method="POST" class="d-inline">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm" title="Delete"
+                                                    <button type="submit" class="btn btn-danger btn-sm" title="Delete" style="padding: 10px 18px !important;"
                                                         onclick="return confirm('Are you sure you want to delete this item?')">
                                                         <i class="bi bi-trash-fill"></i>
                                                     </button>

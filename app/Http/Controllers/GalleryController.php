@@ -22,6 +22,19 @@ class GalleryController extends Controller
         return view('admin.gallery_floorplan.floor_plans', $data);
     }
 
+    public function updateCaption(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|exists:floor_plans,id',
+            'caption' => 'required|string|max:255',
+        ]);
+
+        $floorPlan = FloorPlan::find($request->id);
+        $floorPlan->caption = $request->caption;
+        $floorPlan->save();
+
+        return redirect()->back()->with('success', 'Caption updated successfully');
+    }
     public function floor_plans_store(Request $request)
     {
         DB::beginTransaction();

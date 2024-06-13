@@ -10,7 +10,7 @@
                     post something to the Lost & Found Section.</b></p>
         @endif
         <p class="fw-bold">
-            To open a file click preview and then the image to expand.
+            To open a file, click Preview and then the image to expand.
         </p>
 
         <iframe src="/filemanager?type={{ $file }}" id="filemanager"

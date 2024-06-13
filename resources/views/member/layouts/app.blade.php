@@ -50,71 +50,74 @@
     <div class="wrapper">
         <!--start top header-->
         <header class="top-header">
-        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i class="bi bi-list"></i></button>
+            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions"><i
+                    class="bi bi-list"></i></button>
 
-        <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Menu</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-          <div class="offcanvas-body">
-            <ul class="metismenu" id="menu">
-                <li class="{{ request()->routeIs('member.dashboard') ? 'mm-active' : '' }}">
-                    <a href="{{ route('member.dashboard') }}" class="">
-                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/dashboard icon.png') }}">
-                        </div>
-                        <div class="menu-title">Dashboard</div>
-                    </a>
-                </li>
-                <li class="{{ request()->routeIs('member.announcements') ? 'mm-active' : '' }}">
-                    <a href="{{ route('member.announcements') }}">
-                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/Campaigns icon.png') }}">
-                        </div>
-                        <div class="menu-title">Announcements</div>
-                    </a>
-                </li>
-                <li class="{{ request()->routeIs('community.*') ? 'mm-active' : '' }}">
-                    <a href="{{ route('community.index') }}">
-                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/statement-new.png') }}">
-                        </div>
-                        <div class="menu-title">Community Forum</div>
-                    </a>
-                </li>
-                <li class="{{ request()->routeIs('member.lostfound') ? 'mm-active' : '' }}">
-                    <a href="{{ route('member.lostfound') }}">
-                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/Schedules icon.png') }}">
-                        </div>
-                        <div class="menu-title">Lost & Found</div>
-                    </a>
-                </li>
-                <li class="{{ request()->routeIs('member.ccnrs') ? 'mm-active' : '' }}">
-                    <a href="{{ route('member.ccnrs') }}">
-                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/project icon.png') }}">
-                        </div>
-                        <div class="menu-title">Community Info</div>
-                    </a>
-                </li>
-                <li class="{{ request()->routeIs('member.architectural') ? 'mm-active' : '' }}">
-                    <a href="{{ route('member.architectural') }}">
-                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/payout iocn.png') }}">
-                        </div>
-                        <div class="menu-title">Architectural Request...</div>
-                    </a>
-                </li>
+            <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+                aria-labelledby="offcanvasWithBothOptionsLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Menu</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="metismenu" id="menu">
+                        <li class="{{ request()->routeIs('member.dashboard') ? 'mm-active' : '' }}">
+                            <a href="{{ route('member.dashboard') }}" class="">
+                                <div class="parent-icon"><img src="{{ asset('backend/images/icons/dashboard icon.png') }}">
+                                </div>
+                                <div class="menu-title">Dashboard</div>
+                            </a>
+                        </li>
+                        <li class="{{ request()->routeIs('member.announcements') ? 'mm-active' : '' }}">
+                            <a href="{{ route('member.announcements') }}">
+                                <div class="parent-icon"><img src="{{ asset('backend/images/icons/Campaigns icon.png') }}">
+                                </div>
+                                <div class="menu-title">Announcements</div>
+                            </a>
+                        </li>
+                        <li class="{{ request()->routeIs('member.architectural') ? 'mm-active' : '' }}">
+                            <a href="{{ route('member.architectural') }}">
+                                <div class="parent-icon"><img src="{{ asset('backend/images/icons/payout iocn.png') }}">
+                                </div>
+                                <div class="menu-title">Architectural Request...</div>
+                            </a>
+                        </li>
+                        <li class="{{ request()->routeIs('community.*') ? 'mm-active' : '' }}">
+                            <a href="{{ route('community.index') }}">
+                                <div class="parent-icon"><img src="{{ asset('backend/images/icons/statement-new.png') }}">
+                                </div>
+                                <div class="menu-title">Community Forum</div>
+                            </a>
+                        </li>
+                        <li class="{{ request()->routeIs('member.ccnrs') ? 'mm-active' : '' }}">
+                            <a href="{{ route('member.ccnrs') }}">
+                                <div class="parent-icon"><img src="{{ asset('backend/images/icons/project icon.png') }}">
+                                </div>
+                                <div class="menu-title">Community Info</div>
+                            </a>
+                        </li>
+                        <li class="{{ request()->routeIs('member.lostfound') ? 'mm-active' : '' }}">
+                            <a href="{{ route('member.lostfound') }}">
+                                <div class="parent-icon"><img src="{{ asset('backend/images/icons/Schedules icon.png') }}">
+                                </div>
+                                <div class="menu-title">Lost & Found</div>
+                            </a>
+                        </li>
 
-                <li class="menu-label" style="margin-top: 90px;">Insights</li>
-                <li class="{{ request()->routeIs('member.newsletter') ? 'mm-active' : '' }}">
-                    <a href="{{ route('member.newsletter') }}">
-                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/inbox icon.png') }}">
-                        </div>
-                        <div class="menu-title">Newsletter</div>
-                    </a>
-                </li>
+                        <li class="{{ request()->routeIs('member.newsletter') ? 'mm-active' : '' }}">
+                            <a href="{{ route('member.newsletter') }}">
+                                <div class="parent-icon"><img src="{{ asset('backend/images/icons/inbox icon.png') }}">
+                                </div>
+                                <div class="menu-title">Newsletter</div>
+                            </a>
+                        </li>
 
 
-            </ul>
-          </div>
-        </div>
+                    </ul>
+                </div>
+            </div>
             <nav class="navbar navbar-expand gap-3 align-items-center">
                 <!--<div class="mobile-toggle-icon fs-3">-->
                 <!--    <i class="bi bi-list"></i>-->
@@ -122,7 +125,7 @@
 
                 <div class="top-navbar-right ms-auto">
                     <ul class="navbar-nav align-items-center">
-                         <li class="nav-item ">
+                        <li class="nav-item ">
                             <a class="nav-link" href="{{ route('home') }}">
                                 <div class="">
                                     <i class="bi bi-house-fill btn btn-outline-success"></i>
@@ -142,8 +145,9 @@
                                 </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end p-0">
-                                <div class="p-2 border-bottom m-2">
+                                <div class="p-2 border-bottom m-2 d-flex justify-content-between align-items-center">
                                     <h5 class="h5 mb-0">Notifications</h5>
+                                    <a href="{{ route('notifications.markAllAsRead') }}">Clear all</a>
                                 </div>
                                 <div class="header-notifications-list p-2">
                                     <div class="header-notifications-list p-2">
@@ -173,8 +177,7 @@
                                                     @case('Request Approved')
                                                     @case('Request Declined')
                                                         <a data-notification-id="{{ $notifications->id }}"
-                                                            class="dropdown-item notification-link"
-                                                            href="">
+                                                            class="dropdown-item notification-link" href="">
                                                             <div class="d-flex align-items-center">
                                                                 <div class="notification-box bg-light-warning text-warning"><i
                                                                         class="bi bi-droplet-fill"></i></div>
@@ -198,7 +201,7 @@
                                                             href="{{ $notifications->data['url'] }}">
                                                             <div class="d-flex align-items-center">
                                                                 <div class="notification-box bg-light-success text-success"><i
-                                                                    class="bi bi-at"></i></div>
+                                                                        class="bi bi-at"></i></div>
                                                                 <div class="ms-3 flex-grow-1">
                                                                     <h6 class="mb-0 dropdown-msg-user">
                                                                         {{ $notifications->type }}<span
@@ -335,18 +338,18 @@
                         <div class="menu-title">Announcements</div>
                     </a>
                 </li>
+                <li class="{{ request()->routeIs('member.architectural') ? 'mm-active' : '' }}">
+                    <a href="{{ route('member.architectural') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/payout iocn.png') }}">
+                        </div>
+                        <div class="menu-title">Architectural Request...</div>
+                    </a>
+                </li>
                 <li class="{{ request()->routeIs('community.*') ? 'mm-active' : '' }}">
                     <a href="{{ route('community.index') }}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/statement-new.png') }}">
                         </div>
                         <div class="menu-title">Community Forum</div>
-                    </a>
-                </li>
-                <li class="{{ request()->routeIs('member.lostfound') ? 'mm-active' : '' }}">
-                    <a href="{{ route('member.lostfound') }}">
-                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/Schedules icon.png') }}">
-                        </div>
-                        <div class="menu-title">Lost & Found</div>
                     </a>
                 </li>
                 <li class="{{ request()->routeIs('member.ccnrs') ? 'mm-active' : '' }}">
@@ -356,15 +359,15 @@
                         <div class="menu-title">Community Info</div>
                     </a>
                 </li>
-                <li class="{{ request()->routeIs('member.architectural') ? 'mm-active' : '' }}">
-                    <a href="{{ route('member.architectural') }}">
-                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/payout iocn.png') }}">
+                <li class="{{ request()->routeIs('member.lostfound') ? 'mm-active' : '' }}">
+                    <a href="{{ route('member.lostfound') }}">
+                        <div class="parent-icon"><img src="{{ asset('backend/images/icons/Schedules icon.png') }}">
                         </div>
-                        <div class="menu-title">Architectural Request...</div>
+                        <div class="menu-title">Lost & Found</div>
                     </a>
                 </li>
 
-                <li class="menu-label" style="margin-top: 90px;">Insights</li>
+                {{-- <li class="menu-label" style="margin-top: 90px;">Insights</li> --}}
                 <li class="{{ request()->routeIs('member.newsletter') ? 'mm-active' : '' }}">
                     <a href="{{ route('member.newsletter') }}">
                         <div class="parent-icon"><img src="{{ asset('backend/images/icons/inbox icon.png') }}">

@@ -3,7 +3,7 @@
 @section('content')
     <section class="content">
         <p class="fw-bold">
-            To open a file click preview and then the image to expand.
+            To open a file, click Preview and then the image to expand.
         </p>
         <iframe src="/filemanager?type={{ $file }}" id="filemanager"
             style="width: 100%; height: 500px; overflow: hidden; border: none;"></iframe>

@@ -119,8 +119,9 @@
                                 </div>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end p-0">
-                                <div class="p-2 border-bottom m-2">
+                                <div class="p-2 border-bottom m-2 d-flex justify-content-between align-items-center">
                                     <h5 class="h5 mb-0">Notifications</h5>
+                                    <a href="{{ route('notifications.markAllAsRead') }}">Clear all</a>
                                 </div>
                                 <div class="header-notifications-list p-2">
                                     @if (auth()->user()->unreadnotifications->count() > 0)
