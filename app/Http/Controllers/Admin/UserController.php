@@ -15,7 +15,7 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $data = User::orderBy('id', 'desc')->where('access','approved')->get();
+        $data = User::orderBy('id', 'desc')->where('access','approved')->whereNot('email','admin@gmail.com')->get();
 
         return view('admin.users.index', compact('data'));
     }
@@ -93,7 +93,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::find($id)->delete();
-        return redirect()->route('admin.users.index')
+        return redirect()->back()
             ->with('success', 'User deleted successfully');
     }
 }

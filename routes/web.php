@@ -36,7 +36,7 @@ use App\Http\Controllers\GeneralSettingController;
 */
 
 Route::get('/done', function () {
-    Artisan::call('migrate:fresh --seed');
+    Artisan::call('migrate');
     Artisan::call('optimize:clear');
 
     return 'done';

@@ -294,6 +294,16 @@
                                             <td>
                                                 @if ($user->access == 'declined')
                                                     <span class="badge bg-danger"> Request Declined</span>
+
+                                                    <form action="{{ route('admin.users.destroy', $user->id) }}"
+                                                        method="POST" style="display: inline-block">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            onclick="return confirm('Are you sure want to delete this?')"
+                                                            type="button" class="btn btn-sm btn-danger"><i
+                                                                class="bi bi-trash-fill"></i></button>
+                                                    </form>
                                                 @else
                                                     <a href="{{ route('admin.User.approved', $user->id) }}"
                                                         class="approver">Approve</a>
