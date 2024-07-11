@@ -45,7 +45,7 @@ class DashboardController extends Controller
     {
         $data['request'] = User::whereNull('access')
             ->orWhere('access', '!=', 'approved')->with('member')
-            ->orderByDesc('created_at')
+            ->orderByDesc('access')
             ->get();
         return view('admin.dashboard', $data);
     }

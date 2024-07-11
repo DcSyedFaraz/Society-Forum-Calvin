@@ -231,7 +231,7 @@ class CommunityController extends Controller
         // dd($request->all());
         $Community = Community::find($request->community_id);
         $request->validate([
-            'body' => 'required|string|max:100',
+            'body' => 'required|string|max:700',
             'community_id' => 'required|exists:communities,id',
         ]);
         // dd($request->all(), $poll);

@@ -62,7 +62,15 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'username' => ['regex:/^[^\s]+$/', 'required', 'string', 'max:10', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'same:confirm_password'],
-            // 'permission' => 'required',
+            'position' => 'required|string|in:rent,owner',
+            'phone' => 'required|string|regex:/^\+1 \(\d{3}\) \d{3}-\d{4}$/',
+            'landlord_name' => 'nullable|required_if:position,rent|string|max:255',
+            'landlord_phone_number' => 'nullable|required_if:position,rent|string|regex:/^\+1 \(\d{3}\) \d{3}-\d{4}$/',
+            'landlord_email_address' => 'nullable|required_if:position,rent|string|email|max:255',
+            'landlord_address' => 'nullable|required_if:position,rent|string|max:255',
+            'address' => 'required|string|max:255',
+            'image' => 'nullable|image|max:2048',
+            'date' => 'nullable|required_if:position,owner|date_format:Y-m-d',
         ]);
         if ($validatedData->fails()) {
             return response()->json(['errors' => $validatedData->errors()->all()], 422);

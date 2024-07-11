@@ -192,7 +192,7 @@
                                                             <div class="modal-body">
                                                                 @if ($user->image)
                                                                     <img class="rounded"
-                                                                        src="{{ asset('storage/' . $user->image) }}"
+                                                                        src="{{ asset('storage/images/' . $user->image) }}"
                                                                         alt="Image" width="100%" height="auto">
                                                                 @endif
                                                                 @if ($user->roles->isNotEmpty())
@@ -294,7 +294,8 @@
                                             <td>
                                                 @if ($user->access == 'declined')
                                                     <span class="badge bg-danger"> Request Declined</span>
-
+                                                    <a href="{{ route('admin.User.approved', $user->id) }}"
+                                                        class="btn btn-success">Approve</a>
                                                     <form action="{{ route('admin.users.destroy', $user->id) }}"
                                                         method="POST" style="display: inline-block">
                                                         @csrf

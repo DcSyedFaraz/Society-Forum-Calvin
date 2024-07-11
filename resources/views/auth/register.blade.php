@@ -26,8 +26,6 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Create Account</title>
     <style>
-
-
         .valid input.form-control {
             width: 27.6em !important;
         }
@@ -304,28 +302,28 @@
                                             <div class="landlorder">
                                                 <div class="mb-3">
                                                     <label for="landlord" class="form-label">Name <span
-                                                            class="text-muted fst-italic">(Optional)</span> </label>
+                                                            class="text-danger">*</span> </label>
                                                     <input type="text" name="landlord_name" name="name"
                                                         class="form-control" id="landname"
                                                         placeholder="Tony Nguyen">
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="addPhone" class="form-label">Phone Number <span
-                                                            class="text-muted fst-italic">(Optional)</span> </label>
+                                                            class="text-danger">*</span> </label>
                                                     <input type="tel" name="landlord_phone_number"
                                                         class="form-control" id="landPhone"
                                                         placeholder="+13333 2222 55">
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="mobile" class="form-label">Your email <span
-                                                            class="text-muted fst-italic">(Optional)</span> </label>
+                                                            class="text-danger">*</span> </label>
                                                     <input type="email" name="landlord_email_address"
                                                         class="form-control" id="landemail"
                                                         placeholder="Tonynguyen@example.com">
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="address" class="form-label">Physical Address <span
-                                                            class="text-muted fst-italic">(Optional)</span> </label>
+                                                            class="text-danger">*</span> </label>
                                                     <input type="text" name="landlord_address"
                                                         class="form-control" id="landaddress"
                                                         placeholder="Address of Current Property">
@@ -478,7 +476,8 @@
         });
 
         // Attach form submission handlers
-        $("#rental-form, #owner-form").submit(function(e) {
+        $('form[id^="owner-form"], form[id^="rental-form"]').off('submit').on('submit', function(e) {
+
             e.preventDefault(); // Prevent the default form submission
 
             var formData = new FormData(this);
