@@ -254,11 +254,11 @@
                                     <label for="fullName" class="form-label">User Name <span
                                             class="text-danger">*</span> </label>
                                     <div class="valid">
-                                        <input type="text" class="form-control" name="username" maxlength="10"
+                                        <input type="text" class="form-control" name="username" maxlength="15"
                                             placeholder="TonyNguyen01" required pattern="[a-zA-Z0-9]{1,10}">
                                         <div class="valid-feedback">Looks good!</div>
                                         <div class="invalid-feedback">User Name must not contain spaces and must not
-                                            exceed 10 characters.</div>
+                                            exceed 15 characters.</div>
                                     </div>
                                 </div>
                                 <div class="mb-3">
@@ -402,7 +402,7 @@
             $('#form').bootstrapValidator('validateField', 'username');
 
             // Add or remove classes based on validation result
-            if ($(this).val().length > 0 && $(this).val().match(/^[a-zA-Z0-9]{1,10}$/)) {
+            if ($(this).val().length > 0 && $(this).val().match(/^[a-zA-Z0-9]{1,15}$/)) {
                 $(this).removeClass('is-invalid').addClass('is-valid');
             } else {
                 $(this).removeClass('is-valid').addClass('is-invalid');

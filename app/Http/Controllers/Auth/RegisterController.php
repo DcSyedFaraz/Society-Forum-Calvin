@@ -60,7 +60,7 @@ class RegisterController extends Controller
         $validatedData = Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'username' => ['regex:/^[^\s]+$/', 'required', 'string', 'max:10', 'unique:users'],
+            'username' => ['regex:/^[^\s]+$/', 'required', 'string', 'max:15', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'same:confirm_password'],
             'position' => 'required|string|in:rent,owner',
             'phone' => 'required|string|regex:/^\+1 \(\d{3}\) \d{3}-\d{4}$/',
@@ -123,7 +123,7 @@ class RegisterController extends Controller
 
         $this->validate($request, [
             'name' => 'required|string|max:255',
-            'username' => ['regex:/^[^\s]+$/', 'required', 'string', 'max:10', 'unique:users'],
+            'username' => ['regex:/^[^\s]+$/', 'required', 'string', 'max:15', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'same:confirm_password'],
             'address' => 'required|string|max:255',
             'phoneNumber' => 'required|string|max:255',
@@ -182,7 +182,7 @@ class RegisterController extends Controller
 
         $this->validate($request, [
             'name' => 'required|string|max:255',
-            'username' => ['regex:/^[^\s]+$/', 'required', 'string', 'max:10', 'unique:users'],
+            'username' => ['regex:/^[^\s]+$/', 'required', 'string', 'max:15', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'same:confirm_password'],
             'license' => 'required|string|max:255',
             'phoneNumber' => 'required|string|max:255',
@@ -241,7 +241,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'username' => ['regex:/^[^\s]+$/', 'required', 'string', 'max:10', 'unique:users'],
+            'username' => ['regex:/^[^\s]+$/', 'required', 'string', 'max:15', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'same:confirm-password'],
             'roles' => 'required',

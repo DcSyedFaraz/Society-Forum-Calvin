@@ -30,7 +30,7 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'username' => ['regex:/^[^\s]+$/', 'required', 'string', 'max:10', 'unique:users'],
+            'username' => ['regex:/^[^\s]+$/', 'required', 'string', 'max:15', 'unique:users'],
             'password' => 'required|same:confirm-password',
             'roles' => 'required'
         ]);
