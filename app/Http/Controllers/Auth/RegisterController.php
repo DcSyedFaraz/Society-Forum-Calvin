@@ -69,6 +69,7 @@ class RegisterController extends Controller
             'landlord_email_address' => 'nullable|required_if:position,rent|string|email|max:255',
             'landlord_address' => 'nullable|required_if:position,rent|string|max:255',
             'address' => 'required|string|max:255',
+            'park_address' => 'required_if:position,owner|string|max:255',
             'image' => 'nullable|max:2048',
             'date' => 'nullable|required_if:position,owner|date_format:Y-m-d',
         ]);
@@ -108,6 +109,7 @@ class RegisterController extends Controller
         }
         if ($data['position'] == 'owner') {
             $details->date_of_purchase = $data['date'];
+            $details->park_address = $data['park_address'];
         }
         $details->save();
         $this->notification($user);

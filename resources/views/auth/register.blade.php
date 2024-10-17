@@ -397,10 +397,17 @@
                                                 type="date" />
                                         </div>
                                         <div class="mb-3">
-                                            <label for="currentaddress" class="form-label">Address of Current
-                                                Property <span class="text-danger">*</span> </label>
+                                            <label for="currentaddress" class="form-label">Mailing Address<span
+                                                    class="text-danger">*</span> </label>
                                             <input type="text" class="form-control" name="address"
                                                 placeholder="Address">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="currentaddress" class="form-label">Park Shadows Property
+                                                Address<span class="text-danger">*</span> </label>
+                                            <input type="text" class="form-control" name="park_address"
+                                                placeholder="Park Shadows Property
+                                                Address">
                                         </div>
                                         <button type="submit" class="btn btn-primary">Create an account</button>
                                     </form>

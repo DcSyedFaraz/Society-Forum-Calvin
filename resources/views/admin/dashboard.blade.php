@@ -207,38 +207,62 @@
                                                                             Assigned</span>
                                                                     </p>
                                                                 @endif
+                                                                <p class="mt-3"><strong class="me-2">User Name:</strong>
+                                                                    <span
+                                                                        class="badge bg-primary">{{ $user->username }}</span>
+                                                                </p>
                                                                 @if ($user->member)
-                                                                    <p class="text-wrap"><strong
-                                                                            class="me-2">Position:</strong>
-                                                                        <span
-                                                                            class="badge text-uppercase bg-success">{{ $user->member->position }}</span>
-                                                                    </p>
-                                                                    <p class="text-wrap"><strong
-                                                                            class="me-2">Address:</strong>
-                                                                        {{ $user->member->address }}
-                                                                    </p>
-                                                                    <p class="text-wrap"><strong class="me-2">Date of
-                                                                            Purchase:</strong>
-                                                                        {{ $user->member->date_of_purchase ?? 'N/A' }}
-                                                                    </p>
-                                                                    <p class="text-wrap"><strong class="me-2">Landlord
-                                                                            Address:</strong>
-                                                                        {{ $user->member->landlord_address ?? 'N/A' }}
-                                                                    </p>
-                                                                    <p class="text-wrap"><strong class="me-2">Landlord
-                                                                            Name:</strong>
-                                                                        {{ $user->member->landlord_name ?? 'N/A' }}</p>
-                                                                    <p class="text-wrap"><strong class="me-2">Landlord
-                                                                            Phone Number:</strong>
-                                                                        {{ $user->member->landlord_phone_number ?? 'N/A' }}
-                                                                    </p>
-                                                                    <p class="text-wrap"><strong class="me-2">Landlord
-                                                                            Email Address:</strong>
-                                                                        {{ $user->member->landlord_email_address ?? 'N/A' }}
-                                                                    </p>
+                                                                    <div class="user-info">
+                                                                        <p class="text-wrap">
+                                                                            <strong class="me-2">Position:</strong>
+                                                                            <span
+                                                                                class="badge text-uppercase bg-success">{{ ucfirst($user->member->position) }}</span>
+                                                                        </p>
+
+                                                                        <p class="text-wrap">
+                                                                            <strong class="me-2">Address:</strong>
+                                                                            {{ $user->member->address }}
+                                                                        </p>
+
+                                                                        @if ($user->member->position === 'rent')
+                                                                            <!-- Fields specific to Renters -->
+                                                                            <p class="text-wrap">
+                                                                                <strong class="me-2">Landlord
+                                                                                    Address:</strong>
+                                                                                {{ $user->member->landlord_address ?? 'N/A' }}
+                                                                            </p>
+                                                                            <p class="text-wrap">
+                                                                                <strong class="me-2">Landlord
+                                                                                    Name:</strong>
+                                                                                {{ $user->member->landlord_name ?? 'N/A' }}
+                                                                            </p>
+                                                                            <p class="text-wrap">
+                                                                                <strong class="me-2">Landlord Phone
+                                                                                    Number:</strong>
+                                                                                {{ $user->member->landlord_phone_number ?? 'N/A' }}
+                                                                            </p>
+                                                                            <p class="text-wrap">
+                                                                                <strong class="me-2">Landlord Email
+                                                                                    Address:</strong>
+                                                                                {{ $user->member->landlord_email_address ?? 'N/A' }}
+                                                                            </p>
+                                                                        @elseif ($user->member->position === 'owner')
+                                                                            <!-- Fields specific to Owners -->
+                                                                            <p class="text-wrap">
+                                                                                <strong class="me-2">Date of
+                                                                                    Purchase:</strong>
+                                                                                {{ $user->member->date_of_purchase ?? 'N/A' }}
+                                                                            </p>
+                                                                            <p class="text-wrap">
+                                                                                <strong class="me-2">Park Shadows Property
+                                                                                    Address:</strong>
+                                                                                {{ $user->member->park_address ?? 'N/A' }}
+                                                                            </p>
+                                                                        @endif
+                                                                    </div>
                                                                 @elseif ($user->executive)
-                                                                    <p class="text-wrap"><strong
-                                                                            class="me-2">Address:</strong>
+                                                                    <p class="text-wrap"><strong class="me-2">Mailing
+                                                                            Address:</strong>
                                                                         {{ $user->executive->address ?? 'N/A' }}
                                                                     </p>
                                                                     <p class="text-wrap"><strong class="me-2">Park
@@ -273,7 +297,8 @@
                                                                             Email:</strong>
                                                                         {{ $user->agent->company_email }}</p>
                                                                     @if ($user->agent->company_website)
-                                                                        <p class="text-wrap"><strong class="me-2">Company
+                                                                        <p class="text-wrap"><strong
+                                                                                class="me-2">Company
                                                                                 Website:</strong> <a
                                                                                 href="{{ $user->agent->company_website }}">{{ $user->agent->company_website }}</a>
                                                                         </p>
