@@ -96,6 +96,32 @@ class DashboardController extends Controller
 
         return redirect()->back()->with('warning', 'Request Declined Successfully');
     }
+    public function bulkAction(Request $request)
+    {
+        $action = $request->input('action');
+        $userIds = $request->input('selected_users');
+
+        if (!$userIds) {
+            return redirect()->back()->with('error', 'No users selected.');
+        }
+
+        switch ($action) {
+            case 'approve':
+                User::whereIn('id', $userIds)->update(['access' => 'approved']);
+                return redirect()->back()->with('success', 'Selected users have been approved.');
+
+            case 'decline':
+                User::whereIn('id', $userIds)->update(['access' => 'declined']);
+                return redirect()->back()->with('success', 'Selected users have been declined.');
+
+            case 'delete':
+                User::whereIn('id', $userIds)->delete();
+                return redirect()->back()->with('success', 'Selected users have been deleted.');
+
+            default:
+                return redirect()->back()->with('error', 'Invalid action.');
+        }
+    }
     public function User_approved($id)
     {
         $user = User::find($id);

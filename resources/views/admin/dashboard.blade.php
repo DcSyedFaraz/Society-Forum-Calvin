@@ -144,216 +144,143 @@
                 <div id="tabler-tables">
                     <h3>User Requests</h3>
                     {{-- <h3>User Requests</h3> --}}
-                    <div class="tablemaster" translate="no" data-new-gr-c-s-check-loaded="14.1157.0"
-                        data-gr-ext-installed="">
-                        <div id="example_wrapper" class="dataTables_wrapper">
-                            <div class="dataTables_length" id="example_length">
-                            </div>
-                            <table id="example" class="display dataTable" cellspacing="0" width="100%" role="grid"
-                                aria-describedby="example_info" style="width: 100%;">
+                    <form action="{{ route('admin.users.bulkAction') }}" method="POST" id="bulk-action-form">
+                        @method('POST')
+                        @csrf
 
-                                <thead>
-                                    <tr>
-                                        <th>S.N.</th>
-                                        <th>Name:</th>
-                                        <th>Email:</th>
-                                        <th>Phone Number:</th>
-                                        <th>View:</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    @forelse ($request as $key => $user)
-                                        <tr class="odd">
-                                            {{-- @dd($user) --}}
-                                            <td>{{ $key + 1 }}</td>
-                                            <td>{{ $user->name ?? '' }}</td>
-                                            <td>{{ $user->email ?? '' }}</td>
-                                            <td>{{ $user->phone ?? 'null' }}</td>
-                                            <td>
-                                                <!-- Button trigger modal -->
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal{{ $key }}">
-                                                    View
-                                                </button>
-
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="exampleModal{{ $key }}" tabindex="-1"
-                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">
-                                                                    Name:{{ $user->name }}</h5>
-                                                                <button type="button" class="btn-close"
-                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                @if ($user->image)
-                                                                    <img class="rounded"
-                                                                        src="{{ asset('storage/images/' . $user->image) }}"
-                                                                        alt="Image" width="100%" height="auto">
-                                                                @endif
-                                                                @if ($user->roles->isNotEmpty())
-                                                                    <p class="mt-3"><strong class="me-2">Role:</strong>
-                                                                        <span
-                                                                            class="badge bg-primary text-uppercase">{{ $user->roles->first()->name }}</span>
-                                                                    </p>
-                                                                @else
-                                                                    <p class="mt-3"><strong class="me-2">Role:</strong>
-                                                                        <span class="badge bg-secondary text-uppercase">No
-                                                                            Role
-                                                                            Assigned</span>
-                                                                    </p>
-                                                                @endif
-                                                                <p class="mt-3"><strong class="me-2">User Name:</strong>
-                                                                    <span
-                                                                        class="badge bg-primary">{{ $user->username }}</span>
-                                                                </p>
-                                                                @if ($user->member)
-                                                                    <div class="user-info">
-                                                                        <p class="text-wrap">
-                                                                            <strong class="me-2">Position:</strong>
-                                                                            <span
-                                                                                class="badge text-uppercase bg-success">{{ ucfirst($user->member->position) }}</span>
-                                                                        </p>
-
-                                                                        <p class="text-wrap">
-                                                                            <strong class="me-2">Address:</strong>
-                                                                            {{ $user->member->address }}
-                                                                        </p>
-
-                                                                        @if ($user->member->position === 'rent')
-                                                                            <!-- Fields specific to Renters -->
-                                                                            <p class="text-wrap">
-                                                                                <strong class="me-2">Landlord
-                                                                                    Address:</strong>
-                                                                                {{ $user->member->landlord_address ?? 'N/A' }}
-                                                                            </p>
-                                                                            <p class="text-wrap">
-                                                                                <strong class="me-2">Landlord
-                                                                                    Name:</strong>
-                                                                                {{ $user->member->landlord_name ?? 'N/A' }}
-                                                                            </p>
-                                                                            <p class="text-wrap">
-                                                                                <strong class="me-2">Landlord Phone
-                                                                                    Number:</strong>
-                                                                                {{ $user->member->landlord_phone_number ?? 'N/A' }}
-                                                                            </p>
-                                                                            <p class="text-wrap">
-                                                                                <strong class="me-2">Landlord Email
-                                                                                    Address:</strong>
-                                                                                {{ $user->member->landlord_email_address ?? 'N/A' }}
-                                                                            </p>
-                                                                        @elseif ($user->member->position === 'owner')
-                                                                            <!-- Fields specific to Owners -->
-                                                                            <p class="text-wrap">
-                                                                                <strong class="me-2">Date of
-                                                                                    Purchase:</strong>
-                                                                                {{ $user->member->date_of_purchase ?? 'N/A' }}
-                                                                            </p>
-                                                                            <p class="text-wrap">
-                                                                                <strong class="me-2">Park Shadows Property
-                                                                                    Address:</strong>
-                                                                                {{ $user->member->park_address ?? 'N/A' }}
-                                                                            </p>
-                                                                        @endif
-                                                                    </div>
-                                                                @elseif ($user->executive)
-                                                                    <p class="text-wrap"><strong class="me-2">Mailing
-                                                                            Address:</strong>
-                                                                        {{ $user->executive->address ?? 'N/A' }}
-                                                                    </p>
-                                                                    <p class="text-wrap"><strong class="me-2">Park
-                                                                            Address:</strong>
-                                                                        {{ $user->executive->parkaddress ?? 'N/A' }}
-                                                                    </p>
-                                                                    <p class="text-wrap"><strong class="me-2">H.O.A
-                                                                            Address:</strong>
-                                                                        {{ $user->executive->hoaaddress ?? 'N/A' }}
-                                                                    </p>
-                                                                    <p class="text-wrap"><strong
-                                                                            class="me-2">Designation:</strong>
-                                                                        {{ $user->executive->designation ?? 'N/A' }}
-                                                                    </p>
-                                                                @elseif ($user->agent)
-                                                                    <p class="text-wrap"><strong
-                                                                            class="me-2">License:</strong>
-                                                                        {{ $user->agent->license }}</p>
-                                                                    <p class="text-wrap"><strong class="me-2">Company
-                                                                            Name:</strong>
-                                                                        {{ $user->agent->company_name }}</p>
-                                                                    <p class="text-wrap"><strong class="me-2">Physical
-                                                                            Address:</strong>
-                                                                        {{ $user->agent->physical_address }}</p>
-                                                                    <p class="text-wrap"><strong class="me-2">Company
-                                                                            Mailing Address:</strong>
-                                                                        {{ $user->agent->company_mailing_address }}</p>
-                                                                    <p class="text-wrap"><strong class="me-2">Company
-                                                                            Phone Number:</strong>
-                                                                        {{ $user->agent->company_phone_number }}</p>
-                                                                    <p class="text-wrap"><strong class="me-2">Company
-                                                                            Email:</strong>
-                                                                        {{ $user->agent->company_email }}</p>
-                                                                    @if ($user->agent->company_website)
-                                                                        <p class="text-wrap"><strong
-                                                                                class="me-2">Company
-                                                                                Website:</strong> <a
-                                                                                href="{{ $user->agent->company_website }}">{{ $user->agent->company_website }}</a>
-                                                                        </p>
-                                                                    @endif
-                                                                @else
-                                                                    <p class="text-wrap">No user details available.</p>
-                                                                @endif
-
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-bs-dismiss="modal">Close</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                @if ($user->access == 'declined')
-                                                    <span class="badge bg-danger"> Request Declined</span>
-                                                    <a href="{{ route('admin.User.approved', $user->id) }}"
-                                                        class="btn btn-success">Approve</a>
-                                                    <form action="{{ route('admin.users.destroy', $user->id) }}"
-                                                        method="POST" style="display: inline-block">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit"
-                                                            onclick="return confirm('Are you sure want to delete this?')"
-                                                            type="button" class="btn btn-sm btn-danger"><i
-                                                                class="bi bi-trash-fill"></i></button>
-                                                    </form>
-                                                @else
-                                                    <a href="{{ route('admin.User.approved', $user->id) }}"
-                                                        class="approver">Approve</a>
-                                                    <a href="{{ route('admin.User.decline', $user->id) }}"
-                                                        class="declined">Decline</a>
-                                                @endif
-                                            </td>
-                                        </tr>
-
-                                    @empty
-                                        <tr>
-                                            <td colspan="7" class="text-center text-muted fst-italic">
-
-                                                No records Available
-                                            </td>
-                                        </tr>
-                                    @endforelse
-
-                                </tbody>
-                            </table>
+                        <!-- Bulk Action Buttons -->
+                        <div class="d-flex flex-wrap justify-content-end mb-3">
+                            <button type="submit" name="action" value="approve"
+                                class="btn btn-success bulk-action-btn m-2" disabled>
+                                Approve Selected
+                            </button>
+                            <button type="submit" name="action" value="decline"
+                                class="btn btn-warning bulk-action-btn m-2" disabled>
+                                Decline Selected
+                            </button>
+                            <button type="submit" name="action" value="delete" class="btn btn-danger bulk-action-btn m-2"
+                                onclick="return confirm('Are you sure you want to delete the selected users?')" disabled>
+                                Delete Selected
+                            </button>
                         </div>
-                    </div>
+
+                        <div class="tablemaster table-responsive" translate="no">
+                            <div id="example_wrapper" class="dataTables_wrapper">
+                                <div class="dataTables_length" id="example_length">
+                                </div>
+                                <table id="example" class="display dataTable" cellspacing="0" width="100%"
+                                    role="grid" aria-describedby="example_info" style="width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th><input type="checkbox" id="select-all"></th>
+                                            <th>S.N.</th>
+                                            <th>Name:</th>
+                                            <th>Email:</th>
+                                            <th>Phone Number:</th>
+                                            <th>View:</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($request as $key => $user)
+                                            <tr class="odd">
+                                                <td>
+                                                    <input type="checkbox" name="selected_users[]"
+                                                        value="{{ $user->id }}">
+                                                </td>
+                                                <td>{{ $key + 1 }}</td>
+                                                <td>{{ $user->name ?? '' }}</td>
+                                                <td>{{ $user->email ?? '' }}</td>
+                                                <td>{{ $user->phone ?? 'null' }}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModal{{ $key }}">
+                                                        View
+                                                    </button>
+                                                </td>
+                                                <td>
+                                                    @if ($user->access == 'declined')
+                                                        <span class="badge bg-danger">Request Declined</span>
+                                                        <a href="{{ route('admin.User.approved', $user->id) }}"
+                                                            class="btn btn-success">Approve</a>
+                                                        <form action="{{ route('admin.users.destroy', $user->id) }}"
+                                                            class="individual-action-form" method="POST"
+                                                            style="display: inline-block">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                onclick="return confirm('Are you sure want to delete this?')"
+                                                                class="btn btn-sm btn-danger"><i
+                                                                    class="bi bi-trash-fill"></i></button>
+                                                        </form>
+                                                    @else
+                                                        <a href="{{ route('admin.User.approved', $user->id) }}"
+                                                            class="approver">Approve</a>
+                                                        <a href="{{ route('admin.User.decline', $user->id) }}"
+                                                            class="declined">Decline</a>
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="7" class="text-center text-muted fst-italic">No records
+                                                    Available</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+
                 </div>
             </div>
         </div>
     </div>
+@endsection
+@section('script')
+    <!-- Select All and Bulk Action JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectAllCheckbox = document.getElementById('select-all');
+            const individualCheckboxes = document.querySelectorAll('input[name="selected_users[]"]');
+            const bulkActionButtons = document.querySelectorAll('.bulk-action-btn');
+
+            // Function to update the state of bulk action buttons
+            const updateBulkActionButtons = () => {
+                const anyChecked = Array.from(individualCheckboxes).some(checkbox => checkbox.checked);
+                bulkActionButtons.forEach(button => {
+                    button.disabled = !anyChecked;
+                });
+            };
+
+            // Initialize the button state on page load
+            updateBulkActionButtons();
+
+            // Event listener for the "Select All" checkbox
+            selectAllCheckbox.addEventListener('change', function(e) {
+                individualCheckboxes.forEach(checkbox => {
+                    checkbox.checked = e.target.checked;
+                });
+                updateBulkActionButtons();
+            });
+
+            // Event listeners for individual checkboxes
+            individualCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    // If any checkbox is unchecked, uncheck the "Select All" checkbox
+                    if (!this.checked) {
+                        selectAllCheckbox.checked = false;
+                    } else {
+                        // If all checkboxes are checked, check the "Select All" checkbox
+                        const allChecked = Array.from(individualCheckboxes).every(cb => cb.checked);
+                        if (allChecked) {
+                            selectAllCheckbox.checked = true;
+                        }
+                    }
+                    updateBulkActionButtons();
+                });
+            });
+        });
+    </script>
 @endsection

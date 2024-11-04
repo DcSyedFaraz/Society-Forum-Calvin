@@ -109,6 +109,7 @@ Route::group(['prefix' => 'dashboard', 'as' => 'admin.', 'middleware' => ['auth'
 
     // File Cabinet
     Route::get('/operations', [FileCabinetController::class, 'operations'])->name('operations');
+    Route::delete('/users/bulkAction', [DashboardController::class, 'bulkAction'])->name('users.bulkAction');
 
 
     // Artchitectural Request
