@@ -145,7 +145,7 @@
                     <h3>User Requests</h3>
                     {{-- <h3>User Requests</h3> --}}
                     <form action="{{ route('admin.users.bulkAction') }}" method="POST" id="bulk-action-form">
-                        @method('POST')
+                        @method('DELETE')
                         @csrf
 
                         <!-- Bulk Action Buttons -->
