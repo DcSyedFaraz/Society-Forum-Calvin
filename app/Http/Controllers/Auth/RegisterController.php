@@ -10,6 +10,7 @@ use App\Notifications\UserNotification;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Exception;
+use Http;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -56,6 +57,20 @@ class RegisterController extends Controller
     {
         $data = $request->all();
         // dd($data);
+        $recaptchaResponse = $request->input('g-recaptcha-response');
+        $secretKey = '6Ld1j4oqAAAAAC3t1mEKgRcpOH-3cE2K64snBCOh'; // Replace with your secret key
+        $url = 'https://www.google.com/recaptcha/api/siteverify';
+
+        $response = Http::asForm()->post($url, [
+            'secret' => $secretKey,
+            'response' => $recaptchaResponse,
+        ]);
+
+        $responseBody = json_decode($response->body());
+
+        if (!$responseBody->success) {
+            return back()->json(['errors' => 'ReCAPTCHA validation failed. Please try again.']);
+        }
 
         $validatedData = Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
@@ -121,7 +136,20 @@ class RegisterController extends Controller
         $data = $request->all();
         // dd($data);
 
+        $recaptchaResponse = $request->input('g-recaptcha-response');
+        $secretKey = '6Ld1j4oqAAAAAC3t1mEKgRcpOH-3cE2K64snBCOh'; // Replace with your secret key
+        $url = 'https://www.google.com/recaptcha/api/siteverify';
 
+        $response = Http::asForm()->post($url, [
+            'secret' => $secretKey,
+            'response' => $recaptchaResponse,
+        ]);
+
+        $responseBody = json_decode($response->body());
+
+        if (!$responseBody->success) {
+            return back()->with('error', 'ReCAPTCHA validation failed. Please try again.');
+        }
 
         $this->validate($request, [
             'name' => 'required|string|max:255',
@@ -181,7 +209,20 @@ class RegisterController extends Controller
     {
         $data = $request->all();
         // dd($data);
+        $recaptchaResponse = $request->input('g-recaptcha-response');
+        $secretKey = '6Ld1j4oqAAAAAC3t1mEKgRcpOH-3cE2K64snBCOh'; // Replace with your secret key
+        $url = 'https://www.google.com/recaptcha/api/siteverify';
 
+        $response = Http::asForm()->post($url, [
+            'secret' => $secretKey,
+            'response' => $recaptchaResponse,
+        ]);
+
+        $responseBody = json_decode($response->body());
+
+        if (!$responseBody->success) {
+            return back()->with('error', 'ReCAPTCHA validation failed. Please try again.');
+        }
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'username' => ['regex:/^[^\s]+$/', 'required', 'string', 'max:15', 'unique:users'],

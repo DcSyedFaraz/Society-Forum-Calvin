@@ -7,6 +7,7 @@ use App\Mail\ContactFormMail;
 use App\Mail\otpmail;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
+use Http;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -84,6 +85,20 @@ class LoginController extends Controller
 
     public function loginOTP(Request $request)
     {
+        $recaptchaResponse = $request->input('g-recaptcha-response');
+        $secretKey = '6Ld1j4oqAAAAAC3t1mEKgRcpOH-3cE2K64snBCOh'; // Replace with your secret key
+        $url = 'https://www.google.com/recaptcha/api/siteverify';
+
+        $response = Http::asForm()->post($url, [
+            'secret' => $secretKey,
+            'response' => $recaptchaResponse,
+        ]);
+
+        $responseBody = json_decode($response->body());
+
+        if (!$responseBody->success) {
+            return back()->with('error', 'ReCAPTCHA validation failed. Please try again.');
+        }
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -111,6 +126,20 @@ class LoginController extends Controller
     }
     public function contact_us(Request $request)
     {
+        $recaptchaResponse = $request->input('g-recaptcha-response');
+        $secretKey = '6Ld1j4oqAAAAAC3t1mEKgRcpOH-3cE2K64snBCOh'; // Replace with your secret key
+        $url = 'https://www.google.com/recaptcha/api/siteverify';
+
+        $response = Http::asForm()->post($url, [
+            'secret' => $secretKey,
+            'response' => $recaptchaResponse,
+        ]);
+
+        $responseBody = json_decode($response->body());
+
+        if (!$responseBody->success) {
+            return back()->with('error', 'ReCAPTCHA validation failed. Please try again.');
+        }
         // Validate the form data
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',

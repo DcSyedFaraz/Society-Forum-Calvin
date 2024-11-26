@@ -25,6 +25,9 @@
         integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{{ asset('backend/css/responsive.css') }}">
+
+    {{-- reCAPTCHA --}}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <title>Executive Registration</title>
     <style>
         .is-valid {
@@ -305,7 +308,7 @@
                                     <input type="text" class="form-control" name="designation"
                                         placeholder="---" />
                                 </div>
-
+                                <div class="g-recaptcha" data-sitekey="6Ld1j4oqAAAAAEVkLOgstLWbpOOw8OjpOUhEJrUc"></div>
                                 <button type="submit" class="btn btn-primary">
                                     Create an account
                                 </button>

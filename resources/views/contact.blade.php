@@ -1,4 +1,7 @@
 @extends('layout.app')
+{{-- reCAPTCHA --}}
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 @section('content')
     <section class="container-fluid-banner">
         <div class="col-12">
@@ -53,6 +56,8 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">
+                                    <div class="g-recaptcha" data-sitekey="6Ld1j4oqAAAAAEVkLOgstLWbpOOw8OjpOUhEJrUc"></div>
+
                                     <button class="btn btn-default btn-lg btn-block" id="send"
                                         data-loading-text="Sending...">Send message</button>
                                 </div>

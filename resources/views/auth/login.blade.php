@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
         integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {{-- reCAPTCHA --}}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <title>Sign In</title>
 </head>
@@ -34,7 +36,7 @@
                 <li>New user?</li>
                 <li>Create an Account</li>
             </a>
-            <li><a href="{{route('home')}}"><i class="fa fa-home" aria-hidden="true"
+            <li><a href="{{ route('home') }}"><i class="fa fa-home" aria-hidden="true"
                         style="font-size:20px;color:black;"></i>
                 </a></li>
         </ul>
@@ -89,6 +91,9 @@
                                         <label for="remember">Remember me</label>
                                         <a href="{{ route('password.request') }}" class="forgot-password">Forgot
                                             Password?</a>
+                                        <div class="g-recaptcha"
+                                            data-sitekey="6Ld1j4oqAAAAAEVkLOgstLWbpOOw8OjpOUhEJrUc"></div>
+
                                     </div>
                                     <button type="submit">Sign In</button>
                                 </form>
@@ -119,6 +124,9 @@
                                         <label for="remember">Remember me</label>
                                         <a href="{{ route('password.request') }}" class="forgot-password">Forgot
                                             Password?</a>
+                                        <div class="g-recaptcha"
+                                            data-sitekey="6Ld1j4oqAAAAAEVkLOgstLWbpOOw8OjpOUhEJrUc"></div>
+
                                     </div>
                                     <button type="submit">Sign In</button>
                                 </form>
