@@ -633,8 +633,6 @@ body {
         display: flex;
         padding-top: 10px;
         justify-content: left;
-        z-index: 9;
-        position: absolute;
     }
 
     img.line {
@@ -661,6 +659,11 @@ body {
 }
 
 @media only screen and (max-width: 767px) {
+
+    .buttons:last-of-type {
+        padding-top: 15px !important;
+    }
+
     .mobile .row {
         display: flex;
         flex-direction: row;
