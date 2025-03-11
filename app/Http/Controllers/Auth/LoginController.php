@@ -49,25 +49,13 @@ class LoginController extends Controller
 
         $role = Auth::user()->getRoleNames();
         // dd($role);
-        switch ($role[0]) {
-
-
-            case 'admin':
-                return 'admin/dashboard';
-                break;
-            case 'member':
-                return 'member/dashboard';
-                break;
-            case 'agent':
-                return 'real_estate/dashboard';
-                break;
-            case 'executive':
-                return 'executive/dashboard';
-                break;
-            default:
-                return 'login';
-                break;
-        }
+        return match ($role[0]) {
+            'admin' => 'admin/dashboard',
+            'member' => 'member/dashboard',
+            'agent' => 'real_estate/dashboard',
+            'executive' => 'executive/dashboard',
+            default => 'login',
+        };
     }
 
 
@@ -76,7 +64,7 @@ class LoginController extends Controller
     public function logout()
     {
         if (Auth::check()) {
-            $user = Auth::logout();
+            Auth::logout();
             return redirect()->to('/')->with('success', 'User Logout successfully.');
         } else {
             return redirect()->to('/')->with('error', 'User Logout successfully.');
@@ -181,23 +169,13 @@ class LoginController extends Controller
 
                         $role = $user->getRoleNames()->first();
 
-                        switch ($role) {
-                            case 'admin':
-                                return redirect()->route('admin.dashboard');
-                                break;
-                            case 'member':
-                                return redirect()->route('member.dashboard');
-                                break;
-                            case 'agent':
-                                return redirect()->route('agent.dashboard');
-                                break;
-                            case 'executive':
-                                return redirect()->route('executive.dashboard');
-                                break;
-                            default:
-                                return redirect()->route('login');
-                                break;
-                        }
+                        return match ($role) {
+                            'admin' => redirect()->route('admin.dashboard'),
+                            'member' => redirect()->route('member.dashboard'),
+                            'agent' => redirect()->route('agent.dashboard'),
+                            'executive' => redirect()->route('executive.dashboard'),
+                            default => redirect()->route('login'),
+                        };
                     } else {
                         // If authentication fails, redirect back with error
                         return back()->withErrors(['email' => 'Authentication failed']);

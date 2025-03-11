@@ -92,7 +92,8 @@
                                         <a href="{{ route('password.request') }}" class="forgot-password">Forgot
                                             Password?</a>
                                         <div class="g-recaptcha"
-                                            data-sitekey="6Ld1j4oqAAAAAEVkLOgstLWbpOOw8OjpOUhEJrUc"></div>
+                                            data-sitekey="6Ld1j4oqAAAAAEVkLOgstLWbpOOw8OjpOUhEJrUc">
+                                        </div>
 
                                     </div>
                                     <button type="submit">Sign In</button>

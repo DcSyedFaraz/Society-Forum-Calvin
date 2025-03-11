@@ -114,7 +114,8 @@
                             <div class="col-md-6 offset-md-3">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3 class="card-title">Two step identification. Please check your email for One time password.</h3>
+                                        <h3 class="card-title">Two step identification. Please check your email for One
+                                            time password. Also check your Spam and Junk Mail folders.</h3>
                                     </div>
                                     <div class="card-body">
                                         <form action="{{ route('otp.verify') }}" method="post">
