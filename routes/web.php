@@ -153,8 +153,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'r
     Route::get('/request/accept/{id}', [DashboardController::class, 'request_approved'])->name('property.approved');
     Route::get('/request/decline/{id}', [DashboardController::class, 'request_decline'])->name('property.decline');
     //User Request
-    Route::get('/User/accept/{id}', [DashboardController::class, 'User_approved'])->name('User.approved');
-    Route::get('/User/decline/{id}', [DashboardController::class, 'User_decline'])->name('User.decline');
+    Route::get('/User/accept/{id}', [DashboardController::class, 'userApproved'])->name('User.approved');
+    Route::get('/User/decline/{id}', [DashboardController::class, 'userDeclined'])->name('User.decline');
 
 
     // File Cabinet

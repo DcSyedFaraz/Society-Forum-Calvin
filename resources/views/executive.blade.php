@@ -23,9 +23,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
         integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="{{ asset('backend/css/responsive.css') }}">
-  {{-- reCAPTCHA --}}
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <link rel="stylesheet" href="{{ asset('backend/css/responsive.css') }}">
+    {{-- reCAPTCHA --}}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <title>Executive Sign In</title>
 </head>
 
@@ -77,36 +77,14 @@
                                 <input type="checkbox" id="remember" name="remember">
                                 <label for="remember">Remember me</label>
                                 <a href="{{ route('password.request') }}" class="forgot-password">Forgot Password?</a>
-                                <div class="g-recaptcha" data-sitekey="6Ld1j4oqAAAAAEVkLOgstLWbpOOw8OjpOUhEJrUc"></div>
+                                @if (!app()->environment('pc'))
+                                    <div class="g-recaptcha" data-sitekey="6Ld1j4oqAAAAAEVkLOgstLWbpOOw8OjpOUhEJrUc">
+                                    </div>
+                                @endif
                             </div>
                             <button type="submit">Sign In</button>
                         </form>
                     </div>
-                    <!-- <div class="card1">
-                        <div class="card-body">
-                        <div class="d-inline-flex align-items-start">
-                          <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                            <a class="nav-link active" id="v-pills-user-tab" data-bs-toggle="pill" href="#v-pills-user" role="tab" aria-controls="v-pills-user" aria-selected="true">Podatki o uporabniku</a>
-                            <a class="nav-link" id="v-pills-pooblastila-tab" data-bs-toggle="pill" href="#v-pills-pooblastila" role="tab" aria-controls="v-pills-pooblastila" aria-selected="false">Profile</a>
-                            <a class="nav-link" id="v-pills-prijave-tab" data-bs-toggle="pill" href="#v-pills-prijave" role="tab" aria-controls="v-pills-prijave" aria-selected="false">Prijave</a>
-                          </div>
-                          <div class="tab-content " id="v-pills-tabContent">
-                            <div class="tab-pane fade show active " id="v-pills-user" role="tabpanel" aria-labelledby="v-pills-user-tab">
-                              <form id="posodobi_uporabnika">
-                              <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                                <label for="floatingInput">Email address</label>
-                              </div>
-                            </form>
-                            </div>
-                            <div class="tab-pane fade" id="v-pills-pooblastila" role="tabpanel" aria-labelledby="v-pills-pooblastila-tab">Pooblastila</div>
-                            <div class="tab-pane fade" id="v-pills-prijave" role="tabpanel" aria-labelledby="v-pills-prijave-tab">Prijave</div>
-                          </div>
-                        </div>
-                        </div>
-                            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
-                            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
-                          </div> -->
                 </div>
             </div>
         </div>

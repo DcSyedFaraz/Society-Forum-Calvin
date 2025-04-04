@@ -339,8 +339,11 @@
                                             <input type="text" class="form-control" name="address"
                                                 placeholder="Address">
                                         </div>
-                                        <div class="g-recaptcha"
-                                            data-sitekey="6Ld1j4oqAAAAAEVkLOgstLWbpOOw8OjpOUhEJrUc"></div>
+                                        @if (!app()->environment('pc'))
+                                            <div class="g-recaptcha"
+                                                data-sitekey="6Ld1j4oqAAAAAEVkLOgstLWbpOOw8OjpOUhEJrUc">
+                                            </div>
+                                        @endif
 
                                         <button type="submit" class="btn btn-primary">Create an account</button>
                                     </form>
@@ -415,8 +418,11 @@
                                                 placeholder="Park Shadows Property
                                                 Address">
                                         </div>
-                                        <div class="g-recaptcha"
-                                            data-sitekey="6Ld1j4oqAAAAAEVkLOgstLWbpOOw8OjpOUhEJrUc"></div>
+                                        @if (!app()->environment('pc'))
+                                            <div class="g-recaptcha"
+                                                data-sitekey="6Ld1j4oqAAAAAEVkLOgstLWbpOOw8OjpOUhEJrUc">
+                                            </div>
+                                        @endif
                                         <button type="submit" class="btn btn-primary">Create an account</button>
                                     </form>
                                 </div>

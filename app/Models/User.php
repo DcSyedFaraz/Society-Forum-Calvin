@@ -29,7 +29,8 @@ class User extends Authenticatable
         'email',
         'phone',
         'password',
-        'is_email_verified'
+        'is_email_verified',
+        'decline_reason',
     ];
 
     /**

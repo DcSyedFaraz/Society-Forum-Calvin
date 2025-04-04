@@ -308,7 +308,10 @@
                                     <input type="text" class="form-control" name="designation"
                                         placeholder="---" />
                                 </div>
-                                <div class="g-recaptcha" data-sitekey="6Ld1j4oqAAAAAEVkLOgstLWbpOOw8OjpOUhEJrUc"></div>
+                                @if (!app()->environment('pc'))
+                                    <div class="g-recaptcha" data-sitekey="6Ld1j4oqAAAAAEVkLOgstLWbpOOw8OjpOUhEJrUc">
+                                    </div>
+                                @endif
                                 <button type="submit" class="btn btn-primary">
                                     Create an account
                                 </button>

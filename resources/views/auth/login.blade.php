@@ -91,9 +91,11 @@
                                         <label for="remember">Remember me</label>
                                         <a href="{{ route('password.request') }}" class="forgot-password">Forgot
                                             Password?</a>
-                                        <div class="g-recaptcha"
-                                            data-sitekey="6Ld1j4oqAAAAAEVkLOgstLWbpOOw8OjpOUhEJrUc">
-                                        </div>
+                                        @if (!app()->environment('pc'))
+                                            <div class="g-recaptcha"
+                                                data-sitekey="6Ld1j4oqAAAAAEVkLOgstLWbpOOw8OjpOUhEJrUc">
+                                            </div>
+                                        @endif
 
                                     </div>
                                     <button type="submit">Sign In</button>
@@ -125,8 +127,11 @@
                                         <label for="remember">Remember me</label>
                                         <a href="{{ route('password.request') }}" class="forgot-password">Forgot
                                             Password?</a>
-                                        <div class="g-recaptcha"
-                                            data-sitekey="6Ld1j4oqAAAAAEVkLOgstLWbpOOw8OjpOUhEJrUc"></div>
+                                        @if (!app()->environment('pc'))
+                                            <div class="g-recaptcha"
+                                                data-sitekey="6Ld1j4oqAAAAAEVkLOgstLWbpOOw8OjpOUhEJrUc">
+                                            </div>
+                                        @endif
 
                                     </div>
                                     <button type="submit">Sign In</button>

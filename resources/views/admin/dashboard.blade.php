@@ -147,6 +147,7 @@
                     <form action="{{ route('admin.users.bulkAction') }}" method="POST" id="bulk-action-form">
                         @method('DELETE')
                         @csrf
+                        <input type="hidden" name="decline_reason" id="decline-reason" value="Incomplete Information">
 
                         <!-- Bulk Action Buttons -->
                         <div class="d-flex flex-wrap justify-content-end mb-3">
@@ -154,10 +155,21 @@
                                 class="btn btn-success bulk-action-btn m-2" disabled>
                                 Approve Selected
                             </button>
-                            <button type="submit" name="action" value="decline"
-                                class="btn btn-warning bulk-action-btn m-2" disabled>
-                                Decline Selected
-                            </button>
+                            <div class="dropdown d-inline-block m-2">
+                                <button class="btn btn-warning dropdown-toggle bulk-action-btn" type="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false" disabled>
+                                    Decline Selected
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <h6 class="dropdown-header">Select Reason:</h6>
+                                    </li>
+                                    <li><button type="submit" name="action" value="decline" class="dropdown-item"
+                                            data-reason="Against the Policy">Against the Policy</button></li>
+                                    <li><button type="submit" name="action" value="decline" class="dropdown-item"
+                                            data-reason="Incomplete Information">Incomplete Information</button></li>
+                                </ul>
+                            </div>
                             <button type="submit" name="action" value="delete" class="btn btn-danger bulk-action-btn m-2"
                                 onclick="return confirm('Are you sure you want to delete the selected users?')" disabled>
                                 Delete Selected
@@ -394,6 +406,16 @@
             const selectAllCheckbox = document.getElementById('select-all');
             const individualCheckboxes = document.querySelectorAll('input[name="selected_users[]"]');
             const bulkActionButtons = document.querySelectorAll('.bulk-action-btn');
+
+            const declineButtons = document.querySelectorAll('.dropdown-item[data-reason]');
+            const reasonInput = document.getElementById('decline-reason');
+
+
+            declineButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    reasonInput.value = this.getAttribute('data-reason');
+                });
+            });
 
             // Function to update the state of bulk action buttons
             const updateBulkActionButtons = () => {

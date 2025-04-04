@@ -57,19 +57,21 @@ class RegisterController extends Controller
     {
         $data = $request->all();
         // dd($data);
-        $recaptchaResponse = $request->input('g-recaptcha-response');
-        $secretKey = '6Ld1j4oqAAAAAC3t1mEKgRcpOH-3cE2K64snBCOh'; // Replace with your secret key
-        $url = 'https://www.google.com/recaptcha/api/siteverify';
+        if (!app()->environment('pc')) { // Skip reCAPTCHA in development
+            $recaptchaResponse = $request->input('g-recaptcha-response');
+            $secretKey = '6Ld1j4oqAAAAAC3t1mEKgRcpOH-3cE2K64snBCOh'; // Replace with your secret key
+            $url = 'https://www.google.com/recaptcha/api/siteverify';
 
-        $response = Http::asForm()->post($url, [
-            'secret' => $secretKey,
-            'response' => $recaptchaResponse,
-        ]);
+            $response = Http::asForm()->post($url, [
+                'secret' => $secretKey,
+                'response' => $recaptchaResponse,
+            ]);
 
-        $responseBody = json_decode($response->body());
+            $responseBody = json_decode($response->body());
 
-        if (!$responseBody->success) {
-            return back()->json(['errors' => 'ReCAPTCHA validation failed. Please try again.']);
+            if (!$responseBody->success) {
+                return back()->with('error', 'ReCAPTCHA validation failed. Please try again.');
+            }
         }
 
         $validatedData = Validator::make($data, [
@@ -136,19 +138,21 @@ class RegisterController extends Controller
         $data = $request->all();
         // dd($data);
 
-        $recaptchaResponse = $request->input('g-recaptcha-response');
-        $secretKey = '6Ld1j4oqAAAAAC3t1mEKgRcpOH-3cE2K64snBCOh'; // Replace with your secret key
-        $url = 'https://www.google.com/recaptcha/api/siteverify';
+        if (!app()->environment('pc')) { // Skip reCAPTCHA in development
+            $recaptchaResponse = $request->input('g-recaptcha-response');
+            $secretKey = '6Ld1j4oqAAAAAC3t1mEKgRcpOH-3cE2K64snBCOh'; // Replace with your secret key
+            $url = 'https://www.google.com/recaptcha/api/siteverify';
 
-        $response = Http::asForm()->post($url, [
-            'secret' => $secretKey,
-            'response' => $recaptchaResponse,
-        ]);
+            $response = Http::asForm()->post($url, [
+                'secret' => $secretKey,
+                'response' => $recaptchaResponse,
+            ]);
 
-        $responseBody = json_decode($response->body());
+            $responseBody = json_decode($response->body());
 
-        if (!$responseBody->success) {
-            return back()->with('error', 'ReCAPTCHA validation failed. Please try again.');
+            if (!$responseBody->success) {
+                return back()->with('error', 'ReCAPTCHA validation failed. Please try again.');
+            }
         }
 
         $this->validate($request, [
@@ -209,19 +213,21 @@ class RegisterController extends Controller
     {
         $data = $request->all();
         // dd($data);
-        $recaptchaResponse = $request->input('g-recaptcha-response');
-        $secretKey = '6Ld1j4oqAAAAAC3t1mEKgRcpOH-3cE2K64snBCOh'; // Replace with your secret key
-        $url = 'https://www.google.com/recaptcha/api/siteverify';
+        if (!app()->environment('pc')) { // Skip reCAPTCHA in development
+            $recaptchaResponse = $request->input('g-recaptcha-response');
+            $secretKey = '6Ld1j4oqAAAAAC3t1mEKgRcpOH-3cE2K64snBCOh'; // Replace with your secret key
+            $url = 'https://www.google.com/recaptcha/api/siteverify';
 
-        $response = Http::asForm()->post($url, [
-            'secret' => $secretKey,
-            'response' => $recaptchaResponse,
-        ]);
+            $response = Http::asForm()->post($url, [
+                'secret' => $secretKey,
+                'response' => $recaptchaResponse,
+            ]);
 
-        $responseBody = json_decode($response->body());
+            $responseBody = json_decode($response->body());
 
-        if (!$responseBody->success) {
-            return back()->with('error', 'ReCAPTCHA validation failed. Please try again.');
+            if (!$responseBody->success) {
+                return back()->with('error', 'ReCAPTCHA validation failed. Please try again.');
+            }
         }
         $this->validate($request, [
             'name' => 'required|string|max:255',

@@ -311,7 +311,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="companyphone" class="form-label">Phone<br> Number (Optional)
-                                                 </label>
+                                            </label>
                                             <input type="tel" class="form-control" name="companyphone"
                                                 placeholder="+13333 2222 55">
                                         </div>
@@ -329,7 +329,7 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="companyweb" class="form-label">Real Estate Company
-                                                Website (Optional)  </label>
+                                                Website (Optional) </label>
                                             <input type="text" class="form-control" name="companyweb"
                                                 placeholder="www.example.com">
                                         </div>
@@ -341,7 +341,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="g-recaptcha" data-sitekey="6Ld1j4oqAAAAAEVkLOgstLWbpOOw8OjpOUhEJrUc"></div>
+                                @if (!app()->environment('pc'))
+                                    <div class="g-recaptcha" data-sitekey="6Ld1j4oqAAAAAEVkLOgstLWbpOOw8OjpOUhEJrUc">
+                                    </div>
+                                @endif
                                 <button type="submit" class="btn btn-primary">Create an account</button>
                             </div>
 

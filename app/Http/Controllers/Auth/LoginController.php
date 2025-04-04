@@ -73,19 +73,22 @@ class LoginController extends Controller
 
     public function loginOTP(Request $request)
     {
-        $recaptchaResponse = $request->input('g-recaptcha-response');
-        $secretKey = '6Ld1j4oqAAAAAC3t1mEKgRcpOH-3cE2K64snBCOh'; // Replace with your secret key
-        $url = 'https://www.google.com/recaptcha/api/siteverify';
 
-        $response = Http::asForm()->post($url, [
-            'secret' => $secretKey,
-            'response' => $recaptchaResponse,
-        ]);
+        if (!app()->environment('pc')) { // Skip reCAPTCHA in development
+            $recaptchaResponse = $request->input('g-recaptcha-response');
+            $secretKey = '6Ld1j4oqAAAAAC3t1mEKgRcpOH-3cE2K64snBCOh'; // Replace with your secret key
+            $url = 'https://www.google.com/recaptcha/api/siteverify';
 
-        $responseBody = json_decode($response->body());
+            $response = Http::asForm()->post($url, [
+                'secret' => $secretKey,
+                'response' => $recaptchaResponse,
+            ]);
 
-        if (!$responseBody->success) {
-            return back()->with('error', 'ReCAPTCHA validation failed. Please try again.');
+            $responseBody = json_decode($response->body());
+
+            if (!$responseBody->success) {
+                return back()->with('error', 'ReCAPTCHA validation failed. Please try again.');
+            }
         }
         $credentials = $request->validate([
             'email' => 'required|email',
@@ -196,24 +199,24 @@ class LoginController extends Controller
     }
 
 
-    public function verifyAccount($token)
-    {
-        $verifyUser = UserVerify::where('token', $token)->first();
+    // public function verifyAccount($token)
+    // {
+    //     $verifyUser = UserVerify::where('token', $token)->first();
 
-        $message = 'Sorry your email cannot be identified.';
+    //     $message = 'Sorry your email cannot be identified.';
 
-        if (!is_null($verifyUser)) {
-            $user = $verifyUser->user;
+    //     if (!is_null($verifyUser)) {
+    //         $user = $verifyUser->user;
 
-            if (!$user->is_email_verified) {
-                $verifyUser->user->is_email_verified = 1;
-                $verifyUser->user->save();
-                $message = "Your e-mail is verified. You can now login.";
-            } else {
-                $message = "Your e-mail is already verified. You can now login.";
-            }
-        }
+    //         if (!$user->is_email_verified) {
+    //             $verifyUser->user->is_email_verified = 1;
+    //             $verifyUser->user->save();
+    //             $message = "Your e-mail is verified. You can now login.";
+    //         } else {
+    //             $message = "Your e-mail is already verified. You can now login.";
+    //         }
+    //     }
 
-        return redirect()->route('login')->with('message', $message);
-    }
+    //     return redirect()->route('login')->with('message', $message);
+    // }
 }

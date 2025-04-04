@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\AccountApproved;
+use App\Mail\AccountRejected;
 use App\Models\Announcement;
 use App\Models\Architect;
 use App\Models\Property;
@@ -11,6 +13,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Hash;
 use Illuminate\Http\Response;
+use Mail;
 use Notification;
 use Spatie\Permission\Models\Role;
 use Validator;
@@ -19,21 +22,8 @@ use Session;
 
 class DashboardController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware(['auth']);
-    }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+
     public function markAllAsRead()
     {
         $user = Auth::user();
@@ -105,16 +95,24 @@ class DashboardController extends Controller
             return redirect()->back()->with('error', 'No users selected.');
         }
 
+        $users = User::whereIn('id', $userIds)->get();
+
         switch ($action) {
             case 'approve':
-                User::whereIn('id', $userIds)->update(['access' => 'approved']);
+                foreach ($users as $user) {
+                    $this->approveUser($user);
+                }
                 return redirect()->back()->with('success', 'Selected users have been approved.');
 
             case 'decline':
-                User::whereIn('id', $userIds)->update(['access' => 'declined']);
+                $reason = $request->input('decline_reason', 'Incomplete Information');
+                foreach ($users as $user) {
+                    $this->declineUser($user, $reason);
+                }
                 return redirect()->back()->with('success', 'Selected users have been declined.');
 
             case 'delete':
+                // Add additional authorization check here if needed
                 User::whereIn('id', $userIds)->delete();
                 return redirect()->back()->with('success', 'Selected users have been deleted.');
 
@@ -122,25 +120,62 @@ class DashboardController extends Controller
                 return redirect()->back()->with('error', 'Invalid action.');
         }
     }
-    public function User_approved($id)
+
+    /**
+     * Approve a single user
+     */
+    public function approveUser($user)
     {
-        $user = User::find($id);
+        // If a User model is not passed, find it by ID
+        if (!($user instanceof User)) {
+            $user = User::findOrFail($user);
+        }
 
         $user->access = 'approved';
         $user->save();
 
+        // Send approval email
+        Mail::to($user->email)->send(new AccountApproved($user));
 
+        return true;
+    }
+
+    /**
+     * Convenience method for route handling
+     */
+    public function userApproved($id)
+    {
+        $this->approveUser($id);
         return redirect()->back()->with('success', 'Request Accepted Successfully');
     }
-    public function User_decline($id)
-    {
-        $user = User::find($id);
 
+    /**
+     * Decline a single user
+     */
+    public function declineUser($user, $reason = null)
+    {
+        // If a User model is not passed, find it by ID
+        if (!($user instanceof User)) {
+            $user = User::findOrFail($user);
+        }
 
         $user->access = 'declined';
+        // $user->decline_reason = $reason;
         $user->save();
 
+        // Send rejection email
+        Mail::to($user->email)->send(new AccountRejected($user));
 
+        return true;
+    }
+
+    /**
+     * Convenience method for route handling
+     */
+    public function userDeclined($id, Request $request)
+    {
+        $reason = $request->input('decline_reason', 'Incomplete Information');
+        $this->declineUser($id, $reason);
         return redirect()->back()->with('warning', 'Request Declined Successfully');
     }
     public function request_approved($id)
