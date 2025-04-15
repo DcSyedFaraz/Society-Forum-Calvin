@@ -318,14 +318,14 @@
                                                         placeholder="+13333 2222 55">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="mobile" class="form-label">Your email <span
+                                                    <label for="mobile" class="form-label">Landlord's email <span
                                                             class="text-danger">*</span> </label>
                                                     <input type="email" name="landlord_email_address"
                                                         class="form-control" id="landemail"
                                                         placeholder="Tonynguyen@example.com">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="address" class="form-label">Physical Address <span
+                                                    <label for="address" class="form-label">landlord’s address <span
                                                             class="text-danger">*</span> </label>
                                                     <input type="text" name="landlord_address"
                                                         class="form-control" id="landaddress"

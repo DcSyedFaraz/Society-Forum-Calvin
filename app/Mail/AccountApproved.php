@@ -40,7 +40,7 @@ class AccountApproved extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.account_approved',
+            view: 'mail.account-approved',
             with: [
                 'name' => $this->user->name,
                 'loginUrl' => route('login')
