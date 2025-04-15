@@ -476,6 +476,11 @@
 
             e.preventDefault(); // Prevent the default form submission
 
+            var submitButton = $(this).find('button[type="submit"]');
+            submitButton.prop("disabled", true);
+            // Using a spinner icon along with loading text
+            submitButton.html('<i class="fa fa-spinner fa-spin"></i> Loading...');
+
             var formData = new FormData(this);
             formData.append("image", $('input[name="image"]')[0].files[0]); // Add the image file
 
