@@ -325,7 +325,7 @@
                                                         placeholder="Tonynguyen@example.com">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="address" class="form-label">landlord’s address <span
+                                                    <label for="address" class="form-label">Landlord’s address <span
                                                             class="text-danger">*</span> </label>
                                                     <input type="text" name="landlord_address"
                                                         class="form-control" id="landaddress"
