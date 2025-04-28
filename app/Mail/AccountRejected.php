@@ -31,10 +31,13 @@ class AccountRejected extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(User $user)
+    public function __construct(User $user, ?string $reason = null)
     {
+        // If the reason is not provided, use the user's decline reason or a default message
+        $this->reason = $reason ?? $user->decline_reason ?? 'Incomplete Information';
         $this->user = $user;
-        $this->reason = $user->decline_reason ?? 'Incomplete Information';
+
+
     }
 
     /**

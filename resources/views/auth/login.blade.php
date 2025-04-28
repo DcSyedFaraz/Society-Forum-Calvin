@@ -65,8 +65,7 @@
                                 role="tab" aria-controls="v-pills-pooblastila" aria-selected="false">Owner</a>
                         </div>
                         <div class="tab-content flex-grow-1" id="v-pills-tabContent">
-                            <div class="tab-pane fade show active " id="rental" role="tabpanel"
-                                aria-labelledby="v-pills-user-tab">
+                            <div class="tab-pane fade show active" id="rental" role="tabpanel" aria-labelledby="v-pills-user-tab">
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
                                     <p>Or sign in using your email address</p>
@@ -98,11 +97,10 @@
                                         @endif
 
                                     </div>
-                                    <button type="submit">Sign In</button>
+                                    <button type="submit" id="rentalSubmitBtn">Sign In</button>
                                 </form>
                             </div>
-                            <div class="tab-pane fade" id="owner" role="tabpanel"
-                                aria-labelledby="v-pills-pooblastila-tab">
+                            <div class="tab-pane fade" id="owner" role="tabpanel" aria-labelledby="v-pills-pooblastila-tab">
                                 <form method="POST" action="{{ route('login') }}">
                                     @csrf
                                     <p>Or sign in using your email address</p>
@@ -134,7 +132,7 @@
                                         @endif
 
                                     </div>
-                                    <button type="submit">Sign In</button>
+                                    <button type="submit" id="ownerSubmitBtn">Sign In</button>
                                 </form>
                             </div>
                         </div>
@@ -194,5 +192,13 @@
         @endforeach
     @endif
 </script>
+@if ($errors->any())
+<script>
+    $(document).ready(function() {
+        // Remove loading state if exists (e.g. remove "loading" class and enable the button)
+        $('#rentalSubmitBtn, #ownerSubmitBtn').removeClass('loading').prop('disabled', false);
+    });
+</script>
+@endif
 
 </html>

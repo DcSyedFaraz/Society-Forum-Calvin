@@ -45,7 +45,7 @@
         margin-right: 10px;
     }
 
-    table#example a.declined {
+    .declined {
         background: #FF0000 0% 0% no-repeat padding-box;
         color: azure;
         border-radius: 100px;
@@ -377,8 +377,13 @@
                                                     @else
                                                         <a href="{{ route('admin.User.approved', $user->id) }}"
                                                             class="approver">Approve</a>
-                                                        <a href="{{ route('admin.User.decline', $user->id) }}"
-                                                            class="declined">Decline</a>
+                                                        <form action="{{ route('admin.User.decline', $user->id) }}"
+                                                            method="POST" class="individual-decline-form d-inline">
+                                                            @csrf
+                                                            <input type="hidden" name="decline_reason"
+                                                                class="decline-reason-input" value="">
+                                                            <button type="submit" class="declined">Decline</button>
+                                                        </form>
                                                     @endif
                                                 </td>
                                             </tr>
@@ -452,6 +457,28 @@
                     updateBulkActionButtons();
                 });
             });
+
+            // Prompt for individual decline reason
+            document.querySelectorAll('.individual-decline-form').forEach(form => {
+                const btn = form.querySelector('button.declined');
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const choice = prompt(
+                        "Select decline reason:\n" +
+                        "1) Against the Policy\n" +
+                        "2) Incomplete Information\n\n" +
+                        "Enter 1 or 2:"
+                    );
+                    if (choice === '1' || choice === '2') {
+                        form.querySelector('.decline-reason-input').value =
+                            choice === '1' ?
+                            'Against the Policy' :
+                            'Incomplete Information';
+                        form.submit();
+                    }
+                });
+            });
+
         });
     </script>
 @endsection

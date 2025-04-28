@@ -152,7 +152,7 @@ class DashboardController extends Controller
     /**
      * Decline a single user
      */
-    public function declineUser($user, $reason = null)
+    public function declineUser($user, $reason)
     {
         // If a User model is not passed, find it by ID
         if (!($user instanceof User)) {
@@ -162,9 +162,9 @@ class DashboardController extends Controller
         $user->access = 'declined';
         // $user->decline_reason = $reason;
         $user->save();
-
+        // dd($reason);
         // Send rejection email
-        Mail::to($user->email)->send(new AccountRejected($user));
+        Mail::to($user->email)->send(new AccountRejected($user, $reason));
 
         return true;
     }
