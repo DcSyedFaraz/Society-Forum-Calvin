@@ -268,10 +268,7 @@
                                                 <input type="text" class="form-control" name="username"
                                                     maxlength="15" placeholder="TonyNguyen01" required
                                                     pattern="[a-zA-Z0-9]{1,10}">
-                                                <div class="valid-feedback">Looks good!</div>
-                                                <div class="invalid-feedback">User Name must not contain spaces and
-                                                    must not
-                                                    exceed 15 characters.</div>
+                                                <div class="username-feedback invalid-feedback"></div>
                                             </div>
                                         </div>
 
@@ -286,6 +283,7 @@
                                                     class="text-danger">*</span> </label>
                                             <input type="password" class="form-control" name="password"
                                                 placeholder="*****" />
+                                            <div class="password-feedback invalid-feedback"></div>
                                         </div>
                                         <div class="mb-3">
                                             <label for="phoneNumber" class="form-label">Confirm Password <span
@@ -325,7 +323,7 @@
                                                         placeholder="Tonynguyen@example.com">
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="address" class="form-label">Landlord’s address <span
+                                                    <label for="address" class="form-label">Landlord's address <span
                                                             class="text-danger">*</span> </label>
                                                     <input type="text" name="landlord_address"
                                                         class="form-control" id="landaddress"
@@ -368,10 +366,7 @@
                                                 <input type="text" class="form-control" name="username"
                                                     maxlength="15" placeholder="TonyNguyen01" required
                                                     pattern="[a-zA-Z0-9]{1,10}">
-                                                <div class="valid-feedback">Looks good!</div>
-                                                <div class="invalid-feedback">User Name must not contain spaces and
-                                                    must not
-                                                    exceed 15 characters.</div>
+                                                <div class="username-feedback invalid-feedback"></div>
                                             </div>
                                         </div>
 
@@ -386,6 +381,7 @@
                                                     class="text-danger">*</span> </label>
                                             <input type="password" class="form-control" name="password"
                                                 placeholder="*****" />
+                                            <div class="password-feedback invalid-feedback"></div>
                                         </div>
                                         <div class="mb-3">
                                             <label for="phoneNumber" class="form-label">Confirm Password <span
@@ -471,18 +467,95 @@
             $(".file-upload").click();
         });
 
-        // Attach form submission handlers
-        $('form[id^="owner-form"], form[id^="rental-form"]').off('submit').on('submit', function(e) {
+        // Add password strength validation
+        function validatePassword(password) {
+            const minLength = 8;
+            const hasUpperCase = /[A-Z]/.test(password);
+            const hasLowerCase = /[a-z]/.test(password);
+            const hasNumbers = /\d/.test(password);
+            const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
 
-            e.preventDefault(); // Prevent the default form submission
+            return password.length >= minLength && hasUpperCase && hasLowerCase && hasNumbers && hasSpecialChar;
+        }
 
-            var submitButton = $(this).find('button[type="submit"]');
-            submitButton.prop("disabled", true);
-            // Using a spinner icon along with loading text
-            submitButton.html('<i class="fa fa-spinner fa-spin"></i> Loading...');
+        // Enhanced username validation
+        $('input[name="username"]').on('keyup', function() {
+            const username = $(this).val();
+            const isValid = /^[a-zA-Z0-9]{1,15}$/.test(username);
 
-            var formData = new FormData(this);
-            formData.append("image", $('input[name="image"]')[0].files[0]); // Add the image file
+            if (username.length === 0) {
+                $(this).removeClass('is-valid is-invalid');
+                $('.username-feedback').text('Username is required');
+            } else if (!isValid) {
+                $(this).removeClass('is-valid').addClass('is-invalid');
+                $('.username-feedback').text(
+                    'Username must be 1-15 characters and contain only letters and numbers');
+            } else {
+                $(this).removeClass('is-invalid').addClass('is-valid');
+                $('.username-feedback').text('Username is valid');
+            }
+        });
+
+        // Password validation
+        $('input[name="password"]').on('keyup', function() {
+            const password = $(this).val();
+            const isValid = validatePassword(password);
+
+            if (password.length === 0) {
+                $(this).removeClass('is-valid is-invalid');
+                $('.password-feedback').text('Password is required');
+            } else if (!isValid) {
+                $(this).removeClass('is-valid').addClass('is-invalid');
+                $('.password-feedback').html(
+                    'Password must:<br>- Be at least 8 characters<br>- Include uppercase and lowercase letters<br>- Include numbers<br>- Include special characters'
+                    );
+            } else {
+                $(this).removeClass('is-invalid').addClass('is-valid');
+                $('.password-feedback').text('Password is strong');
+            }
+        });
+
+        // Image upload validation
+        $(".file-upload").on('change', function() {
+            const file = this.files[0];
+            const maxSize = 5 * 1024 * 1024; // 5MB
+            const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+
+            if (file) {
+                if (!allowedTypes.includes(file.type)) {
+                    toastr.error('Please upload only image files (JPEG, PNG, GIF)');
+                    this.value = '';
+                    return;
+                }
+
+                if (file.size > maxSize) {
+                    toastr.error('File size must be less than 5MB');
+                    this.value = '';
+                    return;
+                }
+
+                readURL(this);
+            }
+        });
+
+        // Enhanced form submission
+        $('form[id^="owner-form"], form[id^="rental-form"]').on('submit', function(e) {
+            e.preventDefault();
+
+            const form = $(this);
+            const submitBtn = form.find('button[type="submit"]');
+            const formData = new FormData(this);
+
+            // Validate password
+            const password = form.find('input[name="password"]').val();
+            if (!validatePassword(password)) {
+                toastr.error('Please ensure your password meets all requirements');
+                return;
+            }
+
+            // Add loading state
+            submitBtn.prop('disabled', true).html(
+            '<i class="fa fa-spinner fa-spin"></i> Processing...');
 
             $.ajax({
                 type: "POST",
@@ -491,100 +564,32 @@
                 processData: false,
                 contentType: false,
                 success: function(response) {
-                    console.log(response);
-                    // Handle successful form submission
                     if (response.success) {
                         toastr.success(response.message);
                         window.location.href = "{{ route('login') }}";
                     } else {
                         toastr.error(response.message);
+                        submitBtn.prop('disabled', false).html('Create an account');
                     }
                 },
                 error: function(xhr, status, error) {
-                    // Handle error during form submission
+                    submitBtn.prop('disabled', false).html('Create an account');
+
                     if (xhr.status === 422) {
-                        // Handle validation errors
-                        var errors = xhr.responseJSON.errors;
-                        for (var key in errors) {
-                            // console.log(errors);
-                            if (errors.hasOwnProperty(key)) {
-                                var errorMessage = errors[key];
-                                toastr.error(errorMessage);
-                            }
-                        }
+                        const errors = xhr.responseJSON.errors;
+                        Object.keys(errors).forEach(key => {
+                            toastr.error(errors[key]);
+                        });
                     } else {
-                        // Handle other errors
-                        var errorMessage = xhr.responseJSON.message || error;
-                        toastr.error(errorMessage);
+                        toastr.error('An error occurred. Please try again.');
                     }
-                }
-
-
+                },
+                timeout: 10000 // 10 second timeout
             });
         });
     });
 </script>
 
-<script>
-    $(document).ready(function() {
-        // Add event listener to input element with name "username"
-        $('input[name="username"]').on('keyup', function() {
-            // Validate the "username" field
-            $('#owner-form, #rental-form').bootstrapValidator('validateField', 'username');
-
-            // Add or remove classes based on validation result
-            if ($(this).val().length > 0 && $(this).val().match(/^[a-zA-Z0-9]{1,15}$/)) {
-                $(this).removeClass('is-invalid').addClass('is-valid');
-            } else {
-                $(this).removeClass('is-valid').addClass('is-invalid');
-            }
-        });
-    });
-</script>
-{{-- <script>
-    $(document).ready(function() {
-        $('#owner-form, #rental-form').bootstrapValidator({
-                fields: {
-                    username: {
-                        validators: {
-                            notEmpty: {
-                                message: 'Please enter a username.'
-                            },
-                            stringLength: {
-                                min: 1,
-                                max: 10,
-                                message: 'Username must be between 1 and 10 characters long.'
-                            },
-                            regexp: {
-                                regexp: /^[a-zA-Z0-9]+$/,
-                                message: 'Username can only contain alphanumeric characters.'
-                            }
-                        }
-                    }
-                },
-                feedbackIcons: {
-                    valid: 'fa fa-check',
-                    invalid: 'fa fa-times',
-                    validating: 'fa fa-refresh'
-                },
-                live: 'enabled',
-                message: 'This value is not valid',
-                submitButtons: 'button[type="submit"]'
-            })
-            .on('success.field.bv', function(e, data) {
-                $(e.target).find('input[name="username"]').addClass('is-valid');
-            })
-            .on('error.field.bv', function(e, data) {
-                $(e.target).find('input[name="username"]').addClass('is-invalid');
-            });
-
-        // Add event listener to input element with name "username"
-        $('input[name="username"]').on('keyup', function() {
-            // Validate the "username" field
-            $('#owner-form, #rental-form').bootstrapValidator('validateField', 'username');
-        });
-    });
-</script> --}}
 <script>
     @if (session('success'))
         toastr.success("{{ session('success') }}");
