@@ -267,7 +267,7 @@
                                             <div class="valid">
                                                 <input type="text" class="form-control" name="username"
                                                     maxlength="15" placeholder="TonyNguyen01" required
-                                                    pattern="[a-zA-Z0-9]{1,10}">
+                                                    >
                                                 <div class="username-feedback invalid-feedback"></div>
                                             </div>
                                         </div>
@@ -365,7 +365,7 @@
                                             <div class="valid">
                                                 <input type="text" class="form-control" name="username"
                                                     maxlength="15" placeholder="TonyNguyen01" required
-                                                    pattern="[a-zA-Z0-9]{1,10}">
+                                                    >
                                                 <div class="username-feedback invalid-feedback"></div>
                                             </div>
                                         </div>
