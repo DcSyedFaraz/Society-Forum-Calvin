@@ -144,7 +144,7 @@
                 <div id="tabler-tables">
                     <h3>User Requests</h3>
                     {{-- <h3>User Requests</h3> --}}
-                    <form action="{{ route('admin.users.bulkAction') }}" method="POST" id="bulk-action-form">
+                    <form action="{{ route('admin.users.bulk-action') }}" method="POST" id="bulk-action-form">
                         @method('DELETE')
                         @csrf
                         <input type="hidden" name="decline_reason" id="decline-reason" value="Incomplete Information">

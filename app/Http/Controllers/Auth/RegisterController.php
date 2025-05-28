@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\AccountCreated;
 use App\Models\AgentDetails;
 use App\Models\ExecutiveDetails;
 use App\Models\MemberDetails;
@@ -15,6 +16,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
 use Notification;
 
 class RegisterController extends Controller
@@ -130,6 +132,7 @@ class RegisterController extends Controller
         }
         $details->save();
         $this->notification($user);
+        Mail::to($user->email)->send(new AccountCreated());
         return response()->json(['message' => 'Successfully Registered', 'success' => true], 200);
 
     }

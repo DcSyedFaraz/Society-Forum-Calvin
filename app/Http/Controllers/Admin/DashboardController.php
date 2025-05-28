@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Mail\AccountApproved;
 use App\Mail\AccountRejected;
+use App\Mail\ArchitectApproved;
+use App\Mail\ArchitectRejected;
 use App\Models\Announcement;
 use App\Models\Architect;
 use App\Models\Property;
@@ -44,6 +46,7 @@ class DashboardController extends Controller
         $data['request'] = Property::orderBy('access')
             ->get();
 
+
         // dd($data);
         return view('request.index', $data);
     }
@@ -51,6 +54,8 @@ class DashboardController extends Controller
     {
         $data['request'] = Architect::orderBy('access')
             ->get();
+
+         $data['request'] = Architect::whereNull('access')->orWhere('access', '!=', 'approved')->get();
 
         // dd($data);
         return view('request.arch', $data);
@@ -120,6 +125,76 @@ class DashboardController extends Controller
                 return redirect()->back()->with('error', 'Invalid action.');
         }
     }
+
+    public function archBulkAction(Request $request)
+    {
+        $action = $request->input('action');
+        $reqIds = $request->input('selected_req');
+
+        if (!$reqIds) {
+            return redirect()->back()->with('error', 'No request selected.');
+        }
+
+        $requests = Architect::whereIn('id', $reqIds)->get();
+
+        switch ($action) {
+            case 'approve':
+                foreach ($requests as $requestItem) {
+                    $this->approveArchitect($requestItem);
+                }
+                return redirect()->back()->with('success', 'Selected requests have been approved.');
+
+            case 'decline':
+                $reason = $request->input('decline_reason', 'Incomplete Information');
+                foreach ($requests as $requestItem) {
+                    $this->declineArchitect($requestItem, $reason);
+                }
+                return redirect()->back()->with('success', 'Selected requests have been declined.');
+
+            case 'delete':
+                // Add additional authorization check here if needed
+                Architect::whereIn('id', $reqIds)->delete();
+                return redirect()->back()->with('success', 'Selected requests have been deleted.');
+
+            default:
+                return redirect()->back()->with('error', 'Invalid action.');
+        }
+    }
+
+
+    public function approveArchitect($architect)
+    {
+        // If an Architect model is not passed, find it by ID
+        if (!($architect instanceof Architect)) {
+            $architect = Architect::findOrFail($architect);
+        }
+
+        $architect->access = 'approved';
+        $architect->save();
+
+        // Send approval email
+        Mail::to($architect->email)->send(new ArchitectApproved($architect));
+
+        return true;
+    }
+
+    public function declineArchitect($architect, $reason)
+    {
+        // Agar object nahi mila to ID ke through dhoondh lo
+        if (!($architect instanceof Architect)) {
+            $architect = Architect::findOrFail($architect);
+        }
+
+        $architect->access = 'declined';
+        $architect->decline_reason = $reason; // Ensure yeh column table mein ho
+        $architect->save();
+
+        // Email bhejna (agar email field hai model mein)
+        Mail::to($architect->email)->send(new ArchitectRejected($architect, $reason));
+
+        return true;
+    }
+
 
     /**
      * Approve a single user
