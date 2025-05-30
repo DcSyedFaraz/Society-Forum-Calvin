@@ -199,6 +199,7 @@ class RegisterController extends Controller
             $details->designation = $data['designation'];
 
             $details->save();
+            Mail::to($user->email)->send(new AccountCreated());
             $this->notification($user);
             return redirect()->route('executive_login')->with('success', 'Successfully Registered');
         } catch (Exception $e) {
@@ -279,6 +280,7 @@ class RegisterController extends Controller
         $details->company_website = $data['companyweb'] ?? null;
 
         $details->save();
+        Mail::to($user->email)->send(new AccountCreated());
         $this->notification($user);
         return redirect()->route('estate_login')->with('success', 'Successfully Registered');
     }
