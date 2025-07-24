@@ -12,7 +12,13 @@
     <meta name="msapplication-navbutton-color" content="#333844">
     <!-- iOS Safari -->
     <meta name="apple-mobile-web-app-status-bar-style" content="#333844">
-
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css"
+        integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>{{ trans('laravel-filemanager::lfm.title-page') }}</title>
     <link rel="shortcut icon" type="image/png" href="{{ asset('vendor/laravel-filemanager/img/72px color.png') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.0/dist/css/bootstrap.min.css">
@@ -283,11 +289,11 @@
       }
     ];
   </script>
-  <script>
+  {{-- <script>
       {!! \File::get(base_path('vendor/unisharp/laravel-filemanager/public/js/script.js')) !!}
-  </script>
+  </script> --}}
   {{-- Use the line below instead of the above if you need to cache the script. --}}
-  {{-- <script src="{{ asset('vendor/laravel-filemanager/js/script.js') }}"></script> --}}
+  <script src="{{ asset('vendor/laravel-filemanager/js/script.js') }}"></script>
   <script>
       Dropzone.options.uploadForm = {
           paramName: "upload[]", // The name that will be used to transfer the file
